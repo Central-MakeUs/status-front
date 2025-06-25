@@ -30,3 +30,6 @@ tsconfig.tsbuildinfo
 .env
 *storybook.log
 storybook-static
+
+# Cache files
+.eslintcache
