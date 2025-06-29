@@ -33,6 +33,11 @@
     --color-state-success: #34c759;
 }
 
+body {
+    color: var(--color-white);
+    background-color: var(--color-black);
+}
+
 #root {
     height: 100%;
 }
