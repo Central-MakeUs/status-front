@@ -24,3 +24,29 @@
     clip: rect(0, 0, 0, 0);
     overflow: hidden;
 }
+
+@mixin placeholder-color($placeholder-color: var(--color-gray-400), $font-weight: 500) {
+    &::-webkit-input-placeholder {
+        font-weight: $font-weight;
+        color: $placeholder-color;
+        opacity: 1;
+    }
+
+    &::-moz-placeholder {
+        font-weight: $font-weight;
+        color: $placeholder-color;
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        font-weight: $font-weight;
+        color: $placeholder-color;
+        opacity: 1;
+    }
+
+    &:-moz-placeholder {
+        font-weight: $font-weight;
+        color: $placeholder-color;
+        opacity: 1;
+    }
+}
