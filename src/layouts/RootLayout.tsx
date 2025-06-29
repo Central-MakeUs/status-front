@@ -8,7 +8,7 @@ import styles from './RootLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
-export const RootLayout: React.FC = () => {
+export const RootLayout = () => {
   const location = useLocation();
   const pathname = location.pathname;
 

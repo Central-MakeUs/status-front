@@ -16,7 +16,7 @@ interface BottomNavigationTab {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-export const BottomNavigation: React.FC = () => {
+export const BottomNavigation = () => {
   const location = useLocation();
 
   const tabs: BottomNavigationTab[] = [
