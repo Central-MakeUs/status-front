@@ -6,8 +6,6 @@ interface PageConfig {
   showBottomNavigation?: boolean;
 }
 
-export type PagePath = keyof typeof PAGE_PATHS;
-
 export const PAGE_PATHS = {
   ROOT: '/',
   STATUS: '/status',
