@@ -4,14 +4,14 @@ import styles from './Button.module.scss';
 const cx = classNames.bind(styles);
 
 interface ButtonProps {
-  varient?: 'primary' | 'secondary' | 'tertiary';
+  variant?: 'primary' | 'secondary' | 'tertiary';
   children: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
 }
 
 export const Button = ({
-  varient,
+  variant,
   children,
   disabled,
   onClick,
@@ -19,7 +19,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={cx('common-button', varient)}
+      className={cx('common-button', variant)}
       onClick={onClick}
       disabled={disabled}
     >

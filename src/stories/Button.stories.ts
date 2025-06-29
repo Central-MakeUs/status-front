@@ -15,21 +15,21 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    varient: 'primary',
+    variant: 'primary',
     children: 'Button',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    varient: 'secondary',
+    variant: 'secondary',
     children: 'Button',
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    varient: 'tertiary',
+    variant: 'tertiary',
     children: 'Button',
   },
 };
