@@ -1,0 +1,29 @@
+.radio {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: top;
+    cursor: pointer;
+
+    &[aria-disabled='true'] {
+        pointer-events: none;
+        cursor: default;
+    }
+
+    &[aria-checked='true'] {
+        .radio-text {
+            color: var(--color-white);
+        }
+    }
+
+    &-icon {
+        display: block;
+        flex: 0 0 auto;
+        margin-right: 12px;
+    }
+
+    &-text {
+        font-size: 14px;
+        color: var(--color-gray-100);
+        line-height: 20px;
+    }
+}

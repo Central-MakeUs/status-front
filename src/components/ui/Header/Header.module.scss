@@ -1,0 +1,48 @@
+@use '@/scss/utils/mixins';
+
+.header {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, min-content) minmax(0, 1fr) minmax(0, min-content);
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 0 14px;
+    height: 58px;
+    background-color: var(--color-black);
+
+    &.sub-header {
+        grid-template-columns: minmax(52px, min-content) minmax(0, 1fr) minmax(52px, min-content);
+        padding: 0;
+
+        .header-title {
+            font-size: 18px;
+            text-align: center;
+        }
+    }
+}
+
+.header-title {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 30px;
+
+    @include mixins.ellipsis;
+}
+
+.button-back {
+    display: block;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding: 17px 14px;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    line-height: 1px;
+}
+
+.button-back-icon {
+    width: 24px;
+    height: 24px;
+}
