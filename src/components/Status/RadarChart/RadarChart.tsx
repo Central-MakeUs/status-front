@@ -34,18 +34,21 @@ ChartJS.register(
 import classNames from 'classnames/bind';
 import styles from './RadarChart.module.scss';
 import { useState, useMemo } from 'react';
+import { StatGrid } from '../StatGrid/StatGrid';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {
   mentalData: number[];
   skillData: number[];
   profileImage: string;
+  growthStatusList: number[][];
 }
 
 export const RadarChart = ({
   mentalData,
   skillData,
   profileImage,
+  growthStatusList,
 }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
   const img = new Image();
@@ -170,67 +173,75 @@ export const RadarChart = ({
   };
 
   return (
-    <div className={cx('radarChartWrapper')}>
-      <div className={cx('toggleTabs', { skill: !isMental })}>
-        <button
-          className={cx('tab', { active: isMental })}
-          onClick={() => setView('정신')}
-          data-view="정신"
-        >
-          정신
-        </button>
-        <button
-          className={cx('tab', { active: !isMental })}
-          onClick={() => setView('기술')}
-          data-view="기술"
-        >
-          기술
-        </button>
-      </div>
-      <div className={cx('chartArea')}>
-        <Radar
-          key={isMental ? 'mental' : 'skill'}
-          data={data}
-          options={{
-            layout: {
-              padding: 8,
-            },
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-              r: {
-                max: 100,
-                min: 0,
-                angleLines: { color: '#2D2D2D' },
-                grid: {
-                  color: '#2D2D2D',
-                  circular: false,
+    <>
+      <div className={cx('radarChartWrapper')}>
+        <div className={cx('toggleTabs', { skill: !isMental })}>
+          <button
+            className={cx('tab', { active: isMental })}
+            onClick={() => setView('정신')}
+            data-view="정신"
+          >
+            정신
+          </button>
+          <button
+            className={cx('tab', { active: !isMental })}
+            onClick={() => setView('기술')}
+            data-view="기술"
+          >
+            기술
+          </button>
+        </div>
+        <div className={cx('chartArea')}>
+          <Radar
+            key={isMental ? 'mental' : 'skill'}
+            data={data}
+            options={{
+              layout: {
+                padding: 8,
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                r: {
+                  max: 100,
+                  min: 0,
+                  angleLines: { color: '#2D2D2D' },
+                  grid: {
+                    color: '#2D2D2D',
+                    circular: false,
+                  },
+                  ticks: {
+                    display: false,
+                    backdropColor: '#212121',
+                    color: '#999',
+                    stepSize: 25,
+                  },
                 },
-                ticks: {
-                  display: false,
-                  backdropColor: '#212121',
-                  color: '#999',
-                  stepSize: 25,
+              },
+              elements: {
+                point: {
+                  radius: 0,
+                  hoverRadius: 0,
+                },
+                line: {
+                  tension: 0.05, // 이 값으로 라운딩 정도 조절 가능 (0 ~ 1)
+                  borderCapStyle: 'round', // 끝점 라운드 처리
                 },
               },
-            },
-            elements: {
-              point: {
-                radius: 0,
-                hoverRadius: 0,
+              plugins: {
+                legend: { display: false },
               },
-              line: {
-                tension: 0.05, // 이 값으로 라운딩 정도 조절 가능 (0 ~ 1)
-                borderCapStyle: 'round', // 끝점 라운드 처리
-              },
-            },
-            plugins: {
-              legend: { display: false },
-            },
-          }}
-          plugins={[radarBackgroundPlugin, iconLabelPlugin]}
-        />
+            }}
+            plugins={[radarBackgroundPlugin, iconLabelPlugin]}
+          />
+        </div>
       </div>
-    </div>
+      <StatGrid
+        mentalData={mentalData}
+        skillData={skillData}
+        isMental={isMental}
+        growthStatusList={growthStatusList}
+      />
+    </>
   );
 };
