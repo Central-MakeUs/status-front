@@ -36,6 +36,8 @@
 body {
     color: var(--color-white);
     background-color: var(--color-black);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #root {

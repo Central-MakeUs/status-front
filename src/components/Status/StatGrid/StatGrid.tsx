@@ -64,7 +64,7 @@ export const StatGrid = ({
                 <span className={cx('label')}>{label}</span>
               </div>
               <div className={cx('right')}>
-                {StatusIcon && <StatusIcon />}
+                {StatusIcon && <StatusIcon className={cx('icon')} />}
                 <span className={cx('value')}>{value}/100</span>
               </div>
             </div>

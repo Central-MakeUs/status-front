@@ -38,6 +38,11 @@
   height: 24px;
 }
 
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
 .right {
   display: flex;
   justify-content: flex-end;
@@ -48,16 +53,16 @@
 
 .label {
   color: var(--color-gray-100);
-  font-family: Pretendard;
-  font-size: 14px;
+  font-family: 'Pretendard';
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 140%; 
 }
 
 .value {
-  font-family: Pretendard;
-  font-size: 16px;
+  font-family: 'Pretendard';
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
