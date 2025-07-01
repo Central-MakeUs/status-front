@@ -1,12 +1,15 @@
-import classNames from 'classnames/bind';
-import styles from './StatusPage.module.scss';
-
-const cx = classNames.bind(styles);
+import { Header } from '@/components/Status/Header/Header';
+import { RadarChart } from '@/components/Status/RadarChart/RadarChart';
+import { StatGrid } from '@/components/Status/StatGrid/StatGrid';
+import { QuestList } from '@/components/Status/QuestList/QuestList';
 
 export const StatusPage = () => {
   return (
-    <div className="main">
-      <div className={cx('')}>status page</div>
-    </div>
+    <>
+      <Header nickname={'userNickname'} level={1} levelPercent={21} />
+      <RadarChart />
+      <StatGrid />
+      <QuestList />
+    </>
   );
 };

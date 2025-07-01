@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 14px 10px 14px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  width: 100%;
+}
+
+.nickname, .levelProgressBar {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  height: 34px;
+  padding: 7px 12px;
+  color: var(--color-gray-100);
+  border: 1px solid var(--color-gray-700);
+  border-radius: 3px;
+}
+
+.nickname {
+  gap: 10px;
+  background: var(--color-gray-800);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.levelProgressBar {
+  background: linear-gradient(to right, var(--color-gray-600) var(--level-percent, 21%), transparent var(--level-percent, 21%));
+}
+
+
+.levelText {
+  color: var(--color-white);
+}
