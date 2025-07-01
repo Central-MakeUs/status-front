@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import profileImage from '@/assets/image.png'; // 절대경로 alias 사용 시
+import profileImage from '@/assets/image.svg'; // 절대경로 alias 사용 시
 
 const cx = classNames.bind(styles);
 
