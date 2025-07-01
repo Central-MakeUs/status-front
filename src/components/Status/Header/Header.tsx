@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import profileImage from '@/assets/image.svg'; // 절대경로 alias 사용 시
 
 const cx = classNames.bind(styles);
 
@@ -8,10 +7,12 @@ export const Header = ({
   nickname,
   level,
   levelPercent,
+  profileImage,
 }: {
   nickname: string;
   level: number;
   levelPercent: number;
+  profileImage: string;
 }) => {
   return (
     <header className={cx('header')}>

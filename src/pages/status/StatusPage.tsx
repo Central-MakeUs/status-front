@@ -8,7 +8,7 @@ export const StatusPage = () => {
   const nickname = 'userNickname';
   const level = 1;
   const levelPercent = 21;
-
+  const profileImageUrl = ProfileImage;
   const dataLists = [
     [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
     [75, 75, 65, 70, 60, 75], // 문장술, 창조기술, 학습 집중, 신체 수련, 기술 응용, 공감 소통 각각 점수
@@ -37,11 +37,16 @@ export const StatusPage = () => {
 
   return (
     <>
-      <Header nickname={nickname} level={level} levelPercent={levelPercent} />
+      <Header
+        nickname={nickname}
+        level={level}
+        levelPercent={levelPercent}
+        profileImage={profileImageUrl}
+      />
       <RadarChart
         mentalData={dataLists[0]}
         skillData={dataLists[1]}
-        profileImage={ProfileImage}
+        profileImage={profileImageUrl}
         growthStatusList={growthStatusList}
       />
       <QuestList quests={quests} />
