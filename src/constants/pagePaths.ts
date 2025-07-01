@@ -1,11 +1,3 @@
-interface PageConfig {
-  header?: {
-    title?: string;
-    hasBackButton?: boolean;
-  };
-  showBottomNavigation?: boolean;
-}
-
 export const PAGE_PATHS = {
   ROOT: '/',
   STATUS: '/status',
@@ -14,20 +6,9 @@ export const PAGE_PATHS = {
   PROFILE: '/profile',
 } as const;
 
-export const PAGE_CONFIG: Record<string, PageConfig> = {
-  [PAGE_PATHS.STATUS]: {
-    showBottomNavigation: true,
-  },
-  [PAGE_PATHS.CHALLENGE]: {
-    header: { title: '퀘스트' },
-    showBottomNavigation: true,
-  },
-  [PAGE_PATHS.HISTORY]: {
-    header: { title: '히스토리', hasBackButton: true },
-    showBottomNavigation: true,
-  },
-  [PAGE_PATHS.PROFILE]: {
-    header: { title: '마이페이지' },
-    showBottomNavigation: true,
-  },
+export const MAIN_PAGE_PATHS = {
+  STATUS: PAGE_PATHS.STATUS,
+  CHALLENGE: PAGE_PATHS.CHALLENGE,
+  HISTORY: PAGE_PATHS.HISTORY,
+  PROFILE: PAGE_PATHS.PROFILE,
 } as const;

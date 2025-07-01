@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from '@/layouts/RootLayout';
+import { BottomNavigationLayout } from './layouts/BottomNavigationLayout';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { StatusPage } from '@/pages/status/StatusPage';
 import { ChallengePage } from '@/pages/challenge/ChallengePage';
@@ -12,20 +13,26 @@ export const router = createBrowserRouter([
     Component: RootLayout,
     children: [
       {
-        path: PAGE_PATHS.STATUS,
-        Component: StatusPage,
-      },
-      {
-        path: PAGE_PATHS.CHALLENGE,
-        Component: ChallengePage,
-      },
-      {
-        path: PAGE_PATHS.HISTORY,
-        Component: HistoryPage,
-      },
-      {
-        path: PAGE_PATHS.PROFILE,
-        Component: ProfilePage,
+        path: '/',
+        Component: BottomNavigationLayout,
+        children: [
+          {
+            path: PAGE_PATHS.STATUS,
+            Component: StatusPage,
+          },
+          {
+            path: PAGE_PATHS.CHALLENGE,
+            Component: ChallengePage,
+          },
+          {
+            path: PAGE_PATHS.HISTORY,
+            Component: HistoryPage,
+          },
+          {
+            path: PAGE_PATHS.PROFILE,
+            Component: ProfilePage,
+          },
+        ],
       },
     ],
   },

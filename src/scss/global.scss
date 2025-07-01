@@ -42,6 +42,17 @@ body {
     height: 100%;
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
 .sr-only {
     @include mixins.sr-only;
 }

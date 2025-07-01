@@ -6,7 +6,7 @@ import IconBack from '@/assets/icons/icon-arrow-left.svg?react';
 
 const cx = classNames.bind(styles);
 
-interface HeaderProps {
+export interface HeaderProps {
   title?: string;
   hasBackButton?: boolean;
 }

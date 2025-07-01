@@ -1,12 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { PAGE_CONFIG, PAGE_PATHS } from '@/constants/pagePaths';
-import { Header } from '@/components/ui/Header/Header';
-import { BottomNavigation } from '@/components/ui/BottomNavigation/BottomNavigation';
-
-import classNames from 'classnames/bind';
-import styles from './RootLayout.module.scss';
-
-const cx = classNames.bind(styles);
+import { PAGE_PATHS } from '@/constants/pagePaths';
 
 export const RootLayout = () => {
   const location = useLocation();
@@ -21,21 +14,13 @@ export const RootLayout = () => {
   const hasActiveChallenge = false;
   const isFirstTimeUser = true;
 
-  if (isRootPath && isFirstTimeUser && !hasActiveChallenge) {
-    return <Navigate to={PAGE_PATHS.CHALLENGE} replace />;
+  if (isRootPath) {
+    if (isFirstTimeUser && !hasActiveChallenge) {
+      return <Navigate to={PAGE_PATHS.CHALLENGE} replace />;
+    } else {
+      return <Navigate to={PAGE_PATHS.STATUS} replace />;
+    }
   }
 
-  const { header, showBottomNavigation } = PAGE_CONFIG[pathname];
-
-  return (
-    <div className={cx('wrapper')}>
-      {header && (
-        <Header title={header?.title} hasBackButton={header.hasBackButton} />
-      )}
-      <main className={cx('main')}>
-        <Outlet />
-      </main>
-      {showBottomNavigation && <BottomNavigation />}
-    </div>
-  );
+  return <Outlet />;
 };
