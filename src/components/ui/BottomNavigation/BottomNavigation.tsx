@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { MAIN_PAGE_PATHS } from '@/constants/pagePaths';
 import IconStatus from '@/assets/icons/icon-menu-status.svg?react';
-import IconChallenge from '@/assets/icons/icon-menu-challenge.svg?react';
+import IconQuest from '@/assets/icons/icon-menu-quest.svg?react';
 import IconHistory from '@/assets/icons/icon-menu-history.svg?react';
 import IconProfile from '@/assets/icons/icon-menu-profile.svg?react';
 
@@ -26,9 +26,9 @@ export const BottomNavigation = () => {
       icon: IconStatus,
     },
     {
-      label: '목표&챌린지',
-      path: MAIN_PAGE_PATHS.CHALLENGE,
-      icon: IconChallenge,
+      label: '퀘스트',
+      path: MAIN_PAGE_PATHS.QUEST,
+      icon: IconQuest,
     },
     {
       label: '히스토리',

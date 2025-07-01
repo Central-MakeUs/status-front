@@ -3,7 +3,7 @@ import { RootLayout } from '@/layouts/RootLayout';
 import { BottomNavigationLayout } from './layouts/BottomNavigationLayout';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { StatusPage } from '@/pages/status/StatusPage';
-import { ChallengePage } from '@/pages/challenge/ChallengePage';
+import { QuestPage } from '@/pages/quest/QuestPage';
 import { HistoryPage } from '@/pages/history/HistoryPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
 
@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
             Component: StatusPage,
           },
           {
-            path: PAGE_PATHS.CHALLENGE,
-            Component: ChallengePage,
+            path: PAGE_PATHS.QUEST,
+            Component: QuestPage,
           },
           {
             path: PAGE_PATHS.HISTORY,
