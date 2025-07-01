@@ -1,6 +1,6 @@
-import { Header } from '@/components/Status/Header/Header';
-import { RadarChart } from '@/components/Status/RadarChart/RadarChart';
-import { QuestList } from '@/components/Status/QuestList/QuestList';
+import { Header } from '@/components/pages/Status/Header/Header';
+import { RadarChart } from '@/components/pages/Status/RadarChart/RadarChart';
+import { QuestList } from '@/components/pages/Status/QuestList/QuestList';
 
 import ProfileImage from '@/assets/image.svg?url';
 
