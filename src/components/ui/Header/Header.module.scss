@@ -15,6 +15,7 @@
         padding: 0;
 
         .header-title {
+            padding-top: 0;
             font-size: 18px;
             text-align: center;
         }
@@ -22,6 +23,7 @@
 }
 
 .header-title {
+    padding-top: 7px;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     font-size: 22px;
