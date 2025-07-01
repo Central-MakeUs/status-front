@@ -1,0 +1,63 @@
+.questItem {
+  display: flex; 
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  gap: 8px;
+}
+
+.title {
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+
+  color: var(--color-white);
+}
+
+.meta {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+
+  color: var(--color-gray-300);
+}
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.label {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+
+  color: var(--color-gray-200);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.bar {
+  background-color: var(--color-gray-600);
+  border-radius: 8px;
+  height: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.fill {
+  background-color: white;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}

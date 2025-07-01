@@ -11,6 +11,21 @@ export const StatusPage = () => {
     [1, 0, 0, -1, 0, 0],
     [1, 0, 0, -1, 0, 0],
   ];
+  const quests = [
+    {
+      title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
+      deadline: '2025.10.25',
+      totalDays: 7,
+      progress: 38,
+    },
+    {
+      title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
+      deadline: '2025.10.25',
+      totalDays: 7,
+      progress: 38,
+    },
+  ];
+
   return (
     <>
       <Header nickname={'userNickname'} level={1} levelPercent={21} />
@@ -20,7 +35,7 @@ export const StatusPage = () => {
         profileImage={ProfileImage}
         growthStatusList={growthStatusList}
       />
-      <QuestList />
+      <QuestList quests={quests} />
     </>
   );
 };
