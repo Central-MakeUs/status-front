@@ -9,9 +9,9 @@ export const ProfilePage = () => {
   return (
     <>
       <Header title="마이페이지" />
-      <div className="main">
+      <main className="main">
         <div className={cx('')}>profile page</div>
-      </div>
+      </main>
     </>
   );
 };

@@ -9,9 +9,9 @@ export const QuestPage = () => {
   return (
     <>
       <Header title="퀘스트" />
-      <div className="main">
+      <main className="main">
         <div className={cx('')}>quest page</div>
-      </div>
+      </main>
     </>
   );
 };

@@ -9,9 +9,9 @@ export const HistoryPage = () => {
   return (
     <>
       <Header title="히스토리" hasBackButton={true} />
-      <div className="main">
+      <main className="main">
         <div className={cx('')}>history page</div>
-      </div>
+      </main>
     </>
   );
 };
