@@ -4,7 +4,9 @@ import { BottomNavigation } from '@/components/ui/BottomNavigation/BottomNavigat
 export const BottomNavigationLayout = () => {
   return (
     <div className="wrapper">
-      <Outlet />
+      <div style={{ paddingBottom: '100px' }}>
+        <Outlet />
+      </div>
       <BottomNavigation />
     </div>
   );
