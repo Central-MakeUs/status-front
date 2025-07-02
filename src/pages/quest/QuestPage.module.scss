@@ -1,0 +1,33 @@
+.button-add-quest {
+    position: fixed;
+    left: 50%;
+    bottom: 86px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 58px;
+    background-color: var(--color-main-orange-default);
+    transform: translateX(-50%);
+
+    &:active {
+        background-color: var(--color-main-orange-dark);
+    }
+
+    .text {
+        display: block;
+        flex: 0 0 auto;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-white);
+        line-height: 20px;
+    }
+
+    .icon-add {
+        display: block;
+        flex: 0 0 auto;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+    }
+}

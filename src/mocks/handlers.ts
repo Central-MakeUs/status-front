@@ -1,7 +1,3 @@
-import { http, HttpResponse } from 'msw';
+import { questHandlers } from '@/mocks/handler/questHandlers';
 
-export const handlers = [
-  http.get('/api/', () => {
-    return HttpResponse.json();
-  }),
-];
+export const handlers = [...questHandlers];
