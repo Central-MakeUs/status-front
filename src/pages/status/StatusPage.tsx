@@ -43,13 +43,15 @@ export const StatusPage = () => {
         levelPercent={levelPercent}
         profileImage={profileImageUrl}
       />
-      <RadarChart
-        mentalData={dataLists[0]}
-        skillData={dataLists[1]}
-        profileImage={profileImageUrl}
-        growthStatusList={growthStatusList}
-      />
-      <QuestList quests={quests} />
+      <main className="main">
+        <RadarChart
+          mentalData={dataLists[0]}
+          skillData={dataLists[1]}
+          profileImage={profileImageUrl}
+          growthStatusList={growthStatusList}
+        />
+        <QuestList quests={quests} />
+      </main>
     </>
   );
 };
