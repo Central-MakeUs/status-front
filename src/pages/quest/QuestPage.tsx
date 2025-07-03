@@ -1,4 +1,4 @@
-import { useUserQuests } from '@/queries/quest';
+import { useGetUserQuests } from '@/api/hooks/quest/useGetUserQuests';
 import { Header } from '@/components/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import IconAdd from '@/assets/icons/icon-add.svg?react';
@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 export const QuestPage = () => {
   // [TODO] auth store에서 사용자 정보 가져오기
   const userId = '1';
-  const { data: quests } = useUserQuests(userId);
+  const { data: quests } = useGetUserQuests(userId);
 
   const handleAddQuest = () => {
     // [TODO] 퀘스트 생성 페이지 이동
