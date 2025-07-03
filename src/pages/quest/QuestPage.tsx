@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 export const QuestPage = () => {
   // [TODO] auth store에서 사용자 정보 가져오기
-  const userId = '1';
+  const userId = '10';
   const { data: quests } = useGetUserQuests(userId);
 
   const handleAddQuest = () => {
