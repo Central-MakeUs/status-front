@@ -4,9 +4,10 @@ import { initializeMockServiceWorker } from '@/mocks';
 import App from '@/App.tsx';
 import '@/scss/global.scss';
 
-if (import.meta.env.DEV) {
-  await initializeMockServiceWorker();
-}
+// if (import.meta.env.DEV) {
+//   await initializeMockServiceWorker();
+// }
+await initializeMockServiceWorker();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
