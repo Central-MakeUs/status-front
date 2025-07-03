@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from '@/layouts/RootLayout';
-import { BottomNavigationLayout } from './layouts/BottomNavigationLayout';
+import { BottomNavigationLayout } from '@/layouts/BottomNavigationLayout';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { StatusPage } from '@/pages/status/StatusPage';
 import { QuestPage } from '@/pages/quest/QuestPage';
@@ -13,7 +13,6 @@ export const router = createBrowserRouter([
     Component: RootLayout,
     children: [
       {
-        path: '/',
         Component: BottomNavigationLayout,
         children: [
           {
