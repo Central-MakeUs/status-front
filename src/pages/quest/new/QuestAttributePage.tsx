@@ -3,8 +3,8 @@ import { useGetUserAttribute } from '@/api/hooks/attribute';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
-import { StepTitle } from './components/StepTitle/StepTitle';
-import { Button } from '@/components/ui/Button/Button';
+import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
+import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
 
 import type { Attribute } from '@/types/attribute';
 
@@ -37,12 +37,14 @@ export const QuestAttributePage = () => {
     (attribute: Attribute) => attribute.type === 'skill'
   );
 
+  const isAttributesSelected = currentCount === 2;
+
   const handleClickNextButton = () => {
-    if (currentCount < 2) {
+    if (!isAttributesSelected) {
       return;
     }
 
-    navigate(PAGE_PATHS.QUEST_NEW_THEME);
+    navigate(PAGE_PATHS.QUEST_NEW_CATEGORY);
   };
 
   return (
@@ -114,15 +116,12 @@ export const QuestAttributePage = () => {
           </div>
         </div>
       </main>
-      <footer className={cx('footer')}>
-        <Button
-          variant="secondary"
-          disabled={currentCount !== 2}
-          onClick={handleClickNextButton}
-        >
-          다음
-        </Button>
-      </footer>
+      <StepAction
+        disabled={!isAttributesSelected}
+        onClick={handleClickNextButton}
+      >
+        다음
+      </StepAction>
     </>
   );
 };
