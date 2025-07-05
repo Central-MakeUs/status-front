@@ -6,6 +6,7 @@ import { StatusPage } from '@/pages/status/StatusPage';
 import { QuestPage } from '@/pages/quest/QuestPage';
 import { HistoryPage } from '@/pages/history/HistoryPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
+import { QuestAttributePage } from '@/pages/quest/new';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             Component: ProfilePage,
           },
         ],
+      },
+      {
+        path: PAGE_PATHS.QUEST_NEW_ATTRIBUTE,
+        Component: QuestAttributePage,
       },
     ],
   },

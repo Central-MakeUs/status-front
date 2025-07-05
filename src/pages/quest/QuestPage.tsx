@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useGetUserQuests } from '@/api/hooks/quest/useGetUserQuests';
 import { Header } from '@/components/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import IconAdd from '@/assets/icons/icon-add.svg?react';
+import { PAGE_PATHS } from '@/constants/pagePaths';
 
 import classNames from 'classnames/bind';
 import styles from './QuestPage.module.scss';
@@ -9,12 +11,13 @@ import styles from './QuestPage.module.scss';
 const cx = classNames.bind(styles);
 
 export const QuestPage = () => {
+  const navigate = useNavigate();
   // [TODO] auth store에서 사용자 정보 가져오기
   const userId = '10';
   const { data: quests } = useGetUserQuests(userId);
 
   const handleAddQuest = () => {
-    // [TODO] 퀘스트 생성 페이지 이동
+    navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE);
   };
 
   return (

@@ -22,5 +22,9 @@ export const RootLayout = () => {
     }
   }
 
-  return <Outlet />;
+  return (
+    <div className="wrapper">
+      <Outlet />
+    </div>
+  );
 };
