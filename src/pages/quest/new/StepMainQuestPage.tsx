@@ -11,6 +11,8 @@ import { StepRadioGroupSkeleton } from '@/pages/quest/new/components/StepRadioGr
 import { StepRadioGroup } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroup';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
 
+import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
+
 export const StepMainQuestPage = () => {
   const navigate = useNavigate();
   const { selectedCategory, selectedMainQuest, setSelectedMainQuest } =
@@ -48,7 +50,7 @@ export const StepMainQuestPage = () => {
     <>
       <Header title="퀘스트 만들기" hasBackButton={true} />
       <main className="main">
-        <StepTitle>메인 퀘스트를 선택해주세요!</StepTitle>
+        <StepTitle logo={<IconLogo />}>메인 퀘스트를 선택해주세요!</StepTitle>
         {selectedCategory && (
           <StepDescription>
             {selectedCategory?.name}에 맞는 메일 퀘스트를 추천해드렸어요.

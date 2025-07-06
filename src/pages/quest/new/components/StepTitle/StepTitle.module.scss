@@ -4,3 +4,14 @@
     color: var(--color-white);
     line-height: 28px;
 }
+
+.icon-logo {
+    display: block;
+    margin-bottom: 8px;
+
+    svg {
+        display: block;
+        width: 24px;
+        height: 24px;
+    }
+}

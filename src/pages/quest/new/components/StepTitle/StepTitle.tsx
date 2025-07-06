@@ -3,6 +3,16 @@ import styles from './StepTitle.module.scss';
 
 const cx = classNames.bind(styles);
 
-export const StepTitle = ({ children }: { children: React.ReactNode }) => {
-  return <h3 className={cx('step-title')}>{children}</h3>;
+interface StepTitleProps {
+  children: React.ReactNode;
+  logo?: React.ReactNode;
+}
+
+export const StepTitle = ({ children, logo }: StepTitleProps) => {
+  return (
+    <h3 className={cx('step-title')}>
+      {logo && <div className={cx('icon-logo')}>{logo}</div>}
+      {children}
+    </h3>
+  );
 };
