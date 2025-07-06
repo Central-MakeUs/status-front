@@ -8,7 +8,7 @@ interface StepRadioGroupSkeletonProps {
 }
 
 export const StepRadioGroupSkeleton = ({
-  length = 5,
+  length = 6,
 }: StepRadioGroupSkeletonProps) => {
   return (
     <div className={cx('step-radio-group-skeleton')}>

@@ -40,7 +40,7 @@ export const QuestCategoryPage = () => {
           selectedSkillAttribute.attributeId,
         ]
       : [],
-    limit: 5,
+    limit: 6,
   });
 
   const handleClickRefreshButton = () => {
