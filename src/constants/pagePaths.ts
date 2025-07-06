@@ -5,6 +5,7 @@ export const PAGE_PATHS = {
   QUEST_NEW: '/quest/new',
   QUEST_NEW_ATTRIBUTE: '/quest/new/attribute',
   QUEST_NEW_CATEGORY: '/quest/new/category',
+  QUEST_NEW_MAIN_QUESTION: '/quest/new/main-question',
   HISTORY: '/history',
   PROFILE: '/profile',
 } as const;

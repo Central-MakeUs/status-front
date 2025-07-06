@@ -1,0 +1,33 @@
+.step-radio-group-skeleton {
+    margin-top: 22px;
+    padding: 0 14px;
+}
+
+.step-radio-skeleton {
+    box-sizing: border-box;
+    display: flex;
+    height: 48px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    background-color: var(--color-gray-700);
+
+    & + .step-radio-skeleton {
+        margin-top: 8px;
+    }
+}
+
+.step-radio-skeleton-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--color-gray-600);
+}
+
+.step-radio-skeleton-name {
+    display: block;
+    flex: 0 0 auto;
+    width: 61%;
+    margin-left: 12px;
+    background-color: var(--color-gray-600);
+}
