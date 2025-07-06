@@ -11,7 +11,7 @@ import { StepRadioGroupSkeleton } from '@/pages/quest/new/components/StepRadioGr
 import { StepRadioGroup } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroup';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
 
-export const QuestCategoryPage = () => {
+export const StepCategoryPage = () => {
   const navigate = useNavigate();
   const {
     selectedCategory,

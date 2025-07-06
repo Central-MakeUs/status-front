@@ -9,11 +9,11 @@ import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
 import type { Attribute } from '@/types/attribute';
 
 import classNames from 'classnames/bind';
-import styles from './QuestAttributePage.module.scss';
+import styles from './StepAttributePage.module.scss';
 
 const cx = classNames.bind(styles);
 
-export const QuestAttributePage = () => {
+export const StepAttributePage = () => {
   const navigate = useNavigate();
   // [TODO] auth store에서 사용자 정보 가져오기
   const userId = '10';

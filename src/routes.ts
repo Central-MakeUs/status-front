@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { PAGE_PATHS } from '@/constants/pagePaths';
 import { RootLayout } from '@/layouts/RootLayout';
 import { BottomNavigationLayout } from '@/layouts/BottomNavigationLayout';
-import { PAGE_PATHS } from '@/constants/pagePaths';
 import { StatusPage } from '@/pages/status/StatusPage';
 import { QuestPage } from '@/pages/quest/QuestPage';
-import { HistoryPage } from '@/pages/history/HistoryPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
-import { QuestAttributePage, QuestCategoryPage } from '@/pages/quest/new';
+import { HistoryPage } from '@/pages/history/HistoryPage';
+import { StepAttributePage, StepCategoryPage } from '@/pages/quest/new';
 
 export const router = createBrowserRouter([
   {
@@ -36,11 +36,11 @@ export const router = createBrowserRouter([
       },
       {
         path: PAGE_PATHS.QUEST_NEW_ATTRIBUTE,
-        Component: QuestAttributePage,
+        Component: StepAttributePage,
       },
       {
         path: PAGE_PATHS.QUEST_NEW_CATEGORY,
-        Component: QuestCategoryPage,
+        Component: StepCategoryPage,
       },
     ],
   },

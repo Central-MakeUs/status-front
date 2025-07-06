@@ -1,2 +1,2 @@
-export * from './QuestAttributePage';
-export * from './QuestCategoryPage';
+export * from './StepAttributePage';
+export * from './StepCategoryPage';
