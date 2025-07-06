@@ -1,12 +1,23 @@
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
+interface RequestOptions extends RequestInit {
+  params?: Record<string, string>;
+}
+
 const request = async <T = unknown>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestOptions = {}
 ): Promise<T> => {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
+
+  let queryString = '';
+
+  if (options.params) {
+    const params = new URLSearchParams(options.params);
+    queryString = `?${params.toString()}`;
+  }
 
   if (options.headers) {
     if (options.headers instanceof Headers) {
@@ -22,7 +33,7 @@ const request = async <T = unknown>(
     }
   }
 
-  const response = await fetch(`${BASE_URL}${endpoint}`, {
+  const response = await fetch(`${BASE_URL}${endpoint}${queryString}`, {
     ...options,
     headers,
   });
@@ -39,13 +50,13 @@ const request = async <T = unknown>(
 };
 
 export const api = {
-  get: <T = unknown>(endpoint: string, options?: RequestInit): Promise<T> =>
+  get: <T = unknown>(endpoint: string, options?: RequestOptions): Promise<T> =>
     request<T>(endpoint, { ...options, method: 'GET' }),
 
   post: <T = unknown>(
     endpoint: string,
     data?: unknown,
-    options?: RequestInit
+    options?: RequestOptions
   ): Promise<T> =>
     request<T>(endpoint, {
       ...options,
@@ -56,7 +67,7 @@ export const api = {
   put: <T = unknown>(
     endpoint: string,
     data?: unknown,
-    options?: RequestInit
+    options?: RequestOptions
   ): Promise<T> =>
     request<T>(endpoint, {
       ...options,
@@ -67,7 +78,7 @@ export const api = {
   patch: <T = unknown>(
     endpoint: string,
     data?: unknown,
-    options?: RequestInit
+    options?: RequestOptions
   ): Promise<T> =>
     request<T>(endpoint, {
       ...options,
@@ -75,6 +86,8 @@ export const api = {
       body: data ? JSON.stringify(data) : undefined,
     }),
 
-  delete: <T = unknown>(endpoint: string, options?: RequestInit): Promise<T> =>
-    request<T>(endpoint, { ...options, method: 'DELETE' }),
+  delete: <T = unknown>(
+    endpoint: string,
+    options?: RequestOptions
+  ): Promise<T> => request<T>(endpoint, { ...options, method: 'DELETE' }),
 } as const;
