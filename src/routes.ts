@@ -6,7 +6,11 @@ import { StatusPage } from '@/pages/status/StatusPage';
 import { QuestPage } from '@/pages/quest/QuestPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
 import { HistoryPage } from '@/pages/history/HistoryPage';
-import { StepAttributePage, StepCategoryPage } from '@/pages/quest/new';
+import {
+  StepAttributePage,
+  StepCategoryPage,
+  StepMainQuestPage,
+} from '@/pages/quest/new';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: PAGE_PATHS.QUEST_NEW_CATEGORY,
         Component: StepCategoryPage,
+      },
+      {
+        path: PAGE_PATHS.QUEST_NEW_MAIN_QUESTION,
+        Component: StepMainQuestPage,
       },
     ],
   },

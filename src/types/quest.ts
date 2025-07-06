@@ -1,3 +1,5 @@
+import type { Attribute } from '@/types/attribute';
+
 export type StatType = 'patience';
 
 export interface StatReward {
@@ -12,4 +14,11 @@ export interface Quest {
   progress: number;
   totalDays: number;
   rewards: StatReward[];
+}
+
+export interface MainQuest {
+  id: string;
+  title: string;
+  attributes?: Attribute[];
+  createdAt?: string;
 }

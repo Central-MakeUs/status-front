@@ -1,5 +1,10 @@
 import { http, HttpResponse } from 'msw';
-import { mockQuests, userQuestMapping } from '@/mocks/data/quest';
+import {
+  mockMainQuests,
+  mockQuests,
+  userQuestMapping,
+} from '@/mocks/data/quest';
+
 export const questHandlers = [
   http.get('/users/:userId/quests', ({ params }) => {
     const userId = params.userId as string;
@@ -9,5 +14,15 @@ export const questHandlers = [
     );
 
     return HttpResponse.json(userQuests);
+  }),
+  http.get('/quests/:categoryId', ({ request }) => {
+    const params = new URL(request.url).searchParams;
+    const limit = params.get('limit');
+
+    const quests = mockMainQuests
+      .sort(() => Math.random() - 0.5)
+      .slice(0, Number(limit));
+
+    return HttpResponse.json(quests);
   }),
 ];
