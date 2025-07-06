@@ -15,7 +15,7 @@ export const questHandlers = [
 
     return HttpResponse.json(userQuests);
   }),
-  http.get('/quests/:categoryId', ({ request }) => {
+  http.get('/main-quests', ({ request }) => {
     const params = new URL(request.url).searchParams;
     const limit = params.get('limit');
 

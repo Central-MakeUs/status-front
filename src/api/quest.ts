@@ -16,10 +16,11 @@ export const getRandomMainQuestByCategoryId = async ({
   limit = 6,
 }: GetRandomMainQuestByCategoryIdParams) => {
   const params: Record<string, string> = {
+    categoryId: categoryId,
     limit: limit.toString(),
   };
 
-  const quest = await api.get<MainQuest[]>(`/quests/${categoryId}`, {
+  const quest = await api.get<MainQuest[]>('/main-quests', {
     params,
   });
   return quest;
