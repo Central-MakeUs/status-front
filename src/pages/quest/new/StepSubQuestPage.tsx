@@ -22,12 +22,12 @@ import styles from './StepSubQuestPage.module.scss';
 const cx = classNames.bind(styles);
 
 const DISPLAY_SUB_QUEST_COUNT = 7;
+const MAX_SUB_QUEST_COUNT = 5;
 
 export const StepSubQuestPage = () => {
   const navigate = useNavigate();
   const { selectedMainQuest, selectedSubQuests, toggleSelectedSubQuest } =
     useQuestCreationStore();
-
   const [displaySubQuests, setDisplaySubQuests] = useState<UserSubQuest[]>([]);
 
   /**
@@ -40,13 +40,16 @@ export const StepSubQuestPage = () => {
     }
   }, [selectedMainQuest, navigate]);
 
-  const limit = DISPLAY_SUB_QUEST_COUNT - selectedSubQuests.length;
+  const hasMaxSubQuestSelection =
+    selectedSubQuests.length >= MAX_SUB_QUEST_COUNT;
+  const remainingCount = DISPLAY_SUB_QUEST_COUNT - selectedSubQuests.length;
+  const isSubQuestSelected = selectedSubQuests.length > 0;
 
   const { data, isLoading, isRefetching, refetch } =
     useGetRandomSubQuestByMainQuestId({
       mainQuestId: selectedMainQuest?.id.toString() ?? '',
       selectedSubQuestIds: selectedSubQuests.map((subQuest) => subQuest.id),
-      limit,
+      limit: remainingCount,
     });
 
   useEffect(() => {
@@ -55,13 +58,27 @@ export const StepSubQuestPage = () => {
     }
   }, [data, selectedSubQuests, displaySubQuests.length]);
 
-  const isSubQuestSelected = selectedSubQuests.length > 0;
+  const handleClickSubQuest = (subQuest: UserSubQuest) => {
+    const isChecked = selectedSubQuests.some(
+      (selected) => selected.id === subQuest.id
+    );
+
+    if (hasMaxSubQuestSelection && !isChecked) {
+      return;
+    }
+
+    toggleSelectedSubQuest(subQuest);
+  };
 
   const handleClickEditButton = () => {
     // [TODO] 바텀 시트 추가
   };
 
   const handleClickRefreshButton = async () => {
+    if (remainingCount === 0) {
+      return;
+    }
+
     const { data } = await refetch();
 
     const combinedData = [...selectedSubQuests, ...(data ?? [])];
@@ -118,7 +135,7 @@ export const StepSubQuestPage = () => {
                         tabIndex={0}
                         className={cx('checkbox')}
                         aria-checked={isChecked}
-                        onClick={() => toggleSelectedSubQuest(subQuest)}
+                        onClick={() => handleClickSubQuest(subQuest)}
                       >
                         {isChecked ? (
                           <IconCheckboxChecked
