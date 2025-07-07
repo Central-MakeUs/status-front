@@ -31,12 +31,21 @@ export const questHandlers = [
     const limit = params.get('limit');
     const selectedSubQuestIds = params.get('selectedSubQuestIds');
 
-    const subQuests = mockSubQuests
+    const selectedSubQuests = selectedSubQuestIds
+      ? mockSubQuests.filter((subQuest) =>
+          selectedSubQuestIds.includes(subQuest.id)
+        )
+      : [];
+
+    const remainingCount = Number(limit) - selectedSubQuests.length;
+    const unselectedSubQuests = mockSubQuests
       .filter((subQuest) =>
         selectedSubQuestIds ? !selectedSubQuestIds.includes(subQuest.id) : true
       )
       .sort(() => Math.random() - 0.5)
-      .slice(0, Number(limit));
+      .slice(0, Math.max(0, remainingCount));
+
+    const subQuests = [...selectedSubQuests, ...unselectedSubQuests];
 
     return HttpResponse.json(subQuests);
   }),

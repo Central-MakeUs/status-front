@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { useGetRandomSubQuestByMainQuestId } from '@/api/hooks/quest/useGetRandomSubQuestByMainQuestId';
@@ -28,7 +28,6 @@ export const StepSubQuestPage = () => {
   const navigate = useNavigate();
   const { selectedMainQuest, selectedSubQuests, toggleSelectedSubQuest } =
     useQuestCreationStore();
-  const [displaySubQuests, setDisplaySubQuests] = useState<UserSubQuest[]>([]);
 
   /**
    * [TODO] URL로 접근하는 등 validation 체크 로직
@@ -42,21 +41,14 @@ export const StepSubQuestPage = () => {
 
   const hasMaxSubQuestSelection =
     selectedSubQuests.length >= MAX_SUB_QUEST_COUNT;
-  const remainingCount = DISPLAY_SUB_QUEST_COUNT - selectedSubQuests.length;
   const isSubQuestSelected = selectedSubQuests.length > 0;
 
   const { data, isLoading, isRefetching, refetch } =
     useGetRandomSubQuestByMainQuestId({
       mainQuestId: selectedMainQuest?.id.toString() ?? '',
       selectedSubQuestIds: selectedSubQuests.map((subQuest) => subQuest.id),
-      limit: remainingCount,
+      limit: DISPLAY_SUB_QUEST_COUNT,
     });
-
-  useEffect(() => {
-    if (data && displaySubQuests.length === 0) {
-      setDisplaySubQuests([...selectedSubQuests, ...data]);
-    }
-  }, [data, selectedSubQuests, displaySubQuests.length]);
 
   const handleClickSubQuest = (subQuest: UserSubQuest) => {
     const isChecked = selectedSubQuests.some(
@@ -74,16 +66,8 @@ export const StepSubQuestPage = () => {
     // [TODO] 바텀 시트 추가
   };
 
-  const handleClickRefreshButton = async () => {
-    if (remainingCount === 0) {
-      return;
-    }
-
-    const { data } = await refetch();
-
-    const combinedData = [...selectedSubQuests, ...(data ?? [])];
-
-    setDisplaySubQuests(combinedData);
+  const handleClickRefreshButton = () => {
+    refetch();
   };
 
   const handleClickNextButton = () => {
@@ -114,7 +98,7 @@ export const StepSubQuestPage = () => {
           </div>
         ) : (
           <ul className={cx('step-sub-quest-list')}>
-            {displaySubQuests?.map((subQuest) => {
+            {data?.map((subQuest) => {
               const isChecked = selectedSubQuests.some(
                 (selected) => selected.id === subQuest.id
               );
