@@ -24,16 +24,33 @@ export const useQuestCreationStore = create<QuestCreationState>()((set) => ({
   selectedSubQuests: [],
 
   setSelectedMentalityAttribute: (attribute) =>
-    set(() => ({ selectedMentalityAttribute: attribute })),
+    set(() => ({
+      selectedMentalityAttribute: attribute,
+      selectedCategory: null,
+      selectedMainQuest: null,
+      selectedSubQuests: [],
+    })),
 
   setSelectedSkillAttribute: (attribute) =>
-    set(() => ({ selectedSkillAttribute: attribute })),
+    set(() => ({
+      selectedSkillAttribute: attribute,
+      selectedCategory: null,
+      selectedMainQuest: null,
+      selectedSubQuests: [],
+    })),
 
   setSelectedCategory: (category) =>
-    set(() => ({ selectedCategory: category })),
+    set(() => ({
+      selectedCategory: category,
+      selectedMainQuest: null,
+      selectedSubQuests: [],
+    })),
 
   setSelectedMainQuest: (mainQuest) =>
-    set(() => ({ selectedMainQuest: mainQuest })),
+    set(() => ({
+      selectedMainQuest: mainQuest,
+      selectedSubQuests: [],
+    })),
 
   toggleSelectedSubQuest: (subQuest) =>
     set((state) => {
