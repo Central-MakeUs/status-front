@@ -6,6 +6,7 @@ export const PAGE_PATHS = {
   QUEST_NEW_CATEGORY: '/quest/new/category',
   QUEST_NEW_MAIN_QUESTION: '/quest/new/main-quest',
   QUEST_NEW_SUB_QUESTION: '/quest/new/sub-quest',
+  QUEST_NEW_SCHEDULE: '/quest/new/schedule',
   HISTORY: '/history',
   PROFILE: '/profile',
 } as const;

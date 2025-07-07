@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw';
 import {
   mockMainQuests,
   mockQuests,
+  mockSubQuests,
   userQuestMapping,
 } from '@/mocks/data/quest';
 
@@ -24,5 +25,19 @@ export const questHandlers = [
       .slice(0, Number(limit));
 
     return HttpResponse.json(quests);
+  }),
+  http.get('/sub-quests', ({ request }) => {
+    const params = new URL(request.url).searchParams;
+    const limit = params.get('limit');
+    const selectedSubQuestIds = params.get('selectedSubQuestIds');
+
+    const subQuests = mockSubQuests
+      .filter((subQuest) =>
+        selectedSubQuestIds ? !selectedSubQuestIds.includes(subQuest.id) : true
+      )
+      .sort(() => Math.random() - 0.5)
+      .slice(0, Number(limit));
+
+    return HttpResponse.json(subQuests);
   }),
 ];

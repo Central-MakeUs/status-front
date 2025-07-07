@@ -1,8 +1,14 @@
 import { api } from '@/api/client';
-import type { MainQuest, Quest } from '@/types/quest';
+import type { MainQuest, Quest, UserSubQuest } from '@/types/quest';
 
 export type GetRandomMainQuestByCategoryIdParams = {
   categoryId: string;
+  limit: number;
+};
+
+export type GetRandomSubQuestByMainQuestIdParams = {
+  mainQuestId: string;
+  selectedSubQuestIds?: string[];
   limit: number;
 };
 
@@ -21,6 +27,23 @@ export const getRandomMainQuestByCategoryId = async ({
   };
 
   const quest = await api.get<MainQuest[]>('/main-quests', {
+    params,
+  });
+  return quest;
+};
+
+export const getRandomSubQuestByMainQuestId = async ({
+  mainQuestId,
+  selectedSubQuestIds = [],
+  limit = 6,
+}: GetRandomSubQuestByMainQuestIdParams) => {
+  const params: Record<string, string> = {
+    mainQuestId: mainQuestId,
+    selectedSubQuestIds: selectedSubQuestIds.join(','),
+    limit: limit.toString(),
+  };
+
+  const quest = await api.get<UserSubQuest[]>('/sub-quests', {
     params,
   });
   return quest;

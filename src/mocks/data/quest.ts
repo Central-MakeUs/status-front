@@ -1,4 +1,4 @@
-import type { MainQuest, Quest } from '@/types/quest';
+import type { MainQuest, Quest, UserSubQuest } from '@/types/quest';
 
 export const mockQuests: Quest[] = [
   {
@@ -120,5 +120,80 @@ export const mockMainQuests: MainQuest[] = [
   {
     id: '11',
     title: '새로운 기술 학습하기',
+  },
+];
+
+export const mockSubQuests: UserSubQuest[] = [
+  {
+    id: '1',
+    questValueName: 'Basic',
+    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+    defaultFrequency: '매일',
+    defaultRepeat: 1,
+    frequency: '매일',
+    repeatCnt: 1,
+  },
+  {
+    id: '2',
+    questValueName: 'Rare',
+    desc: '아침 알림 전면 차단 후 하루 시작',
+    defaultFrequency: '격일',
+    defaultRepeat: 1,
+    frequency: '격일',
+    repeatCnt: 1,
+  },
+  {
+    id: '3',
+    questValueName: 'Epic',
+    desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+    defaultFrequency: '주 2회',
+    defaultRepeat: 1,
+    frequency: '주 2회',
+    repeatCnt: 1,
+  },
+  {
+    id: '4',
+    questValueName: 'Epic',
+    desc: 'test',
+    defaultFrequency: '주 3회',
+    defaultRepeat: 3,
+    frequency: '주 3회',
+    repeatCnt: 3,
+  },
+  {
+    id: '5',
+    questValueName: 'Epic',
+    desc: '물 8잔 이상 마시기',
+    defaultFrequency: '매일',
+    defaultRepeat: 1,
+    frequency: '매일',
+    repeatCnt: 1,
+  },
+  {
+    id: '6',
+    questValueName: 'Rare',
+    desc: '30분 이상 산책하기',
+    defaultFrequency: '격일',
+    defaultRepeat: 1,
+    frequency: '격일',
+    repeatCnt: 1,
+  },
+  {
+    id: '7',
+    questValueName: 'Basic',
+    desc: '책 10페이지 이상 읽기',
+    defaultFrequency: '주 3회',
+    defaultRepeat: 1,
+    frequency: '주 3회',
+    repeatCnt: 1,
+  },
+  {
+    id: '8',
+    questValueName: 'Epic',
+    desc: '새로운 단어 5개 학습하기',
+    defaultFrequency: '주 2회',
+    defaultRepeat: 1,
+    frequency: '주 2회',
+    repeatCnt: 1,
   },
 ];

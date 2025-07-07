@@ -10,6 +10,7 @@ import {
   StepAttributePage,
   StepCategoryPage,
   StepMainQuestPage,
+  StepSubQuestPage,
 } from '@/pages/quest/new';
 
 export const router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: PAGE_PATHS.QUEST_NEW_MAIN_QUESTION,
         Component: StepMainQuestPage,
+      },
+      {
+        path: PAGE_PATHS.QUEST_NEW_SUB_QUESTION,
+        Component: StepSubQuestPage,
       },
     ],
   },

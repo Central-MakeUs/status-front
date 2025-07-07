@@ -22,3 +22,18 @@ export interface MainQuest {
   attributes?: Attribute[];
   createdAt?: string;
 }
+
+export type QuestValue = 'Basic' | 'Rare' | 'Epic';
+
+export interface SubQuest {
+  id: string;
+  questValueName: QuestValue;
+  desc: string;
+  defaultFrequency: string;
+  defaultRepeat: number;
+}
+
+export interface UserSubQuest extends SubQuest {
+  frequency: string;
+  repeatCnt: number;
+}

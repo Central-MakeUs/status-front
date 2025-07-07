@@ -1,0 +1,159 @@
+.step-sub-quest-list {
+    margin-top: 22px;
+    padding: 0 14px;
+}
+
+.step-sub-quest-list-item {
+    position: relative;
+
+    & + .step-sub-quest-list-item {
+        margin-top: 8px;
+    }
+}
+
+.checkbox {
+    display: block;
+    padding: 13px 51px 13px 15px;
+    border: 1px solid var(--color-gray-700);
+    border-radius: 10px;
+    background-color: var(--color-gray-800);
+
+    &[aria-checked='true'] {
+        border-color: var(--color-gray-200);
+        background-color: var(--color-gray-700);
+
+        .sub-quest-description {
+            color: var(--color-white);
+        }
+    }
+}
+
+.checkbox-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.sub-quest-box {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.sub-quest-value {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 17px;
+
+    &.basic {
+        color: var(--color-sub-light-blue);
+    }
+
+    &.rare {
+        color: var(--color-sub-yellow);
+    }
+
+    &.epic {
+        color: var(--color-main-orange-default);
+    }
+}
+
+.sub-quest-frequency {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: 8px;
+    font-size: 12px;
+    color: var(--color-gray-200);
+    font-weight: 500;
+}
+
+.sub-quest-repeat {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 12px;
+    color: var(--color-gray-200);
+    font-weight: 500;
+
+    &::before {
+        margin: 0 4px;
+        content: '/';
+    }
+}
+
+.sub-quest-description {
+    margin-top: 4px;
+    font-size: 14px;
+    color: var(--color-gray-100);
+    line-height: 20px;
+}
+
+.button-edit {
+    position: absolute;
+    right: 9px;
+    bottom: 16px;
+    padding: 6px;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    line-height: 1px;
+
+    .edit-icon {
+        display: block;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.sub-quest-skeleton-container {
+    margin-top: 22px;
+    padding: 0 14px;
+}
+
+.sub-quest-skeleton {
+    position: relative;
+    padding: 14px 52px 14px 16px;
+    border-radius: 10px;
+    background-color: var(--color-gray-700);
+
+    & + .sub-quest-skeleton {
+        margin-top: 8px;
+    }
+}
+
+.sub-quest-skeleton-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+}
+
+.sub-quest-skeleton-frequency {
+    display: block;
+    width: 28%;
+    min-width: 77px;
+    height: 17px;
+    margin-top: 12px;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+}
+
+.sub-quest-skeleton-description {
+    display: block;
+    height: 20px;
+    margin-top: 4px;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+}
+
+.sub-quest-skeleton-edit {
+    position: absolute;
+    right: 16px;
+    bottom: 23px;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+}
