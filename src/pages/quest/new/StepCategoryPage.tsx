@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 import { useGetRandomCategoriesByAttributes } from '@/api/hooks/category';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
@@ -18,7 +19,14 @@ export const StepCategoryPage = () => {
     selectedMentalityAttribute,
     selectedSkillAttribute,
     setSelectedCategory,
-  } = useQuestCreationStore();
+  } = useQuestCreationStore(
+    useShallow((state) => ({
+      selectedCategory: state.selectedCategory,
+      selectedMentalityAttribute: state.selectedMentalityAttribute,
+      selectedSkillAttribute: state.selectedSkillAttribute,
+      setSelectedCategory: state.setSelectedCategory,
+    }))
+  );
 
   /**
    * [TODO] URL로 접근하는 등 validation 체크 로직

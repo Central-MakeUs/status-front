@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { useGetRandomMainQuestByCategoryId } from '@/api/hooks/quest/useGetRandomMainQuestByCategoryId';
 import { PAGE_PATHS } from '@/constants/pagePaths';
@@ -16,7 +17,13 @@ import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 export const StepMainQuestPage = () => {
   const navigate = useNavigate();
   const { selectedCategory, selectedMainQuest, setSelectedMainQuest } =
-    useQuestCreationStore();
+    useQuestCreationStore(
+      useShallow((state) => ({
+        selectedCategory: state.selectedCategory,
+        selectedMainQuest: state.selectedMainQuest,
+        setSelectedMainQuest: state.setSelectedMainQuest,
+      }))
+    );
 
   /**
    * [TODO] URL로 접근하는 등 validation 체크 로직

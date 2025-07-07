@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 import { useGetUserAttribute } from '@/api/hooks/attribute';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
@@ -23,7 +24,14 @@ export const StepAttributePage = () => {
     selectedSkillAttribute,
     setSelectedMentalityAttribute,
     setSelectedSkillAttribute,
-  } = useQuestCreationStore();
+  } = useQuestCreationStore(
+    useShallow((state) => ({
+      selectedMentalityAttribute: state.selectedMentalityAttribute,
+      selectedSkillAttribute: state.selectedSkillAttribute,
+      setSelectedMentalityAttribute: state.setSelectedMentalityAttribute,
+      setSelectedSkillAttribute: state.setSelectedSkillAttribute,
+    }))
+  );
   const currentCount = [
     selectedMentalityAttribute,
     selectedSkillAttribute,

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { useGetRandomSubQuestByMainQuestId } from '@/api/hooks/quest/useGetRandomSubQuestByMainQuestId';
 import { PAGE_PATHS } from '@/constants/pagePaths';
@@ -27,7 +28,13 @@ const MAX_SUB_QUEST_COUNT = 5;
 export const StepSubQuestPage = () => {
   const navigate = useNavigate();
   const { selectedMainQuest, selectedSubQuests, toggleSelectedSubQuest } =
-    useQuestCreationStore();
+    useQuestCreationStore(
+      useShallow((state) => ({
+        selectedMainQuest: state.selectedMainQuest,
+        selectedSubQuests: state.selectedSubQuests,
+        toggleSelectedSubQuest: state.toggleSelectedSubQuest,
+      }))
+    );
 
   /**
    * [TODO] URL로 접근하는 등 validation 체크 로직
