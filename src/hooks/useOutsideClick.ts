@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useOutSideClick = (
+export const useOutsideClick = (
   ref: React.RefObject<HTMLElement | null>,
   callback: () => void
 ) => {
@@ -14,7 +14,11 @@ export const useOutSideClick = (
     const handleClick = (event: MouseEvent | TouchEvent) => {
       if (!ref.current) return;
 
-      if (ref.current.contains(event.target as Node)) {
+      if (!(event.target instanceof Node)) {
+        return;
+      }
+
+      if (ref.current.contains(event.target)) {
         return;
       }
 
@@ -22,6 +26,11 @@ export const useOutSideClick = (
     };
 
     document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener('touchstart', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('touchstart', handleClick);
+    };
   }, [ref]);
 };

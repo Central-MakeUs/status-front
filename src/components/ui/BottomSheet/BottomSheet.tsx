@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { BottomSheetContainer } from './BottomSheetContainer';
-import { useOutSideClick } from '@/hooks/useOutsideClick';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 import { useSwipeToClose } from '@/hooks/useSwipeToClose';
 
 import type { ReactNode } from 'react';
@@ -24,7 +24,7 @@ const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
     onClose,
   });
 
-  useOutSideClick(bottomSheetRef, onClose);
+  useOutsideClick(bottomSheetRef, onClose);
 
   if (!isOpen) return null;
 
@@ -32,7 +32,6 @@ const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
     <BottomSheetContainer>
       <div
         ref={bottomSheetRef}
-        tabIndex={-1}
         role="dialog"
         aria-modal="true"
         className={cx('bottom-sheet')}
