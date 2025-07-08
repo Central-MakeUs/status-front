@@ -1,5 +1,8 @@
 .step-refresh {
-    padding: 16px 0;
+    position: sticky;
+    bottom: 35px;
+    padding-top: 16px;
+    z-index: 10;
 }
 
 .button-refresh {
