@@ -6,17 +6,21 @@ import styles from './TextInput.module.scss';
 const cx = classNames.bind(styles);
 
 export interface TextInputProps {
+  className?: string;
   label: string;
-  type?: 'text' | 'password' | 'email' | 'tel' | 'url';
-  value?: string;
+  type?: 'text' | 'password' | 'email' | 'tel' | 'url' | 'number';
+  inputMode?: 'text' | 'numeric' | 'decimal' | 'tel' | 'search' | 'email';
+  value?: string | number;
   placeholder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage?: string;
 }
 
 export const TextInput = ({
+  className,
   label,
   type = 'text',
+  inputMode,
   value,
   placeholder,
   onChange,
@@ -26,7 +30,7 @@ export const TextInput = ({
   const errorMessageId = useId();
 
   return (
-    <div className={cx('input-wrapper')}>
+    <div className={cx('input-wrapper', className)}>
       <label htmlFor={inputId} className={cx('input-label')}>
         {label}
       </label>
@@ -34,6 +38,7 @@ export const TextInput = ({
         <input
           type={type}
           id={inputId}
+          inputMode={inputMode}
           className={cx('input-field')}
           value={value}
           placeholder={placeholder}
