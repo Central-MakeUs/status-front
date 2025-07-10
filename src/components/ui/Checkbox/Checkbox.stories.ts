@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Checkbox } from '@/components/ui/Checkbox/Checkbox';
 
 const meta = {
-  title: 'Example/Checkbox',
+  title: 'atom/Checkbox',
   component: Checkbox,
   parameters: {
     layout: 'centered',
