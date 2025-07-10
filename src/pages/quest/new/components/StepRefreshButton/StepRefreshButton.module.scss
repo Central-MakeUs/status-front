@@ -1,7 +1,9 @@
 .step-refresh {
     position: sticky;
     bottom: 35px;
-    padding-top: 16px;
+    width: 40px;
+    height: 40px;
+    margin: 16px auto 0;
     z-index: 10;
 }
 
@@ -12,7 +14,6 @@
     width: 40px;
     height: 40px;
     padding: 8px;
-    margin: 0 auto;
     border: 0;
     border-radius: 50%;
     background-color: var(--color-gray-600);
