@@ -4,10 +4,10 @@ export const useOutsideClick = (
   ref: React.RefObject<HTMLElement | null>,
   callback: () => void
 ) => {
-  const containerRef = useRef(callback);
+  const callbackRef = useRef(callback);
 
   useEffect(() => {
-    containerRef.current = callback;
+    callbackRef.current = callback;
   });
 
   useEffect(() => {
@@ -22,15 +22,20 @@ export const useOutsideClick = (
         return;
       }
 
-      containerRef.current();
+      /**
+       * [TODO] 근본 원인 찾아보기 portal 렌더링 순서 이슈?
+       */
+      setTimeout(() => {
+        callbackRef.current();
+      }, 100);
     };
 
-    document.addEventListener('mousedown', handleClick);
-    document.addEventListener('touchstart', handleClick);
+    document.addEventListener('mouseup', handleClick);
+    document.addEventListener('touchend', handleClick);
 
     return () => {
-      document.removeEventListener('mousedown', handleClick);
-      document.removeEventListener('touchstart', handleClick);
+      document.removeEventListener('mouseup', handleClick);
+      document.removeEventListener('touchend', handleClick);
     };
   }, [ref]);
 };
