@@ -1,5 +1,7 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ServerErrorPage } from '@/pages/errors/ServerErrorPage';
 
 export const RootLayout = () => {
   const location = useLocation();
@@ -23,8 +25,10 @@ export const RootLayout = () => {
   }
 
   return (
-    <div className="wrapper">
-      <Outlet />
-    </div>
+    <ErrorBoundary fallback={<ServerErrorPage />}>
+      <div className="wrapper">
+        <Outlet />
+      </div>
+    </ErrorBoundary>
   );
 };

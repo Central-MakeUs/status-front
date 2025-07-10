@@ -12,6 +12,7 @@ import {
   StepMainQuestPage,
   StepSubQuestPage,
 } from '@/pages/quest/new';
+import { NotFoundPage } from '@/pages/errors/NotFoundPage';
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: PAGE_PATHS.QUEST_NEW_SUB_QUESTION,
         Component: StepSubQuestPage,
+      },
+      {
+        path: '*',
+        Component: NotFoundPage,
       },
     ],
   },
