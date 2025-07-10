@@ -35,10 +35,11 @@ export const StepMainQuestPage = () => {
     }
   }, [selectedCategory, navigate]);
 
-  const { data, isLoading, refetch } = useGetRandomMainQuestByCategoryId({
-    categoryId: selectedCategory?.id.toString() ?? '',
-    limit: 6,
-  });
+  const { data, isLoading, isRefetching, refetch } =
+    useGetRandomMainQuestByCategoryId({
+      categoryId: selectedCategory?.id.toString() ?? '',
+      limit: 6,
+    });
 
   const handleClickRefreshButton = () => {
     setSelectedMainQuest(null);
@@ -63,7 +64,7 @@ export const StepMainQuestPage = () => {
             {selectedCategory?.name}에 맞는 메일 퀘스트를 추천해드렸어요.
           </StepDescription>
         )}
-        {isLoading ? (
+        {isLoading || isRefetching ? (
           <StepRadioGroupSkeleton />
         ) : (
           <StepRadioGroup
@@ -75,7 +76,7 @@ export const StepMainQuestPage = () => {
         )}
         <StepRefreshButton
           onClick={handleClickRefreshButton}
-          isLoading={isLoading}
+          isLoading={isLoading || isRefetching}
         />
       </main>
       <StepAction disabled={!selectedMainQuest} onClick={handleClickNextButton}>

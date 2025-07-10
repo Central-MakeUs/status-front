@@ -227,7 +227,7 @@ export const StepSubQuestPage = () => {
         )}
         <StepRefreshButton
           onClick={handleClickRefreshButton}
-          isLoading={isLoading}
+          isLoading={isLoading || isRefetching}
         />
       </main>
       <StepAction

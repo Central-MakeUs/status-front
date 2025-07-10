@@ -41,15 +41,16 @@ export const StepCategoryPage = () => {
     }
   }, [isValidAttributes, navigate]);
 
-  const { data, isLoading, refetch } = useGetRandomCategoriesByAttributes({
-    attributeIds: isValidAttributes
-      ? [
-          selectedMentalityAttribute.attributeId,
-          selectedSkillAttribute.attributeId,
-        ]
-      : [],
-    limit: 6,
-  });
+  const { data, isLoading, isRefetching, refetch } =
+    useGetRandomCategoriesByAttributes({
+      attributeIds: isValidAttributes
+        ? [
+            selectedMentalityAttribute.attributeId,
+            selectedSkillAttribute.attributeId,
+          ]
+        : [],
+      limit: 6,
+    });
 
   const handleClickRefreshButton = () => {
     setSelectedCategory(null);
@@ -73,7 +74,7 @@ export const StepCategoryPage = () => {
           {`${selectedMentalityAttribute?.name}, ${selectedSkillAttribute?.name}을(를) 성장시킬 수 있는 카테고리를 추천해드렸어요`}
         </StepDescription>
 
-        {isLoading ? (
+        {isLoading || isRefetching ? (
           <StepRadioGroupSkeleton />
         ) : (
           <StepRadioGroup
@@ -86,7 +87,7 @@ export const StepCategoryPage = () => {
 
         <StepRefreshButton
           onClick={handleClickRefreshButton}
-          isLoading={isLoading}
+          isLoading={isLoading || isRefetching}
         />
       </main>
       <StepAction disabled={!selectedCategory} onClick={handleClickNextButton}>
