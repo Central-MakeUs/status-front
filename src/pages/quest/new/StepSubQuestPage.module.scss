@@ -40,30 +40,9 @@
     margin-top: 12px;
 }
 
-.sub-quest-value {
-    display: block;
-    flex: 0 0 auto;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 17px;
-
-    &.basic {
-        color: var(--color-sub-light-blue);
-    }
-
-    &.rare {
-        color: var(--color-sub-yellow);
-    }
-
-    &.epic {
-        color: var(--color-main-orange-default);
-    }
-}
-
 .sub-quest-frequency {
     display: block;
     flex: 0 0 auto;
-    margin-left: 8px;
     font-size: 12px;
     color: var(--color-gray-200);
     font-weight: 500;
@@ -156,4 +135,8 @@
     height: 24px;
     border-radius: 5px;
     background-color: var(--color-gray-600);
+}
+
+.bottom-sheet-input {
+    margin-top: 24px;
 }

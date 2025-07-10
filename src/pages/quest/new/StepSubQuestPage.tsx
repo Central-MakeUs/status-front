@@ -1,45 +1,62 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { useGetRandomSubQuestByMainQuestId } from '@/api/hooks/quest/useGetRandomSubQuestByMainQuestId';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import {
+  DISPLAY_SUB_QUEST_COUNT,
+  getSubQuestFrequencyLabel,
+  MAX_SUB_QUEST_COUNT,
+  SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
+} from '@/constants/quest';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
+import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
+import { Button } from '@/components/ui/Button/Button';
+import { TextInput } from '@/components/ui/TextInput/TextInput';
+import { Select } from '@/components/ui/Selelct/Select';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconCheckboxNormal from '@/assets/icons/icon-checkbox-normal.svg?react';
 import IconCheckboxChecked from '@/assets/icons/icon-checkbox-checked.svg?react';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 
-import type { UserSubQuest } from '@/types/quest';
+import type { SubQuestFrequencyValue, UserSubQuest } from '@/types/quest';
 
 import classNames from 'classnames/bind';
 import styles from './StepSubQuestPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-const DISPLAY_SUB_QUEST_COUNT = 7;
-const MAX_SUB_QUEST_COUNT = 5;
-
 export const StepSubQuestPage = () => {
   const navigate = useNavigate();
-  const { selectedMainQuest, selectedSubQuests, toggleSelectedSubQuest } =
-    useQuestCreationStore(
-      useShallow((state) => ({
-        selectedMainQuest: state.selectedMainQuest,
-        selectedSubQuests: state.selectedSubQuests,
-        toggleSelectedSubQuest: state.toggleSelectedSubQuest,
-      }))
-    );
+  const {
+    selectedMainQuest,
+    subQuests,
+    selectedSubQuestIds,
+    setSubQuests,
+    updateSubQuest,
+    toggleSubQuestSelection,
+  } = useQuestCreationStore(
+    useShallow((state) => ({
+      selectedMainQuest: state.selectedMainQuest,
+      subQuests: state.subQuests,
+      selectedSubQuestIds: state.selectedSubQuestIds,
+      setSubQuests: state.setSubQuests,
+      updateSubQuest: state.updateSubQuest,
+      toggleSubQuestSelection: state.toggleSubQuestSelection,
+    }))
+  );
 
-  /**
-   * [TODO] URL로 접근하는 등 validation 체크 로직
-   * 전체 스탭에서 공통화 할 수 있을지도 고민해보기 e.g. 라우터에서 처리?
-   */
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [editingSubQuest, setEditingSubQuest] = useState<UserSubQuest | null>(
+    null
+  );
+
   useEffect(() => {
     if (!selectedMainQuest) {
       navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE, { replace: true });
@@ -47,30 +64,71 @@ export const StepSubQuestPage = () => {
   }, [selectedMainQuest, navigate]);
 
   const hasMaxSubQuestSelection =
-    selectedSubQuests.length >= MAX_SUB_QUEST_COUNT;
-  const isSubQuestSelected = selectedSubQuests.length > 0;
+    selectedSubQuestIds.length >= MAX_SUB_QUEST_COUNT;
+  const isSubQuestSelected = selectedSubQuestIds.length > 0;
 
   const { data, isLoading, isRefetching, refetch } =
     useGetRandomSubQuestByMainQuestId({
       mainQuestId: selectedMainQuest?.id.toString() ?? '',
-      selectedSubQuestIds: selectedSubQuests.map((subQuest) => subQuest.id),
+      selectedSubQuestIds: selectedSubQuestIds,
       limit: DISPLAY_SUB_QUEST_COUNT,
     });
 
+  useEffect(() => {
+    if (data) {
+      setSubQuests(data);
+    }
+  }, [data, setSubQuests]);
+
   const handleClickSubQuest = (subQuest: UserSubQuest) => {
-    const isChecked = selectedSubQuests.some(
-      (selected) => selected.id === subQuest.id
-    );
+    const isChecked = selectedSubQuestIds.includes(subQuest.id);
 
     if (hasMaxSubQuestSelection && !isChecked) {
       return;
     }
 
-    toggleSelectedSubQuest(subQuest);
+    toggleSubQuestSelection(subQuest.id);
   };
 
-  const handleClickEditButton = () => {
-    // [TODO] 바텀 시트 추가
+  const handleClickEditButton = (subQuest: UserSubQuest) => {
+    setIsBottomSheetOpen(true);
+    setEditingSubQuest(subQuest);
+  };
+
+  const handleChangeSubQuestFrequency = (value: string) => {
+    if (!editingSubQuest) {
+      return;
+    }
+
+    setEditingSubQuest({
+      ...editingSubQuest,
+      frequency: value as SubQuestFrequencyValue,
+    });
+  };
+
+  const handleChangeSubQuestRepeatCount = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = Number(event.target.value);
+
+    if (!editingSubQuest || isNaN(value)) {
+      return;
+    }
+
+    setEditingSubQuest({
+      ...editingSubQuest,
+      repeatCnt: value,
+    });
+  };
+
+  const handleClickEditingDoneButton = () => {
+    if (!editingSubQuest) {
+      return;
+    }
+
+    updateSubQuest(editingSubQuest);
+    setEditingSubQuest(null);
+    setIsBottomSheetOpen(false);
   };
 
   const handleClickRefreshButton = () => {
@@ -105,10 +163,8 @@ export const StepSubQuestPage = () => {
           </div>
         ) : (
           <ul className={cx('step-sub-quest-list')}>
-            {data?.map((subQuest) => {
-              const isChecked = selectedSubQuests.some(
-                (selected) => selected.id === subQuest.id
-              );
+            {subQuests?.map((subQuest) => {
+              const isChecked = selectedSubQuestIds.includes(subQuest.id);
               const shouldShowSkeleton = isRefetching && !isChecked;
 
               return (
@@ -140,23 +196,8 @@ export const StepSubQuestPage = () => {
                           />
                         )}
                         <div className={cx('sub-quest-box')}>
-                          <span
-                            className={cx('sub-quest-value', {
-                              basic:
-                                subQuest.questValueName.toLowerCase() ===
-                                'basic',
-                              rare:
-                                subQuest.questValueName.toLowerCase() ===
-                                'rare',
-                              epic:
-                                subQuest.questValueName.toLowerCase() ===
-                                'epic',
-                            })}
-                          >
-                            {subQuest.questValueName}
-                          </span>
                           <span className={cx('sub-quest-frequency')}>
-                            {subQuest.frequency}
+                            {getSubQuestFrequencyLabel(subQuest.frequency)}
                           </span>
                           <span className={cx('sub-quest-repeat')}>
                             {subQuest.repeatCnt}회
@@ -169,7 +210,7 @@ export const StepSubQuestPage = () => {
                       <button
                         type="button"
                         className={cx('button-edit')}
-                        onClick={handleClickEditButton}
+                        onClick={() => handleClickEditButton(subQuest)}
                       >
                         <IconEdit
                           className={cx('edit-icon')}
@@ -195,6 +236,41 @@ export const StepSubQuestPage = () => {
       >
         다음
       </StepAction>
+
+      <BottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={() => setIsBottomSheetOpen(false)}
+      >
+        <BottomSheet.Header>
+          <BottomSheet.Title>퀘스트 편집하기</BottomSheet.Title>
+          <BottomSheet.Description>
+            {editingSubQuest?.desc}
+          </BottomSheet.Description>
+        </BottomSheet.Header>
+        <BottomSheet.Content>
+          <Select
+            label="반복 주기"
+            value={editingSubQuest?.frequency ?? ''}
+            options={SUB_QUEST_FREQUENCY_SELECT_OPTIONS}
+            onChange={handleChangeSubQuestFrequency}
+          />
+          <TextInput
+            className={cx('bottom-sheet-input')}
+            type="number"
+            inputMode="numeric"
+            label="횟수"
+            value={
+              editingSubQuest?.repeatCnt === 0 ? '' : editingSubQuest?.repeatCnt
+            }
+            onChange={handleChangeSubQuestRepeatCount}
+          />
+        </BottomSheet.Content>
+        <BottomSheet.Footer>
+          <Button variant="secondary" onClick={handleClickEditingDoneButton}>
+            완료
+          </Button>
+        </BottomSheet.Footer>
+      </BottomSheet>
     </>
   );
 };

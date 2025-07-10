@@ -1,3 +1,4 @@
+import type { SUB_QUEST_FREQUENCY } from '@/constants/quest';
 import type { Attribute } from '@/types/attribute';
 
 export type StatType = 'patience';
@@ -23,17 +24,17 @@ export interface MainQuest {
   createdAt?: string;
 }
 
-export type QuestValue = 'Basic' | 'Rare' | 'Epic';
-
 export interface SubQuest {
   id: string;
-  questValueName: QuestValue;
   desc: string;
-  defaultFrequency: string;
+  defaultFrequency: SubQuestFrequencyValue;
   defaultRepeat: number;
 }
 
 export interface UserSubQuest extends SubQuest {
-  frequency: string;
+  frequency: SubQuestFrequencyValue;
   repeatCnt: number;
 }
+
+export type SubQuestFrequencyValue =
+  (typeof SUB_QUEST_FREQUENCY)[keyof typeof SUB_QUEST_FREQUENCY]['value'];
