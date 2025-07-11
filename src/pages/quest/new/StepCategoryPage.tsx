@@ -62,7 +62,7 @@ export const StepCategoryPage = () => {
       return;
     }
 
-    navigate(PAGE_PATHS.QUEST_NEW_MAIN_QUESTION);
+    navigate(PAGE_PATHS.QUEST_NEW_MAIN_QUEST);
   };
 
   return (

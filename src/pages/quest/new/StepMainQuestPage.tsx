@@ -51,7 +51,7 @@ export const StepMainQuestPage = () => {
       return;
     }
 
-    navigate(PAGE_PATHS.QUEST_NEW_SUB_QUESTION);
+    navigate(PAGE_PATHS.QUEST_NEW_SUB_QUEST);
   };
 
   return (

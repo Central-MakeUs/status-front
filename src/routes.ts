@@ -57,11 +57,11 @@ export const router = createBrowserRouter([
         Component: StepCategoryPage,
       },
       {
-        path: PAGE_PATHS.QUEST_NEW_MAIN_QUESTION,
+        path: PAGE_PATHS.QUEST_NEW_MAIN_QUEST,
         Component: StepMainQuestPage,
       },
       {
-        path: PAGE_PATHS.QUEST_NEW_SUB_QUESTION,
+        path: PAGE_PATHS.QUEST_NEW_SUB_QUEST,
         Component: StepSubQuestPage,
       },
       {
