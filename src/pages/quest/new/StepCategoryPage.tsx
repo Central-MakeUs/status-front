@@ -96,3 +96,5 @@ export const StepCategoryPage = () => {
     </>
   );
 };
+
+export default StepCategoryPage;

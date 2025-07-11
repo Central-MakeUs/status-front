@@ -53,3 +53,5 @@ export const QuestPage = () => {
     </>
   );
 };
+
+export default QuestPage;

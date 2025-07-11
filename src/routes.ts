@@ -1,18 +1,26 @@
+import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { RootLayout } from '@/layouts/RootLayout';
 import { BottomNavigationLayout } from '@/layouts/BottomNavigationLayout';
-import { StatusPage } from '@/pages/status/StatusPage';
-import { QuestPage } from '@/pages/quest/QuestPage';
-import { ProfilePage } from '@/pages/profile/ProfilePage';
-import { HistoryPage } from '@/pages/history/HistoryPage';
-import {
-  StepAttributePage,
-  StepCategoryPage,
-  StepMainQuestPage,
-  StepSubQuestPage,
-} from '@/pages/quest/new';
-import { NotFoundPage } from '@/pages/errors/NotFoundPage';
+
+const StatusPage = lazy(() => import('@/pages/status/StatusPage'));
+const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
+const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
+const HistoryPage = lazy(() => import('@/pages/history/HistoryPage'));
+const StepAttributePage = lazy(
+  () => import('@/pages/quest/new/StepAttributePage')
+);
+const StepCategoryPage = lazy(
+  () => import('@/pages/quest/new/StepCategoryPage')
+);
+const StepMainQuestPage = lazy(
+  () => import('@/pages/quest/new/StepMainQuestPage')
+);
+const StepSubQuestPage = lazy(
+  () => import('@/pages/quest/new/StepSubQuestPage')
+);
+const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
 
 export const router = createBrowserRouter([
   {

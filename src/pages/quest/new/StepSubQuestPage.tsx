@@ -275,6 +275,8 @@ export const StepSubQuestPage = () => {
   );
 };
 
+export default StepSubQuestPage;
+
 const SubQuestSkeleton = () => {
   return (
     <div className={cx('sub-quest-skeleton')} aria-hidden="true">

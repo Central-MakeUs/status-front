@@ -4,7 +4,7 @@ import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 
 import ProfileImage from '@/assets/image.svg?url';
 
-export const StatusPage = () => {
+const StatusPage = () => {
   const nickname = 'userNickname';
   const level = 1;
   const levelPercent = 21;
@@ -55,3 +55,4 @@ export const StatusPage = () => {
     </>
   );
 };
+export default StatusPage;

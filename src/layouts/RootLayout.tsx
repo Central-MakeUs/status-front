@@ -1,7 +1,9 @@
+import { Suspense } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ServerErrorPage } from '@/pages/errors/ServerErrorPage';
+import { Loading } from '@/components/ui/Loading/Loading';
 
 export const RootLayout = () => {
   const location = useLocation();
@@ -27,7 +29,9 @@ export const RootLayout = () => {
   return (
     <ErrorBoundary fallback={<ServerErrorPage />}>
       <div className="wrapper">
-        <Outlet />
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
       </div>
     </ErrorBoundary>
   );

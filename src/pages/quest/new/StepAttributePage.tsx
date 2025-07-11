@@ -133,3 +133,5 @@ export const StepAttributePage = () => {
     </>
   );
 };
+
+export default StepAttributePage;
