@@ -5,4 +5,8 @@
     font-weight: 500;
     color: var(--color-gray-200);
     line-height: 17px;
+
+    &.active {
+        color: var(--color-main-orange-dark);
+    }
 }

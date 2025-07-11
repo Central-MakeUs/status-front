@@ -5,6 +5,7 @@ import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
+import { StepDescription } from './components/StepDescription/StepDescription';
 import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
 
 import type { Attribute } from '@/types/attribute';
@@ -64,13 +65,9 @@ export const StepAttributePage = () => {
           <br />
           능력치 분야별로 1개씩 선택해주세요
         </StepTitle>
-        <p
-          className={cx('attribute-counter', {
-            highlight: currentCount > 0,
-          })}
-        >
+        <StepDescription className={cx({ active: currentCount > 0 })}>
           {currentCount}/2<span className="sr-only">개</span> 선택됨
-        </p>
+        </StepDescription>
 
         <div className={cx('attribute')}>
           <div
