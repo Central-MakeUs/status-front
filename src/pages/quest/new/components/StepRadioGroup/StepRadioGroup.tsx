@@ -37,12 +37,12 @@ export const StepRadioGroup = <T extends Identifiable & Displayable>({
           role="radio"
           tabIndex={0}
           className={cx('step-radio')}
-          aria-checked={value === item}
+          aria-checked={value?.id === item.id}
           onClick={() => {
             onClick(item);
           }}
         >
-          {value === item ? (
+          {value?.id === item.id ? (
             <IconRadioChecked
               className={cx('step-radio-icon')}
               aria-hidden="true"

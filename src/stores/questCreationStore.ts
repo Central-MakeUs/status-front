@@ -1,22 +1,26 @@
 import { create } from 'zustand';
+import { getTodayString } from '@/utils/date';
+
 import type { Attribute } from '@/types/attribute';
 import type { Category } from '@/types/category';
-import type { MainQuest, UserSubQuest } from '@/types/quest';
+import type { UserMainQuest, UserSubQuest } from '@/types/quest';
 
 interface QuestCreationState {
   selectedMentalityAttribute: Attribute | null;
   selectedSkillAttribute: Attribute | null;
   selectedCategory: Category | null;
-  selectedMainQuest: MainQuest | null;
+  selectedMainQuest: UserMainQuest | null;
   selectedSubQuestIds: string[];
   subQuests: UserSubQuest[];
   setSelectedMentalityAttribute: (attribute: Attribute | null) => void;
   setSelectedSkillAttribute: (attribute: Attribute | null) => void;
   setSelectedCategory: (category: Category | null) => void;
-  setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
+  setSelectedMainQuest: (mainQuest: UserMainQuest | null) => void;
   setSubQuests: (subQuests: UserSubQuest[]) => void;
   updateSubQuest: (subQuest: UserSubQuest) => void;
   toggleSubQuestSelection: (subQuestId: string) => void;
+  setStartDate: (startDate: string) => void;
+  setEndDate: (endDate: string) => void;
   getSelectedSubQuests: () => UserSubQuest[];
 }
 
@@ -28,7 +32,6 @@ export const useQuestCreationStore = create<QuestCreationState>()(
     selectedMainQuest: null,
     subQuests: [],
     selectedSubQuestIds: [],
-
     setSelectedMentalityAttribute: (attribute) =>
       set(() => ({
         selectedMentalityAttribute: attribute,
@@ -57,7 +60,13 @@ export const useQuestCreationStore = create<QuestCreationState>()(
 
     setSelectedMainQuest: (mainQuest) =>
       set(() => ({
-        selectedMainQuest: mainQuest,
+        selectedMainQuest: mainQuest
+          ? {
+              ...mainQuest,
+              startDate: getTodayString(),
+              endDate: '',
+            }
+          : null,
         subQuests: [],
         selectedSubQuestIds: [],
       })),
@@ -96,6 +105,26 @@ export const useQuestCreationStore = create<QuestCreationState>()(
           selectedSubQuestIds: [...state.selectedSubQuestIds, subQuestId],
         };
       }),
+
+    setStartDate: (startDate) =>
+      set((state) => ({
+        selectedMainQuest: state.selectedMainQuest
+          ? {
+              ...state.selectedMainQuest,
+              startDate,
+            }
+          : null,
+      })),
+
+    setEndDate: (endDate) =>
+      set((state) => ({
+        selectedMainQuest: state.selectedMainQuest
+          ? {
+              ...state.selectedMainQuest,
+              endDate,
+            }
+          : null,
+      })),
 
     getSelectedSubQuests: () => {
       const { subQuests, selectedSubQuestIds } = get();

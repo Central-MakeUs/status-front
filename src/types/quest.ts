@@ -24,6 +24,11 @@ export interface MainQuest {
   createdAt?: string;
 }
 
+export interface UserMainQuest extends MainQuest {
+  startDate: string;
+  endDate: string;
+}
+
 export interface SubQuest {
   id: string;
   desc: string;

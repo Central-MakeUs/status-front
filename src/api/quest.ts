@@ -1,5 +1,5 @@
 import { api } from '@/api/client';
-import type { MainQuest, Quest, UserSubQuest } from '@/types/quest';
+import type { Quest, UserMainQuest, UserSubQuest } from '@/types/quest';
 
 export type GetRandomMainQuestByCategoryIdParams = {
   categoryId: string;
@@ -26,7 +26,7 @@ export const getRandomMainQuestByCategoryId = async ({
     limit: limit.toString(),
   };
 
-  const quest = await api.get<MainQuest[]>('/main-quests', {
+  const quest = await api.get<UserMainQuest[]>('/main-quests', {
     params,
   });
   return quest;
