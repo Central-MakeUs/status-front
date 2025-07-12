@@ -1,57 +1,46 @@
 import { Header } from '@/pages/status/components/Header/Header';
 import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-
-import ProfileImage from '@/assets/image.svg?url';
+import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
+import { useGetUserQuests } from '@/api/hooks/quest';
+import { useGetStatusList } from '@/api/hooks/status/useGetStatus';
 
 const StatusPage = () => {
-  const nickname = 'userNickname';
-  const level = 1;
-  const levelPercent = 21;
-  const profileImageUrl = ProfileImage;
-  const dataLists = [
-    [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
-    [75, 75, 65, 70, 60, 75], // 문장술, 창조기술, 학습 집중, 신체 수련, 기술 응용, 공감 소통 각각 점수
-  ];
+  const userId = '10';
+  const { data: userInfo } = useGetUserInfo(userId);
+  const { data: statusLists } = useGetStatusList(userId);
+  const { data: quests } = useGetUserQuests(userId);
 
-  // 위와 동일 1 : 버닝, 0: 일반 -1: 정체
-  const growthStatusList = [
-    [1, 0, 0, -1, 0, 0],
-    [1, 1, -1, 0, 0, -1],
-  ];
+  // const dataLists = [
+  //   [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
+  //   [75, 75, 65, 70, 60, 75], // 문장술, 창조기술, 학습 집중, 신체 수련, 기술 응용, 공감 소통 각각 점수
+  // ];
 
-  const quests = [
-    {
-      title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
-      deadline: '2025.10.25',
-      totalDays: 7,
-      progress: 38,
-    },
-    {
-      title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
-      deadline: '2025.10.25',
-      totalDays: 7,
-      progress: 38,
-    },
-  ];
+  // // 위와 동일 1 : 버닝, 0: 일반 -1: 정체
+  // const growthStatusList = [
+  //   [1, 0, 0, -1, 0, 0],
+  //   [1, 1, -1, 0, 0, -1],
+  // ];
 
   return (
     <>
-      <Header
-        nickname={nickname}
-        level={level}
-        levelPercent={levelPercent}
-        profileImage={profileImageUrl}
-      />
-      <main className="main">
-        <RadarChart
-          mentalData={dataLists[0]}
-          skillData={dataLists[1]}
-          profileImage={profileImageUrl}
-          growthStatusList={growthStatusList}
+      {userInfo && (
+        <Header
+          nickname={userInfo.nickname}
+          level={userInfo.level}
+          levelPercent={userInfo.levelPercent}
+          profileImage={userInfo.profileImageUrl}
         />
-        <QuestList quests={quests} />
-      </main>
+      )}
+      {statusLists && userInfo && (
+        <RadarChart
+          mentalData={statusLists.statusDataList[0]}
+          skillData={statusLists.statusDataList[1]}
+          profileImage={userInfo.profileImageUrl}
+          growthStatusList={statusLists.growthStatusList}
+        />
+      )}
+      {quests && <QuestList quests={quests} />}
     </>
   );
 };
