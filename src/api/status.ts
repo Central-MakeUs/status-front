@@ -1,7 +1,9 @@
 import { api } from '@/api/client';
-import type { StatusList } from '@/types/status';
+import type { StatusListDTO } from '@/api/types/status';
 
-export const getStatusList = async (userId: string) => {
-  const statusList = await api.get<StatusList>(`/users/${userId}/statusList`);
+export const getStatusList = async (userId: string): Promise<StatusListDTO> => {
+  const statusList = await api.get<StatusListDTO>(
+    `/users/${userId}/statusList`
+  );
   return statusList;
 };

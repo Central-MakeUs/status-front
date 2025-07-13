@@ -1,7 +1,7 @@
 import { api } from '@/api/client';
-import type { UserInfo } from '@/types/user';
+import type { UserInfoDTO } from '@/api/types/user';
 
-export const getUserInfo = async (userId: string) => {
-  const userInfo = await api.get<UserInfo>(`/users/${userId}/userInfo`);
+export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
+  const userInfo = await api.get<UserInfoDTO>(`/users/${userId}/userInfo`);
   return userInfo;
 };

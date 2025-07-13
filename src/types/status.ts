@@ -1,4 +1,3 @@
-export interface StatusList {
-  statusDataList: number[][];
-  growthStatusList: number[][];
-}
+import type { StatusListDTO } from '@/api/types/status';
+
+export type StatusList = StatusListDTO;

@@ -1,7 +1,7 @@
+import type { CategoryDTO } from '@/api/types/category';
+
 /**
  * [TODO] 기획 필요
  */
-export interface Category {
-  id: string;
-  name: string;
-}
+
+export type Category = CategoryDTO;

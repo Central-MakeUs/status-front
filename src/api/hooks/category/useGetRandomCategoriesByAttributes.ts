@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRandomCategoriesByAttributes } from '@/api/category';
-
-import type { GetRandomCategoriesByAttributesParams } from '@/api/category';
+import type { GetRandomCategoriesByAttributesParams } from '@/api/types/category';
 
 export const useGetRandomCategoriesByAttributes = ({
   attributeIds,

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRandomMainQuestByCategoryId } from '@/api/quest';
-import type { GetRandomMainQuestByCategoryIdParams } from '@/api/quest';
+import type { GetRandomMainQuestByCategoryIdParams } from '@/api/types/quest';
 
 export const useGetRandomMainQuestByCategoryId = ({
   categoryId,
