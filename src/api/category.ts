@@ -3,6 +3,7 @@ import type {
   CategoryDTO,
   GetRandomCategoriesByAttributesParams,
 } from '@/api/types/category';
+import type { ApiResponse } from '@/api/types/api';
 
 export const getRandomCategoriesByAttributes = async ({
   attributeIds = [],
@@ -13,5 +14,8 @@ export const getRandomCategoriesByAttributes = async ({
     limit: limit.toString(),
   };
 
-  return await api.get<CategoryDTO[]>(`/categories`, { params });
+  const response = await api.get<ApiResponse<CategoryDTO[]>>(`/categories`, {
+    params,
+  });
+  return response.data ?? [];
 };

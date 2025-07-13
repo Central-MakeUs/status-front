@@ -5,6 +5,8 @@ export const userInfoHandlers = [
     // const userId = params.userId as string;
     console.log(params);
 
-    return HttpResponse.json(mockUserInfo);
+    return HttpResponse.json({
+      data: mockUserInfo,
+    });
   }),
 ];

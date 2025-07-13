@@ -14,7 +14,9 @@ export const questHandlers = [
       userQuestIds.includes(quest.id)
     );
 
-    return HttpResponse.json(userQuests);
+    return HttpResponse.json({
+      data: userQuests,
+    });
   }),
   http.get('/main-quests', ({ request }) => {
     const params = new URL(request.url).searchParams;
@@ -24,7 +26,9 @@ export const questHandlers = [
       .sort(() => Math.random() - 0.5)
       .slice(0, Number(limit));
 
-    return HttpResponse.json(quests);
+    return HttpResponse.json({
+      data: quests,
+    });
   }),
   http.get('/sub-quests', ({ request }) => {
     const params = new URL(request.url).searchParams;
@@ -47,6 +51,8 @@ export const questHandlers = [
 
     const subQuests = [...selectedSubQuests, ...unselectedSubQuests];
 
-    return HttpResponse.json(subQuests);
+    return HttpResponse.json({
+      data: subQuests,
+    });
   }),
 ];

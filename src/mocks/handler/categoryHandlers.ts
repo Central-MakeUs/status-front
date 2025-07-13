@@ -10,6 +10,8 @@ export const categoryHandlers = [
       .sort(() => Math.random() - 0.5)
       .slice(0, Number(limit));
 
-    return HttpResponse.json(categories);
+    return HttpResponse.json({
+      data: categories,
+    });
   }),
 ];

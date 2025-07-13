@@ -3,6 +3,8 @@ import { mockAttributes } from '@/mocks/data/attribute';
 
 export const attributeHandlers = [
   http.get('/users/:userId/attributes', () => {
-    return HttpResponse.json(mockAttributes);
+    return HttpResponse.json({
+      data: mockAttributes,
+    });
   }),
 ];

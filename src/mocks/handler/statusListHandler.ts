@@ -6,6 +6,8 @@ export const statusListHandler = [
     const userId = params.userId as string;
     const userStatus = mockStatusMap[userId] || mockStatusMap['1']; // fallback
 
-    return HttpResponse.json(userStatus);
+    return HttpResponse.json({
+      data: userStatus,
+    });
   }),
 ];

@@ -6,10 +6,13 @@ import type {
   GetRandomMainQuestByCategoryIdParams,
   GetRandomSubQuestByMainQuestIdParams,
 } from '@/api/types/quest';
+import type { ApiResponse } from '@/api/types/api';
 
 export const getUserQuests = async (userId: string): Promise<QuestDTO[]> => {
-  const quests = await api.get<QuestDTO[]>(`/users/${userId}/quests`);
-  return quests;
+  const response = await api.get<ApiResponse<QuestDTO[]>>(
+    `/users/${userId}/quests`
+  );
+  return response.data ?? [];
 };
 
 export const getRandomMainQuestByCategoryId = async ({
@@ -21,10 +24,13 @@ export const getRandomMainQuestByCategoryId = async ({
     limit: limit.toString(),
   };
 
-  const quests = await api.get<UserMainQuestDTO[]>('/main-quests', {
-    params,
-  });
-  return quests;
+  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(
+    '/main-quests',
+    {
+      params,
+    }
+  );
+  return response.data ?? [];
 };
 
 export const getRandomSubQuestByMainQuestId = async ({
@@ -38,8 +44,11 @@ export const getRandomSubQuestByMainQuestId = async ({
     limit: limit.toString(),
   };
 
-  const quests = await api.get<UserSubQuestDTO[]>('/sub-quests', {
-    params,
-  });
-  return quests;
+  const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
+    '/sub-quests',
+    {
+      params,
+    }
+  );
+  return response.data ?? [];
 };
