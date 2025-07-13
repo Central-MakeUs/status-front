@@ -32,15 +32,17 @@ const StatusPage = () => {
           profileImage={userInfo.profileImageUrl}
         />
       )}
-      {statusLists && userInfo && (
-        <RadarChart
-          mentalData={statusLists.statusDataList[0]}
-          skillData={statusLists.statusDataList[1]}
-          profileImage={userInfo.profileImageUrl}
-          growthStatusList={statusLists.growthStatusList}
-        />
-      )}
-      {quests && <QuestList quests={quests} />}
+      <main className="main">
+        {statusLists && userInfo && (
+          <RadarChart
+            mentalData={statusLists.statusDataList[0]}
+            skillData={statusLists.statusDataList[1]}
+            profileImage={userInfo.profileImageUrl}
+            growthStatusList={statusLists.growthStatusList}
+          />
+        )}
+        {quests && <QuestList quests={quests} />}
+      </main>
     </>
   );
 };
