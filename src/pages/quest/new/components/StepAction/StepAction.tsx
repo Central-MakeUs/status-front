@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 interface StepActionProps {
   children: React.ReactNode;
-  disabled: boolean;
+  disabled?: boolean;
   onClick: () => void;
 }
 

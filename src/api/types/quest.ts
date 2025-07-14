@@ -1,5 +1,11 @@
 import type { Attribute } from '@/types/attribute';
-import type { StatReward, SubQuestFrequencyValue } from '@/types/quest';
+import type { Category } from '@/types/category';
+import type {
+  StatReward,
+  SubQuestFrequencyValue,
+  UserMainQuest,
+  UserSubQuest,
+} from '@/types/quest';
 
 export interface QuestDTO {
   id: string;
@@ -43,4 +49,13 @@ export interface GetRandomSubQuestByMainQuestIdParams {
   mainQuestId: string;
   selectedSubQuestIds?: string[];
   limit: number;
+}
+
+export interface QuestCreationRequestDTO {
+  userId: string;
+  mentalityAttribute: Attribute;
+  skillAttribute: Attribute;
+  category: Category;
+  mainQuest: UserMainQuest;
+  subQuests: UserSubQuest[];
 }

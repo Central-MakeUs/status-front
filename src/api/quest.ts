@@ -5,6 +5,7 @@ import type {
   UserSubQuestDTO,
   GetRandomMainQuestByCategoryIdParams,
   GetRandomSubQuestByMainQuestIdParams,
+  QuestCreationRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -51,4 +52,12 @@ export const getRandomSubQuestByMainQuestId = async ({
     }
   );
   return response.data ?? [];
+};
+
+export const postUserQuest = async (data: QuestCreationRequestDTO) => {
+  const response = await api.post<ApiResponse<QuestCreationRequestDTO>>(
+    `/users/${data.userId}/quest`,
+    data
+  );
+  return response.data ?? {};
 };

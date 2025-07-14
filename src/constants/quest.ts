@@ -29,6 +29,10 @@ export const SUB_QUEST_FREQUENCY = {
 export const SUB_QUEST_FREQUENCY_SELECT_OPTIONS =
   Object.values(SUB_QUEST_FREQUENCY);
 
+export const SUB_QUEST_FREQUENCY_VALUES = Object.values(
+  SUB_QUEST_FREQUENCY
+).map((item) => item.value);
+
 export const getSubQuestFrequencyLabel = (
   value: SubQuestFrequencyValue
 ): string => {
