@@ -8,5 +8,5 @@ export const getWeeksDifference = (startDate: string, endDate: string) => {
   const start = parseISO(startDate);
   const end = parseISO(endDate);
 
-  return differenceInWeeks(end, start);
+  return differenceInWeeks(end, start) + 1;
 };
