@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Switch } from '@/components/ui/Switch/Switch';
 
 const meta = {
-  title: 'atom/Switch',
+  title: 'atoms/Switch',
   component: Switch,
   parameters: {
     layout: 'centered',

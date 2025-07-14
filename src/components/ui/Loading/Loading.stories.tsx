@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Loading } from './Loading';
 
 const meta = {
-  title: 'molecule/loading',
+  title: 'molecules/Loading',
   component: Loading,
   parameters: {
     docs: {
