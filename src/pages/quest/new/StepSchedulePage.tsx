@@ -5,7 +5,7 @@ import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
-import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
+import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { getWeeksDifference } from '@/utils/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
@@ -180,9 +180,9 @@ export const StepSchedulePage = () => {
           />
         </div>
       </main>
-      <StepAction disabled={!isValidSchedule} onClick={handleClickDoneButton}>
+      <StepActions disabled={!isValidSchedule} onClick={handleClickDoneButton}>
         완료
-      </StepAction>
+      </StepActions>
     </>
   );
 };

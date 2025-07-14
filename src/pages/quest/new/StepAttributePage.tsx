@@ -6,7 +6,7 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepDescription } from './components/StepDescription/StepDescription';
-import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
+import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 
 import type { Attribute } from '@/types/attribute';
 
@@ -121,12 +121,12 @@ export const StepAttributePage = () => {
           </div>
         </div>
       </main>
-      <StepAction
+      <StepActions
         disabled={!isAttributesSelected}
         onClick={handleClickNextButton}
       >
         다음
-      </StepAction>
+      </StepActions>
     </>
   );
 };

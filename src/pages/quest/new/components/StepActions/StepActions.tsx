@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button/Button';
 
 import classNames from 'classnames/bind';
-import styles from './StepAction.module.scss';
+import styles from './StepActions.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -11,13 +11,13 @@ interface StepActionProps {
   onClick: () => void;
 }
 
-export const StepAction = ({
+export const StepActions = ({
   children,
   disabled,
   onClick,
 }: StepActionProps) => {
   return (
-    <footer className={cx('step-footer')}>
+    <footer className={cx('step-actions')}>
       <Button variant="secondary" disabled={disabled} onClick={onClick}>
         {children}
       </Button>

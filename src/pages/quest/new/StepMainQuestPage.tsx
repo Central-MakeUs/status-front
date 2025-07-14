@@ -6,7 +6,7 @@ import { useGetRandomMainQuestByCategoryId } from '@/api/hooks/quest/useGetRando
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
-import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
+import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { StepRadioGroupSkeleton } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroupSkeleton';
 import { StepRadioGroup } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroup';
@@ -79,9 +79,12 @@ export const StepMainQuestPage = () => {
           isLoading={isLoading || isRefetching}
         />
       </main>
-      <StepAction disabled={!selectedMainQuest} onClick={handleClickNextButton}>
+      <StepActions
+        disabled={!selectedMainQuest}
+        onClick={handleClickNextButton}
+      >
         다음
-      </StepAction>
+      </StepActions>
     </>
   );
 };
