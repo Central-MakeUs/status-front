@@ -2,8 +2,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import { StepAction } from '@/pages/quest/new/components/StepAction/StepAction';
 import IconLogo from '@/assets/icons/icon-character-result.svg?react';
+import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import 'react-day-picker/dist/style.css';
 import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';
@@ -97,7 +97,7 @@ export const StepResultPage = () => {
           </div>
         </div>
       </main>
-      <StepAction onClick={handleClickDoneButton}>확인</StepAction>
+      <StepActions onClick={handleClickDoneButton}>확인</StepActions>
     </>
   );
 };
