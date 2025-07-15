@@ -1,15 +1,15 @@
-import EmpathyCommunicationSVG from '@/assets/ability/empathyCommunication.svg?url';
-import HeraldrySVG from '@/assets/ability/heraldry.svg?url';
-import LearningFocusSVG from '@/assets/ability/learningFocus.svg?url';
-import PhysicalTrainingSVG from '@/assets/ability/physicalTraining.svg?url';
-import TechnologyApplicationSVG from '@/assets/ability/technologyApplication.svg?url';
-import CreativeTechSVG from '@/assets/ability/creativeTech.svg?url';
-import WillPowerSVG from '@/assets/ability/willpower.svg?url';
-import SelfControlSVG from '@/assets/ability/selfcontrol.svg?url';
-import SinceritySVG from '@/assets/ability/sincerity.svg?url';
-import BoldnessSVG from '@/assets/ability/boldness.svg?url';
-import ConcentrationSVG from '@/assets/ability/concentration.svg?url';
-import CreativitySVG from '@/assets/ability/creativity.svg?url';
+import EmpathyCommunicationSVG from '@/assets/icons/radar-chart/icon-empathy-communication.svg?url';
+import HeraldrySVG from '@/assets/icons/radar-chart/icon-heraldry.svg?url';
+import LearningFocusSVG from '@/assets/icons/radar-chart/icon-learning-focus.svg?url';
+import PhysicalTrainingSVG from '@/assets/icons/radar-chart/icon-physical-training.svg?url';
+import TechnologyApplicationSVG from '@/assets/icons/radar-chart/icon-technology-application.svg?url';
+import CreativeTechSVG from '@/assets/icons/radar-chart/icon-creative-tech.svg?url';
+import WillPowerSVG from '@/assets/icons/radar-chart/icon-willpower.svg?url';
+import SelfControlSVG from '@/assets/icons/radar-chart/icon-self-control.svg?url';
+import SinceritySVG from '@/assets/icons/radar-chart/icon-sincerity.svg?url';
+import BoldnessSVG from '@/assets/icons/radar-chart/icon-boldness.svg?url';
+import ConcentrationSVG from '@/assets/icons/radar-chart/icon-concentration.svg?url';
+import CreativitySVG from '@/assets/icons/radar-chart/icon-creativity.svg?url';
 
 import {
   Chart as ChartJS,
