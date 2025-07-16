@@ -36,7 +36,7 @@ export const ConfirmDialog: Story = {
   },
 };
 
-export const AlertConfirmDialog: Story = {
+export const AlertDialog: Story = {
   args: {
     children: (
       <>
