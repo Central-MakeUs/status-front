@@ -8,8 +8,9 @@ const request = async <T = unknown>(
   endpoint: string,
   options: RequestOptions = {}
 ): Promise<T> => {
-  const headers: Record<string, string> = {
+  const headers: HeadersInit = {
     'Content-Type': 'application/json',
+    ...options.headers,
   };
 
   let queryString = '';
@@ -19,24 +20,15 @@ const request = async <T = unknown>(
     queryString = `?${params.toString()}`;
   }
 
-  if (options.headers) {
-    if (options.headers instanceof Headers) {
-      options.headers.forEach((value, key) => {
-        headers[key] = value;
-      });
-    } else if (Array.isArray(options.headers)) {
-      options.headers.forEach(([key, value]) => {
-        headers[key] = value;
-      });
-    } else {
-      Object.assign(headers, options.headers);
-    }
-  }
-
   const response = await fetch(`${BASE_URL}${endpoint}${queryString}`, {
     ...options,
     headers,
   });
+
+  if (response.status === 401) {
+    const currentPath = window.location.pathname;
+    window.location.href = `auth/login?redirect=${encodeURIComponent(currentPath)}`;
+  }
 
   if (!response.ok) {
     throw new Error(`HTTP ${response.status}: ${response.statusText}`);

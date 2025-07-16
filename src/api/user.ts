@@ -8,7 +8,11 @@ export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
   );
   return (
     response.data ?? {
+      id: '',
+      email: '',
       nickname: '',
+      providerType: 'google',
+      providerId: '',
       level: 0,
       levelPercent: 0,
       profileImageUrl: '',
