@@ -40,9 +40,14 @@
     }
 }
 
+.attribute-icon {
+    display: block;
+}
+
 .attribute-name-cover {
     display: flex;
     gap: 8px;
+    margin-top: 8px;
 }
 
 .attribute-name {

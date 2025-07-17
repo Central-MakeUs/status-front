@@ -7,6 +7,7 @@ import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepDescription } from './components/StepDescription/StepDescription';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 
 import type { Attribute } from '@/types/attribute';
 
@@ -84,8 +85,11 @@ export const StepAttributePage = () => {
                 aria-checked={selectedMentalityAttribute === attribute}
                 onClick={() => setSelectedMentalityAttribute(attribute)}
               >
+                <AttributeIcon
+                  id={attribute.attributeId}
+                  className={cx('attribute-icon')}
+                />
                 <div className={cx('attribute-name-cover')}>
-                  {/* [TODO] 아이콘은 API 나오면 매핑 */}
                   <span className={cx('attribute-name')}>{attribute.name}</span>
                   <span className={cx('badge-mentality')}>정신</span>
                 </div>
@@ -109,6 +113,10 @@ export const StepAttributePage = () => {
                 aria-checked={selectedSkillAttribute === attribute}
                 onClick={() => setSelectedSkillAttribute(attribute)}
               >
+                <AttributeIcon
+                  id={attribute.attributeId}
+                  className={cx('attribute-icon')}
+                />
                 <div className={cx('attribute-name-cover')}>
                   <span className={cx('attribute-name')}>{attribute.name}</span>
                   <span className={cx('badge-skill')}>기술</span>
