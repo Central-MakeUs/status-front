@@ -25,7 +25,3 @@ export const ATTRIBUTE_ICONS = {
   205: IconAttribute205,
   206: IconAttribute206,
 } as const;
-
-export const getAttributeIcon = (id: number) => {
-  return ATTRIBUTE_ICONS[id as keyof typeof ATTRIBUTE_ICONS];
-};
