@@ -1,6 +1,5 @@
 import { api } from '@/api/client';
 import type {
-  QuestDTO,
   UserMainQuestDTO,
   UserSubQuestDTO,
   GetRandomMainQuestByCategoryIdParams,
@@ -9,9 +8,11 @@ import type {
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
-export const getUserQuests = async (userId: string): Promise<QuestDTO[]> => {
-  const response = await api.get<ApiResponse<QuestDTO[]>>(
-    `/users/${userId}/quests`
+export const getUserMainQuests = async (
+  userId: string
+): Promise<UserMainQuestDTO[]> => {
+  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(
+    `/users/${userId}/main-quests`
   );
   return response.data ?? [];
 };

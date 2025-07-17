@@ -1,22 +1,15 @@
 import { http, HttpResponse } from 'msw';
 import {
   mockMainQuests,
-  mockQuests,
   mockSubQuests,
-  userQuestMapping,
+  mockUserMainQuests,
 } from '@/mocks/data/quest';
 import type { QuestCreationRequestDTO } from '@/api/types/quest';
 
 export const questHandlers = [
-  http.get('/users/:userId/quests', ({ params }) => {
-    const userId = params.userId as string;
-    const userQuestIds = userQuestMapping[userId] || [];
-    const userQuests = mockQuests.filter((quest) =>
-      userQuestIds.includes(quest.id)
-    );
-
+  http.get('/users/:userId/main-quests', () => {
     return HttpResponse.json({
-      data: userQuests,
+      data: mockUserMainQuests,
     });
   }),
   http.get('/main-quests', ({ request }) => {
@@ -77,13 +70,21 @@ export const questHandlers = [
       })),
     };
 
-    mockQuests.push({
+    mockUserMainQuests.push({
       id: newQuestId,
       title: requestData.mainQuest.title,
-      expiredAt: requestData.mainQuest.endDate,
+      startDate: requestData.mainQuest.startDate,
+      endDate: requestData.mainQuest.endDate,
       progress: 0,
-      totalDays: 0,
-      rewards: [{ statType: 'patience', exp: 50 }],
+      attributes: [
+        {
+          attributeId: 101,
+          name: '제어',
+          type: 'mentality',
+          level: 1,
+          exp: 50,
+        },
+      ],
     });
 
     return HttpResponse.json({
