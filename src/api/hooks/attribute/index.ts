@@ -1,1 +1,1 @@
-export * from './useGetUserAttribute';
+export * from './useGetUserAttributes';
