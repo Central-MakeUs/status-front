@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetUserAttribute } from '@/api/hooks/attribute';
+import { useGetUserAttributes } from '@/api/hooks/attribute/useGetUserAttributes';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
@@ -20,7 +20,7 @@ export const StepAttributePage = () => {
   const navigate = useNavigate();
   // [TODO] auth store에서 사용자 정보 가져오기
   const userId = '10';
-  const { data } = useGetUserAttribute(userId);
+  const { data } = useGetUserAttributes(userId);
   const {
     selectedMentalityAttribute,
     selectedSkillAttribute,
