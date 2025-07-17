@@ -9,6 +9,7 @@ import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';
 import { getSubQuestFrequencyLabel } from '@/constants/quest';
 import { getDaysDifference } from '@/utils/date';
+import { useEffect } from 'react';
 
 // Mock data for fallback rendering
 const mockMainQuest = {
@@ -39,11 +40,11 @@ export const StepResultPage = () => {
    * [TODO] URL로 접근하는 등 validation 체크 로직
    * 전체 스탭에서 공통화 할 수 있을지도 고민해보기 e.g. 라우터에서 처리?
    */
-  // useEffect(() => {
-  //   if (selectedSubQuestIds.length === 0) {
-  //     navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE, { replace: true });
-  //   }
-  // }, [selectedSubQuestIds, navigate]);
+  useEffect(() => {
+    if (selectedSubQuestIds.length === 0) {
+      navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE, { replace: true });
+    }
+  }, [selectedSubQuestIds, navigate]);
 
   const filteredSubQuests = subQuests.filter((quest) =>
     selectedSubQuestIds.includes(quest.id)
