@@ -29,6 +29,8 @@ export interface SubQuestDTO {
 export interface UserSubQuestDTO extends SubQuestDTO {
   frequency: SubQuestFrequencyValue;
   repeatCnt: number;
+  attributes: AttributeReward[];
+  essential: boolean;
 }
 
 export interface GetRandomMainQuestByCategoryIdParams {

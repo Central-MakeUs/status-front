@@ -2,14 +2,15 @@ import { Header } from '@/pages/status/components/Header/Header';
 import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
-import { useGetUserMainQuests } from '@/api/hooks/quest/useGetUserMainQuests';
 import { useGetStatusList } from '@/api/hooks/status/useGetStatus';
+import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 
 const StatusPage = () => {
   const userId = '10';
+  const mainQuestId = '1';
   const { data: userInfo } = useGetUserInfo(userId);
   const { data: statusLists } = useGetStatusList(userId);
-  const { data: quests } = useGetUserMainQuests(userId);
+  const { data: quests } = useGetUserSubQuests(userId, mainQuestId);
 
   // const dataLists = [
   //   [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
