@@ -45,6 +45,16 @@ export const questCreationSchema = z.object({
       frequency: z.enum(SUB_QUEST_FREQUENCY_VALUES),
       defaultRepeat: z.number(),
       repeatCnt: z.number().min(1, '반복 횟수는 1 이상이어야 합니다.'),
+      attributes: z.array(
+        z.object({
+          attributeId: z.number(),
+          name: z.string(),
+          type: z.enum(['mentality', 'skill']),
+          level: z.number(),
+          exp: z.number().min(0, '경험치는 0 이상이어야 합니다.'),
+        })
+      ),
+      essential: z.boolean(),
     })
   ),
 });
