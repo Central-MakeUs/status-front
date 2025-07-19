@@ -1,9 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { useGetUserQuests } from '@/api/hooks/quest/useGetUserQuests';
+import { Link, useNavigate } from 'react-router-dom';
+import { useGetUserMainQuests } from '@/api/hooks/quest/';
 import { Header } from '@/components/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
-import IconAdd from '@/assets/icons/icon-add.svg?react';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { getWeeksDifference } from '@/utils/date';
+
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import IconAdd from '@/assets/icons/icon-add.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './QuestPage.module.scss';
@@ -14,41 +17,84 @@ export const QuestPage = () => {
   const navigate = useNavigate();
   // [TODO] auth store에서 사용자 정보 가져오기
   const userId = '10';
-  const { data: quests } = useGetUserQuests(userId);
+  const { data } = useGetUserMainQuests(userId);
 
   const handleAddQuest = () => {
     navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE);
   };
 
+  const questCount = data?.length || 0;
+  const canAddQuest = questCount < 3;
+
   return (
     <>
-      <Header title="퀘스트" />
+      <Header title={`내 퀘스트 (${questCount}/3)`} />
       <main className="main">
-        {quests?.length === 0 ? (
+        {questCount === 0 ? (
           <QuestEmpty />
         ) : (
-          // [TODO] 디자인 확정 후 스타일링
-          <ul className={cx('quest-list')}>
-            {quests?.map((quest) => (
-              <li key={quest.id} className={cx('quest-item')}>
-                <ul className={cx('status-list')}>
-                  {quest.rewards.map((reward) => (
-                    <li className={cx('status-item')}>{reward.exp}</li>
+          <ul className={cx('main-quest-list')}>
+            {data?.map((quest) => (
+              <li key={quest.id} className={cx('main-quest-item')}>
+                <span className={cx('main-quest-date')}>
+                  기한_{quest.endDate} (총
+                  {getWeeksDifference(quest.startDate, quest.endDate)}
+                  주)
+                </span>
+                <strong className={cx('main-quest-title')}>
+                  {quest.title}
+                </strong>
+                <ul className={cx('reward-list')}>
+                  {quest.attributes?.map((attribute) => (
+                    <li
+                      key={attribute.attributeId}
+                      className={cx('reward-item')}
+                    >
+                      <AttributeIcon id={attribute.attributeId} />
+                      <span className={cx('reward-text')}>
+                        +{attribute.exp}xp
+                      </span>
+                    </li>
                   ))}
-                  <div className={cx('quest-title')}>{quest.title}</div>
                 </ul>
+                <div className={cx('progress-bar-wrapper')}>
+                  <span className={cx('progress-bar-text')}>
+                    {quest.progress}%
+                  </span>
+                  <div
+                    role="progressbar"
+                    aria-valuenow={quest.progress}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-label={`${quest.title} 진행 상태`}
+                    className={cx('progress-bar')}
+                    style={
+                      {
+                        '--progress-bar-percentage': `${quest.progress}%`,
+                      } as React.CSSProperties
+                    }
+                  />
+                </div>
+                <Link
+                  to={`${PAGE_PATHS.QUEST}/${quest.id}`}
+                  className={cx('main-quest-detail')}
+                >
+                  <span className={cx('sr-only')}>상세 보기</span>
+                </Link>
               </li>
             ))}
           </ul>
         )}
-        <button
-          type="button"
-          className={cx('button-add-quest')}
-          onClick={handleAddQuest}
-        >
-          <span className={cx('text')}>새로운 퀘스트</span>
-          <IconAdd className={cx('icon-add')} aria-hidden="true" />
-        </button>
+        {canAddQuest && (
+          <button
+            type="button"
+            className={cx('button-add-quest')}
+            onClick={handleAddQuest}
+          >
+            <span className={cx('text')}>새로운 퀘스트</span>
+            <IconAdd className={cx('icon-add')} aria-hidden="true" />
+          </button>
+        )}
       </main>
     </>
   );

@@ -1,1 +1,1 @@
-export * from './useGetUserQuests';
+export * from './useGetUserMainQuests';

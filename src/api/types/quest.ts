@@ -1,31 +1,22 @@
-import type { Attribute } from '@/types/attribute';
+import type { Attribute, AttributeReward } from '@/types/attribute';
 import type { Category } from '@/types/category';
 import type {
-  StatReward,
   SubQuestFrequencyValue,
   UserMainQuest,
   UserSubQuest,
 } from '@/types/quest';
 
-export interface QuestDTO {
-  id: string;
-  title: string;
-  expiredAt: string;
-  progress: number;
-  totalDays: number;
-  rewards: StatReward[];
-}
-
 export interface MainQuestDTO {
   id: string;
   title: string;
-  attributes?: Attribute[];
+  attributes?: AttributeReward[];
   createdAt?: string;
 }
 
 export interface UserMainQuestDTO extends MainQuestDTO {
   startDate: string;
   endDate: string;
+  progress?: number;
 }
 
 export interface SubQuestDTO {
