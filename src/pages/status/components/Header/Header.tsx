@@ -18,12 +18,11 @@ export const Header = ({
       <div className={cx('profile')}>
         <div className={cx('nickname')}>
           <img src={profileImageUrl} alt="" className={cx('avatar')} />
-
           <div>{nickname}</div>
         </div>
-        <div className={cx('tierInfo')}>
-          <TierIcon id={tier} className={cx('tierIcon')} />
-          <div className={cx('tierText')}>
+        <div className={cx('tier-info')}>
+          <TierIcon id={tier} className={cx('tier-icon')} />
+          <div className={cx('tier-text')}>
             {tier}_{level}
           </div>
         </div>

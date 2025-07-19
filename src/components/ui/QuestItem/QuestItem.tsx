@@ -14,7 +14,7 @@ export const QuestItem = ({
   essential,
 }: UserSubQuest) => {
   return (
-    <div className={cx('questItem')}>
+    <div className={cx('quest-item')}>
       <div className={cx('topRow')}>
         {essential && <span className={cx('essential')}>필수</span>}
         {frequency.includes('weekly') && (
@@ -39,7 +39,7 @@ export const QuestItem = ({
         </div>
       </div>
       <div className={cx('desc')}>{desc}</div>
-      <button className={cx('confirmBtn')}>인증하기</button>
+      <button className={cx('confirm')}>인증하기</button>
     </div>
   );
 };

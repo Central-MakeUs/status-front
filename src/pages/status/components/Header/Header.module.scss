@@ -21,7 +21,7 @@
   width: 100%;
 }
 
-.nickname, .tierInfo {
+.nickname, .tier-info {
   display: flex;
   align-items: center;
   height: 34px;
@@ -52,7 +52,7 @@
   object-fit: cover;
 }
 
-.tierIcon {
+.tier-icon {
   position: relative;
   left: -28px;
   z-index: 1000;
@@ -60,6 +60,6 @@
   height: 30px;
 }
 
-.tierText {
+.tier-text {
   padding-left: 10px;
 }

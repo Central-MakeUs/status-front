@@ -1,4 +1,4 @@
-.questItem {
+.quest-item {
   display: flex; 
   flex-direction: column;
   background-color: var(--color-gray-800);
@@ -64,7 +64,7 @@
   margin-bottom: 8px;
 }
 
-.confirmBtn {
+.confirm {
   background-color: var(--color-gray-600);
   border-radius: 5px;
  
