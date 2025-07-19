@@ -59,7 +59,7 @@ export const StepResultPage = () => {
   return (
     <>
       <main className="main">
-        <div className={cx('resultContainer')}>
+        <div className={cx('result-container')}>
           <p className={cx('main-quest-from')}>From. [아침을 지배하는 자]</p>
           <h1 className={cx('result-title')}>생성된 퀘스트가 도착했어요!</h1>
           <div className={cx('logo-container')}>
