@@ -10,7 +10,7 @@
 }
 
 
-.mainQuestFrom {
+.main-quest-from {
   color: var(--color-gray-200);
   font-size: 12px;
   font-weight: 500;
@@ -19,7 +19,7 @@
   margin-bottom: 8px;
 }
 
-.resultTitle {
+.result-title {
   color: var(--color-white);
   font-size: 22px;
   font-weight: 700;
@@ -27,11 +27,11 @@
   margin-bottom: 16px;
 }
 
-.logoContainer { 
+.logo-container { 
   padding: 12px;
 }
 
-.mainQuestBox {
+.main-quest-box {
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +58,7 @@
   }
 }
 
-.mainQuestTitle {
+.main-quest-title {
   font-size: 16px;
   font-weight: bold;
   color: var(--color-white);
@@ -71,13 +71,13 @@
   text-align: center;
 }
 
-.mainQuestDate {
+.main-quest-date {
   font-size: 12px;
   color: var(--color-gray-200);
   margin-bottom: 8px;
 }
 
-.mainQuestReward {
+.main-quest-reward {
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -98,16 +98,8 @@
   line-height: 20px;
 }
 
-.reward {
-  display: inline-block;
-  padding: 4px 8px;
-  background-color: var(--color-gray-800);
-  border-radius: 8px;
-  font-size: 12px;
-  color: white;
-}
 
-.subQuestList {
+.sub-quest-list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,9 +107,15 @@
   width:100%;
   margin: 0 auto;
   margin-top: 16px;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+  color: var(--color-gray-200);
 }
 
-.subquestBox {
+.sub-quest-box {
   background-color: var(--color-gray-800);
   padding: 14px 16px;
   border-radius: 10px;
@@ -126,13 +124,16 @@
 
   padding: 14px 16px;
   box-sizing: border-box;
+  margin-bottom: 4px;
 }
 
-.frequency {
-  color: var(--color-gray-200);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 17px;
+.sub-attribute {
+  &::after {
+    content: ',';
+  }
+  &:last-of-type::after {
+    content: '';
+  }
 }
 
 .desc {
