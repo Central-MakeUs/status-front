@@ -1,19 +1,8 @@
 import classNames from 'classnames/bind';
 import styles from './StatGrid.module.scss';
-import EmpathyCommunicationSVG from '@/assets/icons/attribute/icon-attribute205.svg?react';
-import HeraldrySVG from '@/assets/icons/attribute/icon-attribute203.svg?react';
-import LearningFocusSVG from '@/assets/icons/attribute/icon-attribute206.svg?react';
-import PhysicalTrainingSVG from '@/assets/icons/attribute/icon-attribute201.svg?react';
-import TechnologyApplicationSVG from '@/assets/icons/attribute/icon-attribute202.svg?react';
-import CreativeTechSVG from '@/assets/icons/attribute/icon-attribute204.svg?react';
-import WillPowerSVG from '@/assets/icons/attribute/icon-attribute101.svg?react';
-import SelfControlSVG from '@/assets/icons/attribute/icon-attribute103.svg?react';
-import SinceritySVG from '@/assets/icons/attribute/icon-attribute105.svg?react';
-import BoldnessSVG from '@/assets/icons/attribute/icon-attribute106.svg?react';
-import ConcentrationSVG from '@/assets/icons/attribute/icon-attribute102.svg?react';
-import CreativitySVG from '@/assets/icons/attribute/icon-attribute104.svg?react';
 import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 const cx = classNames.bind(styles);
 
 interface StatGridProps {
@@ -21,6 +10,8 @@ interface StatGridProps {
   skillData: number[];
   isMental: boolean;
   growthStatusList: number[][];
+  levelList: number[][];
+  // xpLeftList: number[][];
 }
 
 export const StatGrid = ({
@@ -28,6 +19,8 @@ export const StatGrid = ({
   skillData,
   isMental,
   growthStatusList,
+  levelList,
+  // xpLeftList,
 }: StatGridProps) => {
   // const growthStatusList = [1, 0, 0, -1, 0, 0];
 
@@ -36,37 +29,40 @@ export const StatGrid = ({
       <div className={cx('grid')}>
         {(isMental
           ? [
-              { label: '의지력', Icon: WillPowerSVG, index: 0 },
-              { label: '집중력', Icon: ConcentrationSVG, index: 1 },
-              { label: '자기 통제력', Icon: SelfControlSVG, index: 2 },
-              { label: '창의성', Icon: CreativitySVG, index: 3 },
-              { label: '성실성', Icon: SinceritySVG, index: 4 },
-              { label: '대담성', Icon: BoldnessSVG, index: 5 },
+              { label: '인내', Icon: <AttributeIcon id={101} />, index: 0 },
+              { label: '집중', Icon: <AttributeIcon id={102} />, index: 1 },
+              { label: '제어', Icon: <AttributeIcon id={103} />, index: 2 },
+              { label: '영감', Icon: <AttributeIcon id={104} />, index: 3 },
+              { label: '성실', Icon: <AttributeIcon id={105} />, index: 4 },
+              { label: '용기', Icon: <AttributeIcon id={106} />, index: 5 },
             ]
           : [
-              { label: '문장술', Icon: HeraldrySVG, index: 0 },
-              { label: '창조기술', Icon: CreativeTechSVG, index: 1 },
-              { label: '학습 집중', Icon: LearningFocusSVG, index: 2 },
-              { label: '신체 수련', Icon: PhysicalTrainingSVG, index: 3 },
-              { label: '기술 응용', Icon: TechnologyApplicationSVG, index: 4 },
-              { label: '공감 소통', Icon: EmpathyCommunicationSVG, index: 5 },
+              { label: '건강', Icon: <AttributeIcon id={201} />, index: 0 },
+              { label: '전략', Icon: <AttributeIcon id={202} />, index: 1 },
+              { label: '기록', Icon: <AttributeIcon id={203} />, index: 2 },
+              { label: '기술', Icon: <AttributeIcon id={204} />, index: 3 },
+              { label: '화술', Icon: <AttributeIcon id={205} />, index: 4 },
+              { label: '탐구', Icon: <AttributeIcon id={206} />, index: 5 },
             ]
         ).map(({ label, Icon, index }) => {
-          const value = isMental ? mentalData[index] : skillData[index];
+          const level = isMental ? levelList[0][index] : levelList[1][index];
+          const xpLeft =
+            100 - (isMental ? mentalData[index] : skillData[index]);
           const status = growthStatusList[isMental ? 0 : 1][index];
           const StatusIcon =
             status === 1 ? BurningSVG : status === -1 ? StagnationSVG : null;
 
           return (
             <div className={cx('card')}>
-              <div className={cx('left')}>
-                <Icon />
+              <div className={cx('left')}>{Icon}</div>
+              <div className={cx('center')}>
                 <span className={cx('label')}>{label}</span>
+                <div className={cx('level')}>
+                  {StatusIcon && <StatusIcon className={cx('icon')} />}Lv.{' '}
+                  {level}
+                </div>
               </div>
-              <div className={cx('right')}>
-                {StatusIcon && <StatusIcon className={cx('icon')} />}
-                <span className={cx('value')}>{value}/100</span>
-              </div>
+              <div className={cx('xpLeft')}>(레벨업까지 +{xpLeft}xp)</div>
             </div>
           );
         })}

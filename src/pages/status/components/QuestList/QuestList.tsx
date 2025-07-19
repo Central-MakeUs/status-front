@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 export const QuestList = ({ quests }: { quests: UserMainQuest[] }) => {
   return (
     <div className={cx('container')}>
-      <div className={cx('header')}>진행 중인 퀘스트</div>
+      <div className={cx('header')}>오늘의 퀘스트</div>
       {quests.map((quest, idx) => (
         <QuestItem key={idx} {...quest} />
       ))}

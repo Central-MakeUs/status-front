@@ -39,6 +39,8 @@ const StatusPage = () => {
             skillData={statusLists.statusDataList[1]}
             profileImage={userInfo.profileImageUrl}
             growthStatusList={statusLists.growthStatusList}
+            levelList={statusLists.levelList}
+            // xpLeftList={statusLists.xpLeftList}
           />
         )}
         {quests && <QuestList quests={quests} />}

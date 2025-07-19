@@ -42,6 +42,8 @@ interface RadarChartProps {
   skillData: number[];
   profileImage: string;
   growthStatusList: number[][];
+  levelList: number[][];
+  // xpLeftList: number[][];
 }
 
 export const RadarChart = ({
@@ -49,6 +51,8 @@ export const RadarChart = ({
   skillData,
   profileImage,
   growthStatusList,
+  levelList,
+  // xpLeftList,
 }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
   const img = new Image();
@@ -241,6 +245,8 @@ export const RadarChart = ({
         skillData={skillData}
         isMental={isMental}
         growthStatusList={growthStatusList}
+        levelList={levelList}
+        // xpLeftList={xpLeftList}
       />
     </>
   );
