@@ -80,6 +80,22 @@
 .mainQuestReward {
   display: flex;
   gap: 8px;
+  justify-content: center;
+}
+
+.attribute {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  background-color: var(--color-gray-600);
+  border-radius: 146px;
+  color: var(--color-gray-100);
+  gap: 4px;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .reward {

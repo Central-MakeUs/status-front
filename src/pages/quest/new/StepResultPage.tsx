@@ -10,14 +10,7 @@ import styles from './StepResultPage.module.scss';
 import { getSubQuestFrequencyLabel } from '@/constants/quest';
 import { getDaysDifference } from '@/utils/date';
 import { useEffect } from 'react';
-
-// Mock data for fallback rendering
-const mockMainQuest = {
-  title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
-  startDate: '2025-10-19',
-  endDate: '2025-10-25',
-  rewards: [{ statType: 'patience', exp: 70 }],
-};
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 
 const cx = classNames.bind(styles);
 
@@ -52,7 +45,8 @@ export const StepResultPage = () => {
   const startDate = selectedMainQuest?.startDate;
   const endDate = selectedMainQuest?.endDate;
   const weeks = getDaysDifference(startDate ?? '', endDate ?? '');
-
+  // console.log(selectedMainQuest?.attributes);
+  const attributes = selectedMainQuest?.attributes ?? [];
   const handleClickDoneButton = () => {
     // zod로 검증 로직 추가
     // mutation
@@ -79,9 +73,9 @@ export const StepResultPage = () => {
               {selectedMainQuest && selectedMainQuest.title}
             </h2>
             <div className={cx('mainQuestReward')}>
-              {mockMainQuest.rewards.map((reward, index) => (
-                <span key={index} className={cx('reward')}>
-                  +{reward.exp}xp
+              {attributes.map((attr) => (
+                <span key={attr.attributeId} className={cx('attribute')}>
+                  <AttributeIcon id={attr.attributeId} />+{attr.exp}xp
                 </span>
               ))}
             </div>

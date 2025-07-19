@@ -12,48 +12,92 @@ export const mockMainQuests: MainQuest[] = [
   {
     id: '1',
     title: '일주일간 하루 알림 확인 시간 제한하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '2',
     title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '3',
     title:
       '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '4',
     title:
       '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '5',
     title: 'test',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '6',
     title: '독서 습관 만들기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '7',
     title: '운동 루틴 정착하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '8',
     title: '명상 시간 갖기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '9',
     title: '일기 쓰기 습관',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '10',
     title: '건강한 식단 유지하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '11',
     title: '새로운 기술 학습하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
 ];
 
