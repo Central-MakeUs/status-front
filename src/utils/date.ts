@@ -1,4 +1,5 @@
 import {
+  differenceInDays,
   differenceInWeeks,
   format,
   isBefore,
@@ -16,6 +17,12 @@ export const getWeeksDifference = (startDate: string, endDate: string) => {
   const end = parseISO(endDate);
 
   return differenceInWeeks(end, start) + 1;
+};
+
+export const getDaysDifference = (startDate: string, endDate: string) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  return Math.floor(differenceInDays(end, start)) + 1;
 };
 
 export const isValidDateString = (dateString: string): boolean => {
