@@ -17,6 +17,16 @@ export const getUserMainQuests = async (
   return response.data ?? [];
 };
 
+export const getUserSubQuests = async (
+  userId: string,
+  mainQuestId: string
+): Promise<UserSubQuestDTO[]> => {
+  const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
+    `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
+  );
+  return response.data ?? [];
+};
+
 export const getRandomMainQuestByCategoryId = async ({
   categoryId,
   limit = 6,

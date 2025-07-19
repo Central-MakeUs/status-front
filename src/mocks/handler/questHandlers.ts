@@ -3,6 +3,7 @@ import {
   mockMainQuests,
   mockSubQuests,
   mockUserMainQuests,
+  mockUserSubQuests,
 } from '@/mocks/data/quest';
 import type { QuestCreationRequestDTO } from '@/api/types/quest';
 
@@ -89,6 +90,14 @@ export const questHandlers = [
 
     return HttpResponse.json({
       data: createdQuest,
+    });
+  }),
+
+  http.get('/users/:userId/main-quests/:mainQuestId/sub-quests', () => {
+    const quests = mockUserSubQuests;
+
+    return HttpResponse.json({
+      data: quests,
     });
   }),
 ];

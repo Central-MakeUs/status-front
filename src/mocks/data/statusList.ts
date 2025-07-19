@@ -10,6 +10,14 @@ export const mockStatusMap: Record<string, StatusList> = {
       [1, 0, 0, -1, 0, 0],
       [1, 1, -1, 0, 0, -1],
     ],
+    levelList: [
+      [8, 2, 6, 4, 10, 7],
+      [9, 5, 3, 6, 11, 8],
+    ],
+    xpLeftList: [
+      [40, 20, 60, 30, 50, 70],
+      [45, 35, 25, 65, 55, 75],
+    ],
   },
   '2': {
     statusDataList: [
@@ -19,6 +27,14 @@ export const mockStatusMap: Record<string, StatusList> = {
     growthStatusList: [
       [0, 1, 1, 0, -1, 0],
       [-1, 1, 0, 0, 1, 0],
+    ],
+    levelList: [
+      [7, 11, 3, 9, 6, 12],
+      [5, 8, 4, 7, 10, 2],
+    ],
+    xpLeftList: [
+      [60, 45, 55, 35, 40, 50],
+      [30, 75, 65, 25, 70, 80],
     ],
   },
   '3': {
@@ -30,6 +46,14 @@ export const mockStatusMap: Record<string, StatusList> = {
       [0, 0, 1, 1, 0, -1],
       [1, 0, 0, 0, -1, 1],
     ],
+    levelList: [
+      [4, 9, 7, 3, 11, 6],
+      [8, 5, 12, 2, 10, 7],
+    ],
+    xpLeftList: [
+      [70, 40, 30, 60, 50, 80],
+      [45, 35, 55, 25, 65, 75],
+    ],
   },
   '4': {
     statusDataList: [
@@ -39,6 +63,14 @@ export const mockStatusMap: Record<string, StatusList> = {
     growthStatusList: [
       [-1, 0, 0, 0, 1, 0],
       [0, -1, 1, 1, 0, 0],
+    ],
+    levelList: [
+      [2, 6, 4, 7, 3, 5],
+      [8, 9, 1, 11, 10, 12],
+    ],
+    xpLeftList: [
+      [30, 50, 40, 70, 60, 35],
+      [45, 55, 65, 25, 75, 80],
     ],
   },
   '5': {
@@ -50,6 +82,14 @@ export const mockStatusMap: Record<string, StatusList> = {
       [0, 1, 0, -1, 1, 0],
       [1, 0, -1, 1, 0, 1],
     ],
+    levelList: [
+      [7, 8, 6, 4, 7, 6],
+      [5, 12, 3, 9, 11, 10],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [40, 50, 60, 70, 80, 90],
+    ],
   },
   '6': {
     statusDataList: [
@@ -59,6 +99,14 @@ export const mockStatusMap: Record<string, StatusList> = {
     growthStatusList: [
       [0, 0, 1, 0, -1, 0],
       [-1, 1, 1, 0, 0, -1],
+    ],
+    levelList: [
+      [3, 5, 4, 4, 3, 4],
+      [6, 7, 8, 9, 10, 11],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [40, 50, 60, 70, 80, 90],
     ],
   },
   '7': {
@@ -70,6 +118,14 @@ export const mockStatusMap: Record<string, StatusList> = {
       [1, 0, 0, 1, 0, -1],
       [0, 1, 0, 0, 1, 0],
     ],
+    levelList: [
+      [9, 8, 9, 7, 10, 8],
+      [11, 12, 6, 5, 4, 3],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [40, 50, 60, 70, 80, 90],
+    ],
   },
   '8': {
     statusDataList: [
@@ -79,6 +135,14 @@ export const mockStatusMap: Record<string, StatusList> = {
     growthStatusList: [
       [-1, 1, 0, 0, 1, 1],
       [1, 0, -1, 1, 0, 0],
+    ],
+    levelList: [
+      [5, 6, 5, 4, 6, 5],
+      [7, 8, 9, 10, 11, 12],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [40, 50, 60, 70, 80, 90],
     ],
   },
   '9': {
@@ -90,6 +154,14 @@ export const mockStatusMap: Record<string, StatusList> = {
       [0, -1, 1, 0, 0, 1],
       [1, 1, 0, -1, 0, 0],
     ],
+    levelList: [
+      [4, 4, 5, 3, 4, 5],
+      [4, 4, 5, 3, 4, 5],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [30, 30, 30, 30, 30, 30],
+    ],
   },
   '10': {
     statusDataList: [
@@ -99,6 +171,14 @@ export const mockStatusMap: Record<string, StatusList> = {
     growthStatusList: [
       [1, 0, -1, 1, 0, 0],
       [0, 1, 1, 0, -1, 1],
+    ],
+    levelList: [
+      [8, 9, 7, 8, 7, 8],
+      [9, 10, 11, 12, 6, 5],
+    ],
+    xpLeftList: [
+      [30, 30, 30, 30, 30, 30],
+      [40, 50, 60, 70, 80, 90],
     ],
   },
 };

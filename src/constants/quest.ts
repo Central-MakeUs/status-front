@@ -24,6 +24,10 @@ export const SUB_QUEST_FREQUENCY = {
     label: '주 3회',
     value: 'weekly_3',
   },
+  MONTHLY_3: {
+    label: '월 3회',
+    value: 'monthly_3',
+  },
 } as const;
 
 export const SUB_QUEST_FREQUENCY_SELECT_OPTIONS =
