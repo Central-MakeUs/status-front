@@ -17,25 +17,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5px;
+  gap: 23px;
   width: 100%;
 }
 
-.nickname, .levelProgressBar {
+.nickname, .tierInfo {
   display: flex;
   align-items: center;
-  flex: 1;
   height: 34px;
   padding: 7px 12px;
   box-sizing: border-box;
-  color: var(--color-gray-100);
+  color: var(--color-white);
   border: 1px solid var(--color-gray-700);
+  background: var(--color-gray-800);
   border-radius: 3px;
 }
 
 .nickname {
+  flex: 2;
   gap: 10px;
-  background: var(--color-gray-800);
   min-width: 0;
 }
 
@@ -52,11 +52,14 @@
   object-fit: cover;
 }
 
-.levelProgressBar {
-  background: linear-gradient(to right, var(--color-gray-600) var(--level-percent), transparent var(--level-percent));
+.tierIcon {
+  position: relative;
+  left: -28px;
+  z-index: 1000;
+  width: 30px;
+  height: 30px;
 }
 
-
-.levelText {
-  color: var(--color-white);
+.tierText {
+  padding-left: 10px;
 }

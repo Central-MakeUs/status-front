@@ -28,9 +28,10 @@ const StatusPage = () => {
       {userInfo && (
         <Header
           nickname={userInfo.nickname}
+          tier={userInfo.tier}
           level={userInfo.level}
           levelPercent={userInfo.levelPercent}
-          profileImage={userInfo.profileImageUrl}
+          profileImageUrl={userInfo.profileImageUrl}
         />
       )}
       <main className="main">
