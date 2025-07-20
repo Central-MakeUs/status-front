@@ -23,7 +23,7 @@ const StepSubQuestPage = lazy(
 const StepSchedulePage = lazy(
   () => import('@/pages/quest/new/StepSchedulePage')
 );
-// const StepResultPage = lazy(() => import('@/pages/quest/new/StepResultPage'));
+const StepResultPage = lazy(() => import('@/pages/quest/new/StepResultPage'));
 const QuestDetailPage = lazy(
   () => import('@/pages/quest/detail/QuestDetailPage')
 );
@@ -75,10 +75,10 @@ export const router = createBrowserRouter([
         path: PAGE_PATHS.QUEST_NEW_SCHEDULE,
         Component: StepSchedulePage,
       },
-      // {
-      //   path: PAGE_PATHS.QUEST_NEW_RESULT,
-      //   Component: StepResultPage,
-      // },
+      {
+        path: PAGE_PATHS.QUEST_NEW_RESULT,
+        Component: StepResultPage,
+      },
       {
         path: PAGE_PATHS.QUEST_DETAIL,
         Component: QuestDetailPage,
