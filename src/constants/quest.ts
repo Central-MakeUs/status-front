@@ -45,3 +45,25 @@ export const getSubQuestFrequencyLabel = (
   );
   return option?.label || '';
 };
+
+export const SUB_QUEST_DIFFICULTY = {
+  EASY: {
+    label: '가뿐한 퀘스트',
+    value: 'easy',
+  },
+  DEFAULT: {
+    label: '적당한 임무',
+    value: 'default',
+  },
+  HARD: {
+    label: '전설적인 도전',
+    value: 'hard',
+  },
+} as const;
+
+export const REWARD_STEP = {
+  NONE: 'none',
+  SUB_QUEST: 'subQuest',
+  MAIN_QUEST: 'mainQuest',
+  COMPLETED: 'completed',
+} as const;

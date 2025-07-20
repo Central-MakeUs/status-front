@@ -1,0 +1,144 @@
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 60px auto;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+
+.main-quest-from {
+  color: var(--color-gray-200);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 17px;
+  
+  margin-bottom: 8px;
+}
+
+.result-title {
+  color: var(--color-white);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-bottom: 16px;
+}
+
+.logo-container { 
+  padding: 12px;
+}
+
+.main-quest-box {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  width: 100%; 
+  margin: 12px auto;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background-color: var(--color-gray-800);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: -2px;
+    border-radius: inherit;
+    background: var(--color-gra-line-yellow);
+  }
+}
+
+.main-quest-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-white);
+  margin-bottom: 6px;
+  display: block;
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.main-quest-date {
+  font-size: 12px;
+  color: var(--color-gray-200);
+  margin-bottom: 8px;
+}
+
+.main-quest-reward {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.attribute {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px;
+  background-color: var(--color-gray-600);
+  border-radius: 146px;
+  color: var(--color-gray-100);
+  gap: 4px;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+
+.sub-quest-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width:100%;
+  margin: 0 auto;
+  margin-top: 16px;
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+  color: var(--color-gray-200);
+}
+
+.sub-quest-box {
+  background-color: var(--color-gray-800);
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-gray-700);
+  width: 100%;
+
+  padding: 14px 16px;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+}
+
+.sub-attribute {
+  &::after {
+    content: ',';
+  }
+  &:last-of-type::after {
+    content: '';
+  }
+}
+
+.desc {
+  color: var(--color-gray-100);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px
+}

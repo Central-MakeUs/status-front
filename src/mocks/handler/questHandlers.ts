@@ -5,7 +5,10 @@ import {
   mockUserMainQuests,
   mockUserSubQuests,
 } from '@/mocks/data/quest';
-import type { QuestCreationRequestDTO } from '@/api/types/quest';
+import type {
+  QuestCreationRequestDTO,
+  UserSubQuestLogResponseDTO,
+} from '@/api/types/quest';
 
 export const questHandlers = [
   http.get('/users/:userId/main-quests', () => {
@@ -98,6 +101,18 @@ export const questHandlers = [
 
     return HttpResponse.json({
       data: quests,
+    });
+  }),
+  http.post('/users/:userId/sub-quest-log', async ({ request }) => {
+    const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
+
+    // [TODO] 서브 퀘스트 인증 상태 업데이트
+    // const userSubQuest = mockUserSubQuests.find(
+    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
+    // );
+
+    return HttpResponse.json({
+      data: requestData,
     });
   }),
 ];
