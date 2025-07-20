@@ -5,6 +5,7 @@ import type {
   GetRandomMainQuestByCategoryIdParams,
   GetRandomSubQuestByMainQuestIdParams,
   QuestCreationRequestDTO,
+  UserSubQuestLogRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -68,6 +69,18 @@ export const getRandomSubQuestByMainQuestId = async ({
 export const postUserQuest = async (data: QuestCreationRequestDTO) => {
   const response = await api.post<ApiResponse<QuestCreationRequestDTO>>(
     `/users/${data.userId}/quest`,
+    data
+  );
+  return response.data ?? {};
+};
+
+/**
+ * [TODO] 퀘스트 인증 시 서브 퀘스트 인증 상태 patch, 서브 퀘스트 로그 post 트랜잭션 처리 필요. 서버에서 처리가 최적
+ * @param data - API 구현에 따라 파라미터 타입 변경 필요
+ */
+export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
+  const response = await api.post<ApiResponse<UserSubQuestLogRequestDTO>>(
+    `/users/${data.userId}/sub-quest-log`,
     data
   );
   return response.data ?? {};
