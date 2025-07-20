@@ -9,43 +9,13 @@ import { Button } from '@/components/ui/Button/Button';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './StatusPage.module.scss';
-import type { TierType } from '@/types/tier';
-import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
 import { ATTRIBUTE_DESCS, ATTRIBUTE_TEXTS } from '@/constants/attribute';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
-
 import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
+import TierLevelList from './components/TierLevelList/TierLevelList';
 
 const cx = classNames.bind(styles);
-
-const TierLevelList = ({
-  currentTier,
-  currentLevel,
-}: {
-  currentTier: TierType;
-  currentLevel: number;
-}) => {
-  const tiers = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Dia'];
-  return (
-    <div className={cx('tier-list')}>
-      {tiers.map((tier) => {
-        return (
-          <div
-            key={tier}
-            className={`${cx('tier-item')} ${tier === currentTier ? cx('active') : ''}`}
-          >
-            <span className={cx('tier-name')}>
-              {tier}
-              {tier === currentTier ? `_${currentLevel}` : ''}
-            </span>
-            <TierIcon id={tier} className={cx('tier-icon')} />
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 
 const StatusPage = () => {
   const userId = '10';
@@ -61,7 +31,6 @@ const StatusPage = () => {
     statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
 
   const selectedValue = selectedStatus?.value ?? 0;
-  console.log(selectedValue);
   const selectedGrowth = selectedStatus?.growth ?? 0;
   const StatusIcon =
     selectedGrowth === 1
@@ -187,4 +156,5 @@ const StatusPage = () => {
     </>
   );
 };
+
 export default StatusPage;
