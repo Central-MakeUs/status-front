@@ -4,18 +4,9 @@ import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
 import { useGetStatusList } from '@/api/hooks/status/useGetStatus';
 import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Button } from '@/components/ui/Button/Button';
 import { useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './StatusPage.module.scss';
-import { ATTRIBUTE_DESCS, ATTRIBUTE_TEXTS } from '@/constants/attribute';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
-import BurningSVG from '@/assets/icons/icon-burning.svg?react';
-import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
-import TierLevelList from './components/TierLevelList/TierLevelList';
-
-const cx = classNames.bind(styles);
+import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
+import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
 
 const StatusPage = () => {
   const userId = '10';
@@ -29,16 +20,6 @@ const StatusPage = () => {
   const selectedStatus =
     statusLists?.mentality.find((attr) => attr.id === selectedStatusKey) ??
     statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
-
-  const selectedValue = selectedStatus?.value ?? 0;
-  const selectedGrowth = selectedStatus?.growth ?? 0;
-  const StatusIcon =
-    selectedGrowth === 1
-      ? BurningSVG
-      : selectedGrowth === -1
-        ? StagnationSVG
-        : null;
-  const selectedLevel = selectedStatus?.level ?? 1;
 
   return (
     <>
@@ -66,93 +47,29 @@ const StatusPage = () => {
         )}
         {quests && <QuestList quests={quests} />}
       </main>
-      <BottomSheet
+      <TierLevelBottomSheet
         isOpen={isLevelBottomSheetOpen}
         onClose={() => setIsLevelBottomSheetOpen(false)}
-      >
-        <BottomSheet.Header>
-          <BottomSheet.Title>전체 레벨 현황</BottomSheet.Title>
-          <BottomSheet.Description>
-            모든 레벨은 1-10 단계로 세분화됩니다.
-          </BottomSheet.Description>
-        </BottomSheet.Header>
-        <BottomSheet.Content>
-          <TierLevelList
-            currentTier={userInfo?.tier || 'Bronze'}
-            currentLevel={userInfo?.level || 1}
-          />
-        </BottomSheet.Content>
-        <BottomSheet.Footer>
-          <Button
-            variant="tertiary"
-            onClick={() => setIsLevelBottomSheetOpen(false)}
-          >
-            닫기
-          </Button>
-        </BottomSheet.Footer>
-      </BottomSheet>
-      <BottomSheet
+        tier={userInfo?.tier || 'Bronze'}
+        level={userInfo?.level || 1}
+      />
+      <StatusDetailBottomSheet
         isOpen={isStatusBottomSheetOpen}
         onClose={() => {
           setIsStatusBottomSheetOpen(false);
           setSelectedStatusKey(101);
         }}
-        style={{ minHeight: 'unset' }}
-      >
-        <BottomSheet.Header>
-          <BottomSheet.Title>
-            <div className={cx('status-title')}>
-              <AttributeIcon id={selectedStatusKey} />[
-              {
-                ATTRIBUTE_TEXTS[
-                  selectedStatusKey as keyof typeof ATTRIBUTE_TEXTS
-                ]
+        statusKey={selectedStatusKey}
+        status={
+          selectedStatus
+            ? {
+                value: selectedStatus.value,
+                growth: selectedStatus.growth,
+                level: selectedStatus.level,
               }
-              ] 능력치
-            </div>
-          </BottomSheet.Title>
-          <BottomSheet.Description>
-            {ATTRIBUTE_DESCS[selectedStatusKey as keyof typeof ATTRIBUTE_DESCS]}
-          </BottomSheet.Description>
-        </BottomSheet.Header>
-        <BottomSheet.Content>
-          <div className={cx('status-detail')}>
-            <div className={cx('status-text')}>
-              <div className={cx('growth-message')}>
-                {selectedGrowth === 1 && '성장이 불타는 중!'}
-                {selectedGrowth === -1 && '성장이 얼어가는 중...'}
-                {selectedGrowth === 0 && '스퍼트를 내볼 차례!'}
-              </div>
-              <div className={cx('level')}>
-                {StatusIcon && <StatusIcon className={cx('icon')} />}
-                <span>Lv. {selectedLevel} </span>
-                <span className={cx('level-max')}>/99</span>
-              </div>
-            </div>
-            <div className={cx('xp-bar')}>
-              <div
-                className={cx('filled')}
-                style={{ width: `${selectedValue}%` }}
-              />
-            </div>
-
-            <div className={cx('xp-remaining')}>
-              (레벨업까지 +{100 - selectedValue}xp)
-            </div>
-          </div>
-        </BottomSheet.Content>
-        <BottomSheet.Footer>
-          <Button
-            variant="tertiary"
-            onClick={() => {
-              setIsStatusBottomSheetOpen(false);
-              setSelectedStatusKey(101);
-            }}
-          >
-            닫기
-          </Button>
-        </BottomSheet.Footer>
-      </BottomSheet>
+            : null
+        }
+      />
     </>
   );
 };
