@@ -35,24 +35,23 @@ import classNames from 'classnames/bind';
 import styles from './RadarChart.module.scss';
 import { useState, useMemo } from 'react';
 import { StatGrid } from '../StatGrid/StatGrid';
+import type { AttributeStatus } from '@/api/types/status';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {
-  mentalData: number[];
-  skillData: number[];
+  mentalData: AttributeStatus[];
+  skillData: AttributeStatus[];
   profileImage: string;
-  growthStatusList: number[][];
-  levelList: number[][];
   // xpLeftList: number[][];
+  onClick: (key: number) => void;
 }
 
 export const RadarChart = ({
   mentalData,
   skillData,
   profileImage,
-  growthStatusList,
-  levelList,
   // xpLeftList,
+  onClick,
 }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
   const img = new Image();
@@ -111,7 +110,9 @@ export const RadarChart = ({
     datasets: [
       {
         label: `${view} 상태`,
-        data: isMental ? mentalData : skillData,
+        data: isMental
+          ? mentalData.map((el) => el.value)
+          : skillData.map((el) => el.value),
         backgroundColor: isMental
           ? 'rgba(255, 74, 51, 0.10)'
           : 'rgba(145, 202, 255, 0.10)',
@@ -119,7 +120,9 @@ export const RadarChart = ({
       },
       {
         label: `비선택 상태`,
-        data: isMental ? skillData : mentalData,
+        data: isMental
+          ? skillData.map((el) => el.value)
+          : mentalData.map((el) => el.value),
         backgroundColor: 'rgba(70, 70, 70, 0.3)',
         borderColor: 'rgba(153, 153, 153, 0.3)',
       },
@@ -244,9 +247,8 @@ export const RadarChart = ({
         mentalData={mentalData}
         skillData={skillData}
         isMental={isMental}
-        growthStatusList={growthStatusList}
-        levelList={levelList}
         // xpLeftList={xpLeftList}
+        onClick={onClick}
       />
     </>
   );

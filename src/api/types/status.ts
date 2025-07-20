@@ -1,6 +1,13 @@
+export interface AttributeStatus {
+  id: number;
+  label: string;
+  value: number;
+  growth: number;
+  level: number;
+  xpLeft: number;
+}
+
 export interface StatusListDTO {
-  statusDataList: number[][];
-  growthStatusList: number[][];
-  levelList: number[][];
-  xpLeftList: number[][];
+  mentality: AttributeStatus[];
+  skill: AttributeStatus[];
 }

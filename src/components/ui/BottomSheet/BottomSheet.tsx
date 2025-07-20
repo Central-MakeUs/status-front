@@ -15,9 +15,15 @@ interface BottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  style?: React.CSSProperties;
 }
 
-const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
+const BottomSheetMain = ({
+  isOpen,
+  onClose,
+  children,
+  style,
+}: BottomSheetProps) => {
   const bottomSheetRef = useRef<HTMLDivElement | null>(null);
   const { swipeHandlers } = useSwipeToClose({
     ref: bottomSheetRef,
@@ -35,6 +41,7 @@ const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
         role="dialog"
         aria-modal="true"
         className={cx('bottom-sheet')}
+        style={style}
       >
         <button
           type="button"

@@ -11,6 +11,11 @@ import classNames from 'classnames/bind';
 import styles from './StatusPage.module.scss';
 import type { TierType } from '@/types/tier';
 import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
+import { ATTRIBUTE_DESCS, ATTRIBUTE_TEXTS } from '@/constants/attribute';
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+
+import BurningSVG from '@/assets/icons/icon-burning.svg?react';
+import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
 
 const cx = classNames.bind(styles);
 
@@ -49,18 +54,22 @@ const StatusPage = () => {
   const { data: statusLists } = useGetStatusList(userId);
   const { data: quests } = useGetUserSubQuests(userId, mainQuestId);
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
-  // const [isStatusBottomSheetOpen, setIsStautsBottomSheetOpen] = useState(false);
+  const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
+  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+  const selectedStatus =
+    statusLists?.mentality.find((attr) => attr.id === selectedStatusKey) ??
+    statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
 
-  // const dataLists = [
-  //   [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
-  //   [75, 75, 65, 70, 60, 75], // 문장술, 창조기술, 학습 집중, 신체 수련, 기술 응용, 공감 소통 각각 점수
-  // ];
-
-  // // 위와 동일 1 : 버닝, 0: 일반 -1: 정체
-  // const growthStatusList = [
-  //   [1, 0, 0, -1, 0, 0],
-  //   [1, 1, -1, 0, 0, -1],
-  // ];
+  const selectedValue = selectedStatus?.value ?? 0;
+  console.log(selectedValue);
+  const selectedGrowth = selectedStatus?.growth ?? 0;
+  const StatusIcon =
+    selectedGrowth === 1
+      ? BurningSVG
+      : selectedGrowth === -1
+        ? StagnationSVG
+        : null;
+  const selectedLevel = selectedStatus?.level ?? 1;
 
   return (
     <>
@@ -77,12 +86,13 @@ const StatusPage = () => {
       <main className="main">
         {statusLists && userInfo && (
           <RadarChart
-            mentalData={statusLists.statusDataList[0]}
-            skillData={statusLists.statusDataList[1]}
+            mentalData={statusLists.mentality}
+            skillData={statusLists.skill}
             profileImage={userInfo.profileImageUrl}
-            growthStatusList={statusLists.growthStatusList}
-            levelList={statusLists.levelList}
-            // xpLeftList={statusLists.xpLeftList}
+            onClick={(key: number) => {
+              setSelectedStatusKey(key);
+              setIsStatusBottomSheetOpen(true);
+            }}
           />
         )}
         {quests && <QuestList quests={quests} />}
@@ -104,7 +114,72 @@ const StatusPage = () => {
           />
         </BottomSheet.Content>
         <BottomSheet.Footer>
-          <Button variant="primary" onClick={() => {}}>
+          <Button
+            variant="tertiary"
+            onClick={() => setIsLevelBottomSheetOpen(false)}
+          >
+            닫기
+          </Button>
+        </BottomSheet.Footer>
+      </BottomSheet>
+      <BottomSheet
+        isOpen={isStatusBottomSheetOpen}
+        onClose={() => {
+          setIsStatusBottomSheetOpen(false);
+          setSelectedStatusKey(101);
+        }}
+        style={{ minHeight: 'unset' }}
+      >
+        <BottomSheet.Header>
+          <BottomSheet.Title>
+            <div className={cx('status-title')}>
+              <AttributeIcon id={selectedStatusKey} />[
+              {
+                ATTRIBUTE_TEXTS[
+                  selectedStatusKey as keyof typeof ATTRIBUTE_TEXTS
+                ]
+              }
+              ] 능력치
+            </div>
+          </BottomSheet.Title>
+          <BottomSheet.Description>
+            {ATTRIBUTE_DESCS[selectedStatusKey as keyof typeof ATTRIBUTE_DESCS]}
+          </BottomSheet.Description>
+        </BottomSheet.Header>
+        <BottomSheet.Content>
+          <div className={cx('status-detail')}>
+            <div className={cx('status-text')}>
+              <div className={cx('growth-message')}>
+                {selectedGrowth === 1 && '성장이 불타는 중!'}
+                {selectedGrowth === -1 && '성장이 얼어가는 중...'}
+                {selectedGrowth === 0 && '스퍼트를 내볼 차례!'}
+              </div>
+              <div className={cx('level')}>
+                {StatusIcon && <StatusIcon className={cx('icon')} />}
+                <span>Lv. {selectedLevel} </span>
+                <span className={cx('level-max')}>/99</span>
+              </div>
+            </div>
+            <div className={cx('xp-bar')}>
+              <div
+                className={cx('filled')}
+                style={{ width: `${selectedValue}%` }}
+              />
+            </div>
+
+            <div className={cx('xp-remaining')}>
+              (레벨업까지 +{100 - selectedValue}xp)
+            </div>
+          </div>
+        </BottomSheet.Content>
+        <BottomSheet.Footer>
+          <Button
+            variant="tertiary"
+            onClick={() => {
+              setIsStatusBottomSheetOpen(false);
+              setSelectedStatusKey(101);
+            }}
+          >
             닫기
           </Button>
         </BottomSheet.Footer>
