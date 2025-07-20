@@ -5,13 +5,18 @@ import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
 
 const cx = classNames.bind(styles);
 
+interface HeaderProps extends UserInfo {
+  onClick: () => void;
+}
+
 export const Header = ({
   nickname,
   tier,
   level,
   levelPercent,
   profileImageUrl,
-}: UserInfo) => {
+  onClick,
+}: HeaderProps) => {
   console.log(levelPercent);
   return (
     <header className={cx('header')}>
@@ -20,7 +25,7 @@ export const Header = ({
           <img src={profileImageUrl} alt="" className={cx('avatar')} />
           <div>{nickname}</div>
         </div>
-        <div className={cx('tier-info')}>
+        <div className={cx('tier-info')} onClick={onClick}>
           <TierIcon id={tier} className={cx('tier-icon')} />
           <div className={cx('tier-text')}>
             {tier}_{level}

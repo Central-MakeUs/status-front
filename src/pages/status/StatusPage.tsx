@@ -4,6 +4,17 @@ import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
 import { useGetStatusList } from '@/api/hooks/status/useGetStatus';
 import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
+import { useState } from 'react';
+import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
+import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
+
+const selectedStatusDefault = {
+  value: 0,
+  growth: 0,
+  level: 0,
+  fullXp: 0,
+  xpLeft: 0,
+};
 
 const StatusPage = () => {
   const userId = '10';
@@ -11,17 +22,13 @@ const StatusPage = () => {
   const { data: userInfo } = useGetUserInfo(userId);
   const { data: statusLists } = useGetStatusList(userId);
   const { data: quests } = useGetUserSubQuests(userId, mainQuestId);
+  const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
+  const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
+  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
 
-  // const dataLists = [
-  //   [60, 60, 80, 60, 60, 65], // 의지력, 집중력, 자기 통제력, 창의성, 성실성, 대담성 각각 점수
-  //   [75, 75, 65, 70, 60, 75], // 문장술, 창조기술, 학습 집중, 신체 수련, 기술 응용, 공감 소통 각각 점수
-  // ];
-
-  // // 위와 동일 1 : 버닝, 0: 일반 -1: 정체
-  // const growthStatusList = [
-  //   [1, 0, 0, -1, 0, 0],
-  //   [1, 1, -1, 0, 0, -1],
-  // ];
+  const selectedStatus =
+    statusLists?.mentality.find((attr) => attr.id === selectedStatusKey) ??
+    statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
 
   return (
     <>
@@ -32,22 +39,40 @@ const StatusPage = () => {
           level={userInfo.level}
           levelPercent={userInfo.levelPercent}
           profileImageUrl={userInfo.profileImageUrl}
+          onClick={() => setIsLevelBottomSheetOpen(true)}
         />
       )}
       <main className="main">
         {statusLists && userInfo && (
           <RadarChart
-            mentalData={statusLists.statusDataList[0]}
-            skillData={statusLists.statusDataList[1]}
+            mentalData={statusLists.mentality}
+            skillData={statusLists.skill}
             profileImage={userInfo.profileImageUrl}
-            growthStatusList={statusLists.growthStatusList}
-            levelList={statusLists.levelList}
-            // xpLeftList={statusLists.xpLeftList}
+            onClick={(key: number) => {
+              setSelectedStatusKey(key);
+              setIsStatusBottomSheetOpen(true);
+            }}
           />
         )}
         {quests && <QuestList quests={quests} />}
       </main>
+      <TierLevelBottomSheet
+        isOpen={isLevelBottomSheetOpen}
+        onClose={() => setIsLevelBottomSheetOpen(false)}
+        tier={userInfo?.tier || 'Bronze'}
+        level={userInfo?.level || 1}
+      />
+      <StatusDetailBottomSheet
+        isOpen={isStatusBottomSheetOpen}
+        onClose={() => {
+          setIsStatusBottomSheetOpen(false);
+          setSelectedStatusKey(101);
+        }}
+        statusKey={selectedStatusKey}
+        status={selectedStatus ?? selectedStatusDefault}
+      />
     </>
   );
 };
+
 export default StatusPage;

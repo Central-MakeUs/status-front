@@ -3,58 +3,52 @@ import styles from './StatGrid.module.scss';
 import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { ATTRIBUTE_TEXTS, attributeDatas } from '@/constants/attribute';
+import type { AttributeStatus } from '@/api/types/status';
 const cx = classNames.bind(styles);
 
 interface StatGridProps {
-  mentalData: number[];
-  skillData: number[];
+  mentalData: AttributeStatus[];
+  skillData: AttributeStatus[];
   isMental: boolean;
-  growthStatusList: number[][];
-  levelList: number[][];
   // xpLeftList: number[][];
+  onClick: (key: number) => void;
 }
-const attirubuteDatas = [
-  [
-    { label: '인내', Icon: <AttributeIcon id={101} />, index: 0 },
-    { label: '집중', Icon: <AttributeIcon id={102} />, index: 1 },
-    { label: '제어', Icon: <AttributeIcon id={103} />, index: 2 },
-    { label: '영감', Icon: <AttributeIcon id={104} />, index: 3 },
-    { label: '성실', Icon: <AttributeIcon id={105} />, index: 4 },
-    { label: '용기', Icon: <AttributeIcon id={106} />, index: 5 },
-  ],
-  [
-    { label: '건강', Icon: <AttributeIcon id={201} />, index: 0 },
-    { label: '전략', Icon: <AttributeIcon id={202} />, index: 1 },
-    { label: '기록', Icon: <AttributeIcon id={203} />, index: 2 },
-    { label: '기술', Icon: <AttributeIcon id={204} />, index: 3 },
-    { label: '화술', Icon: <AttributeIcon id={205} />, index: 4 },
-    { label: '탐구', Icon: <AttributeIcon id={206} />, index: 5 },
-  ],
-];
 
 export const StatGrid = ({
   mentalData,
   skillData,
   isMental,
-  growthStatusList,
-  levelList,
+  // growthStatusList,
+  // levelList,
   // xpLeftList,
+  onClick,
 }: StatGridProps) => {
   const dataIndex = isMental ? 0 : 1;
 
   return (
     <div className={cx('main')}>
       <div className={cx('grid')}>
-        {attirubuteDatas[dataIndex].map(({ label, Icon, index }) => {
-          const level = levelList[dataIndex][index];
+        {attributeDatas[dataIndex].map((attrId, index) => {
+          const label = ATTRIBUTE_TEXTS[attrId as keyof typeof ATTRIBUTE_TEXTS];
+          const Icon = <AttributeIcon id={attrId} />;
+          const level = isMental
+            ? mentalData[index].level
+            : skillData[index].level;
           const xpLeft =
-            100 - (isMental ? mentalData[index] : skillData[index]);
-          const status = growthStatusList[dataIndex][index];
+            100 - (isMental ? mentalData[index].value : skillData[index].value);
+          const status = isMental
+            ? mentalData[index].growth
+            : skillData[index].growth;
           const StatusIcon =
             status === 1 ? BurningSVG : status === -1 ? StagnationSVG : null;
 
           return (
-            <div className={cx('card')}>
+            <div
+              className={cx('card')}
+              onClick={() => onClick(attrId)}
+              key={attrId}
+            >
               <div className={cx('left')}>{Icon}</div>
               <div className={cx('center')}>
                 <span className={cx('label')}>{label}</span>
