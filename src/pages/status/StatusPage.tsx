@@ -8,6 +8,14 @@ import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
 
+const selectedStatusDefault = {
+  value: 0,
+  growth: 0,
+  level: 0,
+  fullXp: 0,
+  xpLeft: 0,
+};
+
 const StatusPage = () => {
   const userId = '10';
   const mainQuestId = '1';
@@ -17,6 +25,7 @@ const StatusPage = () => {
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+
   const selectedStatus =
     statusLists?.mentality.find((attr) => attr.id === selectedStatusKey) ??
     statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
@@ -60,15 +69,7 @@ const StatusPage = () => {
           setSelectedStatusKey(101);
         }}
         statusKey={selectedStatusKey}
-        status={
-          selectedStatus
-            ? {
-                value: selectedStatus.value,
-                growth: selectedStatus.growth,
-                level: selectedStatus.level,
-              }
-            : null
-        }
+        status={selectedStatus ?? selectedStatusDefault}
       />
     </>
   );

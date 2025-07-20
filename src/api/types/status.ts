@@ -4,6 +4,7 @@ export interface AttributeStatus {
   value: number;
   growth: number;
   level: number;
+  fullXp: number;
   xpLeft: number;
 }
 

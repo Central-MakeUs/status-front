@@ -17,7 +17,9 @@ type StatusDetailBottomSheetProps = {
     value: number;
     growth: number;
     level: number;
-  } | null;
+    fullXp: number;
+    xpLeft: number;
+  };
 };
 
 export const StatusDetailBottomSheet = ({
@@ -26,17 +28,18 @@ export const StatusDetailBottomSheet = ({
   statusKey,
   status,
 }: StatusDetailBottomSheetProps) => {
-  const value = status?.value ?? 0;
-  const growth = status?.growth ?? 0;
-  const level = status?.level ?? 1;
+  const {
+    value = 0,
+    growth = 0,
+    level = 1,
+    fullXp = 100,
+    xpLeft = fullXp - (status?.value ?? 0),
+  } = status ?? {};
+
   const StatusIcon =
     growth === 1 ? BurningSVG : growth === -1 ? StagnationSVG : null;
   return (
-    <BottomSheet
-      isOpen={isOpen}
-      onClose={onClose}
-      style={{ minHeight: 'unset' }}
-    >
+    <BottomSheet isOpen={isOpen} onClose={onClose}>
       <BottomSheet.Header>
         <BottomSheet.Title>
           <div className={cx('status-title')}>
@@ -65,12 +68,14 @@ export const StatusDetailBottomSheet = ({
           <div className={cx('xp-bar')}>
             <div
               className={cx('filled')}
-              style={{ '--xp-width': `${value}%` } as React.CSSProperties}
+              style={
+                {
+                  '--xp-width': `${(value * 100) / fullXp}%`,
+                } as React.CSSProperties
+              }
             />
           </div>
-          <div className={cx('xp-remaining')}>
-            (레벨업까지 +{100 - value}xp)
-          </div>
+          <div className={cx('xp-remaining')}>(레벨업까지 +{xpLeft}xp)</div>
         </div>
       </BottomSheet.Content>
       <BottomSheet.Footer>
