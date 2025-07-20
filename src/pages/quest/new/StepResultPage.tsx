@@ -49,9 +49,6 @@ export const StepResultPage = () => {
   const mainAttributes = selectedMainQuest?.attributes ?? [];
 
   const handleClickDoneButton = () => {
-    // zod로 검증 로직 추가
-    // mutation
-
     navigate(PAGE_PATHS.QUEST);
   };
 
