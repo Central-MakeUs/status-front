@@ -1,0 +1,63 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.login-animation {
+    flex: 0 0 auto;
+    width: 277px;
+    height: 381px;
+    margin: 35px auto 0;
+    object-fit: cover;
+}
+
+.login-actions {
+    flex: 0 0 auto;
+    margin-top: auto;
+    padding: 32px 14px;
+}
+
+.button-login {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+
+    & + .button-login {
+        margin-top: 8px;
+    }
+
+    &.apple {
+        background-color: var(--color-gray-700);
+        color: var(--color-white);
+    }
+
+    &.google {
+        background-color: var(--color-white);
+        color: var(--color-black);
+    }
+
+    &.kakao {
+        background-color: #ffe634;
+        color: var(--color-black);
+    }
+}
+
+.login-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+.login-text {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+}

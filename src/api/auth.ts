@@ -14,3 +14,9 @@ export const refreshTokens = async () => {
 export const logout = async () => {
   return api.post<ApiResponse<void>>('/auth/logout');
 };
+
+export const googleLogin = async (code: string) => {
+  return api.post<ApiResponse<void>>('/auth/google', {
+    code,
+  });
+};

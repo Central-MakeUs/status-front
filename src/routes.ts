@@ -27,6 +27,7 @@ const StepResultPage = lazy(() => import('@/pages/quest/new/StepResultPage'));
 const QuestDetailPage = lazy(
   () => import('@/pages/quest/detail/QuestDetailPage')
 );
+const LoginPage = lazy(() => import('@/pages/login/LoginPage'));
 const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
 
 export const router = createBrowserRouter([
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
       {
         path: PAGE_PATHS.QUEST_DETAIL,
         Component: QuestDetailPage,
+      },
+      {
+        path: PAGE_PATHS.LOGIN,
+        Component: LoginPage,
       },
       {
         path: '*',

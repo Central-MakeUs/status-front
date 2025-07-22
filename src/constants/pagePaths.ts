@@ -11,6 +11,7 @@ export const PAGE_PATHS = {
   QUEST_DETAIL: '/quest/detail/:id',
   HISTORY: '/history',
   PROFILE: '/profile',
+  LOGIN: '/login',
 } as const;
 
 export const MAIN_PAGE_PATHS = {
