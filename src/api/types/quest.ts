@@ -4,6 +4,7 @@ import type {
   SubQuestFrequencyValue,
   UserMainQuest,
   UserSubQuest,
+  SubQuestDifficulty,
 } from '@/types/quest';
 
 export interface MainQuestDTO {
@@ -29,6 +30,8 @@ export interface SubQuestDTO {
 export interface UserSubQuestDTO extends SubQuestDTO {
   frequency: SubQuestFrequencyValue;
   repeatCnt: number;
+  attributes: AttributeReward[];
+  essential: boolean;
 }
 
 export interface GetRandomMainQuestByCategoryIdParams {
@@ -49,4 +52,19 @@ export interface QuestCreationRequestDTO {
   category: Category;
   mainQuest: UserMainQuest;
   subQuests: UserSubQuest[];
+}
+
+export interface UserSubQuestLogRequestDTO {
+  userId: string;
+  userSubQuestId: string;
+  difficulty: SubQuestDifficulty;
+}
+
+export interface UserSubQuestLogResponseDTO {
+  id: string;
+  userId: string;
+  userSubQuestId: string;
+  difficulty: SubQuestDifficulty;
+  status: string;
+  createdAt: string;
 }

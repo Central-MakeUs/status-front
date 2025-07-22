@@ -15,9 +15,15 @@ interface BottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   children: ReactNode;
+  className?: string;
 }
 
-const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
+const BottomSheetMain = ({
+  isOpen,
+  onClose,
+  children,
+  className,
+}: BottomSheetProps) => {
   const bottomSheetRef = useRef<HTMLDivElement | null>(null);
   const { swipeHandlers } = useSwipeToClose({
     ref: bottomSheetRef,
@@ -34,7 +40,7 @@ const BottomSheetMain = ({ isOpen, onClose, children }: BottomSheetProps) => {
         ref={bottomSheetRef}
         role="dialog"
         aria-modal="true"
-        className={cx('bottom-sheet')}
+        className={cx('bottom-sheet', className)}
       >
         <button
           type="button"
@@ -62,6 +68,10 @@ const BottomSheetDescription = ({ children }: { children: ReactNode }) => {
   return <p className={cx('bottom-sheet-description')}>{children}</p>;
 };
 
+const BottomSheetSubTitle = ({ children }: { children: ReactNode }) => {
+  return <strong className={cx('bottom-sheet-sub-title')}>{children}</strong>;
+};
+
 const BottomSheetContent = ({ children }: { children: ReactNode }) => {
   return <div className={cx('bottom-sheet-content')}>{children}</div>;
 };
@@ -74,6 +84,7 @@ export const BottomSheet = Object.assign(BottomSheetMain, {
   Header: BottomSheetHeader,
   Title: BottomSheetTitle,
   Description: BottomSheetDescription,
+  SubTitle: BottomSheetSubTitle,
   Content: BottomSheetContent,
   Footer: BottomSheetFooter,
 });

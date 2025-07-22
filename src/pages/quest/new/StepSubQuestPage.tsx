@@ -240,6 +240,7 @@ export const StepSubQuestPage = () => {
       <BottomSheet
         isOpen={isBottomSheetOpen}
         onClose={() => setIsBottomSheetOpen(false)}
+        className={cx('sub-quest-bottom-sheet')}
       >
         <BottomSheet.Header>
           <BottomSheet.Title>퀘스트 편집하기</BottomSheet.Title>

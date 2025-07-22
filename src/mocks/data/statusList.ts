@@ -2,103 +2,117 @@ import type { StatusList } from '@/types/status';
 
 export const mockStatusMap: Record<string, StatusList> = {
   '1': {
-    statusDataList: [
-      [60, 60, 80, 60, 60, 65],
-      [75, 75, 65, 70, 60, 75],
+    mentality: [
+      {
+        id: 101,
+        label: '건강',
+        value: 60,
+        growth: 1,
+        level: 8,
+        xpLeft: 40,
+        fullXp: 100,
+      },
+      {
+        id: 102,
+        label: '자제력',
+        value: 60,
+        growth: 0,
+        level: 2,
+        xpLeft: 20,
+        fullXp: 80,
+      },
+      {
+        id: 103,
+        label: '정체성',
+        value: 80,
+        growth: 0,
+        level: 6,
+        xpLeft: 60,
+        fullXp: 140,
+      },
+      {
+        id: 104,
+        label: '의식',
+        value: 60,
+        growth: -1,
+        level: 4,
+        xpLeft: 30,
+        fullXp: 90,
+      },
+      {
+        id: 105,
+        label: '의지',
+        value: 60,
+        growth: 0,
+        level: 10,
+        xpLeft: 50,
+        fullXp: 110,
+      },
+      {
+        id: 106,
+        label: '자존감',
+        value: 65,
+        growth: 0,
+        level: 7,
+        xpLeft: 70,
+        fullXp: 135,
+      },
     ],
-    growthStatusList: [
-      [1, 0, 0, -1, 0, 0],
-      [1, 1, -1, 0, 0, -1],
-    ],
-  },
-  '2': {
-    statusDataList: [
-      [55, 62, 70, 65, 68, 60],
-      [70, 72, 67, 68, 65, 72],
-    ],
-    growthStatusList: [
-      [0, 1, 1, 0, -1, 0],
-      [-1, 1, 0, 0, 1, 0],
-    ],
-  },
-  '3': {
-    statusDataList: [
-      [68, 58, 75, 70, 66, 69],
-      [78, 60, 70, 73, 68, 74],
-    ],
-    growthStatusList: [
-      [0, 0, 1, 1, 0, -1],
-      [1, 0, 0, 0, -1, 1],
-    ],
-  },
-  '4': {
-    statusDataList: [
-      [50, 55, 60, 58, 62, 57],
-      [60, 58, 64, 60, 59, 61],
-    ],
-    growthStatusList: [
-      [-1, 0, 0, 0, 1, 0],
-      [0, -1, 1, 1, 0, 0],
-    ],
-  },
-  '5': {
-    statusDataList: [
-      [65, 62, 70, 66, 64, 63],
-      [72, 70, 68, 69, 67, 71],
-    ],
-    growthStatusList: [
-      [0, 1, 0, -1, 1, 0],
-      [1, 0, -1, 1, 0, 1],
-    ],
-  },
-  '6': {
-    statusDataList: [
-      [58, 59, 60, 62, 61, 60],
-      [63, 65, 66, 64, 62, 66],
-    ],
-    growthStatusList: [
-      [0, 0, 1, 0, -1, 0],
-      [-1, 1, 1, 0, 0, -1],
-    ],
-  },
-  '7': {
-    statusDataList: [
-      [70, 68, 72, 69, 71, 70],
-      [75, 74, 73, 76, 72, 75],
-    ],
-    growthStatusList: [
-      [1, 0, 0, 1, 0, -1],
-      [0, 1, 0, 0, 1, 0],
-    ],
-  },
-  '8': {
-    statusDataList: [
-      [62, 64, 63, 65, 66, 64],
-      [68, 70, 69, 67, 66, 69],
-    ],
-    growthStatusList: [
-      [-1, 1, 0, 0, 1, 1],
-      [1, 0, -1, 1, 0, 0],
-    ],
-  },
-  '9': {
-    statusDataList: [
-      [59, 61, 60, 62, 63, 60],
-      [65, 67, 66, 64, 62, 66],
-    ],
-    growthStatusList: [
-      [0, -1, 1, 0, 0, 1],
-      [1, 1, 0, -1, 0, 0],
-    ],
-  },
-  '10': {
-    statusDataList: [
-      [66, 68, 70, 67, 65, 69],
-      [72, 74, 73, 71, 70, 72],
-    ],
-    growthStatusList: [
-      [1, 0, -1, 1, 0, 0],
-      [0, 1, 1, 0, -1, 1],
+    skill: [
+      {
+        id: 201,
+        label: '기록',
+        value: 75,
+        growth: 1,
+        level: 9,
+        xpLeft: 45,
+        fullXp: 120,
+      },
+      {
+        id: 202,
+        label: '학습',
+        value: 75,
+        growth: 1,
+        level: 5,
+        xpLeft: 35,
+        fullXp: 110,
+      },
+      {
+        id: 203,
+        label: '표현',
+        value: 65,
+        growth: -1,
+        level: 3,
+        xpLeft: 25,
+        fullXp: 90,
+      },
+      {
+        id: 204,
+        label: '소통',
+        value: 70,
+        growth: 0,
+        level: 6,
+        xpLeft: 65,
+        fullXp: 135,
+      },
+      {
+        id: 205,
+        label: '관계',
+        value: 60,
+        growth: 0,
+        level: 11,
+        xpLeft: 55,
+        fullXp: 115,
+      },
+      {
+        id: 206,
+        label: '협업',
+        value: 75,
+        growth: -1,
+        level: 8,
+        xpLeft: 75,
+        fullXp: 150,
+      },
     ],
   },
 };

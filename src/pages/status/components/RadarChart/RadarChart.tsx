@@ -35,20 +35,23 @@ import classNames from 'classnames/bind';
 import styles from './RadarChart.module.scss';
 import { useState, useMemo } from 'react';
 import { StatGrid } from '../StatGrid/StatGrid';
+import type { AttributeStatus } from '@/api/types/status';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {
-  mentalData: number[];
-  skillData: number[];
+  mentalData: AttributeStatus[];
+  skillData: AttributeStatus[];
   profileImage: string;
-  growthStatusList: number[][];
+  // xpLeftList: number[][];
+  onClick: (key: number) => void;
 }
 
 export const RadarChart = ({
   mentalData,
   skillData,
   profileImage,
-  growthStatusList,
+  // xpLeftList,
+  onClick,
 }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
   const img = new Image();
@@ -107,7 +110,9 @@ export const RadarChart = ({
     datasets: [
       {
         label: `${view} 상태`,
-        data: isMental ? mentalData : skillData,
+        data: isMental
+          ? mentalData.map((el) => el.level)
+          : skillData.map((el) => el.level),
         backgroundColor: isMental
           ? 'rgba(255, 74, 51, 0.10)'
           : 'rgba(145, 202, 255, 0.10)',
@@ -115,7 +120,9 @@ export const RadarChart = ({
       },
       {
         label: `비선택 상태`,
-        data: isMental ? skillData : mentalData,
+        data: isMental
+          ? skillData.map((el) => el.level)
+          : mentalData.map((el) => el.level),
         backgroundColor: 'rgba(70, 70, 70, 0.3)',
         borderColor: 'rgba(153, 153, 153, 0.3)',
       },
@@ -203,8 +210,8 @@ export const RadarChart = ({
               maintainAspectRatio: false,
               scales: {
                 r: {
-                  max: 100,
-                  min: 0,
+                  // max: 100,
+                  // min: 0,
                   angleLines: { color: '#2D2D2D' },
                   grid: {
                     color: '#2D2D2D',
@@ -240,7 +247,8 @@ export const RadarChart = ({
         mentalData={mentalData}
         skillData={skillData}
         isMental={isMental}
-        growthStatusList={growthStatusList}
+        // xpLeftList={xpLeftList}
+        onClick={onClick}
       />
     </>
   );

@@ -1,34 +1,34 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
+import type { UserInfo } from '@/types/user';
+import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
 
 const cx = classNames.bind(styles);
 
+interface HeaderProps extends UserInfo {
+  onClick: () => void;
+}
+
 export const Header = ({
   nickname,
+  tier,
   level,
   levelPercent,
-  profileImage,
-}: {
-  nickname: string;
-  level: number;
-  levelPercent: number;
-  profileImage: string;
-}) => {
+  profileImageUrl,
+  onClick,
+}: HeaderProps) => {
+  console.log(levelPercent);
   return (
     <header className={cx('header')}>
       <div className={cx('profile')}>
         <div className={cx('nickname')}>
-          <img src={profileImage} alt="" className={cx('avatar')} />
+          <img src={profileImageUrl} alt="" className={cx('avatar')} />
           <div>{nickname}</div>
         </div>
-        <div
-          className={cx('levelProgressBar')}
-          style={
-            { '--level-percent': `${levelPercent}%` } as React.CSSProperties
-          }
-        >
-          <div className={cx('levelText')}>
-            Lv. {level} ({levelPercent}%)
+        <div className={cx('tier-info')} onClick={onClick}>
+          <TierIcon id={tier} className={cx('tier-icon')} />
+          <div className={cx('tier-text')}>
+            {tier}_{level}
           </div>
         </div>
       </div>

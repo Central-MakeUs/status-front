@@ -12,48 +12,92 @@ export const mockMainQuests: MainQuest[] = [
   {
     id: '1',
     title: '일주일간 하루 알림 확인 시간 제한하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '2',
     title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '3',
     title:
       '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '4',
     title:
       '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '5',
     title: 'test',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '6',
     title: '독서 습관 만들기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '7',
     title: '운동 루틴 정착하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '8',
     title: '명상 시간 갖기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '9',
     title: '일기 쓰기 습관',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '10',
     title: '건강한 식단 유지하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
   {
     id: '11',
     title: '새로운 기술 학습하기',
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
   },
 ];
 
@@ -65,6 +109,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '2',
@@ -73,6 +122,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '3',
@@ -81,6 +135,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '4',
@@ -89,6 +148,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 3,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     repeatCnt: 3,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '5',
@@ -97,6 +161,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '6',
@@ -105,6 +174,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '7',
@@ -113,6 +187,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
   {
     id: '8',
@@ -121,6 +200,11 @@ export const mockSubQuests: UserSubQuest[] = [
     defaultRepeat: 1,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
   },
 ];
 
@@ -146,5 +230,47 @@ export const mockUserMainQuests: UserMainQuest[] = [
       { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
       { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
     ],
+  },
+];
+
+export const mockUserSubQuests: UserSubQuest[] = [
+  {
+    id: '1',
+    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+    defaultFrequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+    defaultRepeat: 3,
+    frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+    repeatCnt: 2,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: true,
+  },
+  {
+    id: '2',
+    desc: '아침 알림 전면 차단 후 하루 시작',
+    defaultFrequency: SUB_QUEST_FREQUENCY.DAILY.value,
+    defaultRepeat: 1,
+    frequency: SUB_QUEST_FREQUENCY.DAILY.value,
+    repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+    ],
+    essential: true,
+  },
+  {
+    id: '3',
+    desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+    defaultFrequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+    defaultRepeat: 3,
+    frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+    repeatCnt: 1,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    essential: false,
   },
 ];

@@ -7,6 +7,7 @@ export const mockUserInfo: UserInfo = {
   nickname: '닉네임_10904',
   providerType: 'google',
   providerId: 'mock-provider-id',
+  tier: 'Platinum',
   level: 1,
   levelPercent: 21,
   profileImageUrl: ProfileImage,

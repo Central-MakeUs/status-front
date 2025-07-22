@@ -1,72 +1,63 @@
 import classNames from 'classnames/bind';
 import styles from './StatGrid.module.scss';
-import EmpathyCommunicationSVG from '@/assets/icons/attribute/icon-attribute205.svg?react';
-import HeraldrySVG from '@/assets/icons/attribute/icon-attribute203.svg?react';
-import LearningFocusSVG from '@/assets/icons/attribute/icon-attribute206.svg?react';
-import PhysicalTrainingSVG from '@/assets/icons/attribute/icon-attribute201.svg?react';
-import TechnologyApplicationSVG from '@/assets/icons/attribute/icon-attribute202.svg?react';
-import CreativeTechSVG from '@/assets/icons/attribute/icon-attribute204.svg?react';
-import WillPowerSVG from '@/assets/icons/attribute/icon-attribute101.svg?react';
-import SelfControlSVG from '@/assets/icons/attribute/icon-attribute103.svg?react';
-import SinceritySVG from '@/assets/icons/attribute/icon-attribute105.svg?react';
-import BoldnessSVG from '@/assets/icons/attribute/icon-attribute106.svg?react';
-import ConcentrationSVG from '@/assets/icons/attribute/icon-attribute102.svg?react';
-import CreativitySVG from '@/assets/icons/attribute/icon-attribute104.svg?react';
 import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
+import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { ATTRIBUTE_TEXTS, attributeDatas } from '@/constants/attribute';
+import type { AttributeStatus } from '@/api/types/status';
 const cx = classNames.bind(styles);
 
 interface StatGridProps {
-  mentalData: number[];
-  skillData: number[];
+  mentalData: AttributeStatus[];
+  skillData: AttributeStatus[];
   isMental: boolean;
-  growthStatusList: number[][];
+  // xpLeftList: number[][];
+  onClick: (key: number) => void;
 }
 
 export const StatGrid = ({
   mentalData,
   skillData,
   isMental,
-  growthStatusList,
+  // growthStatusList,
+  // levelList,
+  // xpLeftList,
+  onClick,
 }: StatGridProps) => {
-  // const growthStatusList = [1, 0, 0, -1, 0, 0];
+  const dataIndex = isMental ? 0 : 1;
 
   return (
     <div className={cx('main')}>
       <div className={cx('grid')}>
-        {(isMental
-          ? [
-              { label: '의지력', Icon: WillPowerSVG, index: 0 },
-              { label: '집중력', Icon: ConcentrationSVG, index: 1 },
-              { label: '자기 통제력', Icon: SelfControlSVG, index: 2 },
-              { label: '창의성', Icon: CreativitySVG, index: 3 },
-              { label: '성실성', Icon: SinceritySVG, index: 4 },
-              { label: '대담성', Icon: BoldnessSVG, index: 5 },
-            ]
-          : [
-              { label: '문장술', Icon: HeraldrySVG, index: 0 },
-              { label: '창조기술', Icon: CreativeTechSVG, index: 1 },
-              { label: '학습 집중', Icon: LearningFocusSVG, index: 2 },
-              { label: '신체 수련', Icon: PhysicalTrainingSVG, index: 3 },
-              { label: '기술 응용', Icon: TechnologyApplicationSVG, index: 4 },
-              { label: '공감 소통', Icon: EmpathyCommunicationSVG, index: 5 },
-            ]
-        ).map(({ label, Icon, index }) => {
-          const value = isMental ? mentalData[index] : skillData[index];
-          const status = growthStatusList[isMental ? 0 : 1][index];
+        {attributeDatas[dataIndex].map((attrId, index) => {
+          const label = ATTRIBUTE_TEXTS[attrId as keyof typeof ATTRIBUTE_TEXTS];
+          const Icon = <AttributeIcon id={attrId} />;
+          const level = isMental
+            ? mentalData[index].level
+            : skillData[index].level;
+          const xpLeft =
+            100 - (isMental ? mentalData[index].value : skillData[index].value);
+          const status = isMental
+            ? mentalData[index].growth
+            : skillData[index].growth;
           const StatusIcon =
             status === 1 ? BurningSVG : status === -1 ? StagnationSVG : null;
 
           return (
-            <div className={cx('card')}>
-              <div className={cx('left')}>
-                <Icon />
+            <div
+              className={cx('card')}
+              onClick={() => onClick(attrId)}
+              key={attrId}
+            >
+              <div className={cx('left')}>{Icon}</div>
+              <div className={cx('center')}>
                 <span className={cx('label')}>{label}</span>
+                <div className={cx('level')}>
+                  {StatusIcon && <StatusIcon className={cx('icon')} />}Lv.{' '}
+                  {level}
+                </div>
               </div>
-              <div className={cx('right')}>
-                {StatusIcon && <StatusIcon className={cx('icon')} />}
-                <span className={cx('value')}>{value}/100</span>
-              </div>
+              <div className={cx('xp-left')}>(레벨업까지 +{xpLeft}xp)</div>
             </div>
           );
         })}
