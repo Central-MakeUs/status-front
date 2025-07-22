@@ -20,3 +20,9 @@ export const googleLogin = async (code: string) => {
     code,
   });
 };
+
+export const kakaoLogin = async (code: string) => {
+  return api.post<ApiResponse<void>>('/auth/kakao', {
+    code,
+  });
+};

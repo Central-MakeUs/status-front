@@ -1,7 +1,13 @@
 import type { UserInfoDTO } from '@/api/types/user';
 
-export type SocialProvider = 'google' | 'apple' | 'kakao';
-
 export interface AuthResponseDTO {
   user: UserInfoDTO;
+}
+
+export interface AuthConfig {
+  endpoint: string;
+  clientId: string;
+  redirectUri: string;
+  responseType: string;
+  scope?: string;
 }

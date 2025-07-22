@@ -1,12 +1,8 @@
 import { useEffect } from 'react';
-import {
-  GOOGLE_ENDPOINT,
-  GOOGLE_SCOPES,
-  GOOGLE_CLIENT_ID,
-  GOOGLE_REDIRECT_URI,
-  GOOGLE_RESPONSE_TYPE,
-  URL_SCHEME,
-} from '@/constants/auth';
+import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { googleLogin, kakaoLogin } from '@/api/auth';
+import { SOCIAL_PROVIDER, URL_SCHEME } from '@/constants/auth';
+import type { SocialProvider } from '@/types/auth';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
@@ -14,12 +10,12 @@ import IconKakao from '@/assets/icons/icon-login-kakao.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './LoginPage.module.scss';
-import { googleLogin } from '@/api/auth';
-import type { SocialProvider } from '@/api/types/auth';
 
 const cx = classNames.bind(styles);
 
 const LoginPage = () => {
+  const { loginWith } = useSocialAuth();
+
   const isWebView = window.ReactNativeWebView !== undefined;
 
   useEffect(() => {
@@ -39,9 +35,9 @@ const LoginPage = () => {
 
     if (code) {
       if (parsedState?.fromWebView) {
-        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=google`;
+        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=${parsedState.provider}`;
       } else {
-        handleAuthCallback(code, 'google');
+        handleAuthCallback(code, parsedState.provider);
       }
       return;
     }
@@ -68,6 +64,9 @@ const LoginPage = () => {
         case 'google':
           await googleLogin(code);
           break;
+        case 'kakao':
+          await kakaoLogin(code);
+          break;
         default:
           break;
       }
@@ -80,20 +79,11 @@ const LoginPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    const state = JSON.stringify({ fromWebView: isWebView });
+    loginWith(SOCIAL_PROVIDER.GOOGLE);
+  };
 
-    const url = `${GOOGLE_ENDPOINT}?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=${GOOGLE_RESPONSE_TYPE}&scope=${GOOGLE_SCOPES.EMAIL}&state=${encodeURIComponent(state)}`;
-
-    if (isWebView && window.ReactNativeWebView) {
-      window.ReactNativeWebView.postMessage(
-        JSON.stringify({
-          type: 'OPEN_EXTERNAL_BROWSER',
-          url: url,
-        })
-      );
-    } else {
-      window.location.href = url;
-    }
+  const handleKakaoLogin = () => {
+    loginWith(SOCIAL_PROVIDER.KAKAO);
   };
 
   return (
@@ -117,7 +107,11 @@ const LoginPage = () => {
               <IconGoogle className={cx('login-icon')} aria-hidden="true" />
               <span className={cx('login-text')}>Google로 시작</span>
             </button>
-            <button type="button" className={cx('button-login', 'kakao')}>
+            <button
+              type="button"
+              className={cx('button-login', 'kakao')}
+              onClick={handleKakaoLogin}
+            >
               <IconKakao className={cx('login-icon')} aria-hidden="true" />
               <span className={cx('login-text')}>Kakao로 시작</span>
             </button>
