@@ -8,10 +8,8 @@ export const getStatusList = async (userId: string): Promise<StatusListDTO> => {
   );
   return (
     response.data ?? {
-      statusDataList: [],
-      growthStatusList: [],
-      levelList: [],
-      xpLeftList: [],
+      mentality: [],
+      skill: [],
     }
   );
 };
