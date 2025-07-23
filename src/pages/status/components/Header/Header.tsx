@@ -5,7 +5,8 @@ import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
 
 const cx = classNames.bind(styles);
 
-interface HeaderProps extends UserInfo {
+interface HeaderProps
+  extends Omit<UserInfo, 'id' | 'email' | 'providerType' | 'providerId'> {
   onClick: () => void;
 }
 
