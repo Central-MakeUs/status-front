@@ -6,13 +6,15 @@ import { getSubQuestFrequencyLabel } from '@/constants/quest';
 const cx = classNames.bind(styles);
 
 export const QuestItem = ({
+  id,
   desc,
   defaultRepeat,
   frequency,
   repeatCnt,
   attributes,
   essential,
-}: UserSubQuest) => {
+  onClick = () => {},
+}: UserSubQuest & { onClick?: (id: string) => void }) => {
   return (
     <div className={cx('quest-item')}>
       <div className={cx('topRow')}>
@@ -39,7 +41,9 @@ export const QuestItem = ({
         </div>
       </div>
       <div className={cx('desc')}>{desc}</div>
-      <button className={cx('confirm')}>인증하기</button>
+      <button className={cx('confirm')} onClick={() => onClick(id)}>
+        인증하기
+      </button>
     </div>
   );
 };

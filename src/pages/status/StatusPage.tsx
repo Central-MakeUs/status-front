@@ -7,6 +7,7 @@ import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
+import type { UserSubQuest } from '@/types/quest';
 
 const selectedStatusDefault = {
   value: 0,
@@ -37,7 +38,6 @@ const StatusPage = () => {
           nickname={userInfo.nickname}
           tier={userInfo.tier}
           level={userInfo.level}
-          levelPercent={userInfo.levelPercent}
           profileImageUrl={userInfo.profileImageUrl}
           onClick={() => setIsLevelBottomSheetOpen(true)}
         />
@@ -54,7 +54,14 @@ const StatusPage = () => {
             }}
           />
         )}
-        {quests && <QuestList quests={quests} />}
+        {quests && (
+          <QuestList
+            quests={quests}
+            onClick={(quest: UserSubQuest) => {
+              console.log(quest);
+            }}
+          />
+        )}
       </main>
       <TierLevelBottomSheet
         isOpen={isLevelBottomSheetOpen}
