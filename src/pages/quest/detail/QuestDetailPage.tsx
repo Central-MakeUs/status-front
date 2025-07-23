@@ -22,6 +22,8 @@ import type { AttributeReward } from '@/types/attribute';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
+import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
+import CompletedHistory from './components/CompletedHistory/CompletedHistory';
 
 const cx = classNames.bind(styles);
 
@@ -125,14 +127,18 @@ const QuestDetailPage = () => {
             </ul>
           </div>
         )}
-        <QuestList
-          quests={subQuests || []}
-          className="quest-detail-header"
-          onClick={(quest) => {
-            setIsBottomSheetOpen(true);
-            setSelectedSubQuest(quest);
-          }}
-        />
+        <div className={cx('quest-component')}>
+          <QuestList
+            quests={subQuests || []}
+            className="quest-detail-header"
+            onClick={(quest) => {
+              setIsBottomSheetOpen(true);
+              setSelectedSubQuest(quest);
+            }}
+          />
+          <TodayCompletedQuests />
+          <CompletedHistory />
+        </div>
       </main>
       <QuestReportBottomSheet
         isBottomSheetOpen={isBottomSheetOpen}

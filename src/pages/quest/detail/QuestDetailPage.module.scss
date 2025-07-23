@@ -48,3 +48,9 @@
   color: var(--color-gray-100);
   line-height: 20px;
 }
+
+.quest-component {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
