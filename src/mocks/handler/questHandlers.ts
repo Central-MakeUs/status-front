@@ -5,6 +5,7 @@ import {
   mockUserMainQuests,
   mockUserSubQuests,
   mockTodayCompletedQuests,
+  mockCompletedHistory,
 } from '@/mocks/data/quest';
 import type {
   QuestCreationRequestDTO,
@@ -128,6 +129,11 @@ export const questHandlers = [
   http.get('/users/:userId/today-completed-quests', () => {
     return HttpResponse.json({
       data: mockTodayCompletedQuests,
+    });
+  }),
+  http.get('/users/:userId/completed-history', () => {
+    return HttpResponse.json({
+      data: mockCompletedHistory,
     });
   }),
 ];

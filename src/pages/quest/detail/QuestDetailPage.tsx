@@ -123,7 +123,7 @@ const QuestDetailPage = () => {
             }}
           />
           <TodayCompletedQuests userId={userId} />
-          <CompletedHistory />
+          <CompletedHistory userId={userId} />
         </div>
       </main>
       <QuestReportBottomSheet

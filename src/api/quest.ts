@@ -7,6 +7,7 @@ import type {
   QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
+  UserCompletedHistoryDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -111,6 +112,15 @@ export const getTodayCompletedQuests = async (
 ): Promise<TodayCompletedQuestDTO[]> => {
   const response = await api.get<ApiResponse<TodayCompletedQuestDTO[]>>(
     `/users/${userId}/today-completed-quests`
+  );
+  return response.data ?? [];
+};
+
+export const getUserCompletedHistory = async (
+  userId: string
+): Promise<UserCompletedHistoryDTO[]> => {
+  const response = await api.get<ApiResponse<UserCompletedHistoryDTO[]>>(
+    `/users/${userId}/completed-history`
   );
   return response.data ?? [];
 };

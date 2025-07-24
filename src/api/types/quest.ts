@@ -78,3 +78,8 @@ export interface TodayCompletedQuestDTO {
   difficulty: SubQuestDifficulty;
   comment: string;
 }
+
+export interface UserCompletedHistoryDTO {
+  date: string;
+  quests: TodayCompletedQuestDTO[];
+}

@@ -309,3 +309,22 @@ export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
     comment: '오늘도 루틴 성공!',
   },
 ];
+
+function getRecentDates(days: number): string[] {
+  const result: string[] = [];
+  const today = new Date();
+  for (let i = 0; i < days; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    result.push(`${yyyy}.${mm}.${dd}`);
+  }
+  return result;
+}
+
+export const mockCompletedHistory = getRecentDates(4).map((date) => ({
+  date,
+  quests: mockTodayCompletedQuests,
+}));
