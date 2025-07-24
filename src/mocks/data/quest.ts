@@ -1,5 +1,10 @@
 import { SUB_QUEST_FREQUENCY } from '@/constants/quest';
-import type { MainQuest, UserMainQuest, UserSubQuest } from '@/types/quest';
+import type {
+  MainQuest,
+  TodayCompletedQuest,
+  UserMainQuest,
+  UserSubQuest,
+} from '@/types/quest';
 
 export const userQuestMapping: Record<string, string[]> = {
   '1': ['1', '2', '3', '6'],
@@ -272,5 +277,35 @@ export const mockUserSubQuests: UserSubQuest[] = [
       { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
     ],
     essential: false,
+  },
+];
+
+export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
+  {
+    id: '1',
+    title: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+    xp: 30,
+    frequency: '주 3회',
+    attribute: '제어',
+    difficulty: 'easy',
+    comment: '후후 이정도는 쉽죠?😈',
+  },
+  {
+    id: '2',
+    title: '아침 알림 전면 차단 후 하루 시작',
+    xp: 20,
+    frequency: '매일',
+    attribute: '집중',
+    difficulty: 'easy',
+    comment: '매일매일 실천 중!',
+  },
+  {
+    id: '3',
+    title: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+    xp: 40,
+    frequency: '월 3회',
+    attribute: '기록',
+    difficulty: 'easy',
+    comment: '오늘도 루틴 성공!',
   },
 ];

@@ -5,6 +5,7 @@ import type {
   SubQuestDTO,
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
+  TodayCompletedQuestDTO,
 } from '@/api/types/quest';
 
 export type SubQuestFrequencyValue =
@@ -17,3 +18,4 @@ export type UserSubQuest = UserSubQuestDTO;
 export type SubQuestDifficulty = 'easy' | 'default' | 'hard';
 export type UserSubQuestLog = UserSubQuestLogRequestDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
+export type TodayCompletedQuest = TodayCompletedQuestDTO;

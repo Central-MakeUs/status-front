@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestReportBottomSheet/QuestReportBottomSheet';
 import { usePostUserSubQuestLog } from '@/api/hooks/quest/usePostUserSubQuestLog';
@@ -27,31 +27,17 @@ import CompletedHistory from './components/CompletedHistory/CompletedHistory';
 
 const cx = classNames.bind(styles);
 
-// [TODO] 퀘스트 상세 페이지 구현 후 제거
-const DUMMY_SUB_QUEST: UserSubQuest = {
-  id: '1',
-  desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
-  defaultFrequency: 'daily',
-  defaultRepeat: 1,
-  frequency: 'daily',
-  repeatCnt: 1,
-  attributes: [
-    { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-    { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
-  ],
-  essential: false,
-};
-
 const QuestDetailPage = () => {
   const { id: mainQuestId } = useParams();
+  const { state } = useLocation();
   const userId = '10';
 
   const { data: quest } = useGetUserMainQuest(userId, mainQuestId || '');
   const { data: subQuests } = useGetUserSubQuests(userId, mainQuestId || '');
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
   const [selectedSubQuest, setSelectedSubQuest] = useState<UserSubQuest | null>(
-    DUMMY_SUB_QUEST
+    state?.quest
   );
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
@@ -136,7 +122,7 @@ const QuestDetailPage = () => {
               setSelectedSubQuest(quest);
             }}
           />
-          <TodayCompletedQuests />
+          <TodayCompletedQuests userId={userId} />
           <CompletedHistory />
         </div>
       </main>

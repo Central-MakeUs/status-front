@@ -6,6 +6,7 @@ import type {
   GetRandomSubQuestByMainQuestIdParams,
   QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
+  TodayCompletedQuestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -103,4 +104,13 @@ export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
     data
   );
   return response.data ?? {};
+};
+
+export const getTodayCompletedQuests = async (
+  userId: string
+): Promise<TodayCompletedQuestDTO[]> => {
+  const response = await api.get<ApiResponse<TodayCompletedQuestDTO[]>>(
+    `/users/${userId}/today-completed-quests`
+  );
+  return response.data ?? [];
 };

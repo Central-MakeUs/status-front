@@ -68,3 +68,13 @@ export interface UserSubQuestLogResponseDTO {
   status: string;
   createdAt: string;
 }
+
+export interface TodayCompletedQuestDTO {
+  id: string;
+  title: string;
+  xp: number;
+  frequency: string;
+  attribute: string;
+  difficulty: SubQuestDifficulty;
+  comment: string;
+}

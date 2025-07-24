@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
 import type { UserSubQuest } from '@/types/quest';
+import { useNavigate } from 'react-router-dom';
+import { PAGE_PATHS } from '@/constants/pagePaths';
 
 const selectedStatusDefault = {
   value: 0,
@@ -18,6 +20,7 @@ const selectedStatusDefault = {
 };
 
 const StatusPage = () => {
+  const navigate = useNavigate();
   const userId = '10';
   const mainQuestId = '1';
   const { data: userInfo } = useGetUserInfo(userId);
@@ -59,6 +62,12 @@ const StatusPage = () => {
             quests={quests}
             onClick={(quest: UserSubQuest) => {
               console.log(quest);
+              navigate(
+                `${PAGE_PATHS.QUEST_DETAIL.replace(':id', mainQuestId)}`,
+                {
+                  state: { quest: quest },
+                }
+              );
             }}
           />
         )}
