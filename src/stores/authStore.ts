@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-import type { SocialProvider } from '@/api/types/auth';
 import type { UserInfo } from '@/types/user';
 import { getCurrentUser, refreshTokens, logout as logoutAPI } from '@/api/auth';
 import { getCookie } from '@/utils/cookie';
+
+import type { SocialProvider } from '@/types/auth';
 
 interface AuthState {
   user: UserInfo | null;

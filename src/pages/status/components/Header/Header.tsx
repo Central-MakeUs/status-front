@@ -1,15 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
-import type { TierType } from '@/types/tier';
+import type { UserInfo } from '@/types/user';
 
 const cx = classNames.bind(styles);
 
-interface HeaderProps {
-  nickname: string;
-  tier: TierType;
-  level: number;
-  profileImageUrl: string;
+interface HeaderProps
+  extends Omit<UserInfo, 'id' | 'email' | 'providerType' | 'providerId'> {
   onClick: () => void;
 }
 

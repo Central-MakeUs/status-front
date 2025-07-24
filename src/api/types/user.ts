@@ -1,4 +1,4 @@
-import type { SocialProvider } from '@/api/types/auth';
+import type { SocialProvider } from '@/types/auth';
 import type { TierType } from '@/types/tier';
 
 export interface UserInfoDTO {
