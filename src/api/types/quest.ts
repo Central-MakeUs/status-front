@@ -79,3 +79,8 @@ export interface UserCompletedHistoryDTO {
   date: string;
   quests: TodayCompletedQuestDTO[];
 }
+
+export interface UserMainQuestGiveUpRequestDTO {
+  userId: string;
+  mainQuestId: string;
+}

@@ -136,4 +136,9 @@ export const questHandlers = [
       data: mockCompletedHistory,
     });
   }),
+  http.post('/users/:userId/main-quest/:mainQuestId/giveup', () => {
+    return HttpResponse.json({
+      data: {},
+    });
+  }),
 ];

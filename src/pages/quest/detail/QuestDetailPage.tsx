@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestReportBottomSheet/QuestReportBottomSheet';
 import { usePostUserSubQuestLog } from '@/api/hooks/quest/usePostUserSubQuestLog';
@@ -9,6 +9,7 @@ import { REWARD_STEP } from '@/constants/quest';
 import type {
   RewardStep,
   SubQuestDifficulty,
+  UserMainQuestGiveUp,
   UserSubQuest,
   UserSubQuestLog,
 } from '@/types/quest';
@@ -24,10 +25,15 @@ import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
+import { usePostUserGiveUpMainQuest } from '@/api/hooks/quest/usePostUserGiveUpMainQuest';
+import { PAGE_PATHS } from '@/constants/pagePaths';
+import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
+import IconDelete from '@/assets/icons/icon-delete.svg?react';
 
 const cx = classNames.bind(styles);
 
 const QuestDetailPage = () => {
+  const navigate = useNavigate();
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
   const userId = '10';
@@ -43,8 +49,11 @@ const QuestDetailPage = () => {
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty>('default');
   const [rewardStep, setRewardStep] = useState<RewardStep>('none');
+  const [isGiveUpDialogOpen, setIsGiveUpDialogOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+
   const postUserSubQuestLog = usePostUserSubQuestLog();
+  const postUserGiveUpMainQuest = usePostUserGiveUpMainQuest();
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMemo(event.target.value);
@@ -72,7 +81,7 @@ const QuestDetailPage = () => {
 
     const payload: UserSubQuestLog = {
       // [TODO] 유저 정보 추가
-      userId: '1',
+      userId: userId,
       userSubQuestId: selectedSubQuest.id,
       difficulty: selectedDifficulty,
     };
@@ -82,7 +91,7 @@ const QuestDetailPage = () => {
         setIsBottomSheetOpen(false);
         setMemo('');
         setSelectedDifficulty('default');
-        // [TODO] 수정 시 트리거 되지 않아야 함. 로직 분리 필요?
+
         if (!isEdit) {
           setRewardStep(REWARD_STEP.SUB_QUEST);
         }
@@ -93,7 +102,21 @@ const QuestDetailPage = () => {
       },
     });
   };
+  const handleQuestGiveUp = () => {
+    if (!mainQuestId) return;
 
+    const payload: UserMainQuestGiveUp = {
+      userId: userId,
+      mainQuestId: mainQuestId,
+    };
+
+    postUserGiveUpMainQuest.mutate(payload, {
+      onSuccess: () => {
+        navigate(PAGE_PATHS.QUEST);
+      },
+      onError: () => {},
+    });
+  };
   const handleEdit = (
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
@@ -108,7 +131,11 @@ const QuestDetailPage = () => {
 
   return (
     <>
-      <Header title="퀘스트 상세" hasBackButton={true} />
+      <Header
+        title="퀘스트 상세"
+        hasBackButton={true}
+        rightAction={<IconDelete onClick={() => setIsGiveUpDialogOpen(true)} />}
+      ></Header>
       <main className="main">
         {quest && (
           <div className={cx('quest-detail')}>
@@ -161,6 +188,11 @@ const QuestDetailPage = () => {
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
         attributes={selectedSubQuest?.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
+      />
+      <QuestGiveUpDialog
+        isOpen={isGiveUpDialogOpen}
+        onClose={() => setIsGiveUpDialogOpen(false)}
+        onConfirm={handleQuestGiveUp}
       />
     </>
   );

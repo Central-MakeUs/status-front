@@ -9,9 +9,14 @@ const cx = classNames.bind(styles);
 export interface HeaderProps {
   title?: string;
   hasBackButton?: boolean;
+  rightAction?: React.ReactNode;
 }
 
-export const Header = ({ title, hasBackButton = false }: HeaderProps) => {
+export const Header = ({
+  title,
+  hasBackButton = false,
+  rightAction,
+}: HeaderProps) => {
   const navigate = useNavigate();
 
   const handleBackButtonClick = () => {
@@ -30,6 +35,9 @@ export const Header = ({ title, hasBackButton = false }: HeaderProps) => {
           <IconBack className={cx('button-back-icon')} aria-hidden="true" />
           <span className="sr-only">뒤로가기</span>
         </button>
+      )}
+      {rightAction && (
+        <button className={cx('right-action')}>{rightAction}</button>
       )}
     </header>
   );

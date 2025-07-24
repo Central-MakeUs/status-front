@@ -8,6 +8,7 @@ import type {
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
   UserCompletedHistoryDTO,
+  UserMainQuestGiveUpRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -123,4 +124,14 @@ export const getUserCompletedHistory = async (
     `/users/${userId}/completed-history`
   );
   return response.data ?? [];
+};
+
+export const postUserGiveUpMainQuest = async (
+  data: UserMainQuestGiveUpRequestDTO
+) => {
+  const response = await api.post<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
+    `/users/${data.userId}/main-quest/${data.mainQuestId}/giveup`,
+    data
+  );
+  return response.data ?? {};
 };

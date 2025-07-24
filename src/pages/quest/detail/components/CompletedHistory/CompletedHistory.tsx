@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './CompletedHistory.module.scss';
 import CompletedQuestList from '../CompletedQuestList/CompletedQuestList';
 import { useState } from 'react';
-import { useGetUserCompletedLists } from '@/api/hooks/quest/UseGetUserCompletedHistory';
+import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedHistory';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
