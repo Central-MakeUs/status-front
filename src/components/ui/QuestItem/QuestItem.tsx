@@ -17,7 +17,7 @@ export const QuestItem = ({
 }: UserSubQuest & { onClick?: (id: string) => void }) => {
   return (
     <div className={cx('quest-item')}>
-      <div className={cx('topRow')}>
+      <div className={cx('top-row')}>
         {essential && <span className={cx('essential')}>필수</span>}
         {frequency.includes('weekly') && (
           <span className={cx('remaining')}>

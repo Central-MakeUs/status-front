@@ -72,7 +72,7 @@ export const QuestReportBottomSheet = ({
       </BottomSheet.Content>
       <BottomSheet.Footer>
         <Button variant="secondary" disabled={disabled} onClick={onQuestReport}>
-          이상, 임무를 보고합니다
+          이상, 퀘스트 완료.
         </Button>
       </BottomSheet.Footer>
     </BottomSheet>

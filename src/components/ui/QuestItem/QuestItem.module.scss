@@ -19,7 +19,7 @@
   color: var(--color-white);
 }
 
-.topRow {
+.top-row {
   display: flex;
   gap: 6px;
   align-items: center;
@@ -67,7 +67,7 @@
 .confirm {
   background-color: var(--color-gray-600);
   border-radius: 5px;
- 
+
   display: flex;
   padding: 8px 8px 8px 12px;
   justify-content: center;

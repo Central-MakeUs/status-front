@@ -6,6 +6,9 @@ import type {
   GetRandomSubQuestByMainQuestIdParams,
   QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
+  TodayCompletedQuestDTO,
+  UserCompletedHistoryDTO,
+  UserMainQuestGiveUpRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 
@@ -100,6 +103,34 @@ export const postUserQuest = async (data: QuestCreationRequestDTO) => {
 export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
   const response = await api.post<ApiResponse<UserSubQuestLogRequestDTO>>(
     `/users/${data.userId}/sub-quest-log`,
+    data
+  );
+  return response.data ?? {};
+};
+
+export const getTodayCompletedQuests = async (
+  userId: string
+): Promise<TodayCompletedQuestDTO[]> => {
+  const response = await api.get<ApiResponse<TodayCompletedQuestDTO[]>>(
+    `/users/${userId}/today-completed-quests`
+  );
+  return response.data ?? [];
+};
+
+export const getUserCompletedHistory = async (
+  userId: string
+): Promise<UserCompletedHistoryDTO[]> => {
+  const response = await api.get<ApiResponse<UserCompletedHistoryDTO[]>>(
+    `/users/${userId}/completed-history`
+  );
+  return response.data ?? [];
+};
+
+export const postUserGiveUpMainQuest = async (
+  data: UserMainQuestGiveUpRequestDTO
+) => {
+  const response = await api.post<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
+    `/users/${data.userId}/main-quest/${data.mainQuestId}/giveup`,
     data
   );
   return response.data ?? {};

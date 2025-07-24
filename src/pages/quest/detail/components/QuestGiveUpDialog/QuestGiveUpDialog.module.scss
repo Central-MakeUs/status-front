@@ -1,0 +1,35 @@
+.icon-main-quest-reward {
+    display: block;
+    width: 153px;
+    height: 100px;
+    margin: 0 auto 24px;
+}
+
+.reward-list {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.reward-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 146px;
+    background-color: var(--color-gray-600);
+}
+
+.attribute-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+.attribute-text {
+    display: block;
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--color-white);
+    line-height: 20px;
+}

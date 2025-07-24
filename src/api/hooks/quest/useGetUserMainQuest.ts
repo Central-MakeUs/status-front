@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserMainQuest = (userId: string, mainQuestId: string) => {
   return useQuery({
-    queryKey: ['main-quests', 'user', userId, mainQuestId],
+    queryKey: ['main-quest', 'user', userId, mainQuestId],
     queryFn: () => getUserMainQuest(userId, mainQuestId),
   });
 };

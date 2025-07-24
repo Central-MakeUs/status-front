@@ -1,5 +1,10 @@
 import { SUB_QUEST_FREQUENCY } from '@/constants/quest';
-import type { MainQuest, UserMainQuest, UserSubQuest } from '@/types/quest';
+import type {
+  MainQuest,
+  TodayCompletedQuest,
+  UserMainQuest,
+  UserSubQuest,
+} from '@/types/quest';
 
 export const userQuestMapping: Record<string, string[]> = {
   '1': ['1', '2', '3', '6'],
@@ -274,3 +279,73 @@ export const mockUserSubQuests: UserSubQuest[] = [
     essential: false,
   },
 ];
+
+export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
+  {
+    id: '1',
+    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+    xp: 30,
+    frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    difficulty: 'easy',
+    comment: '후후 이정도는 쉽죠?😈',
+    essential: true,
+    defaultFrequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+    defaultRepeat: 3,
+    repeatCnt: 2,
+  },
+  {
+    id: '2',
+    desc: '아침 알림 전면 차단 후 하루 시작',
+    xp: 20,
+    frequency: SUB_QUEST_FREQUENCY.DAILY.value,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    difficulty: 'hard',
+    comment: '매일매일 실천 중!',
+    essential: true,
+    defaultFrequency: SUB_QUEST_FREQUENCY.DAILY.value,
+    defaultRepeat: 1,
+    repeatCnt: 1,
+  },
+  {
+    id: '3',
+    desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+    xp: 40,
+    frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+    attributes: [
+      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+    ],
+    difficulty: 'default',
+    comment: '오늘도 루틴 성공!',
+    essential: false,
+    defaultFrequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+    defaultRepeat: 3,
+    repeatCnt: 1,
+  },
+];
+
+function getRecentDates(days: number): string[] {
+  const result: string[] = [];
+  const today = new Date();
+  for (let i = 0; i < days; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    result.push(`${yyyy}.${mm}.${dd}`);
+  }
+  return result;
+}
+
+export const mockCompletedHistory = getRecentDates(4).map((date) => ({
+  date,
+  quests: mockTodayCompletedQuests,
+}));

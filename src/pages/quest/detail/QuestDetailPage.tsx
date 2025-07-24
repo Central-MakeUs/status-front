@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestReportBottomSheet/QuestReportBottomSheet';
 import { usePostUserSubQuestLog } from '@/api/hooks/quest/usePostUserSubQuestLog';
@@ -9,6 +9,7 @@ import { REWARD_STEP } from '@/constants/quest';
 import type {
   RewardStep,
   SubQuestDifficulty,
+  UserMainQuestGiveUp,
   UserSubQuest,
   UserSubQuestLog,
 } from '@/types/quest';
@@ -24,41 +25,35 @@ import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
+import { usePostUserGiveUpMainQuest } from '@/api/hooks/quest/usePostUserGiveUpMainQuest';
+import { PAGE_PATHS } from '@/constants/pagePaths';
+import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
+import IconDelete from '@/assets/icons/icon-delete.svg?react';
 
 const cx = classNames.bind(styles);
 
-// [TODO] 퀘스트 상세 페이지 구현 후 제거
-const DUMMY_SUB_QUEST: UserSubQuest = {
-  id: '1',
-  desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
-  defaultFrequency: 'daily',
-  defaultRepeat: 1,
-  frequency: 'daily',
-  repeatCnt: 1,
-  attributes: [
-    { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-    { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
-  ],
-  essential: false,
-};
-
 const QuestDetailPage = () => {
+  const navigate = useNavigate();
   const { id: mainQuestId } = useParams();
+  const { state } = useLocation();
   const userId = '10';
 
   const { data: quest } = useGetUserMainQuest(userId, mainQuestId || '');
   const { data: subQuests } = useGetUserSubQuests(userId, mainQuestId || '');
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
   const [selectedSubQuest, setSelectedSubQuest] = useState<UserSubQuest | null>(
-    DUMMY_SUB_QUEST
+    state?.quest
   );
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty>('default');
   const [rewardStep, setRewardStep] = useState<RewardStep>('none');
+  const [isGiveUpDialogOpen, setIsGiveUpDialogOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const postUserSubQuestLog = usePostUserSubQuestLog();
+  const postUserGiveUpMainQuest = usePostUserGiveUpMainQuest();
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMemo(event.target.value);
@@ -86,7 +81,7 @@ const QuestDetailPage = () => {
 
     const payload: UserSubQuestLog = {
       // [TODO] 유저 정보 추가
-      userId: '1',
+      userId: userId,
       userSubQuestId: selectedSubQuest.id,
       difficulty: selectedDifficulty,
     };
@@ -96,18 +91,51 @@ const QuestDetailPage = () => {
         setIsBottomSheetOpen(false);
         setMemo('');
         setSelectedDifficulty('default');
-        // [TODO] 수정 시 트리거 되지 않아야 함. 로직 분리 필요?
-        setRewardStep(REWARD_STEP.SUB_QUEST);
+
+        if (!isEdit) {
+          setRewardStep(REWARD_STEP.SUB_QUEST);
+        }
+        setIsEdit(false);
       },
       onError: () => {
         // [TODO] 에러 처리 throw?
       },
     });
   };
+  const handleQuestGiveUp = () => {
+    if (!mainQuestId) return;
+
+    const payload: UserMainQuestGiveUp = {
+      userId: userId,
+      mainQuestId: mainQuestId,
+    };
+
+    postUserGiveUpMainQuest.mutate(payload, {
+      onSuccess: () => {
+        navigate(PAGE_PATHS.QUEST);
+      },
+      onError: () => {},
+    });
+  };
+  const handleEdit = (
+    quest: UserSubQuest,
+    difficulty: SubQuestDifficulty,
+    memo: string
+  ) => {
+    setIsBottomSheetOpen(true);
+    setSelectedSubQuest(quest);
+    setSelectedDifficulty(difficulty);
+    setMemo(memo);
+    setIsEdit(true);
+  };
 
   return (
     <>
-      <Header title="퀘스트 상세" hasBackButton={true} />
+      <Header
+        title="퀘스트 상세"
+        hasBackButton={true}
+        rightAction={<IconDelete onClick={() => setIsGiveUpDialogOpen(true)} />}
+      ></Header>
       <main className="main">
         {quest && (
           <div className={cx('quest-detail')}>
@@ -134,10 +162,11 @@ const QuestDetailPage = () => {
             onClick={(quest) => {
               setIsBottomSheetOpen(true);
               setSelectedSubQuest(quest);
+              setIsEdit(false);
             }}
           />
-          <TodayCompletedQuests />
-          <CompletedHistory />
+          <TodayCompletedQuests userId={userId} onClick={handleEdit} />
+          <CompletedHistory userId={userId} onClick={handleEdit} />
         </div>
       </main>
       <QuestReportBottomSheet
@@ -159,6 +188,11 @@ const QuestDetailPage = () => {
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
         attributes={selectedSubQuest?.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
+      />
+      <QuestGiveUpDialog
+        isOpen={isGiveUpDialogOpen}
+        onClose={() => setIsGiveUpDialogOpen(false)}
+        onConfirm={handleQuestGiveUp}
       />
     </>
   );

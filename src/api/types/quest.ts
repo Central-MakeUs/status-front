@@ -68,3 +68,19 @@ export interface UserSubQuestLogResponseDTO {
   status: string;
   createdAt: string;
 }
+
+export interface TodayCompletedQuestDTO extends UserSubQuestDTO {
+  xp: number;
+  difficulty: SubQuestDifficulty;
+  comment: string;
+}
+
+export interface UserCompletedHistoryDTO {
+  date: string;
+  quests: TodayCompletedQuestDTO[];
+}
+
+export interface UserMainQuestGiveUpRequestDTO {
+  userId: string;
+  mainQuestId: string;
+}
