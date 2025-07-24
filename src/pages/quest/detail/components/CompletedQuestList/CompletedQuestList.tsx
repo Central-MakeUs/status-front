@@ -1,12 +1,29 @@
 import classNames from 'classnames/bind';
 import styles from './CompletedQuestList.module.scss';
-import type { TodayCompletedQuest } from '@/types/quest';
-import { SUB_QUEST_DIFFICULTY } from '@/constants/quest';
+import type {
+  SubQuestDifficulty,
+  TodayCompletedQuest,
+  UserSubQuest,
+} from '@/types/quest';
+import {
+  getSubQuestFrequencyLabel,
+  SUB_QUEST_DIFFICULTY,
+} from '@/constants/quest';
 
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 const cx = classNames.bind(styles);
 
-const CompletedQuestList = ({ quest }: { quest: TodayCompletedQuest }) => {
+const CompletedQuestList = ({
+  quest,
+  onClick,
+}: {
+  quest: TodayCompletedQuest;
+  onClick: (
+    quest: UserSubQuest,
+    difficulty: SubQuestDifficulty,
+    memo: string
+  ) => void;
+}) => {
   const difficulty =
     Object.values(SUB_QUEST_DIFFICULTY).find(
       (el) => el.value === quest.difficulty
@@ -16,11 +33,20 @@ const CompletedQuestList = ({ quest }: { quest: TodayCompletedQuest }) => {
     <div className={cx('card')}>
       <div className={cx('card-header')}>
         <div className={cx('top-row')}>
-          {quest.frequency} | {quest.attribute} +{quest.xp}xp
-          <div className={cx('title')}>{quest.title}</div>
+          <div className={cx('attributes-row')}>
+            {getSubQuestFrequencyLabel(quest.frequency)} |
+            {quest.attributes.map((attr) => (
+              <span key={attr.attributeId} className={cx('attribute')}>
+                {attr.name} +{attr.exp}
+              </span>
+            ))}
+          </div>
+          <div className={cx('title')}>{quest.desc}</div>
         </div>
         <button className={cx('edit-btn')}>
-          <IconEdit />
+          <IconEdit
+            onClick={() => onClick(quest, difficulty.value, quest.comment)}
+          />
         </button>
       </div>
       <div className={cx('card-content')}>

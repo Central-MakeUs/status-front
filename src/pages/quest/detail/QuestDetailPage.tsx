@@ -43,7 +43,7 @@ const QuestDetailPage = () => {
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty>('default');
   const [rewardStep, setRewardStep] = useState<RewardStep>('none');
-
+  const [isEdit, setIsEdit] = useState(false);
   const postUserSubQuestLog = usePostUserSubQuestLog();
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -83,12 +83,27 @@ const QuestDetailPage = () => {
         setMemo('');
         setSelectedDifficulty('default');
         // [TODO] 수정 시 트리거 되지 않아야 함. 로직 분리 필요?
-        setRewardStep(REWARD_STEP.SUB_QUEST);
+        if (!isEdit) {
+          setRewardStep(REWARD_STEP.SUB_QUEST);
+        }
+        setIsEdit(false);
       },
       onError: () => {
         // [TODO] 에러 처리 throw?
       },
     });
+  };
+
+  const handleEdit = (
+    quest: UserSubQuest,
+    difficulty: SubQuestDifficulty,
+    memo: string
+  ) => {
+    setIsBottomSheetOpen(true);
+    setSelectedSubQuest(quest);
+    setSelectedDifficulty(difficulty);
+    setMemo(memo);
+    setIsEdit(true);
   };
 
   return (
@@ -120,10 +135,11 @@ const QuestDetailPage = () => {
             onClick={(quest) => {
               setIsBottomSheetOpen(true);
               setSelectedSubQuest(quest);
+              setIsEdit(false);
             }}
           />
-          <TodayCompletedQuests userId={userId} />
-          <CompletedHistory userId={userId} />
+          <TodayCompletedQuests userId={userId} onClick={handleEdit} />
+          <CompletedHistory userId={userId} onClick={handleEdit} />
         </div>
       </main>
       <QuestReportBottomSheet

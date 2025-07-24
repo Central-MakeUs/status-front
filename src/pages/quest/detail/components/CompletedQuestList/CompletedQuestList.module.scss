@@ -92,3 +92,18 @@
       background-color: var(--color-main-orange-default);
   }
 }
+
+.attributes-row {
+  display: flex;
+  gap: 8px; // 각 속성 사이 간격
+  flex-wrap: wrap; // 넘치면 다음 줄로
+}
+
+.attribute {
+  &::after {
+    content: ',';
+  }
+  &:last-child::after {
+    content: '';
+  }
+}

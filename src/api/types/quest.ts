@@ -69,12 +69,8 @@ export interface UserSubQuestLogResponseDTO {
   createdAt: string;
 }
 
-export interface TodayCompletedQuestDTO {
-  id: string;
-  title: string;
+export interface TodayCompletedQuestDTO extends UserSubQuestDTO {
   xp: number;
-  frequency: string;
-  attribute: string;
   difficulty: SubQuestDifficulty;
   comment: string;
 }

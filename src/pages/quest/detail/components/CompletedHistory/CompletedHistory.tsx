@@ -6,9 +6,20 @@ import { useGetUserCompletedLists } from '@/api/hooks/quest/UseGetUserCompletedH
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
+import type { SubQuestDifficulty, UserSubQuest } from '@/types/quest';
 const cx = classNames.bind(styles);
 
-const CompletedHistory = ({ userId }: { userId: string }) => {
+const CompletedHistory = ({
+  userId,
+  onClick,
+}: {
+  userId: string;
+  onClick: (
+    quest: UserSubQuest,
+    difficulty: SubQuestDifficulty,
+    memo: string
+  ) => void;
+}) => {
   const { data: completedHistory } = useGetUserCompletedLists(userId);
 
   const [openDate, setOpenDate] = useState<string | null>(null);
@@ -48,7 +59,11 @@ const CompletedHistory = ({ userId }: { userId: string }) => {
                   {openDate === date &&
                     quests &&
                     quests.map((quest) => (
-                      <CompletedQuestList key={quest.id} quest={quest} />
+                      <CompletedQuestList
+                        key={quest.id}
+                        quest={quest}
+                        onClick={onClick}
+                      />
                     ))}
                 </div>
               ))}
