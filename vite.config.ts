@@ -38,5 +38,11 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     open: true,
+    proxy: {
+      '/api': {
+        target: 'https://statoverflow.cloud',
+        changeOrigin: true,
+      },
+    },
   },
 });
