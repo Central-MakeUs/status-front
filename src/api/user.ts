@@ -15,7 +15,6 @@ export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
       providerId: '',
       tier: 'Bronze', // Assuming a default tier, adjust as necessary
       level: 0,
-      levelPercent: 0,
       profileImageUrl: '',
     }
   );
