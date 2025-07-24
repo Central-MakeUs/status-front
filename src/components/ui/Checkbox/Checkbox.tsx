@@ -9,19 +9,26 @@ import IconCheckboxDisabledChecked from '@/assets/icons/icon-checkbox-checked-di
 const cx = classNames.bind(styles);
 
 export interface CheckboxProps {
-  label?: string;
   checked?: boolean;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLSpanElement>) => void;
+  required?: boolean;
+  onClick?: (event?: React.MouseEvent<HTMLSpanElement>) => void;
+  className?: string;
+  children?: React.ReactNode;
 }
 
-export const Checkbox = ({
-  label,
+interface CheckboxLabelProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+const CheckboxMain = ({
   checked,
   disabled,
+  required,
   onClick,
-  onKeyDown,
+  className,
+  children,
 }: CheckboxProps) => {
   const getIconComponent = () => {
     if (disabled && checked) return IconCheckboxDisabledChecked;
@@ -36,14 +43,22 @@ export const Checkbox = ({
     <span
       role="checkbox"
       tabIndex={0}
-      className={cx('checkbox')}
+      className={cx('checkbox', className)}
       aria-checked={checked}
       aria-disabled={disabled}
+      aria-required={required}
       onClick={onClick}
-      onKeyDown={onKeyDown}
     >
       <IconComponent className={cx('checkbox-icon')} aria-hidden="true" />
-      {label && <span className={cx('checkbox-text')}>{label}</span>}
+      {children}
     </span>
   );
 };
+
+const CheckboxLabel = ({ children, className }: CheckboxLabelProps) => {
+  return <span className={cx('checkbox-text', className)}>{children}</span>;
+};
+
+export const Checkbox = Object.assign(CheckboxMain, {
+  Label: CheckboxLabel,
+});
