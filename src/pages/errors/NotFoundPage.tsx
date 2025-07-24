@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import IconError from '@/assets/icons/icon-error.svg?react';
+import IconError from '@/assets/icons/icon-character-error.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './NotFoundPage.module.scss';
