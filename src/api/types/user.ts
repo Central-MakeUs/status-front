@@ -9,6 +9,5 @@ export interface UserInfoDTO {
   providerId: string;
   tier: TierType;
   level: number;
-  levelPercent: number;
   profileImageUrl: string;
 }

@@ -9,6 +9,5 @@ export const mockUserInfo: UserInfo = {
   providerId: 'mock-provider-id',
   tier: 'Platinum',
   level: 1,
-  levelPercent: 21,
   profileImageUrl: ProfileImage,
 };
