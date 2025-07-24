@@ -12,6 +12,7 @@ export const PAGE_PATHS = {
   HISTORY: '/history',
   PROFILE: '/profile',
   LOGIN: '/login',
+  TUTORIAL: '/tutorial',
 } as const;
 
 export const MAIN_PAGE_PATHS = {

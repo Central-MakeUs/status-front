@@ -1,0 +1,60 @@
+.tutorial-header {
+    padding: 11px 16px;
+
+    .icon-logo {
+        width: 36px;
+        height: 36px;
+        margin: 0 auto;
+    }
+}
+
+.tutorial-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tutorial {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.tutorial-sub-title {
+    flex: 0 0 auto;
+    margin-top: 16px;
+    padding: 0 14px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.tutorial-description {
+    flex: 0 0 auto;
+    margin-top: 4px;
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--color-gray-200);
+    line-height: 17px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.tutorial-animation-wrapper {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.tutorial-animation {
+    width: 100%;
+}
+
+.tutorial-footer {
+    flex: 0 0 auto;
+    padding: 8px 14px 14px;
+}
