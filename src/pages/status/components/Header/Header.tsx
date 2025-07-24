@@ -5,11 +5,9 @@ import type { TierType } from '@/types/tier';
 
 const cx = classNames.bind(styles);
 
-interface HeaderProps {
-  nickname: string;
-  tier: TierType;
-  level: number;
-  profileImageUrl: string;
+interface HeaderProps
+  extends Omit<UserInfo, 'id' | 'email' | 'providerType' | 'providerId'> {
+
   onClick: () => void;
 }
 
