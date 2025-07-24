@@ -28,6 +28,15 @@ export const questHandlers = [
       data: quests,
     });
   }),
+  http.get('/users/:userId/main-quest/:mainQuestId', ({ params }) => {
+    const { mainQuestId } = params;
+
+    const quest = mockUserMainQuests.find((quest) => quest.id === mainQuestId);
+
+    return HttpResponse.json({
+      data: quest,
+    });
+  }),
   http.get('/sub-quests', ({ request }) => {
     const params = new URL(request.url).searchParams;
     const limit = params.get('limit');

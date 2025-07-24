@@ -18,6 +18,25 @@ export const getUserMainQuests = async (
   return response.data ?? [];
 };
 
+export const getUserMainQuest = async (
+  userId: string,
+  mainQuestId: string
+): Promise<UserMainQuestDTO> => {
+  const response = await api.get<ApiResponse<UserMainQuestDTO>>(
+    `/users/${userId}/main-quest/${mainQuestId}`
+  );
+  return (
+    response.data ?? {
+      id: '',
+      title: '',
+      startDate: '',
+      endDate: '',
+      attributes: [],
+      createdAt: '',
+    }
+  );
+};
+
 export const getUserSubQuests = async (
   userId: string,
   mainQuestId: string

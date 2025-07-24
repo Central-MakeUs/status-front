@@ -54,6 +54,10 @@ export const router = createBrowserRouter([
             path: PAGE_PATHS.PROFILE,
             Component: ProfilePage,
           },
+          {
+            path: PAGE_PATHS.QUEST_DETAIL,
+            Component: QuestDetailPage,
+          },
         ],
       },
       {
@@ -80,10 +84,7 @@ export const router = createBrowserRouter([
         path: PAGE_PATHS.QUEST_NEW_RESULT,
         Component: StepResultPage,
       },
-      {
-        path: PAGE_PATHS.QUEST_DETAIL,
-        Component: QuestDetailPage,
-      },
+
       {
         path: PAGE_PATHS.LOGIN,
         Component: LoginPage,

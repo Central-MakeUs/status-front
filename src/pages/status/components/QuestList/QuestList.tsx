@@ -6,12 +6,20 @@ import type { UserSubQuest } from '@/types/quest';
 
 const cx = classNames.bind(styles);
 
-export const QuestList = ({ quests }: { quests: UserSubQuest[] }) => {
+export const QuestList = ({
+  quests,
+  className,
+  onClick,
+}: {
+  quests: UserSubQuest[];
+  className?: string;
+  onClick: (quest: UserSubQuest) => void;
+}) => {
   return (
-    <div className={cx('container')}>
+    <div className={cx('container', className)}>
       <div className={cx('header')}>오늘의 퀘스트</div>
-      {quests.map((quest, idx) => (
-        <QuestItem key={idx} {...quest} />
+      {quests.map((quest) => (
+        <QuestItem key={quest.id} {...quest} onClick={() => onClick(quest)} />
       ))}
     </div>
   );

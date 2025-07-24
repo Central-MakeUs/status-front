@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import type { UserInfo } from '@/types/user';
 import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
+import type { TierType } from '@/types/tier';
 
 const cx = classNames.bind(styles);
 
 interface HeaderProps
   extends Omit<UserInfo, 'id' | 'email' | 'providerType' | 'providerId'> {
+
   onClick: () => void;
 }
 
@@ -14,11 +15,9 @@ export const Header = ({
   nickname,
   tier,
   level,
-  levelPercent,
   profileImageUrl,
   onClick,
 }: HeaderProps) => {
-  console.log(levelPercent);
   return (
     <header className={cx('header')}>
       <div className={cx('profile')}>
