@@ -1,6 +1,10 @@
 import { api } from '@/api/client';
-import type { AuthResponseDTO } from '@/api/types/auth';
-import type { UserInfoDTO } from '@/api/types/user';
+import type {
+  AuthResponseDTO,
+  OAuthLoginRequestDTO,
+  OAuthProviderDTO,
+} from '@/api/types/auth';
+import type { UserInfoDTO } from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';
 
 export const getCurrentUser = async () => {
@@ -15,14 +19,16 @@ export const logout = async () => {
   return api.post<ApiResponse<void>>('/auth/logout');
 };
 
-export const googleLogin = async (code: string) => {
-  return api.post<ApiResponse<void>>('/auth/google', {
-    code,
-  });
+export const googleLogin = async (payload: OAuthLoginRequestDTO) => {
+  return await api.post<ApiResponse<OAuthProviderDTO>>(
+    '/api/v1/auth/google-login',
+    payload
+  );
 };
 
-export const kakaoLogin = async (code: string) => {
-  return api.post<ApiResponse<void>>('/auth/kakao', {
-    code,
-  });
+export const kakaoLogin = async (payload: OAuthLoginRequestDTO) => {
+  return await api.post<ApiResponse<OAuthProviderDTO>>(
+    '/api/v1/auth/kakao-login',
+    payload
+  );
 };

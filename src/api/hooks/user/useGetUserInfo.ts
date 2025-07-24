@@ -1,4 +1,4 @@
-import { getUserInfo } from '@/api/user';
+import { getUserInfo } from '@/api/users';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserInfo = (userId: string) => {

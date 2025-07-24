@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { useAuthStore } from '@/stores/authStore';
 import { googleLogin, kakaoLogin } from '@/api/auth';
-import { SOCIAL_PROVIDER, URL_SCHEME } from '@/constants/auth';
+import { SOCIAL_PROVIDER, URL_SCHEME, USER_TYPE } from '@/constants/auth';
+import { PAGE_PATHS } from '@/constants/pagePaths';
 import type { SocialProvider } from '@/types/auth';
+import type { OAuthLoginRequestDTO } from '@/api/types/auth';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
@@ -14,11 +18,51 @@ import styles from './LoginPage.module.scss';
 const cx = classNames.bind(styles);
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const { loginWith } = useSocialAuth();
+  const { setPendingSocialUser } = useAuthStore();
 
   const isWebView = window.ReactNativeWebView !== undefined;
 
   useEffect(() => {
+    const handleAuthCallback = async (
+      code: string,
+      provider: SocialProvider
+    ) => {
+      try {
+        const requestDTO: OAuthLoginRequestDTO = {
+          provider,
+          code,
+        };
+
+        let response;
+
+        switch (provider) {
+          case SOCIAL_PROVIDER.GOOGLE:
+            response = await googleLogin(requestDTO);
+            break;
+          case SOCIAL_PROVIDER.KAKAO:
+            response = await kakaoLogin(requestDTO);
+            break;
+          default:
+            break;
+        }
+
+        if (!response?.data) {
+          return;
+        }
+
+        if (response.data.type === USER_TYPE.SIGN_UP) {
+          setPendingSocialUser(response.data);
+          navigate(PAGE_PATHS.SIGN_UP);
+        } else {
+          navigate(PAGE_PATHS.ROOT);
+        }
+      } catch {
+        // [TODO] 로그인 실패 처리?
+      }
+    };
+
     const params = new URLSearchParams(window.location.search);
     const code = params.get('code');
     const error = params.get('error');
@@ -56,27 +100,7 @@ const LoginPage = () => {
       window.addEventListener('message', handleAuthResult);
       return () => window.removeEventListener('message', handleAuthResult);
     }
-  }, [isWebView]);
-
-  const handleAuthCallback = async (code: string, provider: SocialProvider) => {
-    try {
-      switch (provider) {
-        case 'google':
-          await googleLogin(code);
-          break;
-        case 'kakao':
-          await kakaoLogin(code);
-          break;
-        default:
-          break;
-      }
-      // [TODO] Zustand store 업데이트
-      // [TODO] 회원가입 or 메인 페이지로 이동
-      window.location.href = '/';
-    } catch {
-      // [TODO] 로그인 실패 처리?
-    }
-  };
+  }, [isWebView, navigate, setPendingSocialUser]);
 
   const handleGoogleLogin = () => {
     loginWith(SOCIAL_PROVIDER.GOOGLE);

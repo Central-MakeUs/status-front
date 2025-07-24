@@ -1,5 +1,9 @@
 import { api } from '@/api/client';
-import type { UserInfoDTO } from '@/api/types/user';
+import type {
+  BasicUserDTO,
+  SignUpRequestDTO,
+  UserInfoDTO,
+} from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';
 
 export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
@@ -11,11 +15,18 @@ export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
       id: '',
       email: '',
       nickname: '',
-      providerType: 'google',
+      providerType: 'GOOGLE',
       providerId: '',
       tier: 'Bronze', // Assuming a default tier, adjust as necessary
       level: 0,
       profileImageUrl: '',
     }
+  );
+};
+
+export const signUp = async (payload: SignUpRequestDTO) => {
+  return await api.post<ApiResponse<BasicUserDTO>>(
+    '/api/v1/users/sign-up',
+    payload
   );
 };

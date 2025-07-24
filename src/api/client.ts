@@ -23,6 +23,7 @@ const request = async <T = unknown>(
   const response = await fetch(`${BASE_URL}${endpoint}${queryString}`, {
     ...options,
     headers,
+    credentials: 'include',
   });
 
   if (response.status === 401) {

@@ -12,6 +12,7 @@ export interface TextInputProps {
   inputMode?: 'text' | 'numeric' | 'decimal' | 'tel' | 'search' | 'email';
   value?: string | number;
   placeholder?: string;
+  maxLength?: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage?: string;
 }
@@ -23,6 +24,7 @@ export const TextInput = ({
   inputMode,
   value,
   placeholder,
+  maxLength,
   onChange,
   errorMessage,
 }: TextInputProps) => {
@@ -42,6 +44,7 @@ export const TextInput = ({
           className={cx('input-field')}
           value={value}
           placeholder={placeholder}
+          maxLength={maxLength}
           onChange={onChange}
           aria-describedby={errorMessage ? errorMessageId : undefined}
           aria-invalid={!!errorMessage}

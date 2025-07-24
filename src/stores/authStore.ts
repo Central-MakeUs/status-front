@@ -1,16 +1,17 @@
 import { create } from 'zustand';
-import type { UserInfo } from '@/types/user';
+import type { UserInfo } from '@/types/users';
 import { getCurrentUser, refreshTokens, logout as logoutAPI } from '@/api/auth';
 import { getCookie } from '@/utils/cookie';
 
-import type { SocialProvider } from '@/types/auth';
+import type { OAuthProvider, SocialProvider } from '@/types/auth';
 
 interface AuthState {
+  pendingSocialUser: OAuthProvider | null;
   user: UserInfo | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   isError: boolean;
-
+  setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => void;
   loginWith: (provider: SocialProvider) => Promise<boolean>;
   logout: () => Promise<boolean>;
   initializeAuth: () => Promise<boolean>;
@@ -23,10 +24,17 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>()((set, get) => ({
+  pendingSocialUser: null,
   user: null,
   isAuthenticated: false,
   isLoading: true,
   isError: false,
+
+  setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => {
+    set(() => ({
+      pendingSocialUser,
+    }));
+  },
 
   _setAuthSuccess: (user: UserInfo | null) => {
     set((state) => ({
@@ -156,25 +164,3 @@ export const useAuthStore = create<AuthState>()((set, get) => ({
     }
   },
 }));
-
-export const useAuth = () => {
-  const store = useAuthStore();
-  return {
-    user: store.user,
-    isAuthenticated: store.isAuthenticated,
-    isLoading: store.isLoading,
-    isError: store.isError,
-    loginWith: store.loginWith,
-    logout: store.logout,
-  };
-};
-
-export const useAuthActions = () => {
-  const store = useAuthStore();
-  return {
-    loginWith: store.loginWith,
-    logout: store.logout,
-    initializeAuth: store.initializeAuth,
-    refreshAuth: store.refreshAuth,
-  };
-};

@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
-import type { UserInfo } from '@/types/user';
+import type { UserInfo } from '@/types/users';
 
 const cx = classNames.bind(styles);
 

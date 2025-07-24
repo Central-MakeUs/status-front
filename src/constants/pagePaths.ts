@@ -13,6 +13,7 @@ export const PAGE_PATHS = {
   PROFILE: '/profile',
   LOGIN: '/login',
   TUTORIAL: '/tutorial',
+  SIGN_UP: '/sign-up',
 } as const;
 
 export const MAIN_PAGE_PATHS = {
