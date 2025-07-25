@@ -12,13 +12,15 @@ import type {
   UserSubQuestLogResponseDTO,
 } from '@/api/types/quest';
 
+export const API_URL = import.meta.env.VITE_API_URL;
+
 export const questHandlers = [
-  http.get('/users/:userId/main-quests', () => {
+  http.get(`${API_URL}/users/:userId/main-quests`, () => {
     return HttpResponse.json({
       data: mockUserMainQuests,
     });
   }),
-  http.get('/main-quests', ({ request }) => {
+  http.get(`${API_URL}/main-quests`, ({ request }) => {
     const params = new URL(request.url).searchParams;
     const limit = params.get('limit');
 
@@ -30,7 +32,7 @@ export const questHandlers = [
       data: quests,
     });
   }),
-  http.get('/users/:userId/main-quest/:mainQuestId', ({ params }) => {
+  http.get(`${API_URL}/users/:userId/main-quest/:mainQuestId`, ({ params }) => {
     const { mainQuestId } = params;
 
     const quest = mockUserMainQuests.find((quest) => quest.id === mainQuestId);
@@ -39,7 +41,7 @@ export const questHandlers = [
       data: quest,
     });
   }),
-  http.get('/sub-quests', ({ request }) => {
+  http.get(`${API_URL}/sub-quests`, ({ request }) => {
     const params = new URL(request.url).searchParams;
     const limit = params.get('limit');
     const selectedSubQuestIds = params.get('selectedSubQuestIds');
@@ -64,7 +66,7 @@ export const questHandlers = [
       data: subQuests,
     });
   }),
-  http.post('/users/:userId/quest', async ({ request }) => {
+  http.post(`${API_URL}/users/:userId/quest`, async ({ request }) => {
     const requestData = (await request.json()) as QuestCreationRequestDTO;
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
@@ -107,14 +109,17 @@ export const questHandlers = [
     });
   }),
 
-  http.get('/users/:userId/main-quests/:mainQuestId/sub-quests', () => {
-    const quests = mockUserSubQuests;
+  http.get(
+    `${API_URL}/users/:userId/main-quests/:mainQuestId/sub-quests`,
+    () => {
+      const quests = mockUserSubQuests;
 
-    return HttpResponse.json({
-      data: quests,
-    });
-  }),
-  http.post('/users/:userId/sub-quest-log', async ({ request }) => {
+      return HttpResponse.json({
+        data: quests,
+      });
+    }
+  ),
+  http.post(`${API_URL}/users/:userId/sub-quest-log`, async ({ request }) => {
     const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
 
     // [TODO] 서브 퀘스트 인증 상태 업데이트
@@ -126,17 +131,17 @@ export const questHandlers = [
       data: requestData,
     });
   }),
-  http.get('/users/:userId/today-completed-quests', () => {
+  http.get(`${API_URL}/users/:userId/today-completed-quests`, () => {
     return HttpResponse.json({
       data: mockTodayCompletedQuests,
     });
   }),
-  http.get('/users/:userId/completed-history', () => {
+  http.get(`${API_URL}/users/:userId/completed-history`, () => {
     return HttpResponse.json({
       data: mockCompletedHistory,
     });
   }),
-  http.post('/users/:userId/main-quest/:mainQuestId/giveup', () => {
+  http.post(`${API_URL}/users/:userId/main-quest/:mainQuestId/giveup`, () => {
     return HttpResponse.json({
       data: {},
     });
