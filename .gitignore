@@ -28,6 +28,7 @@ tsconfig.tsbuildinfo
 
 # dotenv environment variable files
 .env
+.env.production
 *storybook.log
 storybook-static
 
