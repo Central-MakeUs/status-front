@@ -3,7 +3,7 @@ import { MAIN_PAGE_PATHS } from '@/constants/pagePaths';
 import IconStatus from '@/assets/icons/icon-menu-status.svg?react';
 import IconQuest from '@/assets/icons/icon-menu-quest.svg?react';
 import IconHistory from '@/assets/icons/icon-menu-history.svg?react';
-import IconProfile from '@/assets/icons/icon-menu-profile.svg?react';
+import IconProfile from '@/assets/icons/icon-menu-person.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './BottomNavigation.module.scss';
