@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 export interface TextInputProps {
   className?: string;
-  label: string;
+  label?: string;
   type?: 'text' | 'password' | 'email' | 'tel' | 'url' | 'number';
   inputMode?: 'text' | 'numeric' | 'decimal' | 'tel' | 'search' | 'email';
   value?: string | number;
@@ -33,9 +33,11 @@ export const TextInput = ({
 
   return (
     <div className={cx('input-wrapper', className)}>
-      <label htmlFor={inputId} className={cx('input-label')}>
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={inputId} className={cx('input-label')}>
+          {label}
+        </label>
+      )}
       <div className={cx('input-field-wrapper')}>
         <input
           type={type}

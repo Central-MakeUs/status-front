@@ -27,3 +27,13 @@ export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
 export const signUp = async (payload: SignUpRequestDTO) => {
   return await api.post<ApiResponse<BasicUsersDTO>>('/users/sign-up', payload);
 };
+
+export const withdrawal = async () => {
+  return await api.delete<ApiResponse<void>>('/users/unregister');
+};
+
+export const updateNickname = async (
+  payload: Pick<BasicUsersDTO, 'nickname'>
+) => {
+  return await api.patch<ApiResponse<void>>('/users/nickname', payload);
+};

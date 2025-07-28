@@ -1,10 +1,9 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, passthrough } from 'msw';
 import { mockUserInfo } from '@/mocks/data/users';
-import type { SignUpRequestDTO } from '@/api/types/users';
+import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
-// 로컬에서만 동작하고 배포 환경에서는 pass-through 처리
 export const usersHandlers = [
   http.get(`${API_URL}/users/:userId/userInfo`, ({ params }) => {
     // const userId = params.userId as string;
@@ -15,6 +14,10 @@ export const usersHandlers = [
     });
   }),
   http.post(`${API_URL}/users/sign-up`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     const { nickname } = (await request.json()) as SignUpRequestDTO;
 
     document.cookie =
@@ -28,6 +31,47 @@ export const usersHandlers = [
         id: '11',
         nickname,
         type: 'LOGIN',
+      },
+    });
+  }),
+  http.delete(`${API_URL}/users/unregister`, async () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    if (!document.cookie.includes('accessToken')) {
+      return HttpResponse.json({
+        status: '500',
+        code: '00-001',
+        message: '현재 앱에 문제가 발생했으니 관리자에게 문의해주세요.',
+      });
+    }
+
+    document.cookie = 'accessToken=; path=/; SameSite=Lax; max-age=0';
+    document.cookie = 'refreshToken=; path=/; SameSite=Lax; max-age=0';
+
+    return HttpResponse.json({
+      status: '204',
+    });
+  }),
+  /**
+   * [TODO] 리턴값 추가되거나 조회 API 추가 필요
+   * @description 닉네임 수정
+   */
+  http.patch(`${API_URL}/users/nickname`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const { nickname } = (await request.json()) as Pick<
+      BasicUsersDTO,
+      'nickname'
+    >;
+
+    return HttpResponse.json({
+      status: '204',
+      data: {
+        nickname,
       },
     });
   }),
