@@ -18,10 +18,8 @@ export interface SignUpRequestDTO {
   provider: OAuthProviderDTO;
 }
 
-export interface BasicUserDTO {
+export interface BasicUsersDTO {
   id: string;
   nickname: string;
   type: UserType;
 }
-
-export type SignUpForm = SignUpRequestDTO;

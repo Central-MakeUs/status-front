@@ -1,4 +1,5 @@
 import type { OAuthProviderDTO } from '@/api/types/auth';
+import type { BasicUsersDTO } from '@/api/types/users';
 import type { SOCIAL_PROVIDER } from '@/constants/auth';
 import type { SIGN_UP_STEP } from '@/constants/auth';
 
@@ -10,3 +11,5 @@ export type SocialProvider =
 export type SignUpStep = (typeof SIGN_UP_STEP)[keyof typeof SIGN_UP_STEP];
 
 export type OAuthProvider = OAuthProviderDTO;
+
+export type SocialLoginReturnDTO = OAuthProviderDTO | BasicUsersDTO;

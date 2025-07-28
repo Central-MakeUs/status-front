@@ -12,21 +12,32 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import { renderWithLineBreaks } from '@/utils/format';
 
 import type { SignUpStep } from '@/types/auth';
-import type { SignUpForm } from '@/api/types/users';
+import type { SignUpForm } from '@/types/users';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
+import { useShallow } from 'zustand/react/shallow';
 
 const cx = classNames.bind(styles);
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const { pendingSocialUser } = useAuthStore();
-
-  // [TODO] 소셜 로그인 한 상태인지 체크 후 소셜 로그인 한 상태라면 회원가입 페이지 대신 소셜 로그인 페이지로 이동
+  const {
+    pendingSocialUser,
+    setPendingSocialUser,
+    setUser,
+    setIsAuthenticated,
+  } = useAuthStore(
+    useShallow((state) => ({
+      pendingSocialUser: state.pendingSocialUser,
+      setPendingSocialUser: state.setPendingSocialUser,
+      setUser: state.setUser,
+      setIsAuthenticated: state.setIsAuthenticated,
+    }))
+  );
 
   const [step, setStep] = useState<SignUpStep>(SIGN_UP_STEP.NICKNAME);
   const [nickname, setNickname] = useState('');
@@ -97,8 +108,15 @@ const SignUpPage = () => {
     };
 
     const response = await signUp(payload);
-    // [TODO] authStore 초기화, user 정보 업데이트
-    console.log(response);
+
+    if (!response?.data) {
+      return;
+    }
+
+    setIsAuthenticated(true);
+    setUser(response.data);
+    setPendingSocialUser(null);
+
     navigate(PAGE_PATHS.TUTORIAL);
   };
 

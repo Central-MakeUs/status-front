@@ -25,6 +25,7 @@ export const AUTH_CONFIGS: Record<SocialProvider, AuthConfig> = {
     responseType: 'code',
   },
 } as const;
+
 export const SIGN_UP_STEP = {
   NICKNAME: 'nickname',
   TERMS_AND_PRIVACY_POLICY: 'termsAndPrivacyPolicy',

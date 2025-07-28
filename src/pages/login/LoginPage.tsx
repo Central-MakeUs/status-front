@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSocialAuth } from '@/hooks/useSocialAuth';
 import { useAuthStore } from '@/stores/authStore';
+import { useShallow } from 'zustand/react/shallow';
 import { googleLogin, kakaoLogin } from '@/api/auth';
 import { SOCIAL_PROVIDER, URL_SCHEME, USER_TYPE } from '@/constants/auth';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import type { SocialProvider } from '@/types/auth';
+import type { OAuthProvider, SocialProvider } from '@/types/auth';
 import type { OAuthLoginRequestDTO } from '@/api/types/auth';
+import type { BasicUsers } from '@/types/users';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
@@ -20,7 +22,13 @@ const cx = classNames.bind(styles);
 const LoginPage = () => {
   const navigate = useNavigate();
   const { loginWith } = useSocialAuth();
-  const { setPendingSocialUser } = useAuthStore();
+  const { setPendingSocialUser, setUser, setIsAuthenticated } = useAuthStore(
+    useShallow((state) => ({
+      setPendingSocialUser: state.setPendingSocialUser,
+      setUser: state.setUser,
+      setIsAuthenticated: state.setIsAuthenticated,
+    }))
+  );
 
   const isWebView = window.ReactNativeWebView !== undefined;
 
@@ -53,9 +61,12 @@ const LoginPage = () => {
         }
 
         if (response.data.type === USER_TYPE.SIGN_UP) {
-          setPendingSocialUser(response.data);
+          setPendingSocialUser(response.data as OAuthProvider);
           navigate(PAGE_PATHS.SIGN_UP);
         } else {
+          setUser(response.data as BasicUsers);
+          setIsAuthenticated(true);
+          // [TODO] 인증 만료 후 로그인 페이지 접근 시 기존 페이지로 리다이렉트 처리
           navigate(PAGE_PATHS.ROOT);
         }
       } catch {
@@ -100,7 +111,7 @@ const LoginPage = () => {
       window.addEventListener('message', handleAuthResult);
       return () => window.removeEventListener('message', handleAuthResult);
     }
-  }, [isWebView, navigate, setPendingSocialUser]);
+  }, [isWebView, navigate, setPendingSocialUser, setUser, setIsAuthenticated]);
 
   const handleGoogleLogin = () => {
     loginWith(SOCIAL_PROVIDER.GOOGLE);
