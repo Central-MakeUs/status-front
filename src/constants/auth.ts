@@ -1,9 +1,7 @@
 import type { AuthConfig } from '@/api/types/auth';
 import type { SocialProvider } from '@/types/auth';
 
-export const URL_SCHEME = import.meta.env.DEV
-  ? 'exp://127.0.0.1:8081/--/'
-  : 'statusapp://';
+export const URL_SCHEME = 'statusapp://';
 
 export const SOCIAL_PROVIDER = {
   GOOGLE: 'GOOGLE',
