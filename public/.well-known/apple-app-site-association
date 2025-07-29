@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "12257599245.com.stackoverflow.status",
+        "paths": ["/apps/*"]
+      }
+    ]
+  }
+}
