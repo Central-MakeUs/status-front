@@ -52,6 +52,7 @@ const LoginPage = () => {
           case SOCIAL_PROVIDER.KAKAO:
             response = await kakaoLogin(requestDTO);
             break;
+          // [TODO] 애플 로그인 id_token 받아오는 로직 추가 필요.
           default:
             break;
         }
@@ -121,6 +122,10 @@ const LoginPage = () => {
     loginWith(SOCIAL_PROVIDER.KAKAO);
   };
 
+  const handleAppleLogin = async () => {
+    loginWith(SOCIAL_PROVIDER.APPLE);
+  };
+
   return (
     <>
       <main className="main">
@@ -130,7 +135,12 @@ const LoginPage = () => {
           </video>
 
           <div className={cx('login-actions')}>
-            <button type="button" className={cx('button-login', 'apple')}>
+            <button
+              type="button"
+              id="appleid-signin"
+              className={cx('button-login', 'apple')}
+              onClick={handleAppleLogin}
+            >
               <IconApple className={cx('login-icon')} aria-hidden="true" />
               <span className={cx('login-text')}>Apple로 시작</span>
             </button>

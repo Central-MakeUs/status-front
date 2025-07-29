@@ -8,6 +8,7 @@ export const URL_SCHEME = import.meta.env.DEV
 export const SOCIAL_PROVIDER = {
   GOOGLE: 'GOOGLE',
   KAKAO: 'KAKAO',
+  APPLE: 'APPLE',
 } as const;
 
 export const AUTH_CONFIGS: Record<SocialProvider, AuthConfig> = {
@@ -23,6 +24,13 @@ export const AUTH_CONFIGS: Record<SocialProvider, AuthConfig> = {
     clientId: import.meta.env.VITE_KAKAO_CLIENT_ID,
     redirectUri: import.meta.env.VITE_KAKAO_REDIRECT_URI,
     responseType: 'code',
+  },
+  [SOCIAL_PROVIDER.APPLE]: {
+    endpoint: 'https://appleid.apple.com/auth/authorize',
+    clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
+    redirectUri: import.meta.env.VITE_APPLE_REDIRECT_URI,
+    responseType: 'code id_token',
+    responseMode: 'fragment',
   },
 } as const;
 
