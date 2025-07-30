@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
 import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { googleLogin, kakaoLogin } from '@/api/auth';
@@ -21,12 +21,12 @@ const cx = classNames.bind(styles);
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { loginWith } = useSocialAuth();
-  const { setPendingSocialUser, setUser, setIsAuthenticated } = useAuthStore(
+  const { loginWith } = useAuth();
+  const { user, setPendingSocialUser, setUser } = useAuthStore(
     useShallow((state) => ({
+      user: state.user,
       setPendingSocialUser: state.setPendingSocialUser,
       setUser: state.setUser,
-      setIsAuthenticated: state.setIsAuthenticated,
     }))
   );
 
@@ -66,7 +66,6 @@ const LoginPage = () => {
           navigate(PAGE_PATHS.SIGN_UP);
         } else {
           setUser(response.data as BasicUsers);
-          setIsAuthenticated(true);
           // [TODO] 인증 만료 후 로그인 페이지 접근 시 기존 페이지로 리다이렉트 처리
           navigate(PAGE_PATHS.ROOT);
         }
@@ -112,7 +111,7 @@ const LoginPage = () => {
       window.addEventListener('message', handleAuthResult);
       return () => window.removeEventListener('message', handleAuthResult);
     }
-  }, [isWebView, navigate, setPendingSocialUser, setUser, setIsAuthenticated]);
+  }, [isWebView, navigate, setPendingSocialUser, setUser]);
 
   const handleGoogleLogin = () => {
     loginWith(SOCIAL_PROVIDER.GOOGLE);
@@ -125,6 +124,10 @@ const LoginPage = () => {
   const handleAppleLogin = async () => {
     loginWith(SOCIAL_PROVIDER.APPLE);
   };
+
+  if (user) {
+    return <Navigate to={PAGE_PATHS.ROOT} />;
+  }
 
   return (
     <>

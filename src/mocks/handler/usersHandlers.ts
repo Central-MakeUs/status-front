@@ -1,5 +1,5 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockUserInfo } from '@/mocks/data/users';
+import { mockGoogleUser, mockUserInfo } from '@/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 
 export const API_URL = import.meta.env.VITE_API_URL;
@@ -11,6 +11,12 @@ export const usersHandlers = [
 
     return HttpResponse.json({
       data: mockUserInfo,
+    });
+  }),
+  http.get(`${API_URL}/auth/me`, () => {
+    return HttpResponse.json({
+      status: '200',
+      data: mockGoogleUser,
     });
   }),
   http.post(`${API_URL}/users/sign-up`, async ({ request }) => {

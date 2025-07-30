@@ -1,11 +1,14 @@
 import { useCallback } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { AUTH_CONFIGS } from '@/constants/auth';
+import { useAuthStore } from '@/stores/authStore';
+import { getCookie } from '@/utils/cookie';
+import { useGetCurrentUser } from '@/api/hooks/auth/useGetCurrentUser';
+import { WEB_VIEW_MESSAGE_TYPE } from '@/constants/webView';
+
 import type { SocialProvider } from '@/types/auth';
 
-export const createOAuthURL = (
-  provider: SocialProvider,
-  state: string
-): string => {
+const createOAuthURL = (provider: SocialProvider, state: string): string => {
   const config = AUTH_CONFIGS[provider];
 
   const params = new URLSearchParams({
@@ -19,8 +22,29 @@ export const createOAuthURL = (
   return `${config.endpoint}?${params.toString()}`;
 };
 
-export const useSocialAuth = () => {
+export const useAuth = () => {
   const isWebView = window.ReactNativeWebView !== undefined;
+
+  const { setUser } = useAuthStore(
+    useShallow((state) => ({
+      setUser: state.setUser,
+    }))
+  );
+
+  const { data: currentUser, isLoading } = useGetCurrentUser();
+
+  const validateAuth = useCallback(async () => {
+    const accessToken = getCookie('accessToken');
+    if (!accessToken) {
+      setUser(null);
+
+      return;
+    }
+
+    if (currentUser) {
+      setUser(currentUser.data ?? null);
+    }
+  }, [setUser, currentUser]);
 
   const loginWith = useCallback(
     (provider: SocialProvider) => {
@@ -35,7 +59,7 @@ export const useSocialAuth = () => {
       if (isWebView && window.ReactNativeWebView) {
         window.ReactNativeWebView.postMessage(
           JSON.stringify({
-            type: 'OPEN_EXTERNAL_BROWSER',
+            type: WEB_VIEW_MESSAGE_TYPE.OPEN_EXTERNAL_BROWSER,
             url,
           })
         );
@@ -46,5 +70,5 @@ export const useSocialAuth = () => {
     [isWebView]
   );
 
-  return { loginWith };
+  return { validateAuth, loginWith, isLoading };
 };

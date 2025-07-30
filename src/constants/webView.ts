@@ -1,0 +1,3 @@
+export const WEB_VIEW_MESSAGE_TYPE = {
+  OPEN_EXTERNAL_BROWSER: 'OPEN_EXTERNAL_BROWSER',
+} as const;

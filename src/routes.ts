@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { RootLayout } from '@/layouts/RootLayout';
 import { BottomNavigationLayout } from '@/layouts/BottomNavigationLayout';
-import { ProtectedLayout } from './layouts/ProtectedLayout';
+import { PrivateLayout } from '@/layouts/PrivateLayout';
 
 const StatusPage = lazy(() => import('@/pages/status/StatusPage'));
 const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
     Component: RootLayout,
     children: [
       {
-        Component: ProtectedLayout,
+        Component: PrivateLayout,
         children: [
           {
             Component: BottomNavigationLayout,
@@ -91,14 +91,14 @@ export const router = createBrowserRouter([
             Component: StepResultPage,
           },
           {
-            path: PAGE_PATHS.SIGN_UP,
-            Component: SignUpPage,
-          },
-          {
             path: PAGE_PATHS.TUTORIAL,
             Component: TutorialPage,
           },
         ],
+      },
+      {
+        path: PAGE_PATHS.SIGN_UP,
+        Component: SignUpPage,
       },
       {
         path: PAGE_PATHS.LOGIN,

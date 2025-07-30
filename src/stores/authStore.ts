@@ -7,10 +7,8 @@ import { devtools } from 'zustand/middleware';
 interface AuthState {
   pendingSocialUser: OAuthProvider | null;
   user: BasicUsers | null;
-  isAuthenticated: boolean;
   setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => void;
   setUser: (user: BasicUsers | null) => void;
-  setIsAuthenticated: (isAuthenticated: boolean) => void;
   clear: () => void;
 }
 
@@ -19,7 +17,6 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       pendingSocialUser: null,
       user: null,
-      isAuthenticated: false,
 
       setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => {
         set(() => ({
@@ -33,17 +30,10 @@ export const useAuthStore = create<AuthState>()(
         }));
       },
 
-      setIsAuthenticated: (isAuthenticated: boolean) => {
-        set(() => ({
-          isAuthenticated,
-        }));
-      },
-
       clear: () => {
         set(() => ({
           pendingSocialUser: null,
           user: null,
-          isAuthenticated: false,
         }));
       },
     }),

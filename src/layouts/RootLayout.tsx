@@ -1,13 +1,23 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ServerErrorPage } from '@/pages/errors/ServerErrorPage';
 import { Loading } from '@/components/ui/Loading/Loading';
+import { useAuth } from '@/hooks/useAuth';
 
 export const RootLayout = () => {
+  const { validateAuth, isLoading } = useAuth();
   const location = useLocation();
   const pathname = location.pathname;
+
+  useEffect(() => {
+    validateAuth();
+  }, [validateAuth]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   /**
    * [TODO] HOME 기준
