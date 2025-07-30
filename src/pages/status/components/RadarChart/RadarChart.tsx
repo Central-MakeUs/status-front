@@ -140,6 +140,7 @@ export const RadarChart = ({
 
       iconImages.forEach((img, i) => {
         const angle = ((Math.PI * 2) / iconImages.length) * i - Math.PI / 2;
+
         const x = centerX + radius * Math.cos(angle) - 18;
         const y = centerY + radius * Math.sin(angle) - 18;
 
