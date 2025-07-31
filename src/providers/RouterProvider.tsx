@@ -10,6 +10,7 @@ import { PrivateLayout } from '@/layouts/PrivateLayout';
 import { getCookie } from '@/utils/cookie';
 import { queryClient } from '@/lib/queryClient';
 import { getCurrentUser } from '@/api/users';
+import { Loading } from '@/components/ui/Loading/Loading';
 
 const StatusPage = lazy(() => import('@/pages/status/StatusPage'));
 const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
@@ -58,6 +59,7 @@ export default function RouterProvider() {
       path: '/',
       Component: RootLayout,
       loader: authLoader,
+      hydrateFallbackElement: <Loading />,
       children: [
         {
           Component: PrivateLayout,
