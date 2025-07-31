@@ -29,8 +29,18 @@ import { usePostUserGiveUpMainQuest } from '@/api/hooks/quest/usePostUserGiveUpM
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
+import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
+import { useGetStatusList } from '@/api/hooks/status/useGetStatus';
 
 const cx = classNames.bind(styles);
+
+const selectedStatusDefault = {
+  value: 0,
+  growth: 0,
+  level: 0,
+  fullXp: 0,
+  xpLeft: 0,
+};
 
 const QuestDetailPage = () => {
   const navigate = useNavigate();
@@ -40,6 +50,7 @@ const QuestDetailPage = () => {
 
   const { data: quest } = useGetUserMainQuest(userId, mainQuestId || '');
   const { data: subQuests } = useGetUserSubQuests(userId, mainQuestId || '');
+  const { data: statusLists } = useGetStatusList(userId);
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
   const [selectedSubQuest, setSelectedSubQuest] = useState<UserSubQuest | null>(
@@ -54,6 +65,11 @@ const QuestDetailPage = () => {
 
   const postUserSubQuestLog = usePostUserSubQuestLog();
   const postUserGiveUpMainQuest = usePostUserGiveUpMainQuest();
+  const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
+  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+  const selectedStatus =
+    statusLists?.mentality.find((attr) => attr.id === selectedStatusKey) ??
+    statusLists?.skill.find((attr) => attr.id === selectedStatusKey);
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMemo(event.target.value);
@@ -147,7 +163,14 @@ const QuestDetailPage = () => {
             <strong className={cx('main-quest-title')}>{quest.title}</strong>
             <ul className={cx('reward-list')}>
               {quest.attributes?.map((attribute: AttributeReward) => (
-                <li key={attribute.attributeId} className={cx('reward-item')}>
+                <li
+                  key={attribute.attributeId}
+                  className={cx('reward-item')}
+                  onClick={() => {
+                    setIsStatusBottomSheetOpen(true);
+                    setSelectedStatusKey(attribute.attributeId);
+                  }}
+                >
                   <AttributeIcon id={attribute.attributeId} />
                   <span className={cx('reward-text')}>+{attribute.exp}xp</span>
                 </li>
@@ -193,6 +216,15 @@ const QuestDetailPage = () => {
         isOpen={isGiveUpDialogOpen}
         onClose={() => setIsGiveUpDialogOpen(false)}
         onConfirm={handleQuestGiveUp}
+      />
+      <StatusDetailBottomSheet
+        isOpen={isStatusBottomSheetOpen}
+        onClose={() => {
+          setIsStatusBottomSheetOpen(false);
+          setSelectedStatusKey(101);
+        }}
+        statusKey={selectedStatusKey}
+        status={selectedStatus ?? selectedStatusDefault}
       />
     </>
   );
