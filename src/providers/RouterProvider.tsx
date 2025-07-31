@@ -41,7 +41,7 @@ const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
 const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
 
 async function authLoader() {
-  const accessToken = getCookie('accessToken');
+  const accessToken = getCookie('access_token');
 
   if (!accessToken) {
     return null;

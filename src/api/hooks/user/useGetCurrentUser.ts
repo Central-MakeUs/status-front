@@ -3,7 +3,7 @@ import { getCookie } from '@/utils/cookie';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetCurrentUser = () => {
-  const accessToken = getCookie('accessToken');
+  const accessToken = getCookie('access_token');
 
   return useQuery({
     queryKey: ['users', 'me'],

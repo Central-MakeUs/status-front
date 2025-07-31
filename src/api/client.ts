@@ -31,7 +31,7 @@ const request = async <T = unknown>(
   });
 
   if (response.status === 401 && !options._retry) {
-    const refreshToken = getCookie('refreshToken');
+    const refreshToken = getCookie('refresh_token');
 
     if (refreshToken) {
       await refreshAccessToken();

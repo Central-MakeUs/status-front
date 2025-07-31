@@ -21,9 +21,9 @@ export const usersHandlers = [
     const { nickname } = (await request.json()) as SignUpRequestDTO;
 
     document.cookie =
-      'accessToken=mock-access-token; path=/; SameSite=Lax; max-age=3000';
+      'access_token=mock-access-token; path=/; SameSite=Lax; max-age=3600';
     document.cookie =
-      'refreshToken=mock-refresh-token; path=/; SameSite=Lax; max-age=3000';
+      'refresh_token=mock-refresh-token; path=/; SameSite=Lax; max-age=1209600';
 
     return HttpResponse.json({
       status: '201',
@@ -39,7 +39,7 @@ export const usersHandlers = [
       return passthrough();
     }
 
-    if (!document.cookie.includes('accessToken')) {
+    if (!document.cookie.includes('access_token')) {
       return HttpResponse.json({
         status: '500',
         code: '00-001',
@@ -47,8 +47,8 @@ export const usersHandlers = [
       });
     }
 
-    document.cookie = 'accessToken=; path=/; SameSite=Lax; max-age=0';
-    document.cookie = 'refreshToken=; path=/; SameSite=Lax; max-age=0';
+    document.cookie = 'access_token=; path=/; SameSite=Lax; max-age=0';
+    document.cookie = 'refresh_token=; path=/; SameSite=Lax; max-age=0';
 
     return HttpResponse.json({
       status: '204',
@@ -76,7 +76,7 @@ export const usersHandlers = [
     });
   }),
   http.get(`${API_URL}/users/me`, () => {
-    if (!document.cookie.includes('accessToken')) {
+    if (!document.cookie.includes('access_token')) {
       return HttpResponse.json({
         status: '500',
         code: '00-001',
