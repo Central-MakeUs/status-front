@@ -1,8 +1,10 @@
-import type { AttributeDTO } from '@/api/types/attribute';
+import type { AttributeReturnDTO } from '@/api/types/attribute';
+import { ATTRIBUTE_TYPES } from '@/constants/attribute';
 
-export type AttributeType = 'mentality' | 'skill';
+export type AttributeType =
+  (typeof ATTRIBUTE_TYPES)[keyof typeof ATTRIBUTE_TYPES];
 
-export type Attribute = AttributeDTO;
+export type Attribute = AttributeReturnDTO;
 
 export type AttributeReward = Attribute & {
   exp: number;

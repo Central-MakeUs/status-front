@@ -26,6 +26,13 @@ export const ATTRIBUTE_ICONS = {
   206: IconAttribute206,
 } as const;
 
+export const ATTRIBUTE_TYPES = {
+  MENTALITY: 'MENTALITY',
+  SKILL: 'SKILL',
+} as const;
+
+export const MAX_ATTRIBUTE_COUNT = 2;
+
 export const ATTRIBUTE_TEXTS = {
   101: '인내',
   102: '집중',

@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
-import { useGetRandomMainQuestByCategoryId } from '@/api/hooks/quest/useGetRandomMainQuestByCategoryId';
+import { useGetMainQuests } from '@/api/hooks/quest/useGetMainQuests';
+import { useGetRandomMainQuests } from '@/api/hooks/quest/useGetRandomMainQuests';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
@@ -16,38 +17,56 @@ import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 
 export const StepMainQuestPage = () => {
   const navigate = useNavigate();
-  const { selectedCategory, selectedMainQuest, setSelectedMainQuest } =
-    useQuestCreationStore(
-      useShallow((state) => ({
-        selectedCategory: state.selectedCategory,
-        selectedMainQuest: state.selectedMainQuest,
-        setSelectedMainQuest: state.setSelectedMainQuest,
-      }))
-    );
+  const {
+    selectedAttributes,
+    selectedTheme,
+    selectedMainQuest,
+    setSelectedMainQuest,
+  } = useQuestCreationStore(
+    useShallow((state) => ({
+      selectedAttributes: state.selectedAttributes,
+      selectedTheme: state.selectedTheme,
+      selectedMainQuest: state.selectedMainQuest,
+      setSelectedMainQuest: state.setSelectedMainQuest,
+    }))
+  );
 
-  /**
-   * [TODO] URL로 접근하는 등 validation 체크 로직
-   * 전체 스탭에서 공통화 할 수 있을지도 고민해보기 e.g. 라우터에서 처리?
-   */
   useEffect(() => {
-    if (!selectedCategory) {
-      navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE, { replace: true });
+    if (!selectedTheme) {
+      navigate(PAGE_PATHS.QUEST_NEW_THEME, { replace: true });
     }
-  }, [selectedCategory, navigate]);
+  }, [selectedTheme, navigate]);
 
-  const { data, isLoading, isRefetching, refetch } =
-    useGetRandomMainQuestByCategoryId({
-      categoryId: selectedCategory?.id.toString() ?? '',
-      limit: 6,
-    });
+  const selectedAttributeIds = useMemo(
+    () => selectedAttributes.map((attribute) => attribute.attributeId),
+    [selectedAttributes]
+  );
+
+  const selectedThemeId = useMemo(
+    () => selectedTheme?.id ?? 0,
+    [selectedTheme]
+  );
+
+  const { data, isLoading, isRefetching } = useGetMainQuests({
+    attributes: selectedAttributeIds,
+    theme: selectedThemeId,
+  });
+
+  const currentMainQuestIds = data?.map((quest) => quest.id) ?? [];
+
+  const { refreshMainQuests } = useGetRandomMainQuests();
 
   const handleClickRefreshButton = () => {
     setSelectedMainQuest(null);
-    refetch();
+    refreshMainQuests({
+      attributes: selectedAttributeIds,
+      theme: selectedThemeId,
+      mainQuests: currentMainQuestIds,
+    });
   };
 
   const handleClickNextButton = () => {
-    if (!selectedCategory) {
+    if (!selectedMainQuest) {
       return;
     }
 
@@ -59,9 +78,9 @@ export const StepMainQuestPage = () => {
       <Header title="퀘스트 만들기" hasBackButton={true} />
       <main className="main">
         <StepTitle logo={<IconLogo />}>메인 퀘스트를 선택해주세요!</StepTitle>
-        {selectedCategory && (
+        {selectedTheme && (
           <StepDescription>
-            {selectedCategory?.name}에 맞는 메일 퀘스트를 추천해드렸어요.
+            {selectedTheme?.name}에 맞는 메일 퀘스트를 추천해드렸어요.
           </StepDescription>
         )}
         {isLoading || isRefetching ? (

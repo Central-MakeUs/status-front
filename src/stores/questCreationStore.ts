@@ -1,21 +1,20 @@
 import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 import { getTodayString } from '@/utils/date';
 
 import type { Attribute } from '@/types/attribute';
-import type { Category } from '@/types/category';
-import type { UserMainQuest, UserSubQuest } from '@/types/quest';
+import type { MainQuest, Theme } from '@/types/quest';
+import type { UserSubQuest } from '@/types/quest';
 
 interface QuestCreationState {
-  selectedMentalityAttribute: Attribute | null;
-  selectedSkillAttribute: Attribute | null;
-  selectedCategory: Category | null;
-  selectedMainQuest: UserMainQuest | null;
+  selectedAttributes: Attribute[];
+  selectedTheme: Theme | null;
+  selectedMainQuest: MainQuest | null;
   selectedSubQuestIds: string[];
   subQuests: UserSubQuest[];
-  setSelectedMentalityAttribute: (attribute: Attribute | null) => void;
-  setSelectedSkillAttribute: (attribute: Attribute | null) => void;
-  setSelectedCategory: (category: Category | null) => void;
-  setSelectedMainQuest: (mainQuest: UserMainQuest | null) => void;
+  toggleAttributeSelection: (attribute: Attribute) => void;
+  setSelectedTheme: (theme: Theme | null) => void;
+  setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
   setSubQuests: (subQuests: UserSubQuest[]) => void;
   updateSubQuest: (subQuest: UserSubQuest) => void;
   toggleSubQuestSelection: (subQuestId: string) => void;
@@ -25,112 +24,116 @@ interface QuestCreationState {
 }
 
 export const useQuestCreationStore = create<QuestCreationState>()(
-  (set, get) => ({
-    selectedMentalityAttribute: null,
-    selectedSkillAttribute: null,
-    selectedCategory: null,
-    selectedMainQuest: null,
-    subQuests: [],
-    selectedSubQuestIds: [],
-    setSelectedMentalityAttribute: (attribute) =>
-      set(() => ({
-        selectedMentalityAttribute: attribute,
-        selectedCategory: null,
-        selectedMainQuest: null,
-        subQuests: [],
-        selectedSubQuestIds: [],
-      })),
+  devtools(
+    (set, get) => ({
+      selectedAttributes: [],
+      selectedTheme: null,
+      selectedMainQuest: null,
+      subQuests: [],
+      selectedSubQuestIds: [],
 
-    setSelectedSkillAttribute: (attribute) =>
-      set(() => ({
-        selectedSkillAttribute: attribute,
-        selectedCategory: null,
-        selectedMainQuest: null,
-        subQuests: [],
-        selectedSubQuestIds: [],
-      })),
+      toggleAttributeSelection: (selectedAttribute) =>
+        set((state) => ({
+          selectedAttributes: state.selectedAttributes.includes(
+            selectedAttribute
+          )
+            ? state.selectedAttributes.filter(
+                (attribute) =>
+                  attribute.attributeId !== selectedAttribute.attributeId
+              )
+            : [...state.selectedAttributes, selectedAttribute],
+          selectedTheme: null,
+          selectedMainQuest: null,
+          subQuests: [],
+          selectedSubQuestIds: [],
+        })),
 
-    setSelectedCategory: (category) =>
-      set(() => ({
-        selectedCategory: category,
-        selectedMainQuest: null,
-        subQuests: [],
-        selectedSubQuestIds: [],
-      })),
+      setSelectedTheme: (theme) =>
+        set(() => ({
+          selectedTheme: theme,
+          selectedMainQuest: null,
+          subQuests: [],
+          selectedSubQuestIds: [],
+        })),
 
-    setSelectedMainQuest: (mainQuest) =>
-      set(() => ({
-        selectedMainQuest: mainQuest
-          ? {
-              ...mainQuest,
-              startDate: getTodayString(),
-              endDate: '',
-            }
-          : null,
-        subQuests: [],
-        selectedSubQuestIds: [],
-      })),
+      setSelectedMainQuest: (mainQuest) =>
+        set(() => ({
+          selectedMainQuest: mainQuest
+            ? {
+                ...mainQuest,
+                startDate: getTodayString(),
+                endDate: '',
+              }
+            : null,
+          subQuests: [],
+          selectedSubQuestIds: [],
+        })),
 
-    setSubQuests: (newSubQuests) =>
-      set((state) => {
-        const updatedSubQuests = newSubQuests.map((newSubQuest) => {
-          const existingSubQuest = state.subQuests.find(
-            (existing) => existing.id === newSubQuest.id
-          );
-          return existingSubQuest || newSubQuest;
-        });
+      setSubQuests: (newSubQuests) =>
+        set((state) => {
+          const updatedSubQuests = newSubQuests.map((newSubQuest) => {
+            const existingSubQuest = state.subQuests.find(
+              (existing) => existing.id === newSubQuest.id
+            );
+            return existingSubQuest || newSubQuest;
+          });
 
-        return { subQuests: updatedSubQuests };
-      }),
+          return { subQuests: updatedSubQuests };
+        }),
 
-    updateSubQuest: (updatedSubQuest) =>
-      set((state) => ({
-        subQuests: state.subQuests.map((subQuest) =>
-          subQuest.id === updatedSubQuest.id ? updatedSubQuest : subQuest
-        ),
-      })),
+      updateSubQuest: (updatedSubQuest) =>
+        set((state) => ({
+          subQuests: state.subQuests.map((subQuest) =>
+            subQuest.id === updatedSubQuest.id ? updatedSubQuest : subQuest
+          ),
+        })),
 
-    toggleSubQuestSelection: (subQuestId) =>
-      set((state) => {
-        const isSelected = state.selectedSubQuestIds.includes(subQuestId);
+      toggleSubQuestSelection: (subQuestId) =>
+        set((state) => {
+          const isSelected = state.selectedSubQuestIds.includes(subQuestId);
 
-        if (isSelected) {
+          if (isSelected) {
+            return {
+              selectedSubQuestIds: state.selectedSubQuestIds.filter(
+                (id) => id !== subQuestId
+              ),
+            };
+          }
           return {
-            selectedSubQuestIds: state.selectedSubQuestIds.filter(
-              (id) => id !== subQuestId
-            ),
+            selectedSubQuestIds: [...state.selectedSubQuestIds, subQuestId],
           };
-        }
-        return {
-          selectedSubQuestIds: [...state.selectedSubQuestIds, subQuestId],
-        };
-      }),
+        }),
 
-    setStartDate: (startDate) =>
-      set((state) => ({
-        selectedMainQuest: state.selectedMainQuest
-          ? {
-              ...state.selectedMainQuest,
-              startDate,
-            }
-          : null,
-      })),
+      setStartDate: (startDate) =>
+        set((state) => ({
+          selectedMainQuest: state.selectedMainQuest
+            ? {
+                ...state.selectedMainQuest,
+                startDate,
+              }
+            : null,
+        })),
 
-    setEndDate: (endDate) =>
-      set((state) => ({
-        selectedMainQuest: state.selectedMainQuest
-          ? {
-              ...state.selectedMainQuest,
-              endDate,
-            }
-          : null,
-      })),
+      setEndDate: (endDate) =>
+        set((state) => ({
+          selectedMainQuest: state.selectedMainQuest
+            ? {
+                ...state.selectedMainQuest,
+                endDate,
+              }
+            : null,
+        })),
 
-    getSelectedSubQuests: () => {
-      const { subQuests, selectedSubQuestIds } = get();
-      return subQuests.filter((subQuest) =>
-        selectedSubQuestIds.includes(subQuest.id)
-      );
-    },
-  })
+      getSelectedSubQuests: () => {
+        const { subQuests, selectedSubQuestIds } = get();
+        return subQuests.filter((subQuest) =>
+          selectedSubQuestIds.includes(subQuest.id)
+        );
+      },
+    }),
+    {
+      name: 'questCreationStore',
+      enabled: import.meta.env.DEV,
+    }
+  )
 );

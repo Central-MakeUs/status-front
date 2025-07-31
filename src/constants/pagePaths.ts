@@ -3,7 +3,7 @@ export const PAGE_PATHS = {
   STATUS: '/status',
   QUEST: '/quest',
   QUEST_NEW_ATTRIBUTE: '/quest/new/attribute',
-  QUEST_NEW_CATEGORY: '/quest/new/category',
+  QUEST_NEW_THEME: '/quest/new/theme',
   QUEST_NEW_MAIN_QUEST: '/quest/new/main-quest',
   QUEST_NEW_SUB_QUEST: '/quest/new/sub-quest',
   QUEST_NEW_SCHEDULE: '/quest/new/schedule',

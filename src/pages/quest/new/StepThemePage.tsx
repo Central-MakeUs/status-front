@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetRandomCategoriesByAttributes } from '@/api/hooks/category';
+import { useGetThemes } from '@/api/hooks/quest/useGetThemes';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { Header } from '@/components/ui/Header/Header';
@@ -11,29 +11,20 @@ import { StepDescription } from '@/pages/quest/new/components/StepDescription/St
 import { StepRadioGroupSkeleton } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroupSkeleton';
 import { StepRadioGroup } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroup';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
+import { useGetRandomThemes } from '@/api/hooks/quest/useGetRandomThemes';
 
 export const StepCategoryPage = () => {
   const navigate = useNavigate();
-  const {
-    selectedCategory,
-    selectedMentalityAttribute,
-    selectedSkillAttribute,
-    setSelectedCategory,
-  } = useQuestCreationStore(
-    useShallow((state) => ({
-      selectedCategory: state.selectedCategory,
-      selectedMentalityAttribute: state.selectedMentalityAttribute,
-      selectedSkillAttribute: state.selectedSkillAttribute,
-      setSelectedCategory: state.setSelectedCategory,
-    }))
-  );
+  const { selectedAttributes, selectedTheme, setSelectedTheme } =
+    useQuestCreationStore(
+      useShallow((state) => ({
+        selectedAttributes: state.selectedAttributes,
+        selectedTheme: state.selectedTheme,
+        setSelectedTheme: state.setSelectedTheme,
+      }))
+    );
 
-  /**
-   * [TODO] URL로 접근하는 등 validation 체크 로직
-   * 전체 스탭에서 공통화 할 수 있을지도 고민해보기 e.g. 라우터에서 처리?
-   */
-  const isValidAttributes =
-    selectedMentalityAttribute && selectedSkillAttribute;
+  const isValidAttributes = selectedAttributes.length > 0;
 
   useEffect(() => {
     if (!isValidAttributes) {
@@ -41,24 +32,39 @@ export const StepCategoryPage = () => {
     }
   }, [isValidAttributes, navigate]);
 
-  const { data, isLoading, isRefetching, refetch } =
-    useGetRandomCategoriesByAttributes({
-      attributeIds: isValidAttributes
-        ? [
-            selectedMentalityAttribute.attributeId,
-            selectedSkillAttribute.attributeId,
-          ]
-        : [],
-      limit: 6,
-    });
+  const attributeNames = useMemo(
+    () =>
+      selectedAttributes.reduce(
+        (acc, attribute) => `[${acc}],[${attribute.name}]`,
+        ''
+      ),
+    [selectedAttributes]
+  );
+
+  const selectedAttributeIds = useMemo(
+    () => selectedAttributes.map((attribute) => attribute.attributeId),
+    [selectedAttributes]
+  );
+
+  const { data, isLoading, isRefetching } = useGetThemes({
+    attributes: selectedAttributeIds,
+  });
+
+  const currentThemeIds = data?.map((theme) => theme.id) ?? [];
+
+  const { refreshThemes } = useGetRandomThemes();
 
   const handleClickRefreshButton = () => {
-    setSelectedCategory(null);
-    refetch();
+    setSelectedTheme(null);
+
+    refreshThemes({
+      attributes: selectedAttributeIds,
+      themes: currentThemeIds,
+    });
   };
 
   const handleClickNextButton = () => {
-    if (!selectedCategory) {
+    if (!selectedTheme) {
       return;
     }
 
@@ -71,7 +77,7 @@ export const StepCategoryPage = () => {
       <main className="main">
         <StepTitle>시도하고 싶은 카테고리를 선택하세요!</StepTitle>
         <StepDescription>
-          {`${selectedMentalityAttribute?.name}, ${selectedSkillAttribute?.name}을(를) 성장시킬 수 있는 카테고리를 추천해드렸어요`}
+          {attributeNames}을(를) 성장시킬 수 있는 카테고리를 추천해드렸어요
         </StepDescription>
 
         {isLoading || isRefetching ? (
@@ -80,8 +86,8 @@ export const StepCategoryPage = () => {
           <StepRadioGroup
             label="카테고리 선택"
             data={data}
-            value={selectedCategory}
-            onClick={setSelectedCategory}
+            value={selectedTheme}
+            onClick={setSelectedTheme}
           />
         )}
 
@@ -90,7 +96,7 @@ export const StepCategoryPage = () => {
           isLoading={isLoading || isRefetching}
         />
       </main>
-      <StepActions disabled={!selectedCategory} onClick={handleClickNextButton}>
+      <StepActions disabled={!selectedTheme} onClick={handleClickNextButton}>
         다음
       </StepActions>
     </>

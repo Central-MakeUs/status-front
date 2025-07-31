@@ -7,7 +7,7 @@ import styles from './StepRadioGroup.module.scss';
 const cx = classNames.bind(styles);
 
 type Identifiable = {
-  id: string;
+  id: number;
 };
 
 type Displayable = { title: string } | { name: string };

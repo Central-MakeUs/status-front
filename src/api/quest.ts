@@ -2,15 +2,91 @@ import { api } from '@/api/client';
 import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
-  GetRandomMainQuestByCategoryIdParams,
   GetRandomSubQuestByMainQuestIdParams,
   QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
   UserCompletedHistoryDTO,
   UserMainQuestGiveUpRequestDTO,
+  GetThemesParams,
+  GetRandomThemesParams,
+  MainQuestResponseDTO,
+  GetMainQuestsParams,
+  GetRandomMainQuestsParams,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
+import type { ThemeResponseDTO } from '@/api/types/quest';
+
+export const getThemes = async ({
+  attributes = [],
+}: GetThemesParams): Promise<ThemeResponseDTO[]> => {
+  const params: Record<string, string> = {
+    attributes: attributes.join(','),
+  };
+
+  const response = await api.get<ApiResponse<ThemeResponseDTO[]>>(
+    `/quest/get-themes`,
+    {
+      params,
+    }
+  );
+
+  return response.data ?? [];
+};
+
+export const getRandomThemes = async ({
+  attributes = [],
+  themes = [],
+}: GetRandomThemesParams): Promise<ThemeResponseDTO[]> => {
+  const params: Record<string, string> = {
+    attributes: attributes.join(','),
+    themes: themes.join(','),
+  };
+
+  const response = await api.get<ApiResponse<ThemeResponseDTO[]>>(
+    `/quest/reroll-themes`,
+    { params }
+  );
+  return response.data ?? [];
+};
+
+export const getMainQuests = async ({
+  attributes,
+  theme,
+}: GetMainQuestsParams): Promise<MainQuestResponseDTO[]> => {
+  const params: Record<string, string> = {
+    attributes: attributes.join(','),
+    theme: theme.toString(),
+  };
+
+  const response = await api.get<ApiResponse<MainQuestResponseDTO[]>>(
+    '/quest/get-mainquests',
+    {
+      params,
+    }
+  );
+  return response.data ?? [];
+};
+
+export const getRandomMainQuests = async ({
+  attributes,
+  theme,
+  mainQuests,
+}: GetRandomMainQuestsParams): Promise<MainQuestResponseDTO[]> => {
+  const params: Record<string, string> = {
+    attributes: attributes.join(','),
+    theme: theme.toString(),
+    mainQuests: mainQuests.join(','),
+  };
+
+  const response = await api.get<ApiResponse<MainQuestResponseDTO[]>>(
+    '/quest/reroll-mainquests',
+    {
+      params,
+    }
+  );
+  return response.data ?? [];
+};
 
 export const getUserMainQuests = async (
   userId: string
@@ -46,24 +122,6 @@ export const getUserSubQuests = async (
 ): Promise<UserSubQuestDTO[]> => {
   const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
     `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
-  );
-  return response.data ?? [];
-};
-
-export const getRandomMainQuestByCategoryId = async ({
-  categoryId,
-  limit = 6,
-}: GetRandomMainQuestByCategoryIdParams): Promise<UserMainQuestDTO[]> => {
-  const params: Record<string, string> = {
-    categoryId: categoryId,
-    limit: limit.toString(),
-  };
-
-  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(
-    '/main-quests',
-    {
-      params,
-    }
   );
   return response.data ?? [];
 };

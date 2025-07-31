@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, passthrough } from 'msw';
 import {
   mockMainQuests,
   mockSubQuests,
@@ -11,25 +11,71 @@ import type {
   QuestCreationRequestDTO,
   UserSubQuestLogResponseDTO,
 } from '@/api/types/quest';
+import { mockThemes } from '@/mocks/data/quest';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
 export const questHandlers = [
-  http.get(`${API_URL}/users/:userId/main-quests`, () => {
+  http.get(`${API_URL}/quest/get-themes`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const themes = mockThemes.sort(() => Math.random() - 0.5).slice(0, 6);
+
     return HttpResponse.json({
-      data: mockUserMainQuests,
+      data: themes,
     });
   }),
-  http.get(`${API_URL}/main-quests`, ({ request }) => {
-    const params = new URL(request.url).searchParams;
-    const limit = params.get('limit');
+  http.get(`${API_URL}/quest/reroll-themes`, ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
 
-    const quests = mockMainQuests
+    const params = new URL(request.url).searchParams;
+    const themes = params.get('themes')?.split(',') ?? [];
+
+    const filteredThemes = mockThemes
+      .filter((theme) => !themes?.includes(theme.id.toString()))
       .sort(() => Math.random() - 0.5)
-      .slice(0, Number(limit));
+      .slice(0, 6);
+
+    return HttpResponse.json({
+      data: filteredThemes,
+    });
+  }),
+  http.get(`${API_URL}/quest/get-mainquests`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const quests = mockMainQuests.slice(0, 6);
 
     return HttpResponse.json({
       data: quests,
+    });
+  }),
+  http.get(`${API_URL}/quest/reroll-mainquests`, ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const params = new URL(request.url).searchParams;
+    const mainQuests = params.get('mainQuests')?.split(',') ?? [];
+
+    const filteredQuests = mockMainQuests
+      .filter((quest) => !mainQuests?.includes(quest.id.toString()))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 6);
+
+    return HttpResponse.json({
+      data: filteredQuests,
+    });
+  }),
+
+  http.get(`${API_URL}/users/:userId/main-quests`, () => {
+    return HttpResponse.json({
+      data: mockUserMainQuests,
     });
   }),
   http.get(`${API_URL}/users/:userId/main-quest/:mainQuestId`, ({ params }) => {
@@ -97,7 +143,7 @@ export const questHandlers = [
         {
           attributeId: 101,
           name: '제어',
-          type: 'mentality',
+          type: 'MENTALITY',
           level: 1,
           exp: 50,
         },

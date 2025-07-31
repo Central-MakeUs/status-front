@@ -1,108 +1,115 @@
 import { SUB_QUEST_FREQUENCY } from '@/constants/quest';
 import type {
   MainQuest,
+  Theme,
   TodayCompletedQuest,
   UserMainQuest,
   UserSubQuest,
 } from '@/types/quest';
 
-export const userQuestMapping: Record<string, string[]> = {
-  '1': ['1', '2', '3', '6'],
-  '2': ['2', '4', '5', '7', '8'],
-  '3': ['1', '3', '4', '5', '6', '8'],
-  '4': ['7', '8'],
-};
+export const mockThemes: Theme[] = [
+  {
+    id: 1,
+    name: '디지털 사용 절제',
+  },
+  {
+    id: 2,
+    name: '건강 루틴 만들기',
+  },
+  {
+    id: 3,
+    name: '감정 인식 훈련',
+  },
+  {
+    id: 4,
+    name: '집중 환경 조성',
+  },
+  {
+    id: 5,
+    name: '창작 습관 만들기',
+  },
+  {
+    id: 6,
+    name: '의사소통 훈련',
+  },
+  {
+    id: 7,
+    name: '목표 계획 루틴',
+  },
+  {
+    id: 8,
+    name: '기록 습관 형성',
+  },
+  {
+    id: 9,
+    name: '학습 루틴 만들기',
+  },
+  {
+    id: 10,
+    name: '새로운 시도 도전',
+  },
+  {
+    id: 11,
+    name: '체력 단련 루틴',
+  },
+  {
+    id: 12,
+    name: '아침 루틴 정착',
+  },
+];
 
 export const mockMainQuests: MainQuest[] = [
   {
-    id: '1',
-    title: '일주일간 하루 알림 확인 시간 제한하기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1001,
+    name: '스마트폰 사용 패턴 분석 습관 만들기',
   },
   {
-    id: '2',
-    title: '아침 1시간동안 핸드폰 잠금 유지 루틴 도전',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1002,
+    name: 'SNS 사용 절제 습관 만들기',
   },
   {
-    id: '3',
-    title:
-      '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1003,
+    name: '디지털 방해 없는 몰입 시간 습관 만들기',
   },
   {
-    id: '4',
-    title:
-      '3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)3일 이상 SNS 사용 시간 30분 미만으로 유지하기 (2줄까지 가능, 3줄 이상은 안됨)',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1004,
+    name: '디지털 사용 시간 추적 습관 만들기',
   },
   {
-    id: '5',
-    title: 'test',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1005,
+    name: '디지털 차단 도구 활용 습관 만들기',
   },
   {
-    id: '6',
-    title: '독서 습관 만들기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1006,
+    name: '디지털 행동 돌아보기 습관 만들기',
   },
   {
-    id: '7',
-    title: '운동 루틴 정착하기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1007,
+    name: '집중 방해 요인 인식 습관 실험하기',
   },
   {
-    id: '8',
-    title: '명상 시간 갖기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1008,
+    name: '디지털 절제 행동 일기 쓰기 습관 만들기',
   },
   {
-    id: '9',
-    title: '일기 쓰기 습관',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1009,
+    name: '디지털 절제 습관 유지력 분석하기',
   },
   {
-    id: '10',
-    title: '건강한 식단 유지하기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1010,
+    name: '디지털 절제 성공 사례 따라 실천해보기',
   },
   {
-    id: '11',
-    title: '새로운 기술 학습하기',
-    attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
-    ],
+    id: 1011,
+    name: '디지털 절제 시간대 정해서 목표 세우기',
+  },
+  {
+    id: 1012,
+    name: '디지털 알림 차단하고 집중 환경 만들기',
+  },
+  {
+    id: 1013,
+    name: '스마트폰 차단하고 집중 공부 습관 만들기',
   },
 ];
 
@@ -115,8 +122,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -128,8 +135,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -141,8 +148,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -154,8 +161,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     repeatCnt: 3,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -167,8 +174,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -180,8 +187,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -193,8 +200,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -206,8 +213,8 @@ export const mockSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -221,8 +228,8 @@ export const mockUserMainQuests: UserMainQuest[] = [
     endDate: '2025-01-07',
     progress: 0,
     attributes: [
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 100 },
-      { attributeId: 102, name: '집중', type: 'mentality', level: 1, exp: 50 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 100 },
+      { attributeId: 102, name: '집중', type: 'MENTALITY', level: 1, exp: 50 },
     ],
   },
   {
@@ -232,8 +239,8 @@ export const mockUserMainQuests: UserMainQuest[] = [
     endDate: '2025-01-07',
     progress: 30,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 50 },
     ],
   },
 ];
@@ -247,8 +254,8 @@ export const mockUserSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     repeatCnt: 2,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: true,
   },
@@ -260,8 +267,8 @@ export const mockUserSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 50 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 100 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 50 },
     ],
     essential: true,
   },
@@ -273,8 +280,8 @@ export const mockUserSubQuests: UserSubQuest[] = [
     frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
     repeatCnt: 1,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     essential: false,
   },
@@ -287,8 +294,8 @@ export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
     xp: 30,
     frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     difficulty: 'easy',
     comment: '후후 이정도는 쉽죠?😈',
@@ -303,8 +310,8 @@ export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
     xp: 20,
     frequency: SUB_QUEST_FREQUENCY.DAILY.value,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     difficulty: 'hard',
     comment: '매일매일 실천 중!',
@@ -319,8 +326,8 @@ export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
     xp: 40,
     frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'skill', level: 1, exp: 5 },
-      { attributeId: 103, name: '제어', type: 'mentality', level: 1, exp: 3 },
+      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 5 },
+      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 3 },
     ],
     difficulty: 'default',
     comment: '오늘도 루틴 성공!',

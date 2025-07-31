@@ -1,11 +1,12 @@
 import type { AttributeType } from '@/types/attribute';
 
-export interface AttributeDTO {
+export interface AttributeReturnDTO {
   attributeId: number;
   name: string;
   type: AttributeType;
   description?: string;
   level: number;
+  exp: number;
 }
 
 export interface CreateAttributeDTO {

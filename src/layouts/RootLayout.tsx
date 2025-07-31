@@ -11,6 +11,7 @@ export const RootLayout = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
+  // [TODO] render phase랑 겹치는 케이스 존재. loader에서 처리 방법 고민 필요.
   if (userData) {
     setUser(userData.data);
   }

@@ -1,11 +1,30 @@
 import type { Attribute, AttributeReward } from '@/types/attribute';
-import type { Category } from '@/types/category';
 import type {
   SubQuestFrequencyValue,
   UserMainQuest,
   UserSubQuest,
   SubQuestDifficulty,
+  Theme,
 } from '@/types/quest';
+
+export interface ThemeResponseDTO {
+  id: number;
+  name: string;
+}
+
+export interface GetThemesParams {
+  attributes?: number[];
+}
+
+export interface GetRandomThemesParams {
+  attributes?: number[];
+  themes?: number[];
+}
+
+export interface MainQuestResponseDTO {
+  id: number;
+  name: string;
+}
 
 export interface MainQuestDTO {
   id: string;
@@ -34,9 +53,15 @@ export interface UserSubQuestDTO extends SubQuestDTO {
   essential: boolean;
 }
 
-export interface GetRandomMainQuestByCategoryIdParams {
-  categoryId: string;
-  limit: number;
+export interface GetMainQuestsParams {
+  attributes: number[];
+  theme: number;
+}
+
+export interface GetRandomMainQuestsParams {
+  attributes: number[];
+  theme: number;
+  mainQuests: number[];
 }
 
 export interface GetRandomSubQuestByMainQuestIdParams {
@@ -49,7 +74,7 @@ export interface QuestCreationRequestDTO {
   userId: string;
   mentalityAttribute: Attribute;
   skillAttribute: Attribute;
-  category: Category;
+  category: Theme;
   mainQuest: UserMainQuest;
   subQuests: UserSubQuest[];
 }

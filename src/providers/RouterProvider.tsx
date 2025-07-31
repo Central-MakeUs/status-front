@@ -19,9 +19,7 @@ const HistoryPage = lazy(() => import('@/pages/history/HistoryPage'));
 const StepAttributePage = lazy(
   () => import('@/pages/quest/new/StepAttributePage')
 );
-const StepCategoryPage = lazy(
-  () => import('@/pages/quest/new/StepCategoryPage')
-);
+const StepThemePage = lazy(() => import('@/pages/quest/new/StepThemePage'));
 const StepMainQuestPage = lazy(
   () => import('@/pages/quest/new/StepMainQuestPage')
 );
@@ -94,8 +92,8 @@ export default function RouterProvider() {
               Component: StepAttributePage,
             },
             {
-              path: PAGE_PATHS.QUEST_NEW_CATEGORY,
-              Component: StepCategoryPage,
+              path: PAGE_PATHS.QUEST_NEW_THEME,
+              Component: StepThemePage,
             },
             {
               path: PAGE_PATHS.QUEST_NEW_MAIN_QUEST,
