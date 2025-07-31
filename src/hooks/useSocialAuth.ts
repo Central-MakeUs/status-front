@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AUTH_CONFIGS, SOCIAL_PROVIDER, URL_SCHEME } from '@/constants/auth';
 import { MESSAGE_TYPES } from '@/constants/webView';
 import { googleLogin, kakaoLogin } from '@/api/auth';
@@ -29,6 +29,8 @@ const createOAuthURL = (provider: SocialProvider, state: string): string => {
 
 export const useSocialAuth = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirect = searchParams.get('redirect');
 
   const { setUser, setPendingSocialUser } = useAuthStore(
     useShallow((state) => ({
@@ -45,6 +47,7 @@ export const useSocialAuth = () => {
         fromWebView: isWebView,
         provider,
         timestamp: Date.now(),
+        redirect: redirect,
       });
 
       const url = createOAuthURL(provider, state);
@@ -60,11 +63,11 @@ export const useSocialAuth = () => {
         window.location.href = url;
       }
     },
-    [isWebView]
+    [isWebView, redirect]
   );
 
   const handleOAuthCallback = useCallback(
-    async (code: string, provider: SocialProvider) => {
+    async (code: string, provider: SocialProvider, redirect: string | null) => {
       try {
         const requestDTO: OAuthLoginRequestDTO = {
           provider,
@@ -94,8 +97,11 @@ export const useSocialAuth = () => {
           navigate(PAGE_PATHS.SIGN_UP);
         } else {
           setUser(response.data as BasicUsers);
-          // [TODO] 인증 만료 후 로그인 페이지 접근 시 기존 페이지로 리다이렉트 처리
-          navigate(PAGE_PATHS.ROOT);
+          if (redirect) {
+            navigate(decodeURIComponent(redirect));
+          } else {
+            navigate(PAGE_PATHS.ROOT);
+          }
         }
       } catch {
         // [TODO] 로그인 실패 처리?
@@ -109,7 +115,7 @@ export const useSocialAuth = () => {
       const { type, data } = JSON.parse(event.data);
 
       if (type === MESSAGE_TYPES.AUTH_SUCCESS) {
-        handleOAuthCallback(data.code, data.provider);
+        handleOAuthCallback(data.code, data.provider, data.redirect);
       } else if (type === MESSAGE_TYPES.AUTH_ERROR) {
         // [TODO] 인증 실패 처리?
       }
@@ -133,9 +139,9 @@ export const useSocialAuth = () => {
 
     if (code) {
       if (parsedState?.fromWebView) {
-        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=${parsedState.provider}`;
+        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=${parsedState.provider}&redirect=${parsedState.redirect || ''}`;
       } else {
-        handleOAuthCallback(code, parsedState.provider);
+        handleOAuthCallback(code, parsedState.provider, parsedState.redirect);
       }
     }
 

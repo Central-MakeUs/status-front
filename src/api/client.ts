@@ -1,7 +1,11 @@
+import { getCookie } from '@/utils/cookie';
+import { refreshAccessToken } from '@/api/auth';
+
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
 interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
+  _retry?: boolean;
 }
 
 const request = async <T = unknown>(
@@ -26,9 +30,19 @@ const request = async <T = unknown>(
     credentials: 'include',
   });
 
-  if (response.status === 401) {
-    const currentPath = window.location.pathname;
-    window.location.href = `auth/login?redirect=${encodeURIComponent(currentPath)}`;
+  if (response.status === 401 && !options._retry) {
+    const refreshToken = getCookie('refreshToken');
+
+    if (refreshToken) {
+      await refreshAccessToken();
+      return request(endpoint, {
+        ...options,
+        _retry: true,
+      });
+    } else {
+      const currentPath = window.location.pathname;
+      window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+    }
   }
 
   if (!response.ok) {
