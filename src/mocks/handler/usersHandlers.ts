@@ -13,12 +13,6 @@ export const usersHandlers = [
       data: mockUserInfo,
     });
   }),
-  http.get(`${API_URL}/auth/me`, () => {
-    return HttpResponse.json({
-      status: '200',
-      data: mockGoogleUser,
-    });
-  }),
   http.post(`${API_URL}/users/sign-up`, async ({ request }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
@@ -79,6 +73,20 @@ export const usersHandlers = [
       data: {
         nickname,
       },
+    });
+  }),
+  http.get(`${API_URL}/users/me`, () => {
+    if (!document.cookie.includes('accessToken')) {
+      return HttpResponse.json({
+        status: '500',
+        code: '00-001',
+        message: '현재 앱에 문제가 발생했으니 관리자에게 문의해주세요.',
+      });
+    }
+
+    return HttpResponse.json({
+      status: '200',
+      data: mockGoogleUser,
     });
   }),
 ];

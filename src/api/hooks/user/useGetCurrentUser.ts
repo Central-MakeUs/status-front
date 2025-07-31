@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/api/auth';
+import { getCurrentUser } from '@/api/users';
 import { getCookie } from '@/utils/cookie';
 import { useQuery } from '@tanstack/react-query';
 

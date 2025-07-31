@@ -4,10 +4,6 @@ import type { BasicUsersDTO } from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';
 import type { SocialLoginReturnDTO } from '@/types/auth';
 
-export const getCurrentUser = async () => {
-  return api.get<ApiResponse<BasicUsersDTO>>('/auth/me');
-};
-
 export const refreshToken = async () => {
   return api.post<ApiResponse<BasicUsersDTO>>('/auth/refresh');
 };
