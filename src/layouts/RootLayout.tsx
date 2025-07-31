@@ -1,13 +1,19 @@
 import { Suspense } from 'react';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLoaderData, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ServerErrorPage } from '@/pages/errors/ServerErrorPage';
 import { Loading } from '@/components/ui/Loading/Loading';
-
+import { useAuthStore } from '@/stores/authStore';
 export const RootLayout = () => {
+  const userData = useLoaderData();
+  const setUser = useAuthStore((state) => state.setUser);
   const location = useLocation();
   const pathname = location.pathname;
+
+  if (userData) {
+    setUser(userData.data);
+  }
 
   /**
    * [TODO] HOME 기준

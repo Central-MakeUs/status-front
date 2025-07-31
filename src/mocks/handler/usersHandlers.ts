@@ -1,5 +1,5 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockUserInfo } from '@/mocks/data/users';
+import { mockGoogleUser, mockUserInfo } from '@/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 
 export const API_URL = import.meta.env.VITE_API_URL;
@@ -73,6 +73,20 @@ export const usersHandlers = [
       data: {
         nickname,
       },
+    });
+  }),
+  http.get(`${API_URL}/users/me`, () => {
+    if (!document.cookie.includes('accessToken')) {
+      return HttpResponse.json({
+        status: '500',
+        code: '00-001',
+        message: '현재 앱에 문제가 발생했으니 관리자에게 문의해주세요.',
+      });
+    }
+
+    return HttpResponse.json({
+      status: '200',
+      data: mockGoogleUser,
     });
   }),
 ];

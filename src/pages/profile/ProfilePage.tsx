@@ -25,11 +25,10 @@ const DEMO_TIER = 'Platinum_1';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
-  const { user, setUser, setIsAuthenticated } = useAuthStore(
+  const { user, setUser } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
       setUser: state.setUser,
-      setIsAuthenticated: state.setIsAuthenticated,
     }))
   );
   const postLogout = usePostLogout();
@@ -45,7 +44,6 @@ export const ProfilePage = () => {
     postLogout.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
-        setIsAuthenticated(false);
         navigate(PAGE_PATHS.ROOT);
       },
       onError: () => {
@@ -58,7 +56,6 @@ export const ProfilePage = () => {
     postWithdrawal.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
-        setIsAuthenticated(false);
         navigate(PAGE_PATHS.ROOT);
       },
       onError: () => {

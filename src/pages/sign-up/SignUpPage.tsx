@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { signUp } from '@/api/users';
 import { TextInput } from '@/components/ui/TextInput/TextInput';
@@ -25,19 +25,15 @@ const cx = classNames.bind(styles);
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const {
-    pendingSocialUser,
-    setPendingSocialUser,
-    setUser,
-    setIsAuthenticated,
-  } = useAuthStore(
-    useShallow((state) => ({
-      pendingSocialUser: state.pendingSocialUser,
-      setPendingSocialUser: state.setPendingSocialUser,
-      setUser: state.setUser,
-      setIsAuthenticated: state.setIsAuthenticated,
-    }))
-  );
+  const { pendingSocialUser, user, setPendingSocialUser, setUser } =
+    useAuthStore(
+      useShallow((state) => ({
+        pendingSocialUser: state.pendingSocialUser,
+        user: state.user,
+        setPendingSocialUser: state.setPendingSocialUser,
+        setUser: state.setUser,
+      }))
+    );
 
   const [step, setStep] = useState<SignUpStep>(SIGN_UP_STEP.NICKNAME);
   const [nickname, setNickname] = useState('');
@@ -113,12 +109,17 @@ const SignUpPage = () => {
       return;
     }
 
-    setIsAuthenticated(true);
     setUser(response.data);
     setPendingSocialUser(null);
 
     navigate(PAGE_PATHS.TUTORIAL);
   };
+
+  if (user) {
+    return <Navigate to={PAGE_PATHS.ROOT} />;
+  } else if (!pendingSocialUser) {
+    return <Navigate to={PAGE_PATHS.LOGIN} />;
+  }
 
   return (
     <>

@@ -10,7 +10,10 @@ export interface AuthConfig {
   clientId: string;
   redirectUri: string;
   responseType: string;
+  responseMode?: string;
   scope?: string;
+  state?: string;
+  nonce?: string;
 }
 
 export interface OAuthLoginRequestDTO {

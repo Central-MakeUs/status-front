@@ -37,3 +37,7 @@ export const updateNickname = async (
 ) => {
   return await api.patch<ApiResponse<void>>('/users/nickname', payload);
 };
+
+export const getCurrentUser = async () => {
+  return await api.get<ApiResponse<BasicUsersDTO>>('/users/me');
+};

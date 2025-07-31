@@ -49,4 +49,17 @@ export const authHandlers = [
       status: '204',
     });
   }),
+  http.post(`${API_URL}/auth/refresh`, async () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    document.cookie =
+      'accessToken=mock-access-token; path=/; SameSite=Lax; max-age=3000';
+
+    return HttpResponse.json({
+      status: '200',
+      data: mockGoogleUser,
+    });
+  }),
 ];
