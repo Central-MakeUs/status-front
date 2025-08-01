@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 interface HeaderProps
   extends Omit<UserInfo, 'id' | 'email' | 'providerType' | 'providerId'> {
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
 }
 
 export const Header = ({
@@ -24,7 +24,7 @@ export const Header = ({
           <img src={profileImageUrl} alt="" className={cx('avatar')} />
           <div>{nickname}</div>
         </div>
-        <div className={cx('tier-info')} onClick={onClick}>
+        <div className={cx('tier-info')} onClick={(event) => onClick(event)}>
           <TierIcon id={tier} className={cx('tier-icon')} />
           <div className={cx('tier-text')}>
             {tier}_{level}

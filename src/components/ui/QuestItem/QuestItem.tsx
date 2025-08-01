@@ -14,7 +14,9 @@ export const QuestItem = ({
   attributes,
   essential,
   onClick = () => {},
-}: UserSubQuest & { onClick?: (id: string) => void }) => {
+}: UserSubQuest & {
+  onClick?: (event: React.MouseEvent, id: string) => void;
+}) => {
   return (
     <div className={cx('quest-item')}>
       <div className={cx('top-row')}>
@@ -41,7 +43,7 @@ export const QuestItem = ({
         </div>
       </div>
       <div className={cx('desc')}>{desc}</div>
-      <button className={cx('confirm')} onClick={() => onClick(id)}>
+      <button className={cx('confirm')} onClick={(event) => onClick(event, id)}>
         인증하기
       </button>
     </div>

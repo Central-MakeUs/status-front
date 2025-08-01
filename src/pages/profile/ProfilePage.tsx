@@ -40,6 +40,12 @@ export const ProfilePage = () => {
 
   const userProfileImage = defaultProfileImage;
 
+  const handleEditNickname = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    setIsNicknameEditOpen(true);
+  };
+
   const handleLogout = async () => {
     postLogout.mutate(undefined, {
       onSuccess: () => {
@@ -83,7 +89,7 @@ export const ProfilePage = () => {
             <button
               type="button"
               className={cx('button-profile-edit')}
-              onClick={() => setIsNicknameEditOpen(true)}
+              onClick={handleEditNickname}
             >
               <IconEdit className={cx('icon-edit')} aria-hidden="true" />
               <span className="sr-only">프로필 수정</span>

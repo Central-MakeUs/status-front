@@ -19,6 +19,7 @@ const CompletedQuestList = ({
 }: {
   quest: TodayCompletedQuest;
   onClick: (
+    event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string
@@ -45,7 +46,9 @@ const CompletedQuestList = ({
         </div>
         <button className={cx('edit-btn')}>
           <IconEdit
-            onClick={() => onClick(quest, difficulty.value, quest.comment)}
+            onClick={(event) =>
+              onClick(event, quest, difficulty.value, quest.comment)
+            }
           />
         </button>
       </div>

@@ -32,6 +32,10 @@ const BottomSheetMain = ({
 
   useOutsideClick(bottomSheetRef, onClose);
 
+  const handleBottomSheetContainerClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+  };
+
   if (!isOpen) return null;
 
   return createPortal(
@@ -40,6 +44,7 @@ const BottomSheetMain = ({
         ref={bottomSheetRef}
         role="dialog"
         aria-modal="true"
+        onClick={handleBottomSheetContainerClick}
         className={cx('bottom-sheet', className)}
       >
         <button

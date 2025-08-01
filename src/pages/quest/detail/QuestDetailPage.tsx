@@ -134,10 +134,13 @@ const QuestDetailPage = () => {
     });
   };
   const handleEdit = (
+    event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string
   ) => {
+    event.stopPropagation();
+
     setIsBottomSheetOpen(true);
     setSelectedSubQuest(quest);
     setSelectedDifficulty(difficulty);
@@ -182,7 +185,9 @@ const QuestDetailPage = () => {
           <QuestList
             quests={subQuests || []}
             className="quest-detail-header"
-            onClick={(quest) => {
+            onClick={(event, quest) => {
+              event.stopPropagation();
+
               setIsBottomSheetOpen(true);
               setSelectedSubQuest(quest);
               setIsEdit(false);

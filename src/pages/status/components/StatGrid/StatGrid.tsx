@@ -12,7 +12,7 @@ interface StatGridProps {
   skillData: AttributeStatus[];
   isMental: boolean;
   // xpLeftList: number[][];
-  onClick: (key: number) => void;
+  onClick: (event: React.MouseEvent, key: number) => void;
 }
 
 export const StatGrid = ({
@@ -46,7 +46,7 @@ export const StatGrid = ({
           return (
             <div
               className={cx('card')}
-              onClick={() => onClick(attrId)}
+              onClick={(event) => onClick(event, attrId)}
               key={attrId}
             >
               <div className={cx('left')}>{Icon}</div>

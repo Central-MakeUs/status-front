@@ -43,7 +43,7 @@ interface RadarChartProps {
   skillData: AttributeStatus[];
   profileImage: string;
   // xpLeftList: number[][];
-  onClick: (key: number) => void;
+  onClick: (event: React.MouseEvent, key: number) => void;
 }
 
 export const RadarChart = ({

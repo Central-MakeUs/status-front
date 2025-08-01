@@ -13,13 +13,17 @@ export const QuestList = ({
 }: {
   quests: UserSubQuest[];
   className?: string;
-  onClick: (quest: UserSubQuest) => void;
+  onClick: (event: React.MouseEvent, quest: UserSubQuest) => void;
 }) => {
   return (
     <div className={cx('container')}>
       <div className={cx('header', className)}>오늘의 퀘스트</div>
       {quests.map((quest) => (
-        <QuestItem key={quest.id} {...quest} onClick={() => onClick(quest)} />
+        <QuestItem
+          key={quest.id}
+          {...quest}
+          onClick={(event) => onClick(event, quest)}
+        />
       ))}
     </div>
   );

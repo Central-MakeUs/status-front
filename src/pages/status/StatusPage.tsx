@@ -42,7 +42,11 @@ const StatusPage = () => {
           tier={userInfo.tier}
           level={userInfo.level}
           profileImageUrl={userInfo.profileImageUrl}
-          onClick={() => setIsLevelBottomSheetOpen(true)}
+          onClick={(event: React.MouseEvent) => {
+            event.stopPropagation();
+
+            setIsLevelBottomSheetOpen(true);
+          }}
         />
       )}
       <main className="main">
@@ -51,7 +55,9 @@ const StatusPage = () => {
             mentalData={statusLists.mentality}
             skillData={statusLists.skill}
             profileImage={userInfo.profileImageUrl}
-            onClick={(key: number) => {
+            onClick={(event: React.MouseEvent, key: number) => {
+              event.stopPropagation();
+
               setSelectedStatusKey(key);
               setIsStatusBottomSheetOpen(true);
             }}
@@ -60,7 +66,7 @@ const StatusPage = () => {
         {quests && (
           <QuestList
             quests={quests}
-            onClick={(quest: UserSubQuest) => {
+            onClick={(_, quest: UserSubQuest) => {
               console.log(quest);
               navigate(
                 `${PAGE_PATHS.QUEST_DETAIL.replace(':id', mainQuestId)}`,
