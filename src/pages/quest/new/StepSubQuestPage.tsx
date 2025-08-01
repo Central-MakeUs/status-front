@@ -2,85 +2,76 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
-import { useGetRandomSubQuestByMainQuestId } from '@/api/hooks/quest/useGetRandomSubQuestByMainQuestId';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   getSubQuestFrequencyLabel,
   MAX_SUB_QUEST_COUNT,
-  SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
 } from '@/constants/quest';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Button } from '@/components/ui/Button/Button';
-import { TextInput } from '@/components/ui/TextInput/TextInput';
-import { Select } from '@/components/ui/Selelct/Select';
+import { EditingSubQuestBottomSheet } from '@/pages/quest/new/components/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconCheckboxNormal from '@/assets/icons/icon-checkbox-normal.svg?react';
 import IconCheckboxChecked from '@/assets/icons/icon-checkbox-checked.svg?react';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 
-import type { SubQuestFrequencyValue, UserSubQuest } from '@/types/quest';
+import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
 
 import classNames from 'classnames/bind';
 import styles from './StepSubQuestPage.module.scss';
+import { useGetSubQuests } from '@/api/hooks/quest/useGetSubQuests';
+import { useGetRandomSubQuests } from '@/api/hooks/quest/useGetRandomSubQuests';
 
 const cx = classNames.bind(styles);
 
-export const StepSubQuestPage = () => {
+const StepSubQuestPage = () => {
   const navigate = useNavigate();
   const {
+    selectedAttributes,
     selectedMainQuest,
-    subQuests,
     selectedSubQuestIds,
-    setSubQuests,
     updateSubQuest,
     toggleSubQuestSelection,
   } = useQuestCreationStore(
     useShallow((state) => ({
+      selectedAttributes: state.selectedAttributes,
       selectedMainQuest: state.selectedMainQuest,
-      subQuests: state.subQuests,
       selectedSubQuestIds: state.selectedSubQuestIds,
-      setSubQuests: state.setSubQuests,
       updateSubQuest: state.updateSubQuest,
       toggleSubQuestSelection: state.toggleSubQuestSelection,
     }))
   );
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const [editingSubQuest, setEditingSubQuest] = useState<UserSubQuest | null>(
-    null
-  );
-
   useEffect(() => {
     if (!selectedMainQuest) {
-      navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE, { replace: true });
+      navigate(PAGE_PATHS.QUEST_NEW_MAIN_QUEST, { replace: true });
     }
   }, [selectedMainQuest, navigate]);
+
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [editingSubQuest, setEditingSubQuest] = useState<SubQuest | null>(null);
 
   const hasMaxSubQuestSelection =
     selectedSubQuestIds.length >= MAX_SUB_QUEST_COUNT;
   const isSubQuestSelected = selectedSubQuestIds.length > 0;
 
-  const { data, isLoading, isRefetching, refetch } =
-    useGetRandomSubQuestByMainQuestId({
-      mainQuestId: selectedMainQuest?.id.toString() ?? '',
-      selectedSubQuestIds: selectedSubQuestIds,
-      limit: DISPLAY_SUB_QUEST_COUNT,
-    });
+  const selectedAttributesIds = selectedAttributes.map(
+    (attribute) => attribute.attributeId
+  );
 
-  useEffect(() => {
-    if (data) {
-      setSubQuests(data);
-    }
-  }, [data, setSubQuests]);
+  const { data, isLoading, isRefetching } = useGetSubQuests({
+    attributes: selectedAttributesIds,
+    mainQuest: selectedMainQuest?.id ?? 0,
+  });
 
-  const handleClickSubQuest = (subQuest: UserSubQuest) => {
+  const { mutate: refreshSubQuests } = useGetRandomSubQuests();
+
+  const handleClickSubQuest = (subQuest: SubQuest) => {
     const isChecked = selectedSubQuestIds.includes(subQuest.id);
 
     if (hasMaxSubQuestSelection && !isChecked) {
@@ -90,19 +81,24 @@ export const StepSubQuestPage = () => {
     toggleSubQuestSelection(subQuest.id);
   };
 
-  const handleClickEditButton = (subQuest: UserSubQuest) => {
+  const handleClickEditButton = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    subQuest: SubQuest
+  ) => {
+    event.stopPropagation();
+
     setIsBottomSheetOpen(true);
     setEditingSubQuest(subQuest);
   };
 
-  const handleChangeSubQuestFrequency = (value: string) => {
+  const handleChangeSubQuestFrequency = (value: SubQuestFrequencyValue) => {
     if (!editingSubQuest) {
       return;
     }
 
     setEditingSubQuest({
       ...editingSubQuest,
-      frequency: value as SubQuestFrequencyValue,
+      frequencyType: value,
     });
   };
 
@@ -117,7 +113,7 @@ export const StepSubQuestPage = () => {
 
     setEditingSubQuest({
       ...editingSubQuest,
-      repeatCnt: value,
+      actionUnitNum: value,
     });
   };
 
@@ -132,7 +128,14 @@ export const StepSubQuestPage = () => {
   };
 
   const handleClickRefreshButton = () => {
-    refetch();
+    const payload = {
+      attributes: selectedAttributesIds,
+      mainQuest: selectedMainQuest?.id ?? 0,
+      selectedSubQuests: selectedSubQuestIds,
+      gottenSubQuests: data?.map((subQuest) => subQuest.id) ?? [],
+    };
+
+    refreshSubQuests(payload);
   };
 
   const handleClickNextButton = () => {
@@ -152,7 +155,7 @@ export const StepSubQuestPage = () => {
         </StepTitle>
         {selectedMainQuest && (
           <StepDescription>
-            {selectedMainQuest?.title}에 맞는 서브 퀘스트를 추천해드렸어요.
+            {selectedMainQuest?.name}에 맞는 서브 퀘스트를 추천해드렸어요.
           </StepDescription>
         )}
         {isLoading ? (
@@ -163,7 +166,7 @@ export const StepSubQuestPage = () => {
           </div>
         ) : (
           <ul className={cx('step-sub-quest-list')}>
-            {subQuests?.map((subQuest) => {
+            {data?.map((subQuest) => {
               const isChecked = selectedSubQuestIds.includes(subQuest.id);
               const shouldShowSkeleton = isRefetching && !isChecked;
 
@@ -197,10 +200,10 @@ export const StepSubQuestPage = () => {
                         )}
                         <div className={cx('sub-quest-box')}>
                           <span className={cx('sub-quest-frequency')}>
-                            {getSubQuestFrequencyLabel(subQuest.frequency)}
+                            {getSubQuestFrequencyLabel(subQuest.frequencyType)}
                           </span>
                           <span className={cx('sub-quest-repeat')}>
-                            {subQuest.repeatCnt}회
+                            {subQuest.actionUnitNum}회
                           </span>
                         </div>
                         <p className={cx('sub-quest-description')}>
@@ -210,7 +213,9 @@ export const StepSubQuestPage = () => {
                       <button
                         type="button"
                         className={cx('button-edit')}
-                        onClick={() => handleClickEditButton(subQuest)}
+                        onClick={(event) =>
+                          handleClickEditButton(event, subQuest)
+                        }
                       >
                         <IconEdit
                           className={cx('edit-icon')}
@@ -236,47 +241,17 @@ export const StepSubQuestPage = () => {
       >
         다음
       </StepActions>
-
-      <BottomSheet
-        isOpen={isBottomSheetOpen}
-        onClose={() => setIsBottomSheetOpen(false)}
-        className={cx('sub-quest-bottom-sheet')}
-      >
-        <BottomSheet.Header>
-          <BottomSheet.Title>퀘스트 편집하기</BottomSheet.Title>
-          <BottomSheet.Description>
-            {editingSubQuest?.desc}
-          </BottomSheet.Description>
-        </BottomSheet.Header>
-        <BottomSheet.Content>
-          <Select
-            label="반복 주기"
-            value={editingSubQuest?.frequency ?? ''}
-            options={SUB_QUEST_FREQUENCY_SELECT_OPTIONS}
-            onChange={handleChangeSubQuestFrequency}
-          />
-          <TextInput
-            className={cx('bottom-sheet-input')}
-            type="number"
-            inputMode="numeric"
-            label="횟수"
-            value={
-              editingSubQuest?.repeatCnt === 0 ? '' : editingSubQuest?.repeatCnt
-            }
-            onChange={handleChangeSubQuestRepeatCount}
-          />
-        </BottomSheet.Content>
-        <BottomSheet.Footer>
-          <Button variant="secondary" onClick={handleClickEditingDoneButton}>
-            완료
-          </Button>
-        </BottomSheet.Footer>
-      </BottomSheet>
+      <EditingSubQuestBottomSheet
+        isBottomSheetOpen={isBottomSheetOpen}
+        setIsBottomSheetOpen={setIsBottomSheetOpen}
+        editingSubQuest={editingSubQuest}
+        handleChangeSubQuestFrequency={handleChangeSubQuestFrequency}
+        handleChangeSubQuestRepeatCount={handleChangeSubQuestRepeatCount}
+        handleClickEditingDoneButton={handleClickEditingDoneButton}
+      />
     </>
   );
 };
-
-export default StepSubQuestPage;
 
 const SubQuestSkeleton = () => {
   return (
@@ -288,3 +263,5 @@ const SubQuestSkeleton = () => {
     </div>
   );
 };
+
+export default StepSubQuestPage;

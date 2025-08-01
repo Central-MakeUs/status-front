@@ -1,21 +1,20 @@
 import type { REWARD_STEP, SUB_QUEST_FREQUENCY } from '@/constants/quest';
 import type {
   UserMainQuestDTO,
-  SubQuestDTO,
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
   UserMainQuestGiveUpRequestDTO,
   ThemeResponseDTO,
   MainQuestResponseDTO,
+  SubQuestResponseDTO,
 } from '@/api/types/quest';
 export type Theme = ThemeResponseDTO;
+export type MainQuest = MainQuestResponseDTO;
 export type SubQuestFrequencyValue =
   (typeof SUB_QUEST_FREQUENCY)[keyof typeof SUB_QUEST_FREQUENCY]['value'];
-
-export type MainQuest = MainQuestResponseDTO;
+export type SubQuest = SubQuestResponseDTO;
 export type UserMainQuest = UserMainQuestDTO;
-export type SubQuest = SubQuestDTO;
 export type UserSubQuest = UserSubQuestDTO;
 export type SubQuestDifficulty = 'easy' | 'default' | 'hard';
 export type UserSubQuestLog = UserSubQuestLogRequestDTO;

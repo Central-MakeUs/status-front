@@ -6,6 +6,7 @@ import type {
   SubQuestDifficulty,
   Theme,
 } from '@/types/quest';
+import type { AttributeDTO } from './attribute';
 
 export interface ThemeResponseDTO {
   id: number;
@@ -24,6 +25,27 @@ export interface GetRandomThemesParams {
 export interface MainQuestResponseDTO {
   id: number;
   name: string;
+}
+
+export interface SubQuestResponseDTO {
+  id: number;
+  frequencyType: SubQuestFrequencyValue;
+  actionUnitType: string;
+  actionUnitNum: number;
+  attributes: AttributeDTO[];
+  desc: string;
+}
+
+export interface GetSubQuestsParams {
+  attributes?: number[];
+  mainQuest: number;
+}
+
+export interface RerollSubQuestRequestDTO {
+  mainQuest: number;
+  attributes: number[];
+  selectedSubQuests: number[];
+  gottenSubQuests: number[];
 }
 
 export interface MainQuestDTO {

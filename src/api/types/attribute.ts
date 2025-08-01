@@ -9,6 +9,12 @@ export interface AttributeReturnDTO {
   exp: number;
 }
 
+export interface AttributeDTO {
+  id: number;
+  name: string;
+  exp: number;
+}
+
 export interface CreateAttributeDTO {
   name: string;
   type: AttributeType;

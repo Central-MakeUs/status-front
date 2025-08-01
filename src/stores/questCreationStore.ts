@@ -4,23 +4,23 @@ import { getTodayString } from '@/utils/date';
 
 import type { Attribute } from '@/types/attribute';
 import type { MainQuest, Theme } from '@/types/quest';
-import type { UserSubQuest } from '@/types/quest';
+import type { SubQuest } from '@/types/quest';
 
 interface QuestCreationState {
   selectedAttributes: Attribute[];
   selectedTheme: Theme | null;
   selectedMainQuest: MainQuest | null;
-  selectedSubQuestIds: string[];
-  subQuests: UserSubQuest[];
+  selectedSubQuestIds: number[];
+  subQuests: SubQuest[];
   toggleAttributeSelection: (attribute: Attribute) => void;
   setSelectedTheme: (theme: Theme | null) => void;
   setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
-  setSubQuests: (subQuests: UserSubQuest[]) => void;
-  updateSubQuest: (subQuest: UserSubQuest) => void;
-  toggleSubQuestSelection: (subQuestId: string) => void;
+  setSubQuests: (subQuests: SubQuest[]) => void;
+  updateSubQuest: (subQuest: SubQuest) => void;
+  toggleSubQuestSelection: (subQuestId: number) => void;
   setStartDate: (startDate: string) => void;
   setEndDate: (endDate: string) => void;
-  getSelectedSubQuests: () => UserSubQuest[];
+  getSelectedSubQuests: () => SubQuest[];
 }
 
 export const useQuestCreationStore = create<QuestCreationState>()(

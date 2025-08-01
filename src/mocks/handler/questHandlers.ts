@@ -9,6 +9,7 @@ import {
 } from '@/mocks/data/quest';
 import type {
   QuestCreationRequestDTO,
+  RerollSubQuestRequestDTO,
   UserSubQuestLogResponseDTO,
 } from '@/api/types/quest';
 import { mockThemes } from '@/mocks/data/quest';
@@ -72,6 +73,33 @@ export const questHandlers = [
       data: filteredQuests,
     });
   }),
+  http.get(`${API_URL}/quest/get-subquests`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const quests = mockSubQuests.slice(0, 4);
+
+    return HttpResponse.json({
+      data: quests,
+    });
+  }),
+  http.post(`${API_URL}/quest/reroll-subquests`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const { selectedSubQuests, gottenSubQuests } =
+      (await request.json()) as RerollSubQuestRequestDTO;
+
+    const filteredSubQuests = mockSubQuests
+      .filter((subQuest) => !gottenSubQuests?.includes(subQuest.id))
+      .filter((subQuest) => !selectedSubQuests?.includes(subQuest.id));
+
+    return HttpResponse.json({
+      data: filteredSubQuests,
+    });
+  }),
 
   http.get(`${API_URL}/users/:userId/main-quests`, () => {
     return HttpResponse.json({
@@ -85,31 +113,6 @@ export const questHandlers = [
 
     return HttpResponse.json({
       data: quest,
-    });
-  }),
-  http.get(`${API_URL}/sub-quests`, ({ request }) => {
-    const params = new URL(request.url).searchParams;
-    const limit = params.get('limit');
-    const selectedSubQuestIds = params.get('selectedSubQuestIds');
-
-    const selectedSubQuests = selectedSubQuestIds
-      ? mockSubQuests.filter((subQuest) =>
-          selectedSubQuestIds.includes(subQuest.id)
-        )
-      : [];
-
-    const remainingCount = Number(limit) - selectedSubQuests.length;
-    const unselectedSubQuests = mockSubQuests
-      .filter((subQuest) =>
-        selectedSubQuestIds ? !selectedSubQuestIds.includes(subQuest.id) : true
-      )
-      .sort(() => Math.random() - 0.5)
-      .slice(0, Math.max(0, remainingCount));
-
-    const subQuests = [...selectedSubQuests, ...unselectedSubQuests];
-
-    return HttpResponse.json({
-      data: subQuests,
     });
   }),
   http.post(`${API_URL}/users/:userId/quest`, async ({ request }) => {

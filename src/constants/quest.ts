@@ -8,10 +8,6 @@ export const SUB_QUEST_FREQUENCY = {
     label: '매일',
     value: 'daily',
   },
-  EVERY_2_DAY: {
-    label: '격일',
-    value: 'every_2_day',
-  },
   WEEKLY: {
     label: '주 1회',
     value: 'weekly',
@@ -24,9 +20,33 @@ export const SUB_QUEST_FREQUENCY = {
     label: '주 3회',
     value: 'weekly_3',
   },
+  WEEKLY_4: {
+    label: '주 4회',
+    value: 'weekly_4',
+  },
+  WEEKLY_5: {
+    label: '주 5회',
+    value: 'weekly_5',
+  },
+  WEEKLY_6: {
+    label: '주 6회',
+    value: 'weekly_6',
+  },
+  MONTHLY_1: {
+    label: '월 1회',
+    value: 'monthly_1',
+  },
+  MONTHLY_2: {
+    label: '월 2회',
+    value: 'monthly_2',
+  },
   MONTHLY_3: {
     label: '월 3회',
     value: 'monthly_3',
+  },
+  MONTHLY_4: {
+    label: '월 4회',
+    value: 'monthly_4',
   },
 } as const;
 
