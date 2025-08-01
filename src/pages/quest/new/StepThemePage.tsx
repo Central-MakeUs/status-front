@@ -33,11 +33,7 @@ export const StepCategoryPage = () => {
   }, [isValidAttributes, navigate]);
 
   const attributeNames = useMemo(
-    () =>
-      selectedAttributes.reduce(
-        (acc, attribute) => `[${acc}],[${attribute.name}]`,
-        ''
-      ),
+    () => selectedAttributes.map((attribute) => `${attribute.name}`).join(', '),
     [selectedAttributes]
   );
 
@@ -75,9 +71,9 @@ export const StepCategoryPage = () => {
     <>
       <Header title="퀘스트 만들기" hasBackButton={true} />
       <main className="main">
-        <StepTitle>시도하고 싶은 카테고리를 선택하세요!</StepTitle>
+        <StepTitle>시도하고 싶은 테마를 선택하세요!</StepTitle>
         <StepDescription>
-          {attributeNames}을(를) 성장시킬 수 있는 카테고리를 추천해드렸어요
+          {attributeNames}을(를) 성장시킬 수 있는 테마를 추천해드렸어요
         </StepDescription>
 
         {isLoading || isRefetching ? (
