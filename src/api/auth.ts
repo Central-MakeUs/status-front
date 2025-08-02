@@ -12,16 +12,9 @@ export const logout = async () => {
   return api.post<ApiResponse<void>>('/auth/logout');
 };
 
-export const googleLogin = async (payload: OAuthLoginRequestDTO) => {
+export const socialLogin = async (payload: OAuthLoginRequestDTO) => {
   return await api.post<ApiResponse<SocialLoginReturnDTO>>(
-    '/auth/google-login',
-    payload
-  );
-};
-
-export const kakaoLogin = async (payload: OAuthLoginRequestDTO) => {
-  return await api.post<ApiResponse<SocialLoginReturnDTO>>(
-    '/auth/kakao-login',
+    '/auth/login',
     payload
   );
 };

@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AUTH_CONFIGS, SOCIAL_PROVIDER, URL_SCHEME } from '@/constants/auth';
+import { AUTH_CONFIGS, URL_SCHEME } from '@/constants/auth';
 import { MESSAGE_TYPES } from '@/constants/webView';
-import { googleLogin, kakaoLogin } from '@/api/auth';
+import { socialLogin } from '@/api/auth';
 import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/constants/pagePaths';
@@ -69,24 +69,12 @@ export const useSocialAuth = () => {
   const handleOAuthCallback = useCallback(
     async (code: string, provider: SocialProvider, redirect: string | null) => {
       try {
-        const requestDTO: OAuthLoginRequestDTO = {
+        const payload: OAuthLoginRequestDTO = {
           provider,
           code,
         };
 
-        let response;
-
-        switch (provider) {
-          case SOCIAL_PROVIDER.GOOGLE:
-            response = await googleLogin(requestDTO);
-            break;
-          case SOCIAL_PROVIDER.KAKAO:
-            response = await kakaoLogin(requestDTO);
-            break;
-          // [TODO] 애플 로그인 id_token 받아오는 로직 추가 필요.
-          default:
-            break;
-        }
+        const response = await socialLogin(payload);
 
         if (!response?.data) {
           return;
