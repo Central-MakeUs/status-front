@@ -9,6 +9,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
       '쉽게 포기하지 않고 어려운 일도 끝까지 밀어붙일 수 있는 능력이에요.',
     level: 45,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 102,
@@ -17,6 +18,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '한 가지 일에 몰입하고, 방해 요소를 차단하는 능력이에요.',
     level: 15,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 103,
@@ -25,6 +27,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '감정이나 충동을 인식하고 스스로 조절할 수 있는 힘이에요.',
     level: 25,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 104,
@@ -33,6 +36,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '새로운 아이디어를 떠올리고 창의적으로 표현하는 능력이에요.',
     level: 10,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 105,
@@ -41,14 +45,16 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '단조롭고 반복적인 일도 꾸준히 실천할 수 있는 힘이에요.',
     level: 5,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 106,
     type: 'MENTALITY',
     name: '용기',
     description: '두려움과 불확실성을 넘어서 행동할 수 있는 능력이에요.',
-    level: 5,
+    level: 25,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 201,
@@ -57,6 +63,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '몸의 컨디션을 관리하고 신체적 루틴을 실천하는 능력이에요.',
     level: 5,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 202,
@@ -65,6 +72,7 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '시간, 일정, 우선순위를 스스로 설계하고 조정하는 능력이에요.',
     level: 33,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 203,
@@ -73,29 +81,33 @@ export const mockAttributes: AttributeReturnDTO[] = [
     description: '하루의 감정이나 정보를 정리하고 기록하는 능력이에요.',
     level: 52,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 204,
     type: 'SKILL',
     name: '기술',
     description: '다양한 디지털 도구를 능숙하게 다루고 활용하는 능력이에요.',
-    level: 5,
+    level: 45,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 205,
     type: 'SKILL',
     name: '화술',
     description: '생각이나 감정을 말이나 글로 효과적으로 전달하는 능력이에요.',
-    level: 5,
+    level: 55,
     exp: 100,
+    expToNextLevel: 100,
   },
   {
     attributeId: 206,
     type: 'SKILL',
     name: '탐구',
     description: '새로운 지식을 배우고, 스스로 공부하며 정리하는 능력이에요.',
-    level: 15,
+    level: 25,
     exp: 100,
+    expToNextLevel: 100,
   },
 ];

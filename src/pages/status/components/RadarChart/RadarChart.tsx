@@ -1,15 +1,15 @@
-import EmpathyCommunicationSVG from '@/assets/icons/radar-chart/icon-empathy-communication.svg?url';
-import HeraldrySVG from '@/assets/icons/radar-chart/icon-heraldry.svg?url';
-import LearningFocusSVG from '@/assets/icons/radar-chart/icon-learning-focus.svg?url';
-import PhysicalTrainingSVG from '@/assets/icons/radar-chart/icon-physical-training.svg?url';
-import TechnologyApplicationSVG from '@/assets/icons/radar-chart/icon-technology-application.svg?url';
-import CreativeTechSVG from '@/assets/icons/radar-chart/icon-creative-tech.svg?url';
-import WillPowerSVG from '@/assets/icons/radar-chart/icon-willpower.svg?url';
-import SelfControlSVG from '@/assets/icons/radar-chart/icon-self-control.svg?url';
-import SinceritySVG from '@/assets/icons/radar-chart/icon-sincerity.svg?url';
-import BoldnessSVG from '@/assets/icons/radar-chart/icon-boldness.svg?url';
-import ConcentrationSVG from '@/assets/icons/radar-chart/icon-concentration.svg?url';
-import CreativitySVG from '@/assets/icons/radar-chart/icon-creativity.svg?url';
+import IconAttribute101 from '@/assets/icons/radar-chart/icon-attribute101.svg?url';
+import IconAttribute102 from '@/assets/icons/radar-chart/icon-attribute102.svg?url';
+import IconAttribute103 from '@/assets/icons/radar-chart/icon-attribute103.svg?url';
+import IconAttribute104 from '@/assets/icons/radar-chart/icon-attribute104.svg?url';
+import IconAttribute105 from '@/assets/icons/radar-chart/icon-attribute105.svg?url';
+import IconAttribute106 from '@/assets/icons/radar-chart/icon-attribute106.svg?url';
+import IconAttribute201 from '@/assets/icons/radar-chart/icon-attribute201.svg?url';
+import IconAttribute202 from '@/assets/icons/radar-chart/icon-attribute202.svg?url';
+import IconAttribute203 from '@/assets/icons/radar-chart/icon-attribute203.svg?url';
+import IconAttribute204 from '@/assets/icons/radar-chart/icon-attribute204.svg?url';
+import IconAttribute205 from '@/assets/icons/radar-chart/icon-attribute205.svg?url';
+import IconAttribute206 from '@/assets/icons/radar-chart/icon-attribute206.svg?url';
 
 import {
   Chart as ChartJS,
@@ -35,20 +35,18 @@ import classNames from 'classnames/bind';
 import styles from './RadarChart.module.scss';
 import { useState, useMemo } from 'react';
 import { StatGrid } from '../StatGrid/StatGrid';
-import type { AttributeStatus } from '@/api/types/status';
+import type { Attribute } from '@/types/attribute';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {
-  mentalData: AttributeStatus[];
-  skillData: AttributeStatus[];
+  attributeDatas: Attribute[];
   profileImage: string;
   // xpLeftList: number[][];
   onClick: (event: React.MouseEvent, key: number) => void;
 }
 
 export const RadarChart = ({
-  mentalData,
-  skillData,
+  attributeDatas,
   profileImage,
   // xpLeftList,
   onClick,
@@ -59,24 +57,29 @@ export const RadarChart = ({
 
   const isMental = view === '정신';
   const labels = ['', '', '', '', '', ''];
-
+  const mentalData = attributeDatas.filter(
+    (attr) => attr.attributeId >= 101 && attr.attributeId <= 106
+  );
+  const skillData = attributeDatas.filter(
+    (attr) => attr.attributeId >= 201 && attr.attributeId <= 206
+  );
   const iconImages = useMemo(() => {
     const sources = isMental
       ? [
-          WillPowerSVG,
-          ConcentrationSVG,
-          SelfControlSVG,
-          CreativitySVG,
-          SinceritySVG,
-          BoldnessSVG,
+          IconAttribute101,
+          IconAttribute102,
+          IconAttribute103,
+          IconAttribute104,
+          IconAttribute105,
+          IconAttribute106,
         ]
       : [
-          HeraldrySVG,
-          CreativeTechSVG,
-          LearningFocusSVG,
-          PhysicalTrainingSVG,
-          TechnologyApplicationSVG,
-          EmpathyCommunicationSVG,
+          IconAttribute201,
+          IconAttribute202,
+          IconAttribute203,
+          IconAttribute204,
+          IconAttribute205,
+          IconAttribute206,
         ];
 
     return sources.map((src) => {
@@ -245,9 +248,7 @@ export const RadarChart = ({
         </div>
       </div>
       <StatGrid
-        mentalData={mentalData}
-        skillData={skillData}
-        isMental={isMental}
+        data={isMental ? mentalData : skillData}
         // xpLeftList={xpLeftList}
         onClick={onClick}
       />
