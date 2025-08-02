@@ -1,7 +1,7 @@
 import type { TierType } from '@/types/tier';
 import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
 import classNames from 'classnames/bind';
-import styles from './TierBottomSheet.module.css';
+import styles from './TierBottomSheet.module.scss';
 import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
 import { Button } from '@/components/ui/Button/Button';
 
@@ -25,7 +25,7 @@ const TierLevelList = ({
           >
             <span className={cx('tier-name')}>
               {tier}
-              {tier === currentTier ? `_${currentLevel}` : ''}
+              {tier === currentTier ? ` ${currentLevel}` : ''}
             </span>
             <TierIcon id={tier} className={cx('tier-icon')} />
           </div>

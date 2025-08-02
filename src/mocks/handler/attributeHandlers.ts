@@ -11,6 +11,7 @@ export const attributeHandlers = [
     }
 
     const accessToken = getCookie('access_token');
+    console.log(accessToken);
     if (!accessToken) {
       return new HttpResponse(null, { status: 401 });
     }

@@ -27,7 +27,7 @@ export const Header = ({
         <div className={cx('tier-info')} onClick={(event) => onClick(event)}>
           <TierIcon id={tier} className={cx('tier-icon')} />
           <div className={cx('tier-text')}>
-            {tier}_{level}
+            {tier} {level}
           </div>
         </div>
       </div>

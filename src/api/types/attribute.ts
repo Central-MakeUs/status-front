@@ -7,6 +7,7 @@ export interface AttributeReturnDTO {
   description?: string;
   level: number;
   exp: number;
+  expToNextLevel: number;
 }
 
 export interface CreateAttributeDTO {
