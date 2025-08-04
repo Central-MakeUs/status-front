@@ -1,0 +1,47 @@
+
+.sub-quest-skeleton {
+    position: relative;
+    padding: 14px 52px 14px 16px;
+    border-radius: 10px;
+    background-color: var(--color-gray-800);
+
+    & + .sub-quest-skeleton {
+        margin-top: 8px;
+    }
+}
+
+.sub-quest-skeleton-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: var(--color-gray-700);
+}
+
+.sub-quest-skeleton-frequency {
+    display: block;
+    width: 28%;
+    min-width: 77px;
+    height: 17px;
+    margin-top: 12px;
+    border-radius: 5px;
+    background-color: var(--color-gray-700);
+}
+
+.sub-quest-skeleton-description {
+    display: block;
+    height: 20px;
+    margin-top: 4px;
+    border-radius: 5px;
+    background-color: var(--color-gray-700);
+}
+
+.sub-quest-skeleton-edit {
+    position: absolute;
+    right: 16px;
+    bottom: 23px;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    background-color: var(--color-gray-700);
+}

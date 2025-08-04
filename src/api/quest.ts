@@ -2,7 +2,6 @@ import { api } from '@/api/client';
 import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
-  GetRandomSubQuestByMainQuestIdParams,
   QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
@@ -13,6 +12,9 @@ import type {
   MainQuestResponseDTO,
   GetMainQuestsParams,
   GetRandomMainQuestsParams,
+  SubQuestResponseDTO,
+  GetSubQuestsParams,
+  RerollSubQuestRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -88,6 +90,34 @@ export const getRandomMainQuests = async ({
   return response.data ?? [];
 };
 
+export const getSubQuests = async ({
+  attributes = [],
+  mainQuest,
+}: GetSubQuestsParams): Promise<SubQuestResponseDTO[]> => {
+  const params: Record<string, string> = {
+    attributes: attributes.join(','),
+    mainQuest: mainQuest.toString(),
+  };
+
+  const response = await api.get<ApiResponse<SubQuestResponseDTO[]>>(
+    '/quest/get-subquests',
+    {
+      params,
+    }
+  );
+  return response.data ?? [];
+};
+
+export const getRandomSubQuests = async (
+  data: RerollSubQuestRequestDTO
+): Promise<SubQuestResponseDTO[]> => {
+  const response = await api.post<ApiResponse<SubQuestResponseDTO[]>>(
+    '/quest/reroll-subquests',
+    data
+  );
+  return response.data ?? [];
+};
+
 export const getUserMainQuests = async (
   userId: string
 ): Promise<UserMainQuestDTO[]> => {
@@ -122,26 +152,6 @@ export const getUserSubQuests = async (
 ): Promise<UserSubQuestDTO[]> => {
   const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
     `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
-  );
-  return response.data ?? [];
-};
-
-export const getRandomSubQuestByMainQuestId = async ({
-  mainQuestId,
-  selectedSubQuestIds = [],
-  limit = 6,
-}: GetRandomSubQuestByMainQuestIdParams): Promise<UserSubQuestDTO[]> => {
-  const params: Record<string, string> = {
-    mainQuestId: mainQuestId,
-    selectedSubQuestIds: selectedSubQuestIds.join(','),
-    limit: limit.toString(),
-  };
-
-  const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
-    '/sub-quests',
-    {
-      params,
-    }
   );
   return response.data ?? [];
 };

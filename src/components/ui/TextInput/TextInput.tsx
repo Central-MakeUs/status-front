@@ -15,6 +15,7 @@ export interface TextInputProps {
   maxLength?: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 export const TextInput = ({
@@ -27,6 +28,7 @@ export const TextInput = ({
   maxLength,
   onChange,
   errorMessage,
+  disabled,
 }: TextInputProps) => {
   const inputId = useId();
   const errorMessageId = useId();
@@ -50,6 +52,7 @@ export const TextInput = ({
           onChange={onChange}
           aria-describedby={errorMessage ? errorMessageId : undefined}
           aria-invalid={!!errorMessage}
+          aria-disabled={disabled}
         />
       </div>
       {errorMessage && (
