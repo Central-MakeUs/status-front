@@ -35,7 +35,10 @@ export const withdrawal = async () => {
 export const updateNickname = async (
   payload: Pick<BasicUsersDTO, 'nickname'>
 ) => {
-  return await api.patch<ApiResponse<void>>('/users/nickname', payload);
+  return await api.patch<ApiResponse<BasicUsersDTO>>(
+    '/users/nickname',
+    payload
+  );
 };
 
 export const getCurrentUser = async () => {

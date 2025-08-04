@@ -52,9 +52,6 @@ export const ProfilePage = () => {
         setUser(null);
         navigate(PAGE_PATHS.ROOT);
       },
-      onError: () => {
-        // [TODO] 로그아웃 실패 에러 처리 기획 필요
-      },
     });
   };
 
@@ -63,9 +60,6 @@ export const ProfilePage = () => {
       onSuccess: () => {
         setUser(null);
         navigate(PAGE_PATHS.ROOT);
-      },
-      onError: () => {
-        // [TODO] 회원 탈퇴 실패 에러 처리 기획 필요
       },
     });
   };
