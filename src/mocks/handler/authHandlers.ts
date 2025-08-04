@@ -1,5 +1,9 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockGoogleUser, mockPendingSocialUser } from '@/mocks/data/users';
+import {
+  mockAppleUser,
+  mockGoogleUser,
+  mockPendingSocialUser,
+} from '@/mocks/data/users';
 import { SOCIAL_PROVIDER } from '@/constants/auth';
 import type { OAuthLoginRequestDTO } from '@/api/types/auth';
 
@@ -24,6 +28,8 @@ export const authHandlers = [
       userData = mockGoogleUser;
     } else if (provider === SOCIAL_PROVIDER.KAKAO) {
       userData = mockPendingSocialUser;
+    } else if (provider === SOCIAL_PROVIDER.APPLE) {
+      userData = mockAppleUser;
     }
 
     return HttpResponse.json({

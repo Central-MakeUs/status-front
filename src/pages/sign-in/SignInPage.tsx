@@ -44,12 +44,11 @@ const SignInPage = () => {
           <div className={cx('login-actions')}>
             <button
               type="button"
-              id="appleid-signin"
-              className={cx('button-login', 'apple')}
-              onClick={handleAppleLogin}
+              className={cx('button-login', 'kakao')}
+              onClick={handleKakaoLogin}
             >
-              <IconApple className={cx('login-icon')} aria-hidden="true" />
-              <span className={cx('login-text')}>Apple로 시작</span>
+              <IconKakao className={cx('login-icon')} aria-hidden="true" />
+              <span className={cx('login-text')}>Kakao로 시작</span>
             </button>
             <button
               type="button"
@@ -61,11 +60,12 @@ const SignInPage = () => {
             </button>
             <button
               type="button"
-              className={cx('button-login', 'kakao')}
-              onClick={handleKakaoLogin}
+              id="appleid-signin"
+              className={cx('button-login', 'apple')}
+              onClick={handleAppleLogin}
             >
-              <IconKakao className={cx('login-icon')} aria-hidden="true" />
-              <span className={cx('login-text')}>Kakao로 시작</span>
+              <IconApple className={cx('login-icon')} aria-hidden="true" />
+              <span className={cx('login-text')}>Apple로 시작</span>
             </button>
           </div>
         </div>

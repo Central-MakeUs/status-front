@@ -27,8 +27,8 @@ export const AUTH_CONFIGS: Record<SocialProvider, AuthConfig> = {
     endpoint: 'https://appleid.apple.com/auth/authorize',
     clientId: import.meta.env.VITE_APPLE_CLIENT_ID,
     redirectUri: import.meta.env.VITE_APPLE_REDIRECT_URI,
-    responseType: 'code id_token',
-    responseMode: 'fragment',
+    responseType: 'code',
+    responseMode: 'query',
   },
 } as const;
 

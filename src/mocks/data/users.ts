@@ -14,6 +14,15 @@ export const mockUserInfo: UserInfo = {
 };
 
 /**
+ * 애플 로그인 후 사용하는 가입 유저 데이터
+ */
+export const mockAppleUser: BasicUsers = {
+  id: '11',
+  nickname: 'appleUser',
+  type: 'LOGIN',
+};
+
+/**
  * 구글 로그인 후 사용하는 가입 유저 데이터
  */
 export const mockGoogleUser: BasicUsers = {
