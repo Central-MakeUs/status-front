@@ -1,10 +1,8 @@
-import type { Attribute, AttributeReward } from '@/types/attribute';
+import type { AttributeReward } from '@/types/attribute';
 import type {
   SubQuestFrequencyValue,
-  UserMainQuest,
-  UserSubQuest,
   SubQuestDifficulty,
-  Theme,
+  SubQuestInfo,
 } from '@/types/quest';
 import type { AttributeDTO } from './attribute';
 
@@ -48,10 +46,28 @@ export interface RerollSubQuestRequestDTO {
   gottenSubQuests: number[];
 }
 
+export interface CreateQuestRequestDTO {
+  theme: number;
+  mainQuest: number;
+  startDate: string;
+  endDate: string;
+  subQuests: SubQuestInfo[];
+}
+
+export interface CreateQuestResponseDTO {
+  id: number;
+  startDate: string;
+  endDate: string;
+  totalWeeks: number;
+  title: string;
+  attributes: AttributeDTO[];
+  subQuests: SubQuestResponseDTO[];
+}
+
 export interface MainQuestDTO {
   id: string;
   title: string;
-  attributes?: AttributeReward[];
+  attributes?: AttributeDTO[];
   createdAt?: string;
 }
 
@@ -90,15 +106,6 @@ export interface GetRandomSubQuestByMainQuestIdParams {
   mainQuestId: string;
   selectedSubQuestIds?: string[];
   limit: number;
-}
-
-export interface QuestCreationRequestDTO {
-  userId: string;
-  mentalityAttribute: Attribute;
-  skillAttribute: Attribute;
-  category: Theme;
-  mainQuest: UserMainQuest;
-  subQuests: UserSubQuest[];
 }
 
 export interface UserSubQuestLogRequestDTO {

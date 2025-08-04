@@ -7,10 +7,10 @@ import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
-import { getWeeksDifference } from '@/utils/date';
+import { getTodayString, getWeeksDifference } from '@/utils/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
-import type { QuestCreationRequestDTO } from '@/api/types/quest';
-import { usePostUserQuest } from '@/api/hooks/quest/usePostUserQuest';
+import type { CreateQuestRequestDTO } from '@/api/types/quest';
+import { usePostCreationQuest } from '@/api/hooks/quest/usePostCreationQuest';
 
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
@@ -24,42 +24,44 @@ const cx = classNames.bind(styles);
 
 export const StepSchedulePage = () => {
   const navigate = useNavigate();
-  // [TODO] auth store에서 사용자 정보 가져오기
-  const userId = '10';
   const {
-    selectedMentalityAttribute,
-    selectedSkillAttribute,
-    selectedCategory,
+    selectedTheme,
     selectedMainQuest,
     selectedSubQuestIds,
+    startDate,
+    endDate,
+    setStartDate,
     setEndDate,
     getSelectedSubQuests,
   } = useQuestCreationStore(
     useShallow((state) => ({
-      selectedMentalityAttribute: state.selectedMentalityAttribute,
-      selectedSkillAttribute: state.selectedSkillAttribute,
-      selectedCategory: state.selectedCategory,
+      selectedTheme: state.selectedTheme,
       selectedMainQuest: state.selectedMainQuest,
       selectedSubQuestIds: state.selectedSubQuestIds,
+      startDate: state.startDate,
+      endDate: state.endDate,
+      setStartDate: state.setStartDate,
       setEndDate: state.setEndDate,
       getSelectedSubQuests: state.getSelectedSubQuests,
+      clear: state.clear,
     }))
   );
-  /**
-   * [TODO] URL로 접근하는 등 validation 체크 로직
-   * 전체 스탭에서 공통화 할 수 있을지도 고민해보기 e.g. 라우터에서 처리?
-   */
+
   useEffect(() => {
     if (selectedSubQuestIds.length === 0) {
       navigate(PAGE_PATHS.QUEST_NEW_SUB_QUEST, { replace: true });
     }
   }, [selectedSubQuestIds, navigate]);
 
-  const postUserQuest = usePostUserQuest();
-  const startDate = selectedMainQuest?.startDate;
-  const endDate = selectedMainQuest?.endDate;
+  useEffect(() => {
+    if (!startDate) {
+      setStartDate(getTodayString());
+    }
+  }, [setStartDate, startDate]);
+
+  const postCreationQuest = usePostCreationQuest();
   const weeks = getWeeksDifference(startDate ?? '', endDate ?? '');
-  // console.log(startDate, endDate);
+
   const isValidSchedule = startDate && endDate;
 
   const handleClickDoneButton = () => {
@@ -67,44 +69,45 @@ export const StepSchedulePage = () => {
       return;
     }
 
-    const selectedSubQuests = getSelectedSubQuests();
+    const selectedSubQuests = getSelectedSubQuests().map((subQuest) => ({
+      id: subQuest.id,
+      frequencyType: subQuest.frequencyType,
+      actionUnitNum: subQuest.actionUnitNum,
+    }));
 
     const validationResult = validateQuestCreation({
-      selectedMentalityAttribute,
-      selectedSkillAttribute,
-      selectedCategory,
-      selectedMainQuest,
-      selectedSubQuestIds,
+      theme: selectedTheme?.id,
+      mainQuest: selectedMainQuest?.id,
+      startDate,
+      endDate,
       subQuests: selectedSubQuests,
     });
 
-    // [TODO] 생성 실패 에러 페이지 추가 필요
     if (!validationResult.success) {
-      console.error(validationResult.error);
+      navigate(PAGE_PATHS.QUEST_NEW_ERROR);
       return;
     }
 
     const validatedData = validationResult.data;
 
-    const payload: QuestCreationRequestDTO = {
-      userId,
-      mentalityAttribute: validatedData.selectedMentalityAttribute,
-      skillAttribute: validatedData.selectedSkillAttribute,
-      category: validatedData.selectedCategory,
-      mainQuest: validatedData.selectedMainQuest,
+    const payload: CreateQuestRequestDTO = {
+      theme: validatedData.theme,
+      mainQuest: validatedData.mainQuest,
+      startDate: validatedData.startDate,
+      endDate: validatedData.endDate,
       subQuests: validatedData.subQuests,
     };
 
-    postUserQuest.mutate(payload, {
-      onSuccess: () => {
+    postCreationQuest.mutate(payload, {
+      onSuccess: (data) => {
         navigate(PAGE_PATHS.QUEST_NEW_RESULT, {
           state: {
-            createdQuestId: payload.mainQuest.id,
+            response: data,
           },
         });
       },
       onError: () => {
-        // [TODO] 생성 실패 에러 페이지 추가 필요
+        navigate(PAGE_PATHS.QUEST_NEW_ERROR);
       },
     });
   };

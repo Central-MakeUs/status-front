@@ -12,6 +12,8 @@ interface QuestCreationState {
   selectedMainQuest: MainQuest | null;
   selectedSubQuestIds: number[];
   subQuests: SubQuest[];
+  startDate: string;
+  endDate: string;
   toggleAttributeSelection: (attribute: Attribute) => void;
   setSelectedTheme: (theme: Theme | null) => void;
   setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
@@ -21,6 +23,7 @@ interface QuestCreationState {
   setStartDate: (startDate: string) => void;
   setEndDate: (endDate: string) => void;
   getSelectedSubQuests: () => SubQuest[];
+  clear: () => void;
 }
 
 export const useQuestCreationStore = create<QuestCreationState>()(
@@ -31,6 +34,8 @@ export const useQuestCreationStore = create<QuestCreationState>()(
       selectedMainQuest: null,
       subQuests: [],
       selectedSubQuestIds: [],
+      startDate: '',
+      endDate: '',
 
       toggleAttributeSelection: (selectedAttribute) =>
         set((state) => ({
@@ -105,23 +110,13 @@ export const useQuestCreationStore = create<QuestCreationState>()(
         }),
 
       setStartDate: (startDate) =>
-        set((state) => ({
-          selectedMainQuest: state.selectedMainQuest
-            ? {
-                ...state.selectedMainQuest,
-                startDate,
-              }
-            : null,
+        set(() => ({
+          startDate,
         })),
 
       setEndDate: (endDate) =>
-        set((state) => ({
-          selectedMainQuest: state.selectedMainQuest
-            ? {
-                ...state.selectedMainQuest,
-                endDate,
-              }
-            : null,
+        set(() => ({
+          endDate,
         })),
 
       getSelectedSubQuests: () => {
@@ -129,6 +124,17 @@ export const useQuestCreationStore = create<QuestCreationState>()(
         return subQuests.filter((subQuest) =>
           selectedSubQuestIds.includes(subQuest.id)
         );
+      },
+      clear: () => {
+        set({
+          selectedAttributes: [],
+          selectedTheme: null,
+          selectedMainQuest: null,
+          subQuests: [],
+          selectedSubQuestIds: [],
+          startDate: '',
+          endDate: '',
+        });
       },
     }),
     {

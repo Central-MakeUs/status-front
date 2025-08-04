@@ -8,12 +8,14 @@ import {
   mockCompletedHistory,
 } from '@/mocks/data/quest';
 import type {
-  QuestCreationRequestDTO,
+  CreateQuestRequestDTO,
+  CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
   UserSubQuestLogResponseDTO,
 } from '@/api/types/quest';
 import { mockThemes } from '@/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
+import { getWeeksDifference } from '@/utils/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
@@ -104,6 +106,45 @@ export const questHandlers = [
       data: filteredSubQuests,
     });
   }),
+  http.post(`${API_URL}/quest/create`, async ({ request }) => {
+    const requestData = (await request.json()) as CreateQuestRequestDTO;
+
+    const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
+
+    const createdQuest: CreateQuestResponseDTO = {
+      id: Number(newQuestId),
+      startDate: requestData.startDate,
+      endDate: requestData.endDate,
+      totalWeeks: getWeeksDifference(
+        requestData.startDate,
+        requestData.endDate
+      ),
+      title:
+        mockMainQuests.find((quest) => quest.id === requestData.mainQuest)
+          ?.name ?? '',
+      attributes: [
+        {
+          id: 101,
+          name: '제어',
+          exp: 50,
+        },
+      ],
+      subQuests: [...mockSubQuests.slice(0, 3)],
+    };
+
+    mockUserMainQuests.push({
+      id: createdQuest.id.toString(),
+      title: createdQuest.title,
+      startDate: createdQuest.startDate,
+      endDate: createdQuest.endDate,
+      progress: 0,
+      attributes: createdQuest.attributes,
+    });
+
+    return HttpResponse.json({
+      data: createdQuest,
+    });
+  }),
 
   http.get(`${API_URL}/users/:userId/main-quests`, () => {
     return HttpResponse.json({
@@ -119,49 +160,6 @@ export const questHandlers = [
       data: quest,
     });
   }),
-  http.post(`${API_URL}/users/:userId/quest`, async ({ request }) => {
-    const requestData = (await request.json()) as QuestCreationRequestDTO;
-
-    const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
-
-    const createdQuest = {
-      mainQuestId: newQuestId,
-      title: requestData.mainQuest.title,
-      startDate: requestData.mainQuest.startDate,
-      endDate: requestData.mainQuest.endDate,
-      progress: 0,
-      totalDays: 0,
-      expiredAt: requestData.mainQuest.endDate,
-      rewards: [{ statType: 'patience', exp: 50 }],
-      createdAt: new Date().toISOString(),
-      subQuests: requestData.subQuests.map((subQuest) => ({
-        ...subQuest,
-        id: `sub_quest_${Date.now() * (Math.random() + 0.5)}`,
-      })),
-    };
-
-    mockUserMainQuests.push({
-      id: newQuestId,
-      title: requestData.mainQuest.title,
-      startDate: requestData.mainQuest.startDate,
-      endDate: requestData.mainQuest.endDate,
-      progress: 0,
-      attributes: [
-        {
-          attributeId: 101,
-          name: '제어',
-          type: 'MENTALITY',
-          level: 1,
-          exp: 50,
-        },
-      ],
-    });
-
-    return HttpResponse.json({
-      data: createdQuest,
-    });
-  }),
-
   http.get(
     `${API_URL}/users/:userId/main-quests/:mainQuestId/sub-quests`,
     () => {

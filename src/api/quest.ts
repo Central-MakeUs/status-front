@@ -2,7 +2,6 @@ import { api } from '@/api/client';
 import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
-  QuestCreationRequestDTO,
   UserSubQuestLogRequestDTO,
   TodayCompletedQuestDTO,
   UserCompletedHistoryDTO,
@@ -15,6 +14,7 @@ import type {
   SubQuestResponseDTO,
   GetSubQuestsParams,
   RerollSubQuestRequestDTO,
+  CreateQuestRequestDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -118,6 +118,14 @@ export const getRandomSubQuests = async (
   return response.data ?? [];
 };
 
+export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
+  const response = await api.post<ApiResponse<CreateQuestRequestDTO>>(
+    `/quest/create`,
+    data
+  );
+  return response.data ?? {};
+};
+
 export const getUserMainQuests = async (
   userId: string
 ): Promise<UserMainQuestDTO[]> => {
@@ -154,14 +162,6 @@ export const getUserSubQuests = async (
     `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
   );
   return response.data ?? [];
-};
-
-export const postUserQuest = async (data: QuestCreationRequestDTO) => {
-  const response = await api.post<ApiResponse<QuestCreationRequestDTO>>(
-    `/users/${data.userId}/quest`,
-    data
-  );
-  return response.data ?? {};
 };
 
 /**

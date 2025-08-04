@@ -46,11 +46,8 @@ export const QuestPage = () => {
                 </strong>
                 <ul className={cx('reward-list')}>
                   {quest.attributes?.map((attribute) => (
-                    <li
-                      key={attribute.attributeId}
-                      className={cx('reward-item')}
-                    >
-                      <AttributeIcon id={attribute.attributeId} />
+                    <li key={attribute.id} className={cx('reward-item')}>
+                      <AttributeIcon id={attribute.id} />
                       <span className={cx('reward-text')}>
                         +{attribute.exp}xp
                       </span>

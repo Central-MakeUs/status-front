@@ -213,8 +213,8 @@ export const mockUserMainQuests: UserMainQuest[] = [
     endDate: '2025-01-07',
     progress: 0,
     attributes: [
-      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 100 },
-      { attributeId: 102, name: '집중', type: 'MENTALITY', level: 1, exp: 50 },
+      { id: 103, name: '제어', exp: 100 },
+      { id: 102, name: '집중', exp: 50 },
     ],
   },
   {
@@ -224,8 +224,8 @@ export const mockUserMainQuests: UserMainQuest[] = [
     endDate: '2025-01-07',
     progress: 30,
     attributes: [
-      { attributeId: 203, name: '기록', type: 'SKILL', level: 1, exp: 100 },
-      { attributeId: 103, name: '제어', type: 'MENTALITY', level: 1, exp: 50 },
+      { id: 203, name: '기록', exp: 100 },
+      { id: 103, name: '제어', exp: 50 },
     ],
   },
 ];
