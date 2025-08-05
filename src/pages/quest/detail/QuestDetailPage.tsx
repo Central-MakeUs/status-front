@@ -19,7 +19,6 @@ import styles from './QuestDetailPage.module.scss';
 import { Header } from '@/components/ui/Header/Header';
 import { getWeeksDifference } from '@/utils/date';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
-import type { AttributeReward } from '@/types/attribute';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
@@ -31,6 +30,7 @@ import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDia
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
+import type { AttributeDTO } from '@/api/types/attribute';
 
 const cx = classNames.bind(styles);
 
@@ -158,17 +158,17 @@ const QuestDetailPage = () => {
             </span>
             <strong className={cx('main-quest-title')}>{quest.title}</strong>
             <ul className={cx('reward-list')}>
-              {quest.attributes?.map((attribute: AttributeReward) => (
+              {quest.attributes?.map((attribute: AttributeDTO) => (
                 <li
-                  key={attribute.attributeId}
+                  key={attribute.id}
                   className={cx('reward-item')}
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsStatusBottomSheetOpen(true);
-                    setSelectedStatusKey(attribute.attributeId);
+                    setSelectedStatusKey(attribute.id);
                   }}
                 >
-                  <AttributeIcon id={attribute.attributeId} />
+                  <AttributeIcon id={attribute.id} />
                   <span className={cx('reward-text')}>+{attribute.exp}xp</span>
                 </li>
               ))}

@@ -5,7 +5,3 @@ export type AttributeType =
   (typeof ATTRIBUTE_TYPES)[keyof typeof ATTRIBUTE_TYPES];
 
 export type Attribute = AttributeReturnDTO;
-
-export type AttributeReward = Attribute & {
-  exp: number;
-};

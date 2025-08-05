@@ -36,7 +36,7 @@ export const QuestItem = ({
             {getSubQuestFrequencyLabel(frequency)} |
           </span>
           {attributes.map((attr) => (
-            <span key={attr.attributeId} className={cx('attribute')}>
+            <span key={attr.id} className={cx('attribute')}>
               {attr.name}+{attr.exp}
             </span>
           ))}

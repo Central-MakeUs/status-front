@@ -37,7 +37,7 @@ const CompletedQuestList = ({
           <div className={cx('attributes-row')}>
             {getSubQuestFrequencyLabel(quest.frequency)} |
             {quest.attributes.map((attr) => (
-              <span key={attr.attributeId} className={cx('attribute')}>
+              <span key={attr.id} className={cx('attribute')}>
                 {attr.name} +{attr.exp}
               </span>
             ))}

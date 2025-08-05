@@ -2,7 +2,7 @@ import { Dialog } from '@/components/ui/Dialog/Dialog';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 import { Button } from '@/components/ui/Button/Button';
 
-import type { AttributeReward } from '@/types/attribute';
+import type { AttributeDTO } from '@/api/types/attribute';
 
 import IconMainQuestReward from '@/assets/icons/icon-main-quest-reward.svg?react';
 
@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 interface MainQuestRewardDialogProps {
   isOpen: boolean;
-  attributes: AttributeReward[];
+  attributes: AttributeDTO[];
   onClaim: () => void;
 }
 
@@ -30,11 +30,8 @@ export const MainQuestRewardDialog = ({
       <Dialog.Title>메인퀘스트 완료 보너스!</Dialog.Title>
       <ul className={cx('reward-list')}>
         {attributes.map((attribute) => (
-          <li key={attribute.attributeId} className={cx('reward-item')}>
-            <AttributeIcon
-              id={attribute.attributeId}
-              className={cx('attribute-icon')}
-            />
+          <li key={attribute.id} className={cx('reward-item')}>
+            <AttributeIcon id={attribute.id} className={cx('attribute-icon')} />
             <span className={cx('attribute-text')}>+{attribute.exp}xp</span>
           </li>
         ))}

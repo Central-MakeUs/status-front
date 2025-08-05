@@ -1,4 +1,3 @@
-import type { AttributeReward } from '@/types/attribute';
 import type {
   SubQuestFrequencyValue,
   SubQuestDifficulty,
@@ -87,7 +86,7 @@ export interface SubQuestDTO {
 export interface UserSubQuestDTO extends SubQuestDTO {
   frequency: SubQuestFrequencyValue;
   repeatCnt: number;
-  attributes: AttributeReward[];
+  attributes: AttributeDTO[];
   essential: boolean;
 }
 
