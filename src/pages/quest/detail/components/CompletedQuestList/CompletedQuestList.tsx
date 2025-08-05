@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './CompletedQuestList.module.scss';
 import type {
   SubQuestDifficulty,
-  TodayCompletedQuest,
+  CompletedQuest,
   UserSubQuest,
 } from '@/types/quest';
 import {
@@ -17,7 +17,7 @@ const CompletedQuestList = ({
   quest,
   onClick,
 }: {
-  quest: TodayCompletedQuest;
+  quest: CompletedQuest;
   onClick: (
     event: React.MouseEvent,
     quest: UserSubQuest,
@@ -27,7 +27,7 @@ const CompletedQuestList = ({
 }) => {
   const difficulty =
     Object.values(SUB_QUEST_DIFFICULTY).find(
-      (el) => el.value === quest.difficulty
+      (el) => el.value === quest.log.difficulty
     ) ?? SUB_QUEST_DIFFICULTY['EASY'];
 
   return (
@@ -35,19 +35,19 @@ const CompletedQuestList = ({
       <div className={cx('card-header')}>
         <div className={cx('top-row')}>
           <div className={cx('attributes-row')}>
-            {getSubQuestFrequencyLabel(quest.frequency)} |
-            {quest.attributes.map((attr) => (
+            {getSubQuestFrequencyLabel(quest.userSubQuest.frequencyType)} |
+            {quest.userSubQuest.attributes.map((attr) => (
               <span key={attr.id} className={cx('attribute')}>
                 {attr.name} +{attr.exp}
               </span>
             ))}
           </div>
-          <div className={cx('title')}>{quest.desc}</div>
+          <div className={cx('title')}>{quest.userSubQuest.desc}</div>
         </div>
         <button className={cx('edit-btn')}>
           <IconEdit
             onClick={(event) =>
-              onClick(event, quest, difficulty.value, quest.comment)
+              onClick(event, quest, difficulty.value, quest.log.memo)
             }
           />
         </button>
@@ -60,7 +60,7 @@ const CompletedQuestList = ({
         >
           {difficulty.label}
         </span>
-        <div className={cx('comment')}>{quest.comment}</div>
+        <div className={cx('comment')}>{quest.log.memo}</div>
       </div>
     </div>
   );

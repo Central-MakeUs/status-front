@@ -3,7 +3,7 @@ import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
-  TodayCompletedQuestDTO,
+  CompletedQuestDTO,
   UserCompletedHistoryDTO,
   UserMainQuestGiveUpRequestDTO,
   GetThemesParams,
@@ -136,11 +136,10 @@ export const getUserMainQuests = async (
 };
 
 export const getUserMainQuest = async (
-  userId: string,
   mainQuestId: string
 ): Promise<UserMainQuestDTO> => {
   const response = await api.get<ApiResponse<UserMainQuestDTO>>(
-    `/users/${userId}/main-quest/${mainQuestId}`
+    `/quest/${mainQuestId}`
   );
   return (
     response.data ?? {
@@ -155,11 +154,10 @@ export const getUserMainQuest = async (
 };
 
 export const getUserSubQuests = async (
-  userId: string,
   mainQuestId: string
 ): Promise<UserSubQuestDTO[]> => {
   const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
-    `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
+    `/quest/${mainQuestId}/today`
   );
   return response.data ?? [];
 };
@@ -170,7 +168,15 @@ export const getUserSubQuests = async (
  */
 export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
   const response = await api.post<ApiResponse<UserSubQuestLogRequestDTO>>(
-    `/users/${data.userId}/sub-quest-log`,
+    `/quest/sub`,
+    data
+  );
+  return response.data ?? {};
+};
+
+export const patchUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
+  const response = await api.patch<ApiResponse<UserSubQuestLogRequestDTO>>(
+    `/quest/sub`,
     data
   );
   return response.data ?? {};
@@ -178,18 +184,18 @@ export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
 
 export const getTodayCompletedQuests = async (
   userId: string
-): Promise<TodayCompletedQuestDTO[]> => {
-  const response = await api.get<ApiResponse<TodayCompletedQuestDTO[]>>(
+): Promise<CompletedQuestDTO[]> => {
+  const response = await api.get<ApiResponse<CompletedQuestDTO[]>>(
     `/users/${userId}/today-completed-quests`
   );
   return response.data ?? [];
 };
 
 export const getUserCompletedHistory = async (
-  userId: string
+  mainQuestId: string
 ): Promise<UserCompletedHistoryDTO[]> => {
   const response = await api.get<ApiResponse<UserCompletedHistoryDTO[]>>(
-    `/users/${userId}/completed-history`
+    `/quest/${mainQuestId}/history`
   );
   return response.data ?? [];
 };
@@ -198,7 +204,7 @@ export const postUserGiveUpMainQuest = async (
   data: UserMainQuestGiveUpRequestDTO
 ) => {
   const response = await api.post<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
-    `/users/${data.userId}/main-quest/${data.mainQuestId}/giveup`,
+    `/quest/${data.mainQuestId}`,
     data
   );
   return response.data ?? {};

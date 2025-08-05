@@ -6,12 +6,15 @@ import { getSubQuestFrequencyLabel } from '@/constants/quest';
 const cx = classNames.bind(styles);
 
 export const QuestItem = ({
-  id,
-  desc,
-  defaultRepeat,
-  frequency,
+  userSubQuest: {
+    id,
+    desc,
+    frequencyType,
+    attributes,
+    actionUnitType,
+    actionUnitNum,
+  },
   repeatCnt,
-  attributes,
   essential,
   onClick = () => {},
 }: UserSubQuest & {
@@ -21,19 +24,19 @@ export const QuestItem = ({
     <div className={cx('quest-item')}>
       <div className={cx('top-row')}>
         {essential && <span className={cx('essential')}>필수</span>}
-        {frequency.includes('weekly') && (
+        {frequencyType.includes('weekly') && (
           <span className={cx('remaining')}>
-            (금주 {defaultRepeat - repeatCnt}회 남음)
+            (금주 {actionUnitNum - repeatCnt} {actionUnitType} 남음)
           </span>
         )}
-        {frequency.includes('monthly') && (
+        {frequencyType.includes('monthly') && (
           <span className={cx('remaining')}>
-            (이번달 {defaultRepeat - repeatCnt}회 남음)
+            (이번달 {actionUnitNum - repeatCnt} {actionUnitType} 남음)
           </span>
         )}
         <div className={cx('meta')}>
           <span className={cx('frequency')}>
-            {getSubQuestFrequencyLabel(frequency)} |
+            {getSubQuestFrequencyLabel(frequencyType)} |
           </span>
           {attributes.map((attr) => (
             <span key={attr.id} className={cx('attribute')}>
@@ -43,7 +46,10 @@ export const QuestItem = ({
         </div>
       </div>
       <div className={cx('desc')}>{desc}</div>
-      <button className={cx('confirm')} onClick={(event) => onClick(event, id)}>
+      <button
+        className={cx('confirm')}
+        onClick={(event) => onClick(event, id.toString())}
+      >
         인증하기
       </button>
     </div>

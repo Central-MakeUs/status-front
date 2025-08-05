@@ -7,9 +7,9 @@ export const usePostUserGiveUpMainQuest = () => {
   return useMutation({
     mutationFn: (data: UserMainQuestGiveUpRequestDTO) =>
       postUserGiveUpMainQuest(data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['main-quests', 'user', variables.userId],
+        queryKey: ['main-quests', 'user'],
       });
     },
   });

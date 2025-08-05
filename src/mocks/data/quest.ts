@@ -3,7 +3,7 @@ import type {
   MainQuest,
   SubQuest,
   Theme,
-  TodayCompletedQuest,
+  CompletedQuest,
   UserMainQuest,
   UserSubQuest,
 } from '@/types/quest';
@@ -232,101 +232,119 @@ export const mockUserMainQuests: UserMainQuest[] = [
 
 export const mockUserSubQuests: UserSubQuest[] = [
   {
-    id: '1',
-    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
-    defaultFrequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
-    defaultRepeat: 3,
-    frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+    userSubQuest: {
+      id: 1,
+      desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+      frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
+      actionUnitNum: 3,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 5 },
+        { id: 103, name: '제어', exp: 3 },
+      ],
+    },
     repeatCnt: 2,
-    attributes: [
-      { id: 203, name: '기록', exp: 5 },
-      { id: 103, name: '제어', exp: 3 },
-    ],
     essential: true,
   },
   {
-    id: '2',
-    desc: '아침 알림 전면 차단 후 하루 시작',
-    defaultFrequency: SUB_QUEST_FREQUENCY.DAILY.value,
-    defaultRepeat: 1,
-    frequency: SUB_QUEST_FREQUENCY.DAILY.value,
-    repeatCnt: 1,
-    attributes: [
-      { id: 203, name: '기록', exp: 100 },
-      { id: 103, name: '제어', exp: 50 },
-    ],
+    userSubQuest: {
+      id: 2,
+      desc: '아침 알림 전면 차단 후 하루 시작',
+      frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
+      actionUnitNum: 1,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 100 },
+        { id: 103, name: '제어', exp: 50 },
+      ],
+    },
+    repeatCnt: 2,
     essential: true,
   },
   {
-    id: '3',
-    desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
-    defaultFrequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-    defaultRepeat: 3,
-    frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-    repeatCnt: 1,
-    attributes: [
-      { id: 203, name: '기록', exp: 5 },
-      { id: 103, name: '제어', exp: 3 },
-    ],
+    userSubQuest: {
+      id: 3,
+      desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+      frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+      actionUnitNum: 1,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 5 },
+        { id: 103, name: '제어', exp: 3 },
+      ],
+    },
+    repeatCnt: 2,
     essential: false,
   },
 ];
 
-export const mockTodayCompletedQuests: TodayCompletedQuest[] = [
+export const mockTodayCompletedQuests: CompletedQuest[] = [
   {
-    id: '1',
-    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
-    xp: 30,
-    frequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
-    attributes: [
-      { id: 203, name: '기록', exp: 5 },
-      { id: 103, name: '제어', exp: 3 },
-    ],
-    difficulty: 'easy',
-    comment: '후후 이정도는 쉽죠?😈',
-    essential: true,
-    defaultFrequency: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
-    defaultRepeat: 3,
-    repeatCnt: 2,
-  },
-  {
-    id: '2',
-    desc: '아침 알림 전면 차단 후 하루 시작',
-    xp: 20,
-    frequency: SUB_QUEST_FREQUENCY.DAILY.value,
-    attributes: [
-      { id: 203, name: '기록', exp: 5 },
-      { id: 103, name: '제어', exp: 3 },
-    ],
-    difficulty: 'hard',
-    comment: '매일매일 실천 중!',
-    essential: true,
-    defaultFrequency: SUB_QUEST_FREQUENCY.DAILY.value,
-    defaultRepeat: 1,
+    userSubQuest: {
+      id: 2,
+      desc: '아침 알림 전면 차단 후 하루 시작',
+      frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
+      actionUnitNum: 1,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 5 },
+        { id: 103, name: '제어', exp: 3 },
+      ],
+    },
     repeatCnt: 1,
+    essential: true,
+    log: {
+      id: 1,
+      difficulty: 'easy',
+      memo: '일찍 일어나 알림을 껐음',
+    },
   },
   {
-    id: '3',
-    desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
-    xp: 40,
-    frequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-    attributes: [
-      { id: 203, name: '기록', exp: 5 },
-      { id: 103, name: '제어', exp: 3 },
-    ],
-    difficulty: 'default',
-    comment: '오늘도 루틴 성공!',
+    userSubQuest: {
+      id: 3,
+      desc: '아침 알림 전면 차단 후 하루 시작',
+      frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
+      actionUnitNum: 1,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 5 },
+        { id: 103, name: '제어', exp: 3 },
+      ],
+    },
+    repeatCnt: 1,
+    essential: true,
+    log: {
+      id: 2,
+      difficulty: 'default',
+      memo: '습관적으로 껐지만 조금 늦게 일어남',
+    },
+  },
+  {
+    userSubQuest: {
+      id: 4,
+      desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+      frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
+      actionUnitNum: 1,
+      actionUnitType: '회',
+      attributes: [
+        { id: 203, name: '기록', exp: 5 },
+        { id: 103, name: '제어', exp: 3 },
+      ],
+    },
+    repeatCnt: 1,
     essential: false,
-    defaultFrequency: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-    defaultRepeat: 3,
-    repeatCnt: 1,
+    log: {
+      id: 3,
+      difficulty: 'hard',
+      memo: '핸드폰 없이 집중해서 루틴을 완수함',
+    },
   },
 ];
 
 function getRecentDates(days: number): string[] {
   const result: string[] = [];
   const today = new Date();
-  for (let i = 0; i < days; i++) {
+  for (let i = 0; i <= days; i++) {
     const d = new Date(today);
     d.setDate(today.getDate() - i);
     const yyyy = d.getFullYear();
@@ -339,5 +357,5 @@ function getRecentDates(days: number): string[] {
 
 export const mockCompletedHistory = getRecentDates(4).map((date) => ({
   date,
-  quests: mockTodayCompletedQuests,
+  logs: mockTodayCompletedQuests,
 }));

@@ -17,7 +17,7 @@ const StatusPage = () => {
   const mainQuestId = '1';
   const { data: userInfo } = useGetUserInfo(userId);
   const { data: attributeDatas } = useGetUserAttributes();
-  const { data: quests } = useGetUserSubQuests(userId, mainQuestId);
+  const { data: quests } = useGetUserSubQuests(mainQuestId);
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
@@ -58,7 +58,6 @@ const StatusPage = () => {
           <QuestList
             quests={quests}
             onClick={(_, quest: UserSubQuest) => {
-              console.log(quest);
               navigate(
                 `${PAGE_PATHS.QUEST_DETAIL.replace(':id', mainQuestId)}`,
                 {

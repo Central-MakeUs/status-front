@@ -1,16 +1,19 @@
-import { useGetUserTodayCompletedQuests } from '@/api/hooks/quest/useGetUserTodayCompletedQuests';
 import CompletedQuestList from '../CompletedQuestList/CompletedQuestList';
 
 import classNames from 'classnames/bind';
 import styles from './TodayCompletedQuests.module.scss';
-import type { SubQuestDifficulty, UserSubQuest } from '@/types/quest';
+import type {
+  SubQuestDifficulty,
+  CompletedQuest,
+  UserSubQuest,
+} from '@/types/quest';
 const cx = classNames.bind(styles);
 
 const TodayCompletedQuests = ({
-  userId,
+  quests,
   onClick,
 }: {
-  userId: string;
+  quests: CompletedQuest[];
   onClick: (
     event: React.MouseEvent,
     quest: UserSubQuest,
@@ -18,8 +21,6 @@ const TodayCompletedQuests = ({
     memo: string
   ) => void;
 }) => {
-  const { data: quests } = useGetUserTodayCompletedQuests(userId);
-
   return (
     <>
       <main className="main">
@@ -28,7 +29,7 @@ const TodayCompletedQuests = ({
           {quests &&
             quests.map((quest) => (
               <CompletedQuestList
-                key={quest.id}
+                key={quest.userSubQuest.id}
                 quest={quest}
                 onClick={onClick}
               />
