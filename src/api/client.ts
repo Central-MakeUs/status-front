@@ -1,5 +1,4 @@
-import { getCookie } from '@/utils/cookie';
-import { refreshAccessToken } from '@/api/auth';
+import { authenticateUser, refreshAccessToken } from '@/api/auth';
 
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
@@ -31,9 +30,8 @@ const request = async <T = unknown>(
   });
 
   if (response.status === 401 && !options._retry) {
-    const refreshToken = getCookie('refresh_token');
-
-    if (refreshToken) {
+    const isAuthenticated = await authenticateUser();
+    if (isAuthenticated) {
       await refreshAccessToken();
       return request(endpoint, {
         ...options,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
 import { Header } from '@/components/ui/Header/Header';
 import { useAuthStore } from '@/stores/authStore';
@@ -25,6 +26,7 @@ const DEMO_TIER = 'Platinum_1';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { user, setUser } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
@@ -50,6 +52,7 @@ export const ProfilePage = () => {
     postLogout.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
+        queryClient.setQueryData(['auth', 'me'], false);
         navigate(PAGE_PATHS.ROOT);
       },
     });
@@ -59,6 +62,7 @@ export const ProfilePage = () => {
     postWithdrawal.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
+        queryClient.setQueryData(['auth', 'me'], false);
         navigate(PAGE_PATHS.ROOT);
       },
     });

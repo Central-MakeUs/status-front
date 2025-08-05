@@ -1,6 +1,7 @@
 import { http, HttpResponse, passthrough } from 'msw';
 import { mockGoogleUser, mockUserInfo } from '@/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
+import { getCookie } from '@/utils/cookie';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
@@ -76,11 +77,16 @@ export const usersHandlers = [
     });
   }),
   http.get(`${API_URL}/users/me`, () => {
-    if (!document.cookie.includes('access_token')) {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const accessToken = getCookie('access_token');
+
+    if (!accessToken) {
       return HttpResponse.json({
-        status: '500',
-        code: '00-001',
-        message: '현재 앱에 문제가 발생했으니 관리자에게 문의해주세요.',
+        status: '401',
+        message: '로그인 후 이용해주세요.',
       });
     }
 
