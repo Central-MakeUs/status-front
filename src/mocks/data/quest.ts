@@ -258,7 +258,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
         { id: 103, name: '제어', exp: 50 },
       ],
     },
-    repeatCnt: 2,
+    repeatCnt: 1,
     essential: true,
   },
   {
@@ -266,7 +266,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
       id: 3,
       desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
       frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-      actionUnitNum: 1,
+      actionUnitNum: 3,
       actionUnitType: '회',
       attributes: [
         { id: 203, name: '기록', exp: 5 },
