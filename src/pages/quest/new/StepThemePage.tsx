@@ -15,16 +15,16 @@ import { useGetRandomThemes } from '@/api/hooks/quest/useGetRandomThemes';
 
 export const StepCategoryPage = () => {
   const navigate = useNavigate();
-  const { selectedAttributes, selectedTheme, setSelectedTheme } =
+  const { selectedAttribute, selectedTheme, setSelectedTheme } =
     useQuestCreationStore(
       useShallow((state) => ({
-        selectedAttributes: state.selectedAttributes,
+        selectedAttribute: state.selectedAttribute,
         selectedTheme: state.selectedTheme,
         setSelectedTheme: state.setSelectedTheme,
       }))
     );
 
-  const isValidAttributes = selectedAttributes.length > 0;
+  const isValidAttributes = selectedAttribute !== null;
 
   useEffect(() => {
     if (!isValidAttributes) {
@@ -33,17 +33,17 @@ export const StepCategoryPage = () => {
   }, [isValidAttributes, navigate]);
 
   const attributeNames = useMemo(
-    () => selectedAttributes.map((attribute) => `${attribute.name}`).join(', '),
-    [selectedAttributes]
+    () => selectedAttribute?.name ?? '',
+    [selectedAttribute]
   );
 
   const selectedAttributeIds = useMemo(
-    () => selectedAttributes.map((attribute) => attribute.attributeId),
-    [selectedAttributes]
+    () => selectedAttribute?.attributeId ?? 0,
+    [selectedAttribute]
   );
 
   const { data, isLoading, isRefetching } = useGetThemes({
-    attributes: selectedAttributeIds,
+    attributes: [selectedAttributeIds],
   });
 
   const currentThemeIds = data?.map((theme) => theme.id) ?? [];
@@ -54,7 +54,7 @@ export const StepCategoryPage = () => {
     setSelectedTheme(null);
 
     refreshThemes({
-      attributes: selectedAttributeIds,
+      attributes: [selectedAttributeIds],
       themes: currentThemeIds,
     });
   };

@@ -30,5 +30,3 @@ export const ATTRIBUTE_TYPES = {
   MENTALITY: 'MENTALITY',
   SKILL: 'SKILL',
 } as const;
-
-export const MAX_ATTRIBUTE_COUNT = 2;
