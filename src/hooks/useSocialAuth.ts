@@ -135,7 +135,17 @@ export const useSocialAuth = () => {
 
     if (isWebView) {
       window.addEventListener('message', handleWebViewMessage);
-      return () => window.removeEventListener('message', handleWebViewMessage);
+      document.addEventListener(
+        'message',
+        handleWebViewMessage as EventListener
+      );
+      return () => {
+        window.removeEventListener('message', handleWebViewMessage);
+        document.removeEventListener(
+          'message',
+          handleWebViewMessage as EventListener
+        );
+      };
     }
   }, [isWebView, handleWebViewMessage, handleOAuthCallback]);
 
