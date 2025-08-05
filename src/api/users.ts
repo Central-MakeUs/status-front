@@ -42,5 +42,6 @@ export const updateNickname = async (
 };
 
 export const getCurrentUser = async () => {
-  return await api.get<ApiResponse<BasicUsersDTO>>('/users/me');
+  const response = await api.get<ApiResponse<BasicUsersDTO>>('/users/me');
+  return response.data;
 };

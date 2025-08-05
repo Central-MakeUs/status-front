@@ -54,3 +54,8 @@ export const USER_TYPE = {
   SIGN_UP: 'SIGNUP',
   LOGIN: 'LOGIN',
 } as const;
+
+export const AUTH_CACHE_TIME = {
+  STALE_TIME: 5 * 60 * 1000,
+  GC_TIME: 10 * 60 * 1000,
+} as const;

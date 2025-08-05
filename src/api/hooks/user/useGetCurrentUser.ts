@@ -1,13 +1,16 @@
 import { getCurrentUser } from '@/api/users';
-import { getCookie } from '@/utils/cookie';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetCurrentUser = () => {
-  const accessToken = getCookie('access_token');
+interface UseGetCurrentUserProps {
+  isAuthenticated?: boolean;
+}
 
+export const useGetCurrentUser = ({
+  isAuthenticated,
+}: UseGetCurrentUserProps) => {
   return useQuery({
     queryKey: ['users', 'me'],
-    queryFn: getCurrentUser,
-    enabled: !!accessToken,
+    queryFn: () => getCurrentUser(),
+    enabled: isAuthenticated,
   });
 };

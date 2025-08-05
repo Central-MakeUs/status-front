@@ -5,6 +5,8 @@ import {
   mockPendingSocialUser,
 } from '@/mocks/data/users';
 import { SOCIAL_PROVIDER } from '@/constants/auth';
+import { getCookie } from '@/utils/cookie';
+
 import type { OAuthLoginRequestDTO } from '@/api/types/auth';
 
 export const API_URL = import.meta.env.VITE_API_URL;
@@ -68,6 +70,25 @@ export const authHandlers = [
     return HttpResponse.json({
       status: '200',
       data: mockGoogleUser,
+    });
+  }),
+  http.get(`${API_URL}/auth/me`, async () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const accessToken = getCookie('access_token');
+
+    if (!accessToken) {
+      return HttpResponse.json({
+        status: '200',
+        data: false,
+      });
+    }
+
+    return HttpResponse.json({
+      status: '200',
+      data: true,
     });
   }),
 ];

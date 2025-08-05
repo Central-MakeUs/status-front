@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { signUp } from '@/api/users';
@@ -10,6 +11,7 @@ import { NICKNAME_MAX_LENGTH, SIGN_UP_STEP } from '@/constants/auth';
 import { SIGN_UP_STEP_INFO } from '@/constants/auth';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { renderWithLineBreaks } from '@/utils/format';
+import { TERM_URL } from '@/constants/term';
 
 import type { SignUpStep } from '@/types/auth';
 import type { SignUpForm } from '@/types/users';
@@ -19,7 +21,7 @@ import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
-import { useShallow } from 'zustand/react/shallow';
+import { MESSAGE_TYPES } from '@/constants/webView';
 
 const cx = classNames.bind(styles);
 
@@ -40,11 +42,14 @@ const SignUpPage = () => {
   const [nicknameError, setNicknameError] = useState<string | undefined>(
     undefined
   );
+
+  const [ageAgreed, setAgeAgreed] = useState(false);
   const [termsAgreed, setTermsAgreed] = useState(false);
   const [privacyPolicyAgreed, setPrivacyPolicyAgreed] = useState(false);
 
   const isNicknameValid = nickname.length > 0 && nicknameError === undefined;
-  const isTermsAndPrivacyPolicyValid = termsAgreed && privacyPolicyAgreed;
+  const isTermsAndPrivacyPolicyValid =
+    ageAgreed && termsAgreed && privacyPolicyAgreed;
 
   const { title, description } = SIGN_UP_STEP_INFO[step];
 
@@ -65,6 +70,10 @@ const SignUpPage = () => {
     }
   };
 
+  const handleChangeAgeAgreed = () => {
+    setAgeAgreed((ageAgreed) => !ageAgreed);
+  };
+
   const handleChangeTermsAgreed = () => {
     setTermsAgreed((termsAgreed) => !termsAgreed);
   };
@@ -75,14 +84,34 @@ const SignUpPage = () => {
 
   const handleChangeTermsAndPrivacyPolicyAgreed = () => {
     if (isTermsAndPrivacyPolicyValid) {
+      setAgeAgreed(false);
       setTermsAgreed(false);
       setPrivacyPolicyAgreed(false);
 
       return;
     }
 
+    setAgeAgreed(true);
     setTermsAgreed(true);
     setPrivacyPolicyAgreed(true);
+  };
+
+  const handleClickTermsLink = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    const { href } = event.currentTarget;
+
+    const isWebView = window.ReactNativeWebView !== undefined;
+    if (isWebView) {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          type: MESSAGE_TYPES.OPEN_EXTERNAL_BROWSER,
+          url: href,
+        })
+      );
+    } else {
+      window.open(href, '_blank');
+    }
   };
 
   const handleClickNicknameConfirmButton = () => {
@@ -161,6 +190,18 @@ const SignUpPage = () => {
               <ul className={cx('terms-list')}>
                 <li className={cx('terms-item')}>
                   <Checkbox
+                    checked={ageAgreed}
+                    onClick={handleChangeAgeAgreed}
+                    className={cx('terms-item-checkbox')}
+                    required
+                  >
+                    <Checkbox.Label className={cx('terms-item-label')}>
+                      만 14세 이상 확인 (필수)
+                    </Checkbox.Label>
+                  </Checkbox>
+                </li>
+                <li className={cx('terms-item')}>
+                  <Checkbox
                     checked={termsAgreed}
                     onClick={handleChangeTermsAgreed}
                     className={cx('terms-item-checkbox')}
@@ -170,13 +211,13 @@ const SignUpPage = () => {
                       서비스 이용 약관 (필수)
                     </Checkbox.Label>
                   </Checkbox>
-                  {/* [TODO] 약관 URL 추가 */}
                   <a
-                    href="#"
+                    href={TERM_URL.TERMS_OF_SERVICE}
                     rel="noopener noreferrer"
                     target="_blank"
                     className={cx('terms-item-link')}
                     aria-label="약관 보기"
+                    onClick={handleClickTermsLink}
                   >
                     <IconChevronRight
                       className={cx('icon-chevron')}
@@ -195,13 +236,13 @@ const SignUpPage = () => {
                       개인정보 수집 및 이용 약관 (필수)
                     </Checkbox.Label>
                   </Checkbox>
-                  {/* [TODO] 약관 URL 추가 */}
                   <a
-                    href="#"
+                    href={TERM_URL.PRIVACY_POLICY}
                     rel="noopener noreferrer"
                     target="_blank"
                     className={cx('terms-item-link')}
                     aria-label="약관 보기"
+                    onClick={handleClickTermsLink}
                   >
                     <IconChevronRight
                       className={cx('icon-chevron')}

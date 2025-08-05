@@ -18,3 +18,7 @@ export const socialLogin = async (payload: OAuthLoginRequestDTO) => {
     payload
   );
 };
+
+export const authenticateUser = async () => {
+  return await api.get<ApiResponse<boolean>>('/auth/me');
+};

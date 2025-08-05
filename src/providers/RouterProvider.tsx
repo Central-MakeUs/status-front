@@ -7,10 +7,6 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import { RootLayout } from '@/layouts/RootLayout';
 import { BottomNavigationLayout } from '@/layouts/BottomNavigationLayout';
 import { PrivateLayout } from '@/layouts/PrivateLayout';
-import { getCookie } from '@/utils/cookie';
-import { queryClient } from '@/lib/queryClient';
-import { getCurrentUser } from '@/api/users';
-import { Loading } from '@/components/ui/Loading/Loading';
 
 const StatusPage = lazy(() => import('@/pages/status/StatusPage'));
 const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
@@ -38,26 +34,11 @@ const TutorialPage = lazy(() => import('@/pages/tutorial/TutorialPage'));
 const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
 const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
 
-async function authLoader() {
-  const accessToken = getCookie('access_token');
-
-  if (!accessToken) {
-    return null;
-  }
-
-  return await queryClient.fetchQuery({
-    queryKey: ['users', 'me'],
-    queryFn: getCurrentUser,
-  });
-}
-
 export default function RouterProvider() {
   const router = createBrowserRouter([
     {
       path: '/',
       Component: RootLayout,
-      loader: authLoader,
-      hydrateFallbackElement: <Loading />,
       children: [
         {
           Component: PrivateLayout,
