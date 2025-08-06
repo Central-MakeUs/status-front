@@ -6,47 +6,47 @@ export const MAX_SUB_QUEST_COUNT = 3;
 export const SUB_QUEST_FREQUENCY = {
   DAILY: {
     label: '매일',
-    value: 'daily',
+    value: 'DAILY',
   },
   WEEKLY: {
     label: '주 1회',
-    value: 'weekly',
+    value: 'WEEKLY',
   },
   WEEKLY_2: {
     label: '주 2회',
-    value: 'weekly_2',
+    value: 'WEEKLY_2',
   },
   WEEKLY_3: {
     label: '주 3회',
-    value: 'weekly_3',
+    value: 'WEEKLY_3',
   },
   WEEKLY_4: {
     label: '주 4회',
-    value: 'weekly_4',
+    value: 'WEEKLY_4',
   },
   WEEKLY_5: {
     label: '주 5회',
-    value: 'weekly_5',
+    value: 'WEEKLY_5',
   },
   WEEKLY_6: {
     label: '주 6회',
-    value: 'weekly_6',
+    value: 'WEEKLY_6',
   },
   MONTHLY_1: {
     label: '월 1회',
-    value: 'monthly_1',
+    value: 'MONTHLY_1',
   },
   MONTHLY_2: {
     label: '월 2회',
-    value: 'monthly_2',
+    value: 'MONTHLY_2',
   },
   MONTHLY_3: {
     label: '월 3회',
-    value: 'monthly_3',
+    value: 'MONTHLY_3',
   },
   MONTHLY_4: {
     label: '월 4회',
-    value: 'monthly_4',
+    value: 'MONTHLY_4',
   },
 } as const;
 
