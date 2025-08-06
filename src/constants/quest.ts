@@ -2,6 +2,7 @@ import type { SubQuestFrequencyValue } from '@/types/quest';
 
 export const DISPLAY_SUB_QUEST_COUNT = 4;
 export const MAX_SUB_QUEST_COUNT = 3;
+export const MAX_USERS_MAIN_QUEST_COUNT = 3;
 
 export const SUB_QUEST_FREQUENCY = {
   DAILY: {

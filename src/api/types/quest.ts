@@ -63,6 +63,16 @@ export interface CreateQuestResponseDTO {
   subQuests: SubQuestResponseDTO[];
 }
 
+export interface UsersMainQuestResponseDTO {
+  id: number;
+  startDate: string;
+  endDate: string;
+  totalWeeks: number;
+  title: string;
+  attributes: AttributeDTO[];
+  progress: number;
+}
+
 export interface MainQuestDTO {
   id: number;
   title: string;

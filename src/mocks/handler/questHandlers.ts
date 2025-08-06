@@ -2,7 +2,7 @@ import { http, HttpResponse, passthrough } from 'msw';
 import {
   mockMainQuests,
   mockSubQuests,
-  mockUserMainQuests,
+  mockUsersMainQuests,
   mockUserSubQuests,
   mockCompletedHistory,
 } from '@/mocks/data/quest';
@@ -135,7 +135,7 @@ export const questHandlers = [
       subQuests: [...mockSubQuests.slice(0, 3)],
     };
 
-    mockUserMainQuests.push({
+    mockUsersMainQuests.push({
       id: createdQuest.id,
       title: createdQuest.title,
       startDate: createdQuest.startDate,
@@ -150,9 +150,13 @@ export const questHandlers = [
     });
   }),
 
-  http.get(`${API_URL}/users/:userId/main-quests`, () => {
+  http.get(`${API_URL}/quest/me`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     return HttpResponse.json({
-      data: mockUserMainQuests,
+      data: mockUsersMainQuests,
     });
   }),
   http.get(`${API_URL}/quest/today`, () => {
@@ -172,7 +176,7 @@ export const questHandlers = [
     }
 
     const { mainQuestId } = params;
-    const quest = mockUserMainQuests.find(
+    const quest = mockUsersMainQuests.find(
       (quest) => quest.id.toString() === mainQuestId
     );
 

@@ -15,6 +15,7 @@ import type {
   GetSubQuestsParams,
   RerollSubQuestRequestDTO,
   CreateQuestRequestDTO,
+  UsersMainQuestResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -126,12 +127,11 @@ export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
   return response.data ?? {};
 };
 
-export const getUserMainQuests = async (
-  userId: string
-): Promise<UserMainQuestDTO[]> => {
-  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(
-    `/users/${userId}/main-quests`
-  );
+export const getUsersMainQuests = async (): Promise<
+  UsersMainQuestResponseDTO[]
+> => {
+  const response =
+    await api.get<ApiResponse<UsersMainQuestResponseDTO[]>>(`/quest/me`);
   return response.data ?? [];
 };
 

@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useGetUserMainQuests } from '@/api/hooks/quest/';
+import { useGetUsersMainQuests } from '@/api/hooks/quest';
 import { Header } from '@/components/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { getWeeksDifference } from '@/utils/date';
+import { MAX_USERS_MAIN_QUEST_COUNT } from '@/constants/quest';
 
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 import IconAdd from '@/assets/icons/icon-add.svg?react';
@@ -15,20 +16,20 @@ const cx = classNames.bind(styles);
 
 export const QuestPage = () => {
   const navigate = useNavigate();
-  // [TODO] auth store에서 사용자 정보 가져오기
-  const userId = '10';
-  const { data } = useGetUserMainQuests(userId);
+  const { data } = useGetUsersMainQuests();
 
   const handleAddQuest = () => {
     navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE);
   };
 
   const questCount = data?.length || 0;
-  const canAddQuest = questCount < 3;
+  const canAddQuest = questCount < MAX_USERS_MAIN_QUEST_COUNT;
 
   return (
     <>
-      <Header title={`내 퀘스트 (${questCount}/3)`} />
+      <Header
+        title={`내 퀘스트 (${questCount}/${MAX_USERS_MAIN_QUEST_COUNT})`}
+      />
       <main className="main">
         {questCount === 0 ? (
           <QuestEmpty />
