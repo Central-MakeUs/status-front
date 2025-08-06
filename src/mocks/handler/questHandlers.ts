@@ -4,7 +4,6 @@ import {
   mockSubQuests,
   mockUserMainQuests,
   mockUserSubQuests,
-  mockTodayCompletedQuests,
   mockCompletedHistory,
 } from '@/mocks/data/quest';
 import type {
@@ -133,12 +132,13 @@ export const questHandlers = [
     };
 
     mockUserMainQuests.push({
-      id: createdQuest.id.toString(),
+      id: createdQuest.id,
       title: createdQuest.title,
       startDate: createdQuest.startDate,
       endDate: createdQuest.endDate,
       progress: 0,
       attributes: createdQuest.attributes,
+      totalWeeks: createdQuest.totalWeeks,
     });
 
     return HttpResponse.json({
@@ -151,26 +151,47 @@ export const questHandlers = [
       data: mockUserMainQuests,
     });
   }),
-  http.get(`${API_URL}/users/:userId/main-quest/:mainQuestId`, ({ params }) => {
-    const { mainQuestId } = params;
+  http.get(`${API_URL}/quest/today`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
 
-    const quest = mockUserMainQuests.find((quest) => quest.id === mainQuestId);
+    const quests = mockUserSubQuests;
+
+    return HttpResponse.json({
+      data: quests,
+    });
+  }),
+  http.get(`${API_URL}/quest/:mainQuestId`, ({ params }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    const { mainQuestId } = params;
+    const quest = mockUserMainQuests.find(
+      (quest) => quest.id.toString() === mainQuestId
+    );
 
     return HttpResponse.json({
       data: quest,
     });
   }),
-  http.get(
-    `${API_URL}/users/:userId/main-quests/:mainQuestId/sub-quests`,
-    () => {
-      const quests = mockUserSubQuests;
-
-      return HttpResponse.json({
-        data: quests,
-      });
+  http.get(`${API_URL}/quest/:mainQuestId/today`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
     }
-  ),
-  http.post(`${API_URL}/users/:userId/sub-quest-log`, async ({ request }) => {
+
+    const quests = mockUserSubQuests;
+
+    return HttpResponse.json({
+      data: quests,
+    });
+  }),
+  http.post(`${API_URL}/quest/sub`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
 
     // [TODO] 서브 퀘스트 인증 상태 업데이트
@@ -182,17 +203,32 @@ export const questHandlers = [
       data: requestData,
     });
   }),
-  http.get(`${API_URL}/users/:userId/today-completed-quests`, () => {
+
+  http.patch(`${API_URL}/quest/sub`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+    const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
+
+    // [TODO] 서브 퀘스트 인증 상태 업데이트
+    // const userSubQuest = mockUserSubQuests.find(
+    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
+    // );
+
     return HttpResponse.json({
-      data: mockTodayCompletedQuests,
+      data: requestData,
     });
   }),
-  http.get(`${API_URL}/users/:userId/completed-history`, () => {
+
+  http.get(`${API_URL}/quest/:mainQuestId/history`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
     return HttpResponse.json({
       data: mockCompletedHistory,
     });
   }),
-  http.post(`${API_URL}/users/:userId/main-quest/:mainQuestId/giveup`, () => {
+  http.post(`${API_URL}/quest/:mainQuestId`, () => {
     return HttpResponse.json({
       data: {},
     });

@@ -2,18 +2,21 @@ import classNames from 'classnames/bind';
 import styles from './CompletedHistory.module.scss';
 import CompletedQuestList from '../CompletedQuestList/CompletedQuestList';
 import { useState } from 'react';
-import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedHistory';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
-import type { SubQuestDifficulty, UserSubQuest } from '@/types/quest';
+import type {
+  SubQuestDifficulty,
+  UserCompletedHistory,
+  UserSubQuest,
+} from '@/types/quest';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({
-  userId,
+  completedHistory,
   onClick,
 }: {
-  userId: string;
+  completedHistory: UserCompletedHistory[];
   onClick: (
     event: React.MouseEvent,
     quest: UserSubQuest,
@@ -21,8 +24,6 @@ const CompletedHistory = ({
     memo: string
   ) => void;
 }) => {
-  const { data: completedHistory } = useGetUserCompletedLists(userId);
-
   const [openDate, setOpenDate] = useState<string | null>(null);
 
   const handleToggle = (date: string) => {
@@ -36,7 +37,7 @@ const CompletedHistory = ({
           <div className={cx('header')}>완료 히스토리</div>
           <div className={cx('date-container')}>
             {completedHistory &&
-              completedHistory.map(({ date, quests }) => (
+              completedHistory.map(({ date, logs }) => (
                 <div key={date}>
                   <div
                     className={cx('date-row', { open: openDate === date })}
@@ -58,10 +59,10 @@ const CompletedHistory = ({
                     </span>
                   </div>
                   {openDate === date &&
-                    quests &&
-                    quests.map((quest) => (
+                    logs &&
+                    logs.map((quest) => (
                       <CompletedQuestList
-                        key={quest.id}
+                        key={quest.userSubQuest.id}
                         quest={quest}
                         onClick={onClick}
                       />

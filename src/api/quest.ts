@@ -3,7 +3,7 @@ import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
-  TodayCompletedQuestDTO,
+  CompletedQuestDTO,
   UserCompletedHistoryDTO,
   UserMainQuestGiveUpRequestDTO,
   GetThemesParams,
@@ -136,30 +136,33 @@ export const getUserMainQuests = async (
 };
 
 export const getUserMainQuest = async (
-  userId: string,
-  mainQuestId: string
+  id: number
 ): Promise<UserMainQuestDTO> => {
-  const response = await api.get<ApiResponse<UserMainQuestDTO>>(
-    `/users/${userId}/main-quest/${mainQuestId}`
-  );
+  const response = await api.get<ApiResponse<UserMainQuestDTO>>(`/quest/${id}`);
   return (
     response.data ?? {
-      id: '',
+      id: 0,
       title: '',
       startDate: '',
       endDate: '',
       attributes: [],
-      createdAt: '',
+      totalWeeks: 0,
+      progress: 0,
     }
   );
 };
 
+export const getUserSubQuestsAll = async (): Promise<UserSubQuestDTO[]> => {
+  const response =
+    await api.get<ApiResponse<UserSubQuestDTO[]>>(`/quest/today`);
+  return response.data ?? [];
+};
+
 export const getUserSubQuests = async (
-  userId: string,
-  mainQuestId: string
+  id: number
 ): Promise<UserSubQuestDTO[]> => {
   const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
-    `/users/${userId}/main-quests/${mainQuestId}/sub-quests`
+    `/quest/${id}/today`
   );
   return response.data ?? [];
 };
@@ -170,7 +173,15 @@ export const getUserSubQuests = async (
  */
 export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
   const response = await api.post<ApiResponse<UserSubQuestLogRequestDTO>>(
-    `/users/${data.userId}/sub-quest-log`,
+    `/quest/sub`,
+    data
+  );
+  return response.data ?? {};
+};
+
+export const patchUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
+  const response = await api.patch<ApiResponse<UserSubQuestLogRequestDTO>>(
+    `/quest/sub`,
     data
   );
   return response.data ?? {};
@@ -178,18 +189,18 @@ export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
 
 export const getTodayCompletedQuests = async (
   userId: string
-): Promise<TodayCompletedQuestDTO[]> => {
-  const response = await api.get<ApiResponse<TodayCompletedQuestDTO[]>>(
+): Promise<CompletedQuestDTO[]> => {
+  const response = await api.get<ApiResponse<CompletedQuestDTO[]>>(
     `/users/${userId}/today-completed-quests`
   );
   return response.data ?? [];
 };
 
 export const getUserCompletedHistory = async (
-  userId: string
+  id: number
 ): Promise<UserCompletedHistoryDTO[]> => {
   const response = await api.get<ApiResponse<UserCompletedHistoryDTO[]>>(
-    `/users/${userId}/completed-history`
+    `/quest/${id}/history`
   );
   return response.data ?? [];
 };
@@ -198,8 +209,7 @@ export const postUserGiveUpMainQuest = async (
   data: UserMainQuestGiveUpRequestDTO
 ) => {
   const response = await api.post<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
-    `/users/${data.userId}/main-quest/${data.mainQuestId}/giveup`,
-    data
+    `/quest/${data.id}`
   );
   return response.data ?? {};
 };

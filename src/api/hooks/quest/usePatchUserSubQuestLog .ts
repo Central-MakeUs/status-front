@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postUserSubQuestLog } from '@/api/quest';
 import type { UserSubQuestLogRequestDTO } from '@/api/types/quest';
+import { patchUserSubQuestLog } from '@/api/quest';
 
-export const usePostUserSubQuestLog = () => {
+export const usePatchUserSubQuestLog = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: UserSubQuestLogRequestDTO) => postUserSubQuestLog(data),
+    mutationFn: (data: UserSubQuestLogRequestDTO) => patchUserSubQuestLog(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['sub-quests', 'user'],

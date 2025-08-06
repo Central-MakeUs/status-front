@@ -41,12 +41,15 @@ export const QuestReportBottomSheet = ({
       <BottomSheet.Header>
         <BottomSheet.Title>퀘스트 인증하기</BottomSheet.Title>
         <BottomSheet.Description>
-          [{selectedSubQuest?.desc}]의 인증
+          [{selectedSubQuest?.userSubQuest.desc}]의 인증
         </BottomSheet.Description>
       </BottomSheet.Header>
       <BottomSheet.Content>
         <BottomSheet.SubTitle>
-          수행 난이도 <em className={cx('highlight')}>(필수)</em>
+          수행 난이도{' '}
+          <em className={cx('highlight')}>
+            {selectedSubQuest?.essential ? '(필수)' : ''}
+          </em>
         </BottomSheet.SubTitle>
         <div role="radiogroup" className={cx('quest-report-radio-group')}>
           {Object.values(SUB_QUEST_DIFFICULTY).map((difficulty) => (

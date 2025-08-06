@@ -31,17 +31,22 @@ import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
 import type { AttributeDTO } from '@/api/types/attribute';
-
+import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedHistory';
+import dayjs from 'dayjs';
+import { usePatchUserSubQuestLog } from '@/api/hooks/quest/usePatchUserSubQuestLog ';
 const cx = classNames.bind(styles);
+const today = dayjs().format('YYYY.MM.DD');
 
 const QuestDetailPage = () => {
   const navigate = useNavigate();
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
-  const userId = '10';
 
-  const { data: quest } = useGetUserMainQuest(userId, mainQuestId || '');
-  const { data: subQuests } = useGetUserSubQuests(userId, mainQuestId || '');
+  const { data: quest } = useGetUserMainQuest(Number(mainQuestId));
+  const { data: subQuests } = useGetUserSubQuests(Number(mainQuestId));
+  const { data: completedHistory } = useGetUserCompletedLists(
+    Number(mainQuestId)
+  );
   const { data: attributeDatas } = useGetUserAttributes();
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
@@ -57,6 +62,8 @@ const QuestDetailPage = () => {
 
   const postUserSubQuestLog = usePostUserSubQuestLog();
   const postUserGiveUpMainQuest = usePostUserGiveUpMainQuest();
+  const patchUserSubQuestLog = usePatchUserSubQuestLog();
+
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
   // 선택된 속성 정보 찾기
@@ -87,36 +94,46 @@ const QuestDetailPage = () => {
 
   const handleQuestReport = () => {
     if (!selectedSubQuest) return;
-
     const payload: UserSubQuestLog = {
-      // [TODO] 유저 정보 추가
-      userId: userId,
-      userSubQuestId: selectedSubQuest.id,
+      id: selectedSubQuest.userSubQuest.id,
       difficulty: selectedDifficulty,
+      memo: memo,
     };
 
-    postUserSubQuestLog.mutate(payload, {
-      onSuccess: () => {
-        setIsBottomSheetOpen(false);
-        setMemo('');
-        setSelectedDifficulty('default');
+    if (isEdit) {
+      patchUserSubQuestLog.mutate(payload, {
+        onSuccess: () => {
+          setIsBottomSheetOpen(false);
+          setMemo('');
+          setSelectedDifficulty('default');
 
-        if (!isEdit) {
+          setIsEdit(false);
+        },
+        onError: () => {
+          // [TODO] 에러 처리 throw?
+        },
+      });
+    } else {
+      postUserSubQuestLog.mutate(payload, {
+        onSuccess: () => {
+          setIsBottomSheetOpen(false);
+          setMemo('');
+          setSelectedDifficulty('default');
+
           setRewardStep(REWARD_STEP.SUB_QUEST);
-        }
-        setIsEdit(false);
-      },
-      onError: () => {
-        // [TODO] 에러 처리 throw?
-      },
-    });
+          setIsEdit(false);
+        },
+        onError: () => {
+          // [TODO] 에러 처리 throw?
+        },
+      });
+    }
   };
   const handleQuestGiveUp = () => {
     if (!mainQuestId) return;
 
     const payload: UserMainQuestGiveUp = {
-      userId: userId,
-      mainQuestId: mainQuestId,
+      id: Number(mainQuestId),
     };
 
     postUserGiveUpMainQuest.mutate(payload, {
@@ -187,8 +204,24 @@ const QuestDetailPage = () => {
               setIsEdit(false);
             }}
           />
-          <TodayCompletedQuests userId={userId} onClick={handleEdit} />
-          <CompletedHistory userId={userId} onClick={handleEdit} />
+          <TodayCompletedQuests
+            quests={
+              completedHistory?.find(
+                (el) =>
+                  dayjs(el.date, 'YYYY.MM.DD').format('YYYY.MM.DD') === today
+              )?.logs || []
+            }
+            onClick={handleEdit}
+          />
+          <CompletedHistory
+            completedHistory={
+              completedHistory?.filter(
+                (el) =>
+                  dayjs(el.date, 'YYYY.MM.DD').format('YYYY.MM.DD') !== today
+              ) || []
+            }
+            onClick={handleEdit}
+          />
         </div>
       </main>
       <QuestReportBottomSheet
@@ -203,12 +236,12 @@ const QuestDetailPage = () => {
       />
       <SubQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.SUB_QUEST}
-        attributes={selectedSubQuest?.attributes ?? []}
+        attributes={selectedSubQuest?.userSubQuest.attributes ?? []}
         onClaim={handleSubQuestClaimReward}
       />
       <MainQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
-        attributes={selectedSubQuest?.attributes ?? []}
+        attributes={selectedSubQuest?.userSubQuest.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
       />
       <QuestGiveUpDialog

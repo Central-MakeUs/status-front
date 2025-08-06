@@ -3,11 +3,12 @@ import type {
   UserMainQuestDTO,
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
-  TodayCompletedQuestDTO,
+  CompletedQuestDTO,
   UserMainQuestGiveUpRequestDTO,
   ThemeResponseDTO,
   MainQuestResponseDTO,
   SubQuestResponseDTO,
+  UserCompletedHistoryDTO,
 } from '@/api/types/quest';
 export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
@@ -23,5 +24,6 @@ export type UserSubQuest = UserSubQuestDTO;
 export type SubQuestDifficulty = 'easy' | 'default' | 'hard';
 export type UserSubQuestLog = UserSubQuestLogRequestDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
-export type TodayCompletedQuest = TodayCompletedQuestDTO;
+export type CompletedQuest = CompletedQuestDTO;
 export type UserMainQuestGiveUp = UserMainQuestGiveUpRequestDTO;
+export type UserCompletedHistory = UserCompletedHistoryDTO;
