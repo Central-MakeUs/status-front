@@ -106,6 +106,10 @@ export const questHandlers = [
     });
   }),
   http.post(`${API_URL}/quest/create`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     const requestData = (await request.json()) as CreateQuestRequestDTO;
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
