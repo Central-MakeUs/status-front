@@ -1,6 +1,9 @@
 import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
 import { Select } from '@/components/ui/Selelct/Select';
-import { SUB_QUEST_FREQUENCY_SELECT_OPTIONS } from '@/constants/quest';
+import {
+  SUB_QUEST_FREQUENCY,
+  SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
+} from '@/constants/quest';
 import { TextInput } from '@/components/ui/TextInput/TextInput';
 import { Button } from '@/components/ui/Button/Button';
 import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
@@ -44,7 +47,9 @@ export const EditingSubQuestBottomSheet = ({
       <BottomSheet.Content>
         <Select
           label="반복 주기"
-          value={editingSubQuest?.frequencyType ?? 'daily'}
+          value={
+            editingSubQuest?.frequencyType ?? SUB_QUEST_FREQUENCY.DAILY.value
+          }
           options={SUB_QUEST_FREQUENCY_SELECT_OPTIONS}
           onChange={handleChangeSubQuestFrequency}
         />
