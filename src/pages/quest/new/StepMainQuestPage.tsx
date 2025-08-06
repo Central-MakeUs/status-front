@@ -18,13 +18,13 @@ import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 export const StepMainQuestPage = () => {
   const navigate = useNavigate();
   const {
-    selectedAttributes,
+    selectedAttribute,
     selectedTheme,
     selectedMainQuest,
     setSelectedMainQuest,
   } = useQuestCreationStore(
     useShallow((state) => ({
-      selectedAttributes: state.selectedAttributes,
+      selectedAttribute: state.selectedAttribute,
       selectedTheme: state.selectedTheme,
       selectedMainQuest: state.selectedMainQuest,
       setSelectedMainQuest: state.setSelectedMainQuest,
@@ -38,8 +38,8 @@ export const StepMainQuestPage = () => {
   }, [selectedTheme, navigate]);
 
   const selectedAttributeIds = useMemo(
-    () => selectedAttributes.map((attribute) => attribute.attributeId),
-    [selectedAttributes]
+    () => selectedAttribute?.attributeId ?? 0,
+    [selectedAttribute]
   );
 
   const selectedThemeId = useMemo(
@@ -48,7 +48,7 @@ export const StepMainQuestPage = () => {
   );
 
   const { data, isLoading, isRefetching } = useGetMainQuests({
-    attributes: selectedAttributeIds,
+    attributes: [selectedAttributeIds],
     theme: selectedThemeId,
   });
 
@@ -59,7 +59,7 @@ export const StepMainQuestPage = () => {
   const handleClickRefreshButton = () => {
     setSelectedMainQuest(null);
     refreshMainQuests({
-      attributes: selectedAttributeIds,
+      attributes: [selectedAttributeIds],
       theme: selectedThemeId,
       mainQuests: currentMainQuestIds,
     });

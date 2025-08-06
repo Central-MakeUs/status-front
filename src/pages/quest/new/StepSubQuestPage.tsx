@@ -30,7 +30,7 @@ const cx = classNames.bind(styles);
 const StepSubQuestPage = () => {
   const navigate = useNavigate();
   const {
-    selectedAttributes,
+    selectedAttribute,
     selectedMainQuest,
     selectedSubQuestIds,
     subQuests,
@@ -39,7 +39,7 @@ const StepSubQuestPage = () => {
     toggleSubQuestSelection,
   } = useQuestCreationStore(
     useShallow((state) => ({
-      selectedAttributes: state.selectedAttributes,
+      selectedAttribute: state.selectedAttribute,
       selectedMainQuest: state.selectedMainQuest,
       selectedSubQuestIds: state.selectedSubQuestIds,
       subQuests: state.subQuests,
@@ -62,9 +62,9 @@ const StepSubQuestPage = () => {
     selectedSubQuestIds.length >= MAX_SUB_QUEST_COUNT;
   const isSubQuestSelected = selectedSubQuestIds.length > 0;
 
-  const selectedAttributesIds = useMemo(
-    () => selectedAttributes.map((attribute) => attribute.attributeId),
-    [selectedAttributes]
+  const selectedAttributeId = useMemo(
+    () => selectedAttribute?.attributeId ?? 0,
+    [selectedAttribute]
   );
 
   const selectedMainQuestId = useMemo(
@@ -73,7 +73,7 @@ const StepSubQuestPage = () => {
   );
 
   const { data, isLoading } = useGetSubQuests({
-    attributes: selectedAttributesIds,
+    attributes: [selectedAttributeId],
     mainQuest: selectedMainQuestId,
   });
 
@@ -145,7 +145,7 @@ const StepSubQuestPage = () => {
     const currentSubQuestIds = subQuests.map((subQuest) => subQuest.id);
 
     const payload = {
-      attributes: selectedAttributesIds,
+      attributes: [selectedAttributeId],
       mainQuest: selectedMainQuestId,
       selectedSubQuests: selectedSubQuestIds,
       gottenSubQuests: currentSubQuestIds,

@@ -7,14 +7,14 @@ import type { MainQuest, Theme } from '@/types/quest';
 import type { SubQuest } from '@/types/quest';
 
 interface QuestCreationState {
-  selectedAttributes: Attribute[];
+  selectedAttribute: Attribute | null;
   selectedTheme: Theme | null;
   selectedMainQuest: MainQuest | null;
   selectedSubQuestIds: number[];
   subQuests: SubQuest[];
   startDate: string;
   endDate: string;
-  toggleAttributeSelection: (attribute: Attribute) => void;
+  setSelectedAttribute: (attribute: Attribute | null) => void;
   setSelectedTheme: (theme: Theme | null) => void;
   setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
   setSubQuests: (subQuests: SubQuest[]) => void;
@@ -29,7 +29,7 @@ interface QuestCreationState {
 export const useQuestCreationStore = create<QuestCreationState>()(
   devtools(
     (set, get) => ({
-      selectedAttributes: [],
+      selectedAttribute: null,
       selectedTheme: null,
       selectedMainQuest: null,
       subQuests: [],
@@ -37,16 +37,9 @@ export const useQuestCreationStore = create<QuestCreationState>()(
       startDate: '',
       endDate: '',
 
-      toggleAttributeSelection: (selectedAttribute) =>
-        set((state) => ({
-          selectedAttributes: state.selectedAttributes.includes(
-            selectedAttribute
-          )
-            ? state.selectedAttributes.filter(
-                (attribute) =>
-                  attribute.attributeId !== selectedAttribute.attributeId
-              )
-            : [...state.selectedAttributes, selectedAttribute],
+      setSelectedAttribute: (attribute) =>
+        set(() => ({
+          selectedAttribute: attribute,
           selectedTheme: null,
           selectedMainQuest: null,
           subQuests: [],
@@ -127,7 +120,7 @@ export const useQuestCreationStore = create<QuestCreationState>()(
       },
       clear: () => {
         set({
-          selectedAttributes: [],
+          selectedAttribute: null,
           selectedTheme: null,
           selectedMainQuest: null,
           subQuests: [],
