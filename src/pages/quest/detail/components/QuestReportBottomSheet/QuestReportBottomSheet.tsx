@@ -13,7 +13,7 @@ interface QuestReportBottomSheetProps {
   isBottomSheetOpen: boolean;
   onClose: () => void;
   selectedSubQuest: UserSubQuest | null;
-  selectedDifficulty: SubQuestDifficulty;
+  selectedDifficulty: SubQuestDifficulty | null;
   onChangeDifficulty: (difficulty: SubQuestDifficulty) => void;
   memo: string;
   onChangeMemo: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;

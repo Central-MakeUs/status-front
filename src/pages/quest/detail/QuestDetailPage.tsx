@@ -55,7 +55,7 @@ const QuestDetailPage = () => {
   );
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
-    useState<SubQuestDifficulty>('default');
+    useState<SubQuestDifficulty | null>(null);
   const [rewardStep, setRewardStep] = useState<RewardStep>('none');
   const [isGiveUpDialogOpen, setIsGiveUpDialogOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -93,7 +93,7 @@ const QuestDetailPage = () => {
   };
 
   const handleQuestReport = () => {
-    if (!selectedSubQuest) return;
+    if (!selectedSubQuest || !selectedDifficulty) return;
     const payload: UserSubQuestLog = {
       id: selectedSubQuest.userSubQuest.id,
       difficulty: selectedDifficulty,
