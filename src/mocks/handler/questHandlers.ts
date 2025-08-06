@@ -5,6 +5,7 @@ import {
   mockUserMainQuests,
   mockUserSubQuests,
   mockCompletedHistory,
+  mockSubQuestLogResponse,
 } from '@/mocks/data/quest';
 import type {
   CreateQuestRequestDTO,
@@ -146,7 +147,11 @@ export const questHandlers = [
     });
   }),
 
-  http.get(`${API_URL}/users/:userId/main-quests`, () => {
+  http.get(`${API_URL}/quest/me`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     return HttpResponse.json({
       data: mockUserMainQuests,
     });
@@ -191,8 +196,7 @@ export const questHandlers = [
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-
-    const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
+    console.log(request);
 
     // [TODO] 서브 퀘스트 인증 상태 업데이트
     // const userSubQuest = mockUserSubQuests.find(
@@ -200,7 +204,7 @@ export const questHandlers = [
     // );
 
     return HttpResponse.json({
-      data: requestData,
+      data: mockSubQuestLogResponse,
     });
   }),
 
@@ -228,7 +232,7 @@ export const questHandlers = [
       data: mockCompletedHistory,
     });
   }),
-  http.post(`${API_URL}/quest/:mainQuestId`, () => {
+  http.delete(`${API_URL}/quest/:mainQuestId`, () => {
     return HttpResponse.json({
       data: {},
     });

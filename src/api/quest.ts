@@ -15,6 +15,7 @@ import type {
   GetSubQuestsParams,
   RerollSubQuestRequestDTO,
   CreateQuestRequestDTO,
+  UserSubQuestLogResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -126,12 +127,8 @@ export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
   return response.data ?? {};
 };
 
-export const getUserMainQuests = async (
-  userId: string
-): Promise<UserMainQuestDTO[]> => {
-  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(
-    `/users/${userId}/main-quests`
-  );
+export const getUserMainQuests = async (): Promise<UserMainQuestDTO[]> => {
+  const response = await api.get<ApiResponse<UserMainQuestDTO[]>>(`/quest/me`);
   return response.data ?? [];
 };
 
@@ -171,12 +168,21 @@ export const getUserSubQuests = async (
  * [TODO] 퀘스트 인증 시 서브 퀘스트 인증 상태 patch, 서브 퀘스트 로그 post 트랜잭션 처리 필요. 서버에서 처리가 최적
  * @param data - API 구현에 따라 파라미터 타입 변경 필요
  */
-export const postUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
-  const response = await api.post<ApiResponse<UserSubQuestLogRequestDTO>>(
+export const postUserSubQuestLog = async (
+  data: UserSubQuestLogRequestDTO
+): Promise<UserSubQuestLogResponseDTO> => {
+  const response = await api.post<ApiResponse<UserSubQuestLogResponseDTO>>(
     `/quest/sub`,
     data
   );
-  return response.data ?? {};
+
+  return (
+    response.data ?? {
+      subQuestRewards: [],
+      mainQuestRewards: [],
+      isMainQuestCompleted: false,
+    }
+  );
 };
 
 export const patchUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
@@ -208,7 +214,7 @@ export const getUserCompletedHistory = async (
 export const postUserGiveUpMainQuest = async (
   data: UserMainQuestGiveUpRequestDTO
 ) => {
-  const response = await api.post<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
+  const response = await api.delete<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
     `/quest/${data.id}`
   );
   return response.data ?? {};

@@ -90,6 +90,7 @@ export interface UserSubQuestDTO {
   userSubQuest: SubQuestDTO;
   repeatCnt: number;
   essential: boolean;
+  mainQuestId?: number;
 }
 
 export interface GetMainQuestsParams {
@@ -115,14 +116,24 @@ export interface UserSubQuestLogRequestDTO {
   memo: string;
 }
 
-export interface UserSubQuestLogResponseDTO {
+export interface Rewards {
   id: number;
-  userId: string;
-  userSubQuestId: string;
-  difficulty: SubQuestDifficulty;
-  status: string;
-  createdAt: string;
+  name: string;
+  exp: number;
 }
+export interface UserSubQuestLogResponseDTO {
+  subQuestRewards: Rewards[];
+  mainQuestRewards: Rewards[];
+  isMainQuestCompleted: boolean;
+}
+// export interface UserSubQuestLogResponseDTO {
+//   id: number;
+//   userId: string;
+//   userSubQuestId: string;
+//   difficulty: SubQuestDifficulty;
+//   status: string;
+//   createdAt: string;
+// }
 
 export interface CompletedQuestDTO extends UserSubQuestDTO {
   log: {

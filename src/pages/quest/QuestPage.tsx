@@ -16,8 +16,8 @@ const cx = classNames.bind(styles);
 export const QuestPage = () => {
   const navigate = useNavigate();
   // [TODO] auth store에서 사용자 정보 가져오기
-  const userId = '10';
-  const { data } = useGetUserMainQuests(userId);
+  // const userId = '10';
+  const { data } = useGetUserMainQuests();
 
   const handleAddQuest = () => {
     navigate(PAGE_PATHS.QUEST_NEW_ATTRIBUTE);

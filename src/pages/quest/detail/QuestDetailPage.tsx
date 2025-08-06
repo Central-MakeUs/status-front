@@ -55,7 +55,7 @@ const QuestDetailPage = () => {
   );
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
-    useState<SubQuestDifficulty>('default');
+    useState<SubQuestDifficulty | null>(null);
   const [rewardStep, setRewardStep] = useState<RewardStep>('none');
   const [isGiveUpDialogOpen, setIsGiveUpDialogOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -66,6 +66,8 @@ const QuestDetailPage = () => {
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+  const [isMainQuestCompleted, setIsMainQuestCompleted] =
+    useState<boolean>(false);
   // 선택된 속성 정보 찾기
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
@@ -76,9 +78,6 @@ const QuestDetailPage = () => {
   };
 
   const handleSubQuestClaimReward = () => {
-    // [TODO] mutation 후 main/sub quest 완료 유무 조회를 위해 요청 필요?
-    const isMainQuestCompleted = true;
-
     if (isMainQuestCompleted) {
       setRewardStep(REWARD_STEP.MAIN_QUEST);
     } else {
@@ -96,7 +95,7 @@ const QuestDetailPage = () => {
     if (!selectedSubQuest) return;
     const payload: UserSubQuestLog = {
       id: selectedSubQuest.userSubQuest.id,
-      difficulty: selectedDifficulty,
+      difficulty: selectedDifficulty!,
       memo: memo,
     };
 
@@ -105,7 +104,7 @@ const QuestDetailPage = () => {
         onSuccess: () => {
           setIsBottomSheetOpen(false);
           setMemo('');
-          setSelectedDifficulty('default');
+          setSelectedDifficulty(null);
 
           setIsEdit(false);
         },
@@ -115,11 +114,11 @@ const QuestDetailPage = () => {
       });
     } else {
       postUserSubQuestLog.mutate(payload, {
-        onSuccess: () => {
+        onSuccess: (response) => {
           setIsBottomSheetOpen(false);
           setMemo('');
-          setSelectedDifficulty('default');
-
+          setSelectedDifficulty(null);
+          setIsMainQuestCompleted(response.isMainQuestCompleted);
           setRewardStep(REWARD_STEP.SUB_QUEST);
           setIsEdit(false);
         },
@@ -129,6 +128,7 @@ const QuestDetailPage = () => {
       });
     }
   };
+
   const handleQuestGiveUp = () => {
     if (!mainQuestId) return;
 
@@ -143,6 +143,7 @@ const QuestDetailPage = () => {
       onError: () => {},
     });
   };
+
   const handleEdit = (
     event: React.MouseEvent,
     quest: UserSubQuest,
@@ -226,9 +227,13 @@ const QuestDetailPage = () => {
       </main>
       <QuestReportBottomSheet
         isBottomSheetOpen={isBottomSheetOpen}
-        onClose={() => setIsBottomSheetOpen(false)}
+        onClose={() => {
+          setIsBottomSheetOpen(false);
+          setMemo('');
+          setSelectedDifficulty(null);
+        }}
         selectedSubQuest={selectedSubQuest}
-        selectedDifficulty={selectedDifficulty}
+        selectedDifficulty={selectedDifficulty!}
         onChangeDifficulty={setSelectedDifficulty}
         memo={memo}
         onChangeMemo={handleChangeMemo}

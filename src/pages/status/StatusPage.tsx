@@ -13,9 +13,7 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 
 const StatusPage = () => {
   const navigate = useNavigate();
-  const userId = '10';
-  const mainQuestId = '1';
-  const { data: userInfo } = useGetUserInfo(userId);
+  const { data: userInfo } = useGetUserInfo();
   const { data: attributeDatas } = useGetUserAttributes();
   const { data: quests } = useGetUserSubQuestsAll();
   console.log(quests);
@@ -60,10 +58,8 @@ const StatusPage = () => {
             quests={quests}
             onClick={(_, quest: UserSubQuest) => {
               navigate(
-                `${PAGE_PATHS.QUEST_DETAIL.replace(':id', mainQuestId)}`,
-                {
-                  state: { quest: quest },
-                }
+                `${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.mainQuestId?.toString() || '')}`,
+                { state: { quest: quest } }
               );
             }}
           />
