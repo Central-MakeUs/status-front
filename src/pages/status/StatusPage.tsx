@@ -3,7 +3,7 @@ import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
-import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
+import { useGetUserSubQuestsAll } from '@/api/hooks/quest/useGetUserSubQuestsAll';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
@@ -17,7 +17,8 @@ const StatusPage = () => {
   const mainQuestId = '1';
   const { data: userInfo } = useGetUserInfo(userId);
   const { data: attributeDatas } = useGetUserAttributes();
-  const { data: quests } = useGetUserSubQuests(mainQuestId);
+  const { data: quests } = useGetUserSubQuestsAll();
+  console.log(quests);
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);

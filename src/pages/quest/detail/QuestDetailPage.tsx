@@ -42,10 +42,10 @@ const QuestDetailPage = () => {
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
 
-  const { data: quest } = useGetUserMainQuest(mainQuestId || '');
-  const { data: subQuests } = useGetUserSubQuests(mainQuestId || '');
+  const { data: quest } = useGetUserMainQuest(Number(mainQuestId));
+  const { data: subQuests } = useGetUserSubQuests(Number(mainQuestId));
   const { data: completedHistory } = useGetUserCompletedLists(
-    mainQuestId || ''
+    Number(mainQuestId)
   );
   const { data: attributeDatas } = useGetUserAttributes();
 
@@ -94,9 +94,8 @@ const QuestDetailPage = () => {
 
   const handleQuestReport = () => {
     if (!selectedSubQuest) return;
-    console.log('selectedSubQuest', selectedSubQuest, selectedDifficulty, memo);
     const payload: UserSubQuestLog = {
-      userSubQuestId: selectedSubQuest.userSubQuest.id.toString(),
+      id: selectedSubQuest.userSubQuest.id,
       difficulty: selectedDifficulty,
       memo: memo,
     };
@@ -134,7 +133,7 @@ const QuestDetailPage = () => {
     if (!mainQuestId) return;
 
     const payload: UserMainQuestGiveUp = {
-      mainQuestId: mainQuestId,
+      id: Number(mainQuestId),
     };
 
     postUserGiveUpMainQuest.mutate(payload, {

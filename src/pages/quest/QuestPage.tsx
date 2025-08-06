@@ -73,7 +73,7 @@ export const QuestPage = () => {
                   />
                 </div>
                 <Link
-                  to={`${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.id)}`}
+                  to={`${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.id.toString())}`}
                   className={cx('main-quest-detail')}
                 >
                   <span className={cx('sr-only')}>상세 보기</span>

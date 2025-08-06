@@ -1,9 +1,9 @@
 import { getUserSubQuests } from '@/api/quest';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetUserSubQuests = (mainQuestId: string) => {
+export const useGetUserSubQuests = (id: number) => {
   return useQuery({
     queryKey: ['sub-quests', 'user'],
-    queryFn: () => getUserSubQuests(mainQuestId),
+    queryFn: () => getUserSubQuests(id),
   });
 };

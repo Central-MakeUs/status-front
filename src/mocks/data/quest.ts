@@ -207,7 +207,7 @@ export const mockSubQuests: SubQuest[] = [
 
 export const mockUserMainQuests: UserMainQuest[] = [
   {
-    id: '1',
+    id: 1,
     title: 'SNS 사용 절제 습관 만들기',
     startDate: '2025-01-01',
     endDate: '2025-01-07',
@@ -216,9 +216,10 @@ export const mockUserMainQuests: UserMainQuest[] = [
       { id: 103, name: '제어', exp: 100 },
       { id: 102, name: '집중', exp: 50 },
     ],
+    totalWeeks: 1,
   },
   {
-    id: '2',
+    id: 2,
     title: '스마트폰 사용 패턴 분석 습관 만들기',
     startDate: '2025-01-01',
     endDate: '2025-01-07',
@@ -227,6 +228,7 @@ export const mockUserMainQuests: UserMainQuest[] = [
       { id: 203, name: '기록', exp: 100 },
       { id: 103, name: '제어', exp: 50 },
     ],
+    totalWeeks: 1,
   },
 ];
 

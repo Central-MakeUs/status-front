@@ -64,7 +64,7 @@ export interface CreateQuestResponseDTO {
 }
 
 export interface MainQuestDTO {
-  id: string;
+  id: number;
   title: string;
   attributes?: AttributeDTO[];
   createdAt?: string;
@@ -73,6 +73,7 @@ export interface MainQuestDTO {
 export interface UserMainQuestDTO extends MainQuestDTO {
   startDate: string;
   endDate: string;
+  totalWeeks: number;
   progress?: number;
 }
 
@@ -109,13 +110,13 @@ export interface GetRandomSubQuestByMainQuestIdParams {
 }
 
 export interface UserSubQuestLogRequestDTO {
-  userSubQuestId: string;
+  id: number;
   difficulty: SubQuestDifficulty;
   memo: string;
 }
 
 export interface UserSubQuestLogResponseDTO {
-  id: string;
+  id: number;
   userId: string;
   userSubQuestId: string;
   difficulty: SubQuestDifficulty;
@@ -137,5 +138,5 @@ export interface UserCompletedHistoryDTO {
 }
 
 export interface UserMainQuestGiveUpRequestDTO {
-  mainQuestId: string;
+  id: number;
 }
