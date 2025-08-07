@@ -94,7 +94,7 @@ const QuestDetailPage = () => {
   const handleQuestReport = () => {
     if (!selectedSubQuest || !selectedDifficulty) return;
     const payload: UserSubQuestLog = {
-      id: selectedSubQuest.userSubQuest.id,
+      id: selectedSubQuest.userSubQuestInfo.id,
       difficulty: selectedDifficulty!,
       memo: memo,
     };
@@ -241,12 +241,12 @@ const QuestDetailPage = () => {
       />
       <SubQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.SUB_QUEST}
-        attributes={selectedSubQuest?.userSubQuest.attributes ?? []}
+        attributes={selectedSubQuest?.userSubQuestInfo.attributes ?? []}
         onClaim={handleSubQuestClaimReward}
       />
       <MainQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
-        attributes={selectedSubQuest?.userSubQuest.attributes ?? []}
+        attributes={selectedSubQuest?.userSubQuestInfo.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
       />
       <QuestGiveUpDialog

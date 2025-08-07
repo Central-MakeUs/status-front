@@ -97,7 +97,7 @@ export interface SubQuestDTO {
 }
 
 export interface UserSubQuestDTO {
-  userSubQuest: SubQuestDTO;
+  userSubQuestInfo: SubQuestDTO;
   repeatCnt: number;
   essential: boolean;
   mainQuestId?: number;
