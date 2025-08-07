@@ -100,7 +100,7 @@ export interface UserSubQuestDTO {
   userSubQuestInfo: SubQuestDTO;
   repeatCnt: number;
   essential: boolean;
-  mainQuestId: number;
+  mainQuestId?: number;
 }
 
 export interface GetMainQuestsParams {
