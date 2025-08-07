@@ -30,6 +30,8 @@ const CompletedHistory = ({
     setOpenDate((prev) => (prev === date ? null : date));
   };
 
+  if (completedHistory.length === 0) return null;
+
   return (
     <>
       <main className="main">

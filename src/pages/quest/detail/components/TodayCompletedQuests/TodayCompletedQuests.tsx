@@ -21,6 +21,8 @@ const TodayCompletedQuests = ({
     memo: string
   ) => void;
 }) => {
+  if (quests.length === 0) return null;
+
   return (
     <>
       <main className="main">
