@@ -35,14 +35,14 @@ const CompletedQuestList = ({
       <div className={cx('card-header')}>
         <div className={cx('top-row')}>
           <div className={cx('attributes-row')}>
-            {getSubQuestFrequencyLabel(quest.userSubQuest.frequencyType)} |
-            {quest.userSubQuest.attributes.map((attr) => (
+            {getSubQuestFrequencyLabel(quest.userSubQuestInfo.frequencyType)} |
+            {quest.userSubQuestInfo.attributes.map((attr) => (
               <span key={attr.id} className={cx('attribute')}>
                 {attr.name} +{attr.exp}
               </span>
             ))}
           </div>
-          <div className={cx('title')}>{quest.userSubQuest.desc}</div>
+          <div className={cx('title')}>{quest.userSubQuestInfo.desc}</div>
         </div>
         <button className={cx('edit-btn')}>
           <IconEdit

@@ -234,7 +234,7 @@ export const mockUsersMainQuests: UsersMainQuest[] = [
 
 export const mockUserSubQuests: UserSubQuest[] = [
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 1,
       desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
       frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
@@ -249,7 +249,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
     essential: true,
   },
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 2,
       desc: '아침 알림 전면 차단 후 하루 시작',
       frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
@@ -264,7 +264,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
     essential: true,
   },
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 3,
       desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
       frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
@@ -282,7 +282,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
 
 export const mockTodayCompletedQuests: CompletedQuest[] = [
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 2,
       desc: '아침 알림 전면 차단 후 하루 시작',
       frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
@@ -302,7 +302,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     },
   },
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 3,
       desc: '아침 알림 전면 차단 후 하루 시작',
       frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
@@ -322,7 +322,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     },
   },
   {
-    userSubQuest: {
+    userSubQuestInfo: {
       id: 4,
       desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
       frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
