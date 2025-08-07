@@ -11,7 +11,7 @@ import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
-  UserSubQuestLogResponseDTO,
+  RewardResponseDTO,
 } from '@/api/types/quest';
 import { mockThemes } from '@/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
@@ -216,7 +216,7 @@ export const questHandlers = [
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-    const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
+    const requestData = (await request.json()) as RewardResponseDTO;
 
     // [TODO] 서브 퀘스트 인증 상태 업데이트
     // const userSubQuest = mockUserSubQuests.find(

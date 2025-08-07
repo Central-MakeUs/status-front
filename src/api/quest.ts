@@ -16,7 +16,7 @@ import type {
   RerollSubQuestRequestDTO,
   CreateQuestRequestDTO,
   UsersMainQuestResponseDTO,
-  UserSubQuestLogResponseDTO,
+  RewardResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -174,8 +174,8 @@ export const getUserSubQuests = async (
  */
 export const postUserSubQuestLog = async (
   data: UserSubQuestLogRequestDTO
-): Promise<UserSubQuestLogResponseDTO> => {
-  const response = await api.post<ApiResponse<UserSubQuestLogResponseDTO>>(
+): Promise<RewardResponseDTO> => {
+  const response = await api.post<ApiResponse<RewardResponseDTO>>(
     `/quest/sub`,
     data
   );

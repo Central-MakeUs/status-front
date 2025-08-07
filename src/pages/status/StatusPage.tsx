@@ -1,7 +1,6 @@
 import { Header } from '@/pages/status/components/Header/Header';
 import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-import { useGetUserInfo } from '@/api/hooks/user/useGetUserInfo';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
 import { useGetUserSubQuestsAll } from '@/api/hooks/quest/useGetUserSubQuestsAll';
 import { useState } from 'react';
@@ -10,29 +9,35 @@ import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierB
 import type { UserSubQuest } from '@/types/quest';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { useShallow } from 'zustand/react/shallow';
+import { useAuthStore } from '@/stores/authStore';
+import profileImageUrl from '@/assets/image.svg';
 
 const StatusPage = () => {
   const navigate = useNavigate();
-  const { data: userInfo } = useGetUserInfo();
+
   const { data: attributeDatas } = useGetUserAttributes();
   const { data: quests } = useGetUserSubQuestsAll();
-  console.log(quests);
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
-
+  const { user } = useAuthStore(
+    useShallow((state) => ({
+      user: state.user,
+    }))
+  );
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
 
   return (
     <>
-      {userInfo && (
+      {user && (
         <Header
-          nickname={userInfo.nickname}
-          tier={userInfo.tier}
-          level={userInfo.level}
-          profileImageUrl={userInfo.profileImageUrl}
+          nickname={user.nickname}
+          tier={'Bronze'}
+          level={1}
+          profileImageUrl={profileImageUrl}
           onClick={(event: React.MouseEvent) => {
             event.stopPropagation();
 
@@ -41,10 +46,10 @@ const StatusPage = () => {
         />
       )}
       <main className="main">
-        {attributeDatas && userInfo && (
+        {attributeDatas && user && (
           <RadarChart
             attributeDatas={attributeDatas}
-            profileImage={userInfo.profileImageUrl}
+            profileImage={profileImageUrl}
             onClick={(event: React.MouseEvent, key: number) => {
               event.stopPropagation();
 
@@ -68,8 +73,8 @@ const StatusPage = () => {
       <TierLevelBottomSheet
         isOpen={isLevelBottomSheetOpen}
         onClose={() => setIsLevelBottomSheetOpen(false)}
-        tier={userInfo?.tier || 'Bronze'}
-        level={userInfo?.level || 1}
+        tier={'Bronze'}
+        level={1}
       />
       {selectedAttribute && (
         <StatusDetailBottomSheet
