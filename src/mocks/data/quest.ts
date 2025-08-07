@@ -361,3 +361,21 @@ export const mockCompletedHistory = getRecentDates(4).map((date) => ({
   date,
   logs: mockTodayCompletedQuests,
 }));
+
+export const mockSubQuestLogResponse = {
+  subQuestRewards: [
+    {
+      id: 0,
+      name: 'string',
+      exp: 0,
+    },
+  ],
+  mainQuestRewards: [
+    {
+      id: 0,
+      name: 'string',
+      exp: 0,
+    },
+  ],
+  isMainQuestCompleted: true,
+};

@@ -6,10 +6,8 @@ import type {
 } from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';
 
-export const getUserInfo = async (userId: string): Promise<UserInfoDTO> => {
-  const response = await api.get<ApiResponse<UserInfoDTO>>(
-    `/users/${userId}/userInfo`
-  );
+export const getUserInfo = async (): Promise<UserInfoDTO> => {
+  const response = await api.get<ApiResponse<UserInfoDTO>>(`/user`);
   return (
     response.data ?? {
       id: '',

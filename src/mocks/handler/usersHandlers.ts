@@ -6,7 +6,7 @@ import { getCookie } from '@/utils/cookie';
 export const API_URL = import.meta.env.VITE_API_URL;
 
 export const usersHandlers = [
-  http.get(`${API_URL}/users/:userId/userInfo`, ({ params }) => {
+  http.get(`${API_URL}/user`, ({ params }) => {
     // const userId = params.userId as string;
     console.log(params);
 
