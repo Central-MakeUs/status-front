@@ -9,7 +9,7 @@ export const usePostUserGiveUpMainQuest = () => {
       postUserGiveUpMainQuest(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['main-quests', 'user'],
+        queryKey: ['quest', 'me'],
       });
     },
   });

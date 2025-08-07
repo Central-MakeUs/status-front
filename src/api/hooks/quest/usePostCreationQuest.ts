@@ -7,9 +7,9 @@ export const usePostCreationQuest = () => {
 
   return useMutation({
     mutationFn: (data: CreateQuestRequestDTO) => postCreationQuest(data),
-    onSuccess: (_, variables) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['quests', 'user', variables.mainQuest],
+        queryKey: ['quest', 'me'],
       });
     },
   });
