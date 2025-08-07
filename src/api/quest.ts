@@ -17,6 +17,7 @@ import type {
   CreateQuestRequestDTO,
   UsersMainQuestResponseDTO,
   RewardResponseDTO,
+  CreateQuestResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -121,7 +122,7 @@ export const getRandomSubQuests = async (
 };
 
 export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
-  const response = await api.post<ApiResponse<CreateQuestRequestDTO>>(
+  const response = await api.post<ApiResponse<CreateQuestResponseDTO>>(
     `/quest/create`,
     data
   );

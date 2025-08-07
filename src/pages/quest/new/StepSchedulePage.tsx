@@ -9,8 +9,9 @@ import { StepActions } from '@/pages/quest/new/components/StepActions/StepAction
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { getTodayString, getWeeksDifference } from '@/utils/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
-import type { CreateQuestRequestDTO } from '@/api/types/quest';
 import { usePostCreationQuest } from '@/api/hooks/quest/usePostCreationQuest';
+
+import type { CreateQuestRequest } from '@/types/quest';
 
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
@@ -90,7 +91,7 @@ export const StepSchedulePage = () => {
 
     const validatedData = validationResult.data;
 
-    const payload: CreateQuestRequestDTO = {
+    const payload: CreateQuestRequest = {
       theme: validatedData.theme,
       mainQuest: validatedData.mainQuest,
       startDate: validatedData.startDate,

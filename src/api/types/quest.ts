@@ -61,6 +61,7 @@ export interface CreateQuestResponseDTO {
   title: string;
   attributes: AttributeDTO[];
   subQuests: SubQuestResponseDTO[];
+  npcName: string;
 }
 
 export interface UsersMainQuestResponseDTO {

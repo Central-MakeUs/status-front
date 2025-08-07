@@ -134,6 +134,7 @@ export const questHandlers = [
         },
       ],
       subQuests: [...mockSubQuests.slice(0, 3)],
+      npcName: '아침을 지배하는 자',
     };
 
     mockUsersMainQuests.push({

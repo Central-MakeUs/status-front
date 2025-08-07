@@ -9,6 +9,8 @@ import type {
   SubQuestResponseDTO,
   UserCompletedHistoryDTO,
   UsersMainQuestResponseDTO,
+  CreateQuestResponseDTO,
+  CreateQuestRequestDTO,
 } from '@/api/types/quest';
 export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
@@ -19,6 +21,8 @@ export type SubQuestInfo = Pick<
   SubQuestResponseDTO,
   'id' | 'frequencyType' | 'actionUnitNum'
 >;
+export type CreateQuestRequest = CreateQuestRequestDTO;
+export type CreateQuestResponse = CreateQuestResponseDTO;
 export type UsersMainQuest = UsersMainQuestResponseDTO;
 export type UserSubQuest = UserSubQuestDTO;
 export type SubQuestDifficulty = 'easy' | 'default' | 'hard';
