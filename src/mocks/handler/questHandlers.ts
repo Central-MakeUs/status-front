@@ -164,7 +164,6 @@ export const questHandlers = [
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-
     const quests = mockUserSubQuests;
 
     return HttpResponse.json({

@@ -29,7 +29,7 @@ const TodayCompletedQuests = ({
           {quests &&
             quests.map((quest) => (
               <CompletedQuestList
-                key={quest.userSubQuestInfo.id}
+                key={quest.subQuestInfo.id}
                 quest={quest}
                 onClick={onClick}
               />

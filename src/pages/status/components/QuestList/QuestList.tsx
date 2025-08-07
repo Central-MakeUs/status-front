@@ -20,8 +20,8 @@ export const QuestList = ({
       <div className={cx('header', className)}>오늘의 퀘스트</div>
       {quests.map((quest) => (
         <QuestItem
-          userSubQuestInfo={quest.userSubQuestInfo}
-          key={quest.userSubQuestInfo.id}
+          subQuestInfo={quest.subQuestInfo}
+          key={quest.subQuestInfo.id}
           repeatCnt={quest.repeatCnt}
           essential={quest.essential}
           onClick={(event) => onClick(event, quest)}
