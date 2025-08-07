@@ -41,7 +41,7 @@ export const QuestReportBottomSheet = ({
       <BottomSheet.Header>
         <BottomSheet.Title>퀘스트 인증하기</BottomSheet.Title>
         <BottomSheet.Description>
-          [{selectedSubQuest?.userSubQuestInfo.desc}]의 인증
+          [{selectedSubQuest?.subQuestInfo.desc}]의 인증
         </BottomSheet.Description>
       </BottomSheet.Header>
       <BottomSheet.Content>

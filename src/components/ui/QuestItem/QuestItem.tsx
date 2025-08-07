@@ -6,7 +6,7 @@ import { getSubQuestFrequencyLabel } from '@/constants/quest';
 const cx = classNames.bind(styles);
 
 export const QuestItem = ({
-  userSubQuestInfo: {
+  subQuestInfo: {
     id,
     desc,
     frequencyType,
