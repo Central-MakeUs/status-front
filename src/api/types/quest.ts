@@ -63,6 +63,16 @@ export interface CreateQuestResponseDTO {
   subQuests: SubQuestResponseDTO[];
 }
 
+export interface UsersMainQuestResponseDTO {
+  id: number;
+  startDate: string;
+  endDate: string;
+  totalWeeks: number;
+  title: string;
+  attributes: AttributeDTO[];
+  progress: number;
+}
+
 export interface MainQuestDTO {
   id: number;
   title: string;
@@ -121,19 +131,11 @@ export interface Rewards {
   name: string;
   exp: number;
 }
-export interface UserSubQuestLogResponseDTO {
+export interface RewardResponseDTO {
   subQuestRewards: Rewards[];
   mainQuestRewards: Rewards[];
   isMainQuestCompleted: boolean;
 }
-// export interface UserSubQuestLogResponseDTO {
-//   id: number;
-//   userId: string;
-//   userSubQuestId: string;
-//   difficulty: SubQuestDifficulty;
-//   status: string;
-//   createdAt: string;
-// }
 
 export interface CompletedQuestDTO extends UserSubQuestDTO {
   log: {

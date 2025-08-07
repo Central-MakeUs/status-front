@@ -92,7 +92,7 @@ const QuestDetailPage = () => {
   };
 
   const handleQuestReport = () => {
-    if (!selectedSubQuest) return;
+    if (!selectedSubQuest || !selectedDifficulty) return;
     const payload: UserSubQuestLog = {
       id: selectedSubQuest.userSubQuest.id,
       difficulty: selectedDifficulty!,

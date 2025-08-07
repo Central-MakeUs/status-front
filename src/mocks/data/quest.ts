@@ -4,8 +4,8 @@ import type {
   SubQuest,
   Theme,
   CompletedQuest,
-  UserMainQuest,
   UserSubQuest,
+  UsersMainQuest,
 } from '@/types/quest';
 
 export const mockThemes: Theme[] = [
@@ -205,7 +205,7 @@ export const mockSubQuests: SubQuest[] = [
   },
 ];
 
-export const mockUserMainQuests: UserMainQuest[] = [
+export const mockUsersMainQuests: UsersMainQuest[] = [
   {
     id: 1,
     title: 'SNS 사용 절제 습관 만들기',

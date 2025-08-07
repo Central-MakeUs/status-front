@@ -2,7 +2,7 @@ import { http, HttpResponse, passthrough } from 'msw';
 import {
   mockMainQuests,
   mockSubQuests,
-  mockUserMainQuests,
+  mockUsersMainQuests,
   mockUserSubQuests,
   mockCompletedHistory,
   mockSubQuestLogResponse,
@@ -11,7 +11,7 @@ import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
-  UserSubQuestLogResponseDTO,
+  RewardResponseDTO,
 } from '@/api/types/quest';
 import { mockThemes } from '@/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
@@ -107,6 +107,10 @@ export const questHandlers = [
     });
   }),
   http.post(`${API_URL}/quest/create`, async ({ request }) => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     const requestData = (await request.json()) as CreateQuestRequestDTO;
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
@@ -132,7 +136,7 @@ export const questHandlers = [
       subQuests: [...mockSubQuests.slice(0, 3)],
     };
 
-    mockUserMainQuests.push({
+    mockUsersMainQuests.push({
       id: createdQuest.id,
       title: createdQuest.title,
       startDate: createdQuest.startDate,
@@ -153,7 +157,7 @@ export const questHandlers = [
     }
 
     return HttpResponse.json({
-      data: mockUserMainQuests,
+      data: mockUsersMainQuests,
     });
   }),
   http.get(`${API_URL}/quest/today`, () => {
@@ -173,7 +177,7 @@ export const questHandlers = [
     }
 
     const { mainQuestId } = params;
-    const quest = mockUserMainQuests.find(
+    const quest = mockUsersMainQuests.find(
       (quest) => quest.id.toString() === mainQuestId
     );
 
@@ -212,7 +216,7 @@ export const questHandlers = [
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-    const requestData = (await request.json()) as UserSubQuestLogResponseDTO;
+    const requestData = (await request.json()) as RewardResponseDTO;
 
     // [TODO] 서브 퀘스트 인증 상태 업데이트
     // const userSubQuest = mockUserSubQuests.find(

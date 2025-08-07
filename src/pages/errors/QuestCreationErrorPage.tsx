@@ -7,7 +7,7 @@ import styles from './QuestCreationErrorPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-export const QuestCreationErrorPage = () => {
+const QuestCreationErrorPage = () => {
   const navigate = useNavigate();
 
   const handleClickPreviousButton = () => {
@@ -36,3 +36,5 @@ export const QuestCreationErrorPage = () => {
     </main>
   );
 };
+
+export default QuestCreationErrorPage;

@@ -11,43 +11,43 @@
 }
 
 :global(.rdp-root) {
-  --rdp-accent-color: var(--color-main-orange-default);
-  --rdp-range_middle-background-color: var(--color-gray-600);
-  --rdp-disabled-background-color: var(--color-gray-600);
-  --rdp-nav-height: 65px;
+  --rdp-accent-color: var(--color-main-orange-default) !important; 
+  --rdp-range_middle-background-color: var(--color-gray-600) !important;
+  --rdp-disabled-background-color: var(--color-gray-600) !important;
+  --rdp-nav-height: 65px !important;
 }
 
 :global(.rdp-caption_label) {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 25px;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 25px !important;
 }
 
 :global(.rdp-weekday) {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
   color: var(--color-gray-300) !important;
 }
 
 :global(.rdp-day) {
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
 }
 
 :global(.rdp-range_start) {
   opacity: 1 !important;
-  border-radius: 36px;
-  border-top-left-radius: 9999px;
-  border-bottom-left-radius: 9999px;
+  border-radius: 36px !important;
+  border-top-left-radius: 9999px !important;
+  border-bottom-left-radius: 9999px !important;
 }
 
 
 :global(.rdp-range_end) {
-  border-radius: 36px;
-  border-top-right-radius: 9999px;
-  border-bottom-right-radius: 9999px;
+  border-radius: 36px !important;
+  border-top-right-radius: 9999px !important;
+  border-bottom-right-radius: 9999px !important;
 }
 
 :global(.rdp-range_middle.rdp-disabled) {
@@ -55,18 +55,18 @@
 }
 
 :global(.rdp-range_middle.saturday) {
-  border-top-right-radius: 36px;
-  border-bottom-right-radius: 36px;
+  border-top-right-radius: 36px !important;
+  border-bottom-right-radius: 36px !important;
 }
 
 :global(.rdp-range_middle.sunday) {
-  border-top-left-radius: 36px;
-  border-bottom-left-radius: 36px;
+  border-top-left-radius: 36px !important;
+  border-bottom-left-radius: 36px !important;
 }
 
 :global(.rdp-month_grid) {
-  border-collapse: separate;
-  border-spacing: 0 20px;
+  border-collapse: separate !important;
+  border-spacing: 0 20px !important;
 }
 
 :global(.my-start) {

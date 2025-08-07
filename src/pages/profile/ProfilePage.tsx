@@ -7,14 +7,17 @@ import { useAuthStore } from '@/stores/authStore';
 import { usePostLogout } from '@/api/hooks/auth';
 import { useWithdrawalMutation } from '@/api/hooks/user';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { TERM_URL } from '@/constants/term';
 import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';
 import { LogoutDialog } from '@/pages/profile/components/LogoutDialog/LogoutDialog';
 import { WithdrawalDialog } from '@/pages/profile/components/WithdrawalDialog/WithdrawalDialog';
+import { MESSAGE_TYPES } from '@/constants/webView';
 
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 import IconLogout from '@/assets/icons/icon-logout.svg?react';
 import IconWarning from '@/assets/icons/icon-warning.svg?react';
+import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './ProfilePage.module.scss';
@@ -46,6 +49,26 @@ export const ProfilePage = () => {
     event.stopPropagation();
 
     setIsNicknameEditOpen(true);
+  };
+
+  const handleClickInqueryLink = (
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    event.preventDefault();
+
+    const { href } = event.currentTarget;
+
+    const isWebView = window.ReactNativeWebView !== undefined;
+    if (isWebView) {
+      window.ReactNativeWebView.postMessage(
+        JSON.stringify({
+          type: MESSAGE_TYPES.OPEN_EXTERNAL_BROWSER,
+          url: href,
+        })
+      );
+    } else {
+      window.open(href, '_blank');
+    }
   };
 
   const handleLogout = async () => {
@@ -95,6 +118,25 @@ export const ProfilePage = () => {
           </div>
         </div>
         <ul className={cx('action-list')}>
+          <li className={cx('action-item')}>
+            <div className={cx('action-item-inner')}>
+              <span className={cx('action-name')}>앱 버전</span>
+              <span className={cx('version')}>1.0.0</span>
+            </div>
+          </li>
+          <li className={cx('action-item')}>
+            <a
+              href={TERM_URL.INQUIRY}
+              className={cx('action-link')}
+              onClick={handleClickInqueryLink}
+            >
+              <span className={cx('action-name')}>문의하기</span>
+              <IconChevronRight
+                className={cx('icon-chevron')}
+                aria-hidden={true}
+              />
+            </a>
+          </li>
           <li className={cx('action-item')}>
             <button
               type="button"
