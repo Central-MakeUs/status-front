@@ -195,16 +195,10 @@ export const questHandlers = [
       data: quests,
     });
   }),
-  http.post(`${API_URL}/quest/sub`, async ({ request }) => {
+  http.post(`${API_URL}/quest/sub`, async () => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-    console.log(request);
-
-    // [TODO] 서브 퀘스트 인증 상태 업데이트
-    // const userSubQuest = mockUserSubQuests.find(
-    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
-    // );
 
     return HttpResponse.json({
       data: mockSubQuestLogResponse,
@@ -216,11 +210,6 @@ export const questHandlers = [
       return passthrough();
     }
     const requestData = (await request.json()) as RewardResponseDTO;
-
-    // [TODO] 서브 퀘스트 인증 상태 업데이트
-    // const userSubQuest = mockUserSubQuests.find(
-    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
-    // );
 
     return HttpResponse.json({
       data: requestData,

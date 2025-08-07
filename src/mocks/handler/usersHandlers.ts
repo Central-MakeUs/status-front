@@ -1,19 +1,11 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockGoogleUser, mockUserInfo } from '@/mocks/data/users';
+import { mockGoogleUser } from '@/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 import { getCookie } from '@/utils/cookie';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
 export const usersHandlers = [
-  http.get(`${API_URL}/user`, ({ params }) => {
-    // const userId = params.userId as string;
-    console.log(params);
-
-    return HttpResponse.json({
-      data: mockUserInfo,
-    });
-  }),
   http.post(`${API_URL}/users/sign-up`, async ({ request }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
@@ -56,7 +48,6 @@ export const usersHandlers = [
     });
   }),
   /**
-   * [TODO] 리턴값 추가되거나 조회 API 추가 필요
    * @description 닉네임 수정
    */
   http.patch(`${API_URL}/users/nickname`, async ({ request }) => {
