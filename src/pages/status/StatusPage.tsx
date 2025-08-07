@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/stores/authStore';
-import profileImageUrl from '@/assets/image.svg';
+import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 const StatusPage = () => {
   const navigate = useNavigate();

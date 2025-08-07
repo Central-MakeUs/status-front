@@ -1,5 +1,5 @@
 import type { BasicUsers, UserInfo } from '@/types/users';
-import ProfileImage from '@/assets/image.svg?url';
+import ProfileImage from '@/assets/images/image-profile-default.svg?url';
 import type { OAuthProvider } from '@/types/auth';
 
 export const mockUserInfo: UserInfo = {
