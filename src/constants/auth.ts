@@ -55,7 +55,12 @@ export const USER_TYPE = {
   LOGIN: 'LOGIN',
 } as const;
 
+/**
+ * @desciprtion 캐시 시간 설정
+ * STALE_TIME: Access Token 만료 시간(60분)
+ * GC_TIME: Access Token 만료 시간(60분) + 여유 시간(5분)
+ */
 export const AUTH_CACHE_TIME = {
-  STALE_TIME: 5 * 60 * 1000,
-  GC_TIME: 10 * 60 * 1000,
+  STALE_TIME: 60 * 60 * 1000,
+  GC_TIME: 65 * 60 * 1000,
 } as const;
