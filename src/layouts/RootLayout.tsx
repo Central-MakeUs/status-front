@@ -4,20 +4,20 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ServerErrorPage } from '@/pages/errors/ServerErrorPage';
 import { Loading } from '@/components/ui/Loading/Loading';
+import { useGetUsersMainQuests } from '@/api/hooks/quest/useGetUsersMainQuests';
+
 export const RootLayout = () => {
+  const { data: mainQuestList, isLoading } = useGetUsersMainQuests();
   const location = useLocation();
   const pathname = location.pathname;
+  const hasActiveQuest = mainQuestList && mainQuestList.length > 0;
 
-  /**
-   * [TODO] HOME 기준
-   * 최초 유저 & 현재 진행 중인 '퀘스트'가 없는 유저: [퀘스트]화면이 Home(Default)
-   * (그외)현재 진행 중인 퀘스트가 있는 유저: [상태창]이 Home(Default)
-   */
-  const hasActiveQuest = false;
-  const isFirstTimeUser = true;
+  if (isLoading) {
+    return <Loading />;
+  }
 
   if (pathname === PAGE_PATHS.ROOT) {
-    if (isFirstTimeUser && !hasActiveQuest) {
+    if (!hasActiveQuest) {
       return <Navigate to={PAGE_PATHS.QUEST} replace />;
     } else {
       return <Navigate to={PAGE_PATHS.STATUS} replace />;
