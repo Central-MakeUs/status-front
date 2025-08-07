@@ -236,6 +236,10 @@ export const questHandlers = [
     });
   }),
   http.delete(`${API_URL}/quest/:mainQuestId`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     return HttpResponse.json({
       data: {},
     });
