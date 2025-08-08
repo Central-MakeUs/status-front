@@ -15,8 +15,6 @@ const cx = classNames.bind(styles);
 const TutorialPage = () => {
   const navigate = useNavigate();
 
-  // [TODO] 회원이 아니거나 인증 정보 없으면 로그인 페이지로 이동
-
   const [currentStep, setCurrentStep] = useState<TutorialStep>(
     TUTORIAL_STEPS.FIRST
   );

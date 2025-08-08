@@ -1,9 +1,16 @@
 import { getUsersMainQuests } from '@/api/quest';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetUsersMainQuests = () => {
+interface UseGetUsersMainQuestsProps {
+  isAuthenticated?: boolean;
+}
+
+export const useGetUsersMainQuests = ({
+  isAuthenticated,
+}: UseGetUsersMainQuestsProps = {}) => {
   return useQuery({
     queryKey: ['quests', 'me'],
     queryFn: () => getUsersMainQuests(),
+    enabled: !!isAuthenticated,
   });
 };

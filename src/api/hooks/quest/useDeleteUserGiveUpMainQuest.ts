@@ -9,7 +9,7 @@ export const useDeleteUserMainQuest = () => {
       deleteUserMainQuest(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['quests', 'me'],
+        queryKey: ['quest', 'me'],
       });
     },
   });

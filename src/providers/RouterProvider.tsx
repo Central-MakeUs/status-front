@@ -40,7 +40,7 @@ const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
 export default function RouterProvider() {
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: PAGE_PATHS.ROOT,
       Component: RootLayout,
       children: [
         {
@@ -49,6 +49,10 @@ export default function RouterProvider() {
             {
               Component: BottomNavigationLayout,
               children: [
+                {
+                  index: true,
+                  Component: StatusPage,
+                },
                 {
                   path: PAGE_PATHS.STATUS,
                   Component: StatusPage,

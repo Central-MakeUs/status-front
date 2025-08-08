@@ -1,17 +1,5 @@
-import type { BasicUsers, UserInfo } from '@/types/users';
-import ProfileImage from '@/assets/image.svg?url';
+import type { BasicUsers } from '@/types/users';
 import type { OAuthProvider } from '@/types/auth';
-
-export const mockUserInfo: UserInfo = {
-  id: '10',
-  email: 'mock@google.',
-  nickname: '닉네임_10904',
-  providerType: 'GOOGLE',
-  providerId: 'mock-provider-id',
-  tier: 'Platinum',
-  level: 1,
-  profileImageUrl: ProfileImage,
-};
 
 /**
  * 애플 로그인 후 사용하는 가입 유저 데이터

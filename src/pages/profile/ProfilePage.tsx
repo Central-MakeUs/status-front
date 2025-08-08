@@ -25,7 +25,7 @@ import styles from './ProfilePage.module.scss';
 const cx = classNames.bind(styles);
 
 // [TODO] 티어 데이터 추가 후 삭제
-const DEMO_TIER = 'Platinum_1';
+const DEMO_TIER = 'Bronze_1';
 
 export const ProfilePage = () => {
   const navigate = useNavigate();

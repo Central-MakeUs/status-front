@@ -134,6 +134,7 @@ export const questHandlers = [
         },
       ],
       subQuests: [...mockSubQuests.slice(0, 3)],
+      npcName: '아침을 지배하는 자',
     };
 
     mockUsersMainQuests.push({
@@ -195,16 +196,10 @@ export const questHandlers = [
       data: quests,
     });
   }),
-  http.post(`${API_URL}/quest/sub`, async ({ request }) => {
+  http.post(`${API_URL}/quest/sub`, async () => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-    console.log(request);
-
-    // [TODO] 서브 퀘스트 인증 상태 업데이트
-    // const userSubQuest = mockUserSubQuests.find(
-    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
-    // );
 
     return HttpResponse.json({
       data: mockSubQuestLogResponse,
@@ -216,11 +211,6 @@ export const questHandlers = [
       return passthrough();
     }
     const requestData = (await request.json()) as RewardResponseDTO;
-
-    // [TODO] 서브 퀘스트 인증 상태 업데이트
-    // const userSubQuest = mockUserSubQuests.find(
-    //   (userSubQuest) => userSubQuest.id === requestData.userSubQuestId
-    // );
 
     return HttpResponse.json({
       data: requestData,
@@ -236,6 +226,10 @@ export const questHandlers = [
     });
   }),
   http.delete(`${API_URL}/quest/:mainQuestId`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
     return HttpResponse.json({
       data: {},
     });

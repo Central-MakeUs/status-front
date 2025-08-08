@@ -6,7 +6,7 @@ import { StepActions } from '@/pages/quest/new/components/StepActions/StepAction
 import 'react-day-picker/dist/style.css';
 import { getSubQuestFrequencyLabel } from '@/constants/quest';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
-import type { CreateQuestResponseDTO } from '@/api/types/quest';
+import type { CreateQuestResponse } from '@/types/quest';
 
 import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';
@@ -18,8 +18,7 @@ export const StepResultPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const clear = useQuestCreationStore((state) => state.clear);
-  const createdQuestResponse = location.state
-    ?.response as CreateQuestResponseDTO;
+  const createdQuestResponse = location.state?.response as CreateQuestResponse;
 
   useEffect(() => {
     if (!createdQuestResponse) {
@@ -38,6 +37,7 @@ export const StepResultPage = () => {
   const weeks = createdQuestResponse.totalWeeks;
   const attributes = createdQuestResponse.attributes ?? [];
   const subQuests = createdQuestResponse.subQuests ?? [];
+  const npcName = createdQuestResponse.npcName ?? '';
 
   const handleClickDoneButton = () => {
     navigate(PAGE_PATHS.QUEST);
@@ -47,8 +47,7 @@ export const StepResultPage = () => {
     <>
       <main className="main">
         <div className={cx('result-container')}>
-          {/* [TODO] NPC 추가 */}
-          <p className={cx('main-quest-from')}>From. [아침을 지배하는 자]</p>
+          <p className={cx('main-quest-from')}>From. {npcName}</p>
           <h1 className={cx('result-title')}>생성된 퀘스트가 도착했어요!</h1>
           <div className={cx('logo-container')}>
             <IconLogo width={300} height={200} />
