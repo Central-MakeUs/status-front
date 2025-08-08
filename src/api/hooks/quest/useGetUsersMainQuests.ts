@@ -9,7 +9,7 @@ export const useGetUsersMainQuests = ({
   isAuthenticated,
 }: UseGetUsersMainQuestsProps = {}) => {
   return useQuery({
-    queryKey: ['quests', 'me'],
+    queryKey: ['quest', 'me'],
     queryFn: () => getUsersMainQuests(),
     enabled: !!isAuthenticated,
   });
