@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postUserGiveUpMainQuest } from '@/api/quest';
+import { deleteUserMainQuest } from '@/api/quest';
 import type { UserMainQuestGiveUpRequestDTO } from '@/api/types/quest';
 
-export const usePostUserGiveUpMainQuest = () => {
+export const useDeleteUserMainQuest = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (data: UserMainQuestGiveUpRequestDTO) =>
-      postUserGiveUpMainQuest(data),
+      deleteUserMainQuest(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['quest', 'me'],

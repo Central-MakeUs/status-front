@@ -24,16 +24,16 @@ import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
-import { usePostUserGiveUpMainQuest } from '@/api/hooks/quest/usePostUserGiveUpMainQuest';
+import { useDeleteUserMainQuest } from '@/api/hooks/quest/useDeleteUserGiveUpMainQuest';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
 import type { AttributeDTO } from '@/api/types/attribute';
-import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedHistory';
+import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedLists';
 import dayjs from 'dayjs';
-import { usePatchUserSubQuestLog } from '@/api/hooks/quest/usePatchUserSubQuestLog ';
+import { usePatchUserSubQuestLog } from '@/api/hooks/quest/usePatchUserSubQuestLog';
 const cx = classNames.bind(styles);
 const today = dayjs().format('YYYY.MM.DD');
 
@@ -61,14 +61,14 @@ const QuestDetailPage = () => {
   const [isEdit, setIsEdit] = useState(false);
 
   const postUserSubQuestLog = usePostUserSubQuestLog();
-  const postUserGiveUpMainQuest = usePostUserGiveUpMainQuest();
+  const deleteUserMainQuest = useDeleteUserMainQuest();
   const patchUserSubQuestLog = usePatchUserSubQuestLog();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
   const [isMainQuestCompleted, setIsMainQuestCompleted] =
     useState<boolean>(false);
-  // 선택된 속성 정보 찾기
+
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
@@ -95,7 +95,7 @@ const QuestDetailPage = () => {
     if (!selectedSubQuest || !selectedDifficulty) return;
     const payload: UserSubQuestLog = {
       id: selectedSubQuest.subQuestInfo.id,
-      difficulty: selectedDifficulty!,
+      difficulty: selectedDifficulty,
       memo: memo,
     };
 
@@ -136,11 +136,13 @@ const QuestDetailPage = () => {
       id: Number(mainQuestId),
     };
 
-    postUserGiveUpMainQuest.mutate(payload, {
+    deleteUserMainQuest.mutate(payload, {
       onSuccess: () => {
         navigate(PAGE_PATHS.QUEST);
       },
-      onError: () => {},
+      onError: (e) => {
+        console.error('give up error', e);
+      },
     });
   };
 

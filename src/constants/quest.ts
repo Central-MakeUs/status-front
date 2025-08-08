@@ -70,15 +70,15 @@ export const getSubQuestFrequencyLabel = (
 export const SUB_QUEST_DIFFICULTY = {
   EASY: {
     label: '가뿐한 퀘스트',
-    value: 'easy',
+    value: 'EASY',
   },
-  DEFAULT: {
+  NORMAL: {
     label: '적당한 임무',
-    value: 'default',
+    value: 'NORMAL',
   },
   HARD: {
     label: '전설적인 도전',
-    value: 'hard',
+    value: 'HARD',
   },
 } as const;
 

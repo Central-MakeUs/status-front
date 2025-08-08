@@ -212,11 +212,8 @@ export const getUserCompletedHistory = async (
   return response.data ?? [];
 };
 
-export const postUserGiveUpMainQuest = async (
+export const deleteUserMainQuest = async (
   data: UserMainQuestGiveUpRequestDTO
-) => {
-  const response = await api.delete<ApiResponse<UserMainQuestGiveUpRequestDTO>>(
-    `/quest/${data.id}`
-  );
-  return response.data ?? {};
+): Promise<void> => {
+  await api.delete(`/quest/${data.id}`);
 };

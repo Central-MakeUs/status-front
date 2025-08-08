@@ -39,15 +39,15 @@
             content: '';
         }
 
-        &.easy::before {
+        &.EASY::before {
             background-color: var(--color-state-success);
         }
 
-        &.default::before {
+        &.NORMAL::before {
             background-color: var(--color-sub-yellow);
         }
 
-        &.hard::before {
+        &.HARD::before {
             background-color: var(--color-main-orange-default);
         }
     }

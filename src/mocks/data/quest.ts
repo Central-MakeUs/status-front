@@ -297,7 +297,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     essential: true,
     log: {
       id: 1,
-      difficulty: 'easy',
+      difficulty: 'EASY',
       memo: '일찍 일어나 알림을 껐음',
     },
   },
@@ -317,7 +317,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     essential: true,
     log: {
       id: 2,
-      difficulty: 'default',
+      difficulty: 'NORMAL',
       memo: '습관적으로 껐지만 조금 늦게 일어남',
     },
   },
@@ -337,7 +337,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     essential: false,
     log: {
       id: 3,
-      difficulty: 'hard',
+      difficulty: 'HARD',
       memo: '핸드폰 없이 집중해서 루틴을 완수함',
     },
   },
