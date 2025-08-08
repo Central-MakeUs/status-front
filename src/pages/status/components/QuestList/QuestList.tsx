@@ -15,6 +15,8 @@ export const QuestList = ({
   className?: string;
   onClick: (event: React.MouseEvent, quest: UserSubQuest) => void;
 }) => {
+  if (quests.length === 0) return null;
+
   return (
     <div className={cx('container')}>
       <div className={cx('header', className)}>오늘의 퀘스트</div>

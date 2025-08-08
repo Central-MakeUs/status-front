@@ -21,7 +21,7 @@ export type SubQuestInfo = Pick<
 >;
 export type UsersMainQuest = UsersMainQuestResponseDTO;
 export type UserSubQuest = UserSubQuestDTO;
-export type SubQuestDifficulty = 'easy' | 'default' | 'hard';
+export type SubQuestDifficulty = 'EASY' | 'NORMAL' | 'HARD';
 export type UserSubQuestLog = UserSubQuestLogRequestDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
 export type CompletedQuest = CompletedQuestDTO;
