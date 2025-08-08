@@ -54,7 +54,7 @@ export const StepResultPage = () => {
           </div>
           <div className={cx('main-quest-box')}>
             <p className={cx('main-quest-date')}>
-              {`기한_${endDate} (총 ${weeks}일)`}
+              {`기한_${endDate} (총 ${weeks}주)`}
             </p>
             <h2 className={cx('main-quest-title')}>{mainQuestTitle}</h2>
             <div className={cx('main-quest-reward')}>
