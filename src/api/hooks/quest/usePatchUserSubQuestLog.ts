@@ -9,7 +9,7 @@ export const usePatchUserSubQuestLog = () => {
     mutationFn: (data: UserSubQuestLogRequestDTO) => patchUserSubQuestLog(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['sub-quests', 'user'],
+        queryKey: ['completed-quests'],
       });
     },
   });

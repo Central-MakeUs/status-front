@@ -282,19 +282,22 @@ export const mockUserSubQuests: UserSubQuest[] = [
 
 export const mockTodayCompletedQuests: CompletedQuest[] = [
   {
-    subQuestInfo: {
-      id: 2,
-      desc: '아침 알림 전면 차단 후 하루 시작',
-      frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
-      actionUnitNum: 1,
-      actionUnitType: '회',
-      attributes: [
-        { id: 203, name: '기록', exp: 5 },
-        { id: 103, name: '제어', exp: 3 },
-      ],
+    userSubQuest: {
+      mainQuestId: 32,
+      subQuestInfo: {
+        id: 2,
+        desc: '아침 알림 전면 차단 후 하루 시작',
+        frequencyType: 'DAILY',
+        actionUnitNum: 1,
+        actionUnitType: '회',
+        attributes: [
+          { id: 203, name: '기록', exp: 5 },
+          { id: 103, name: '제어', exp: 3 },
+        ],
+      },
+      repeatCnt: 1,
+      essential: true,
     },
-    repeatCnt: 1,
-    essential: true,
     log: {
       id: 1,
       difficulty: 'EASY',
@@ -302,19 +305,22 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     },
   },
   {
-    subQuestInfo: {
-      id: 3,
-      desc: '아침 알림 전면 차단 후 하루 시작',
-      frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
-      actionUnitNum: 1,
-      actionUnitType: '회',
-      attributes: [
-        { id: 203, name: '기록', exp: 5 },
-        { id: 103, name: '제어', exp: 3 },
-      ],
+    userSubQuest: {
+      mainQuestId: 32,
+      subQuestInfo: {
+        id: 3,
+        desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+        frequencyType: 'DAILY',
+        actionUnitNum: 1,
+        actionUnitType: '회',
+        attributes: [
+          { id: 203, name: '기록', exp: 5 },
+          { id: 103, name: '제어', exp: 3 },
+        ],
+      },
+      repeatCnt: 1,
+      essential: true,
     },
-    repeatCnt: 1,
-    essential: true,
     log: {
       id: 2,
       difficulty: 'NORMAL',
@@ -322,19 +328,22 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
     },
   },
   {
-    subQuestInfo: {
-      id: 4,
-      desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
-      frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
-      actionUnitNum: 1,
-      actionUnitType: '회',
-      attributes: [
-        { id: 203, name: '기록', exp: 5 },
-        { id: 103, name: '제어', exp: 3 },
-      ],
+    userSubQuest: {
+      mainQuestId: 32,
+      subQuestInfo: {
+        id: 4,
+        desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
+        frequencyType: 'MONTHLY_3',
+        actionUnitNum: 1,
+        actionUnitType: '회',
+        attributes: [
+          { id: 203, name: '기록', exp: 5 },
+          { id: 103, name: '제어', exp: 3 },
+        ],
+      },
+      repeatCnt: 1,
+      essential: false,
     },
-    repeatCnt: 1,
-    essential: false,
     log: {
       id: 3,
       difficulty: 'HARD',
@@ -352,7 +361,7 @@ function getRecentDates(days: number): string[] {
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, '0');
     const dd = String(d.getDate()).padStart(2, '0');
-    result.push(`${yyyy}.${mm}.${dd}`);
+    result.push(`${yyyy}-${mm}-${dd}`);
   }
   return result;
 }

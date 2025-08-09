@@ -138,7 +138,8 @@ export interface RewardResponseDTO {
   isMainQuestCompleted: boolean;
 }
 
-export interface CompletedQuestDTO extends UserSubQuestDTO {
+export interface CompletedQuestDTO {
+  userSubQuest: UserSubQuestDTO;
   log: {
     id: number;
     difficulty: SubQuestDifficulty;
