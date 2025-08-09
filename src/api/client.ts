@@ -29,18 +29,21 @@ const request = async <T = unknown>(
     credentials: 'include',
   });
 
-  if (response.status === 401 && !options._retry) {
-    const isAuthenticated = await authenticateUser();
-    if (isAuthenticated) {
-      await refreshAccessToken();
-      return request(endpoint, {
-        ...options,
-        _retry: true,
-      });
-    } else {
-      const currentPath = window.location.pathname;
-      window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
+  if (response.status === 401) {
+    if (!options._retry) {
+      const isAuthenticated = await authenticateUser();
+
+      if (isAuthenticated) {
+        await refreshAccessToken();
+        return request(endpoint, {
+          ...options,
+          _retry: true,
+        });
+      }
     }
+
+    const currentPath = window.location.pathname;
+    window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`;
   }
 
   if (!response.ok) {
