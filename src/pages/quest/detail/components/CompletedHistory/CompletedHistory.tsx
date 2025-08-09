@@ -64,7 +64,7 @@ const CompletedHistory = ({
                     logs &&
                     logs.map((quest) => (
                       <CompletedQuestList
-                        key={quest.subQuestInfo.id}
+                        key={quest.userSubQuest.subQuestInfo.id}
                         quest={quest}
                         onClick={onClick}
                       />

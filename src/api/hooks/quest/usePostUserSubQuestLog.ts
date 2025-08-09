@@ -9,7 +9,7 @@ export const usePostUserSubQuestLog = () => {
     mutationFn: (data: UserSubQuestLogRequestDTO) => postUserSubQuestLog(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['sub-quests', 'user'],
+        queryKey: ['completed-quests'],
       });
     },
   });
