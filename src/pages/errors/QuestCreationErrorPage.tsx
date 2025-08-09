@@ -26,7 +26,7 @@ const QuestCreationErrorPage = () => {
         <div className={cx('error-actions')}>
           <button
             type="button"
-            className={cx('button-previous')}
+            className={cx('button-error')}
             onClick={handleClickPreviousButton}
           >
             이전으로

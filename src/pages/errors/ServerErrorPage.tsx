@@ -1,3 +1,5 @@
+import { PAGE_PATHS } from '@/constants/pagePaths';
+
 import IconError from '@/assets/icons/icon-character-error.svg?react';
 
 import classNames from 'classnames/bind';
@@ -6,8 +8,8 @@ import styles from './ServerErrorPage.module.scss';
 const cx = classNames.bind(styles);
 
 export const ServerErrorPage = () => {
-  const handleClickRefreshButton = () => {
-    window.location.reload();
+  const handleClickHomeButton = () => {
+    window.location.href = PAGE_PATHS.ROOT;
   };
 
   return (
@@ -23,10 +25,10 @@ export const ServerErrorPage = () => {
         <div className={cx('error-actions')}>
           <button
             type="button"
-            className={cx('button-refresh')}
-            onClick={handleClickRefreshButton}
+            className={cx('button-error')}
+            onClick={handleClickHomeButton}
           >
-            새로고침
+            홈으로
           </button>
         </div>
       </div>
