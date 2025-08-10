@@ -11,6 +11,9 @@ export const usePostUserSubQuestLog = () => {
       queryClient.invalidateQueries({
         queryKey: ['completed-quests'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['sub-quests', 'user'],
+      });
     },
   });
 };
