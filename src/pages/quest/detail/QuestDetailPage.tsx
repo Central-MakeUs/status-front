@@ -68,7 +68,7 @@ const QuestDetailPage = () => {
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
   const [isMainQuestCompleted, setIsMainQuestCompleted] =
     useState<boolean>(false);
-
+  const [editingLogId, setEditingLogId] = useState<number | null>(null);
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
@@ -93,13 +93,14 @@ const QuestDetailPage = () => {
 
   const handleQuestReport = () => {
     if (!selectedSubQuest || !selectedDifficulty) return;
-    const payload: UserSubQuestLog = {
-      id: selectedSubQuest.subQuestInfo.id,
-      difficulty: selectedDifficulty,
-      memo: memo,
-    };
 
     if (isEdit) {
+      if (!editingLogId) return; // 방어
+      const payload: UserSubQuestLog = {
+        id: editingLogId,
+        difficulty: selectedDifficulty!,
+        memo,
+      };
       patchUserSubQuestLog.mutate(payload, {
         onSuccess: () => {
           setIsBottomSheetOpen(false);
@@ -113,6 +114,12 @@ const QuestDetailPage = () => {
         },
       });
     } else {
+      const payload: UserSubQuestLog = {
+        id: selectedSubQuest.subQuestInfo.id,
+        difficulty: selectedDifficulty!,
+        memo,
+      };
+
       postUserSubQuestLog.mutate(payload, {
         onSuccess: (response) => {
           setIsBottomSheetOpen(false);
@@ -150,7 +157,8 @@ const QuestDetailPage = () => {
     event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
-    memo: string
+    memo: string,
+    logId: number
   ) => {
     event.stopPropagation();
 
@@ -159,6 +167,7 @@ const QuestDetailPage = () => {
     setSelectedDifficulty(difficulty);
     setMemo(memo);
     setIsEdit(true);
+    setEditingLogId(logId);
   };
 
   return (

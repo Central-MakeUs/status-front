@@ -21,7 +21,8 @@ const CompletedHistory = ({
     event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
-    memo: string
+    memo: string,
+    logId: number
   ) => void;
 }) => {
   const [openDate, setOpenDate] = useState<string | null>(null);

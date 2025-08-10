@@ -18,7 +18,8 @@ const TodayCompletedQuests = ({
     event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
-    memo: string
+    memo: string,
+    logId: number
   ) => void;
 }) => {
   if (quests.length === 0) return null;
