@@ -66,7 +66,9 @@ export const StatusDetailBottomSheet = ({
               }
             />
           </div>
-          <div className={cx('xp-remaining')}>(레벨업까지 +{exp}xp)</div>
+          <div className={cx('xp-remaining')}>
+            (레벨업까지 +{expToNextLevel}xp)
+          </div>
         </div>
       </BottomSheet.Content>
       <BottomSheet.Footer>
