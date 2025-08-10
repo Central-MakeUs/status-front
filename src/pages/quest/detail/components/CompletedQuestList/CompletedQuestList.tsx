@@ -22,7 +22,8 @@ const CompletedQuestList = ({
     event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
-    memo: string
+    memo: string,
+    logId: number
   ) => void;
 }) => {
   const difficulty =
@@ -56,7 +57,8 @@ const CompletedQuestList = ({
                 event,
                 quest.userSubQuest,
                 difficulty.value,
-                quest.log.memo
+                quest.log.memo,
+                quest.log.id
               )
             }
           />
