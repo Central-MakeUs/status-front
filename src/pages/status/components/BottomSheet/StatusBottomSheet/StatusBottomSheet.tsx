@@ -61,14 +61,12 @@ export const StatusDetailBottomSheet = ({
               className={cx('filled')}
               style={
                 {
-                  '--xp-width': `${(exp * 100) / expToNextLevel}%`,
+                  '--xp-width': `${(exp * 100) / (expToNextLevel + exp)}%`,
                 } as React.CSSProperties
               }
             />
           </div>
-          <div className={cx('xp-remaining')}>
-            (레벨업까지 +{expToNextLevel - exp}xp)
-          </div>
+          <div className={cx('xp-remaining')}>(레벨업까지 +{exp}xp)</div>
         </div>
       </BottomSheet.Content>
       <BottomSheet.Footer>
