@@ -11,7 +11,7 @@ export const SUB_QUEST_FREQUENCY = {
   },
   WEEKLY: {
     label: '주 1회',
-    value: 'WEEKLY',
+    value: 'WEEKLY_1',
   },
   WEEKLY_2: {
     label: '주 2회',
