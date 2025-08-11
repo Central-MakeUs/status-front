@@ -1,6 +1,8 @@
 import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
 import { Select } from '@/components/ui/Selelct/Select';
 import {
+  ACTION_UNIT_TYPES,
+  ACTION_UNIT_TYPE_OPTIONS,
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
 } from '@/constants/quest';
@@ -32,6 +34,13 @@ export const EditingSubQuestBottomSheet = ({
   handleChangeSubQuestRepeatCount,
   handleClickEditingDoneButton,
 }: EditingSubQuestBottomSheetProps) => {
+  const actionUnitType = editingSubQuest?.actionUnitType;
+  const actionUnitTypeOptions = actionUnitType
+    ? ACTION_UNIT_TYPE_OPTIONS[
+        actionUnitType as keyof typeof ACTION_UNIT_TYPE_OPTIONS
+      ]
+    : undefined;
+
   return (
     <BottomSheet
       isOpen={isBottomSheetOpen}
@@ -57,18 +66,16 @@ export const EditingSubQuestBottomSheet = ({
           className={cx('bottom-sheet-input')}
           type="number"
           inputMode="numeric"
-          label={
-            editingSubQuest?.actionUnitType === 'once'
-              ? '횟수'
-              : editingSubQuest?.actionUnitType
-          }
+          label={actionUnitTypeOptions?.label}
           value={
             editingSubQuest?.actionUnitNum === 0
               ? ''
               : editingSubQuest?.actionUnitNum
           }
+          min={actionUnitTypeOptions?.min}
+          max={actionUnitTypeOptions?.max}
           onChange={handleChangeSubQuestRepeatCount}
-          disabled={editingSubQuest?.actionUnitType === 'once'}
+          disabled={editingSubQuest?.actionUnitType === ACTION_UNIT_TYPES.ONCE}
         />
       </BottomSheet.Content>
       <BottomSheet.Footer>

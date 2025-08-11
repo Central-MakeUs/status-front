@@ -13,6 +13,8 @@ export interface TextInputProps {
   value?: string | number;
   placeholder?: string;
   maxLength?: number;
+  min?: number;
+  max?: number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errorMessage?: string;
   disabled?: boolean;
@@ -26,6 +28,8 @@ export const TextInput = ({
   value,
   placeholder,
   maxLength,
+  min,
+  max,
   onChange,
   errorMessage,
   disabled,
@@ -49,6 +53,8 @@ export const TextInput = ({
           value={value}
           placeholder={placeholder}
           maxLength={maxLength}
+          min={min}
+          max={max}
           onChange={onChange}
           aria-describedby={errorMessage ? errorMessageId : undefined}
           aria-invalid={!!errorMessage}

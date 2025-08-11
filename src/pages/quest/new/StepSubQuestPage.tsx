@@ -6,6 +6,7 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
+  ACTION_UNIT_TYPE_OPTIONS,
 } from '@/constants/quest';
 import { Header } from '@/components/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
@@ -122,6 +123,16 @@ const StepSubQuestPage = () => {
     const value = Number(event.target.value);
 
     if (!editingSubQuest || isNaN(value)) {
+      return;
+    }
+
+    const actionUnitType = editingSubQuest.actionUnitType;
+    const actionUnitTypeOptions =
+      ACTION_UNIT_TYPE_OPTIONS[
+        actionUnitType as keyof typeof ACTION_UNIT_TYPE_OPTIONS
+      ];
+
+    if (value > actionUnitTypeOptions.max) {
       return;
     }
 

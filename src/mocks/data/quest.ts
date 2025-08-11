@@ -1,4 +1,4 @@
-import { SUB_QUEST_FREQUENCY } from '@/constants/quest';
+import { ACTION_UNIT_TYPES, SUB_QUEST_FREQUENCY } from '@/constants/quest';
 import type {
   MainQuest,
   SubQuest,
@@ -120,7 +120,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
     frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
     actionUnitNum: 1,
-    actionUnitType: '분',
+    actionUnitType: ACTION_UNIT_TYPES.TIME_MINUTE,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -131,7 +131,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '아침 알림 전면 차단 후 하루 시작',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY.value,
     actionUnitNum: 1,
-    actionUnitType: '횟수',
+    actionUnitType: ACTION_UNIT_TYPES.ONCE,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -142,7 +142,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     actionUnitNum: 1,
-    actionUnitType: '회',
+    actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -153,7 +153,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: 'test',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     actionUnitNum: 1,
-    actionUnitType: 'once',
+    actionUnitType: ACTION_UNIT_TYPES.ONCE,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -164,7 +164,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '물 8잔 이상 마시기',
     frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
     actionUnitNum: 1,
-    actionUnitType: '회',
+    actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -175,7 +175,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '30분 이상 산책하기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY.value,
     actionUnitNum: 1,
-    actionUnitType: '회',
+    actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -186,7 +186,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '책 10페이지 이상 읽기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     actionUnitNum: 1,
-    actionUnitType: '권',
+    actionUnitType: ACTION_UNIT_TYPES.NUMBER_2,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -197,7 +197,7 @@ export const mockSubQuests: SubQuest[] = [
     desc: '새로운 단어 5개 학습하기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
     actionUnitNum: 1,
-    actionUnitType: '개',
+    actionUnitType: ACTION_UNIT_TYPES.NUMBER_1,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
       { id: 103, name: '제어', exp: 3 },
@@ -239,7 +239,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
       desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
       frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
       actionUnitNum: 3,
-      actionUnitType: '회',
+      actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
       attributes: [
         { id: 203, name: '기록', exp: 5 },
         { id: 103, name: '제어', exp: 3 },
@@ -254,7 +254,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
       desc: '아침 알림 전면 차단 후 하루 시작',
       frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
       actionUnitNum: 1,
-      actionUnitType: '회',
+      actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
       attributes: [
         { id: 203, name: '기록', exp: 100 },
         { id: 103, name: '제어', exp: 50 },
@@ -269,7 +269,7 @@ export const mockUserSubQuests: UserSubQuest[] = [
       desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
       frequencyType: SUB_QUEST_FREQUENCY.MONTHLY_3.value,
       actionUnitNum: 3,
-      actionUnitType: '회',
+      actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
       attributes: [
         { id: 203, name: '기록', exp: 5 },
         { id: 103, name: '제어', exp: 3 },
@@ -289,7 +289,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
         desc: '아침 알림 전면 차단 후 하루 시작',
         frequencyType: 'DAILY',
         actionUnitNum: 1,
-        actionUnitType: '회',
+        actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
         attributes: [
           { id: 203, name: '기록', exp: 5 },
           { id: 103, name: '제어', exp: 3 },
@@ -312,7 +312,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
         desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
         frequencyType: 'DAILY',
         actionUnitNum: 1,
-        actionUnitType: '회',
+        actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
         attributes: [
           { id: 203, name: '기록', exp: 5 },
           { id: 103, name: '제어', exp: 3 },
@@ -335,7 +335,7 @@ export const mockTodayCompletedQuests: CompletedQuest[] = [
         desc: '핸드폰 없이 아침 루틴(세면+식사+기록) 수행',
         frequencyType: 'MONTHLY_3',
         actionUnitNum: 1,
-        actionUnitType: '회',
+        actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
         attributes: [
           { id: 203, name: '기록', exp: 5 },
           { id: 103, name: '제어', exp: 3 },
