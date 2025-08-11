@@ -24,7 +24,7 @@ export const StatusDetailBottomSheet = ({
   attribute,
 }: StatusDetailBottomSheetProps) => {
   const { name, description, level, exp, expToNextLevel } = attribute;
-  // const growth = 0;
+  const growth = 0;
   // const StatusIcon = growth === 1 ? BurningSVG : growth === -1 ? StagnationSVG : null;
 
   // 서버에서 해당 속성 정보 찾기
@@ -45,11 +45,11 @@ export const StatusDetailBottomSheet = ({
       <BottomSheet.Content>
         <div className={cx('status-detail')}>
           <div className={cx('status-text')}>
-            {/* <div className={cx('growth-message')}>
-              {growth === 1 && '성장이 불타는 중!'}
-              {growth === -1 && '성장이 얼어가는 중...'}
+            <div className={cx('growth-message')}>
+              {/* {growth === 1 && '성장이 불타는 중!'}
+              {growth === -1 && '성장이 얼어가는 중...'} */}
               {growth === 0 && '스퍼트를 내볼 차례!'}
-            </div> */}
+            </div>
             <div className={cx('level')}>
               {/* {StatusIcon && <StatusIcon className={cx('icon')} />} */}
               <span>Lv. {level} </span>
