@@ -41,14 +41,12 @@ const cx = classNames.bind(styles);
 interface RadarChartProps {
   attributeDatas: Attribute[];
   profileImage: string;
-  // xpLeftList: number[][];
   onClick: (event: React.MouseEvent, key: number) => void;
 }
 
 export const RadarChart = ({
   attributeDatas,
   profileImage,
-  // xpLeftList,
   onClick,
 }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
@@ -150,7 +148,7 @@ export const RadarChart = ({
         ctx.drawImage(img, x, y, 36, 36);
       });
 
-      ctx.drawImage(img, centerX - 45 / 2, centerY - 45 / 2, 45, 45);
+      // ctx.drawImage(img, centerX - 45 / 2, centerY - 45 / 2, 45, 45);
     },
   };
 
@@ -214,7 +212,7 @@ export const RadarChart = ({
               maintainAspectRatio: false,
               scales: {
                 r: {
-                  max: 11,
+                  max: 99,
                   min: 0,
                   angleLines: { color: '#2D2D2D' },
                   grid: {
