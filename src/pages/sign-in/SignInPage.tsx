@@ -6,6 +6,7 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
 import IconKakao from '@/assets/icons/icon-login-kakao.svg?react';
+import IconIntroduction from '@/assets/icons/icon-character-introduction.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignInPage.module.scss';
@@ -37,9 +38,10 @@ const SignInPage = () => {
     <>
       <main className="main">
         <div className={cx('login-container')}>
-          <video className={cx('login-animation')} autoPlay muted playsInline>
-            <source src="/videos/splash-animation.mp4" type="video/mp4" />
-          </video>
+          <IconIntroduction
+            className={cx('login-introduction')}
+            aria-hidden="true"
+          />
 
           <div className={cx('login-actions')}>
             <button
