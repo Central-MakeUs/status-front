@@ -214,7 +214,7 @@ export const RadarChart = ({
               maintainAspectRatio: false,
               scales: {
                 r: {
-                  // max: 100,
+                  max: 11,
                   min: 0,
                   angleLines: { color: '#2D2D2D' },
                   grid: {
