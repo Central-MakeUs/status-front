@@ -9,15 +9,25 @@ import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
 import { useGetUsersMainQuests } from '@/api/hooks/quest/useGetUsersMainQuests';
 
 export const PrivateLayout = () => {
-  const { data: isAuthenticated, isLoading: isAuthLoading } =
-    useAuthenticateUser();
-  const { data: user } = useGetCurrentUser({
+  const {
+    data: isAuthenticated,
+    isLoading: isAuthLoading,
+    isError: isAuthError,
+  } = useAuthenticateUser();
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    isError: isUserError,
+  } = useGetCurrentUser({
     isAuthenticated: !!isAuthenticated,
   });
-  const { data: mainQuestList, isLoading: isQuestLoading } =
-    useGetUsersMainQuests({
-      isAuthenticated: !!isAuthenticated,
-    });
+  const {
+    data: mainQuestList,
+    isLoading: isQuestLoading,
+    isError: isQuestError,
+  } = useGetUsersMainQuests({
+    isAuthenticated: !!isAuthenticated,
+  });
   const location = useLocation();
   const pathname = location.pathname;
 
@@ -38,12 +48,18 @@ export const PrivateLayout = () => {
     return <Loading />;
   }
 
-  if (!isAuthenticated) {
-    return <Navigate to={PAGE_PATHS.LOGIN} />;
+  if (!isAuthenticated || isAuthError) {
+    setUser(null);
+    return <Navigate to={PAGE_PATHS.LOGIN} replace />;
   }
 
-  if (isQuestLoading) {
+  if (isQuestLoading || isUserLoading) {
     return <Loading />;
+  }
+
+  if (isUserError || isQuestError) {
+    setUser(null);
+    return <Navigate to={PAGE_PATHS.QUEST_NEW_ERROR} replace />;
   }
 
   if (pathname === PAGE_PATHS.ROOT) {

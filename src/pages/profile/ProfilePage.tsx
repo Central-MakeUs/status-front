@@ -75,7 +75,7 @@ export const ProfilePage = () => {
     postLogout.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
-        queryClient.setQueryData(['auth', 'me'], false);
+        queryClient.clear();
         navigate(PAGE_PATHS.ROOT);
       },
     });
@@ -85,7 +85,7 @@ export const ProfilePage = () => {
     postWithdrawal.mutate(undefined, {
       onSuccess: () => {
         setUser(null);
-        queryClient.setQueryData(['auth', 'me'], false);
+        queryClient.clear();
         navigate(PAGE_PATHS.ROOT);
       },
     });

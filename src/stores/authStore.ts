@@ -9,7 +9,6 @@ interface AuthState {
   user: BasicUsers | null;
   setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => void;
   setUser: (user: BasicUsers | null) => void;
-  clear: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -27,13 +26,6 @@ export const useAuthStore = create<AuthState>()(
       setUser: (user: BasicUsers | null) => {
         set(() => ({
           user,
-        }));
-      },
-
-      clear: () => {
-        set(() => ({
-          pendingSocialUser: null,
-          user: null,
         }));
       },
     }),
