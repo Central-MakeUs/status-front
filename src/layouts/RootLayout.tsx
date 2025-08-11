@@ -8,6 +8,7 @@ export const RootLayout = () => {
   return (
     <ErrorBoundary fallback={<ServerErrorPage />}>
       <div className="wrapper">
+        <h1 className="sr-only">상태창</h1>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>

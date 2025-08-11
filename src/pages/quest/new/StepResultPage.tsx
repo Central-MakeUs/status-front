@@ -48,7 +48,7 @@ export const StepResultPage = () => {
       <main className="main">
         <div className={cx('result-container')}>
           <p className={cx('main-quest-from')}>From. {npcName}</p>
-          <h1 className={cx('result-title')}>생성된 퀘스트가 도착했어요!</h1>
+          <h2 className={cx('result-title')}>생성된 퀘스트가 도착했어요!</h2>
           <div className={cx('logo-container')}>
             <IconLogo width={300} height={200} aria-hidden="true" />
           </div>
