@@ -7,6 +7,7 @@ import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { USER_TYPE } from '@/constants/auth';
+import { useQueryClient } from '@tanstack/react-query';
 
 import type { SocialProvider } from '@/types/auth';
 import type { OAuthProvider } from '@/types/auth';
@@ -28,6 +29,7 @@ const createOAuthURL = (provider: SocialProvider, state: string): string => {
 };
 
 export const useSocialAuth = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get('redirect');
@@ -84,7 +86,9 @@ export const useSocialAuth = () => {
           setPendingSocialUser(response.data as OAuthProvider);
           navigate(PAGE_PATHS.SIGN_UP);
         } else {
+          await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
           setUser(response.data as BasicUsers);
+
           if (redirect) {
             navigate(decodeURIComponent(redirect));
           } else {
@@ -95,7 +99,7 @@ export const useSocialAuth = () => {
         // [TODO] 로그인 실패 처리?
       }
     },
-    [setPendingSocialUser, setUser, navigate]
+    [setPendingSocialUser, setUser, navigate, queryClient]
   );
 
   const handleWebViewMessage = useCallback(

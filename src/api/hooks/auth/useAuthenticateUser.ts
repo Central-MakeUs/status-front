@@ -12,6 +12,6 @@ export const useAuthenticateUser = () => {
     staleTime: AUTH_CACHE_TIME.STALE_TIME,
     gcTime: AUTH_CACHE_TIME.GC_TIME,
     retry: false,
-    refetchOnWindowFocus: false,
+    refetchOnWindowFocus: true,
   });
 };

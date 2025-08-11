@@ -48,8 +48,11 @@ export const PrivateLayout = () => {
     return <Loading />;
   }
 
-  if (!isAuthenticated || isAuthError) {
-    setUser(null);
+  if (isAuthError) {
+    return <Navigate to={PAGE_PATHS.LOGIN} replace />;
+  }
+
+  if (!isAuthLoading && !isAuthenticated) {
     return <Navigate to={PAGE_PATHS.LOGIN} replace />;
   }
 
@@ -58,7 +61,6 @@ export const PrivateLayout = () => {
   }
 
   if (isUserError || isQuestError) {
-    setUser(null);
     return <Navigate to={PAGE_PATHS.QUEST_NEW_ERROR} replace />;
   }
 
