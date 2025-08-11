@@ -215,7 +215,7 @@ export const RadarChart = ({
               scales: {
                 r: {
                   // max: 100,
-                  // min: 0,
+                  min: 0,
                   angleLines: { color: '#2D2D2D' },
                   grid: {
                     color: '#2D2D2D',
