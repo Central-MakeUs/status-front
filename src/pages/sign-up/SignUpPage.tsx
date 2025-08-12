@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
-import { signUp } from '@/api/users';
+import { usePostSignUp } from '@/api/hooks/user/usePostSignUp';
 import { TextInput } from '@/components/ui/TextInput/TextInput';
 import { Button } from '@/components/ui/Button/Button';
 import { Checkbox } from '@/components/ui/Checkbox/Checkbox';
@@ -12,16 +12,16 @@ import { SIGN_UP_STEP_INFO } from '@/constants/auth';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { renderWithLineBreaks } from '@/utils/format';
 import { TERM_URL } from '@/constants/term';
+import { MESSAGE_TYPES } from '@/constants/webView';
 
 import type { SignUpStep } from '@/types/auth';
-import type { SignUpForm } from '@/types/users';
+import type { BasicUsers, SignUpForm } from '@/types/users';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
-import { MESSAGE_TYPES } from '@/constants/webView';
 
 const cx = classNames.bind(styles);
 
@@ -34,6 +34,8 @@ const SignUpPage = () => {
       setUser: state.setUser,
     }))
   );
+
+  const postSignUp = usePostSignUp();
 
   const [step, setStep] = useState<SignUpStep>(SIGN_UP_STEP.NICKNAME);
   const [nickname, setNickname] = useState('');
@@ -130,15 +132,13 @@ const SignUpPage = () => {
       provider: pendingSocialUser,
     };
 
-    const response = await signUp(payload);
-
-    if (!response?.data) {
-      return;
-    }
-
-    setUser(response.data);
-    setPendingSocialUser(null);
-    navigate(PAGE_PATHS.TUTORIAL);
+    postSignUp.mutate(payload, {
+      onSuccess: (data) => {
+        setUser(data as BasicUsers);
+        setPendingSocialUser(null);
+        navigate(PAGE_PATHS.TUTORIAL);
+      },
+    });
   };
 
   return (

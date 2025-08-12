@@ -23,7 +23,11 @@ export const getUserInfo = async (): Promise<UserInfoDTO> => {
 };
 
 export const signUp = async (payload: SignUpRequestDTO) => {
-  return await api.post<ApiResponse<BasicUsersDTO>>('/users/sign-up', payload);
+  const response = await api.post<ApiResponse<BasicUsersDTO>>(
+    '/users/sign-up',
+    payload
+  );
+  return response.data ?? {};
 };
 
 export const withdrawal = async () => {
