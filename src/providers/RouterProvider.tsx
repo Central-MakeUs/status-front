@@ -99,10 +99,6 @@ export default function RouterProvider() {
               path: PAGE_PATHS.QUEST_NEW_RESULT,
               Component: StepResultPage,
             },
-            {
-              path: PAGE_PATHS.TUTORIAL,
-              Component: TutorialPage,
-            },
           ],
         },
         {
@@ -112,6 +108,10 @@ export default function RouterProvider() {
         {
           path: PAGE_PATHS.SIGN_UP,
           Component: SignUpPage,
+        },
+        {
+          path: PAGE_PATHS.TUTORIAL,
+          Component: TutorialPage,
         },
         {
           path: PAGE_PATHS.LOGIN,

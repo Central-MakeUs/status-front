@@ -136,7 +136,6 @@ const SignUpPage = () => {
       return;
     }
 
-    console.log('register');
     setUser(response.data);
     setPendingSocialUser(null);
     navigate(PAGE_PATHS.TUTORIAL);
