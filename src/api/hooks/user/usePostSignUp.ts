@@ -6,8 +6,9 @@ export const usePostSignUp = () => {
 
   return useMutation({
     mutationFn: signUp,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+      await queryClient.refetchQueries({ queryKey: ['auth', 'me'] });
     },
   });
 };

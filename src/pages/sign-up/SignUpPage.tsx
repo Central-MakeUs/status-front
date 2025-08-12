@@ -136,6 +136,8 @@ const SignUpPage = () => {
       onSuccess: (data) => {
         setUser(data as BasicUsers);
         setPendingSocialUser(null);
+      },
+      onSettled: () => {
         navigate(PAGE_PATHS.TUTORIAL);
       },
     });
