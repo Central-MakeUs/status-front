@@ -36,9 +36,7 @@ export const EditingSubQuestBottomSheet = ({
 }: EditingSubQuestBottomSheetProps) => {
   const actionUnitType = editingSubQuest?.actionUnitType;
   const actionUnitTypeOptions = actionUnitType
-    ? ACTION_UNIT_TYPE_OPTIONS[
-        actionUnitType as keyof typeof ACTION_UNIT_TYPE_OPTIONS
-      ]
+    ? ACTION_UNIT_TYPE_OPTIONS[actionUnitType]
     : undefined;
 
   return (

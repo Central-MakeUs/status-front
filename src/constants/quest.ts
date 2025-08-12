@@ -90,63 +90,54 @@ export const REWARD_STEP = {
 } as const;
 
 export const ACTION_UNIT_TYPES = {
-  TIME_SECOND: 'TIME_SECOND',
-  TIME_MINUTE: 'TIME_MINUTE',
-  TIME_HOUR: 'TIME_HOUR',
-  NUMBER_1: 'NUMBER_1',
-  NUMBER_2: 'NUMBER_2',
-  NUMBER_3: 'NUMBER_3',
-  DISTANCE: 'DISTANCE',
-  ONCE: 'ONCE',
+  TIME_SECOND: '초',
+  TIME_MINUTE: '분',
+  TIME_HOUR: '시간',
+  NUMBER_1: '개',
+  NUMBER_2: '권',
+  NUMBER_3: '회',
+  DISTANCE: 'km',
+  ONCE: 'once',
 } as const;
-
 export const ACTION_UNIT_TYPE_VALUES = Object.values(ACTION_UNIT_TYPES);
 
 export const ACTION_UNIT_TYPE_OPTIONS = {
   [ACTION_UNIT_TYPES.TIME_SECOND]: {
-    value: '초',
     label: '초',
     min: 1,
     max: 60,
   },
   [ACTION_UNIT_TYPES.TIME_MINUTE]: {
-    value: '분',
     label: '분',
     min: 1,
     max: 300,
   },
   [ACTION_UNIT_TYPES.TIME_HOUR]: {
-    value: '시간',
     label: '시간',
     min: 1,
     max: 24,
   },
   [ACTION_UNIT_TYPES.NUMBER_1]: {
-    value: '개',
     label: '개',
     min: 1,
     max: 999,
   },
   [ACTION_UNIT_TYPES.NUMBER_2]: {
-    value: '권',
     label: '권',
     min: 1,
     max: 999,
   },
   [ACTION_UNIT_TYPES.NUMBER_3]: {
-    value: '회',
     label: '횟수',
     min: 1,
     max: 999,
   },
   [ACTION_UNIT_TYPES.DISTANCE]: {
-    value: 'km',
     label: 'km',
     min: 1,
     max: 999,
   },
   [ACTION_UNIT_TYPES.ONCE]: {
-    value: 'once',
     label: '횟수',
     min: 1,
     max: 1,

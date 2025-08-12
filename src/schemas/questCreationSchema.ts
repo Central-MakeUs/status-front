@@ -1,9 +1,6 @@
 import { z } from 'zod';
 import { isNotPastDate, isValidDateString } from '@/utils/date';
-import {
-  ACTION_UNIT_TYPE_VALUES,
-  SUB_QUEST_FREQUENCY_VALUES,
-} from '@/constants/quest';
+import { subQuestEditingSchema } from '@/schemas/subQuestEditingScheme';
 
 export const questCreationSchema = z.object({
   theme: z.number().min(1, '테마를 선택해주세요.'),
@@ -19,12 +16,13 @@ export const questCreationSchema = z.object({
     .refine(isValidDateString, '올바른 날짜 형식이 아닙니다.')
     .refine(isNotPastDate, '종료 날짜는 오늘 이후여야 합니다.'),
   subQuests: z.array(
-    z.object({
-      id: z.number(),
-      frequencyType: z.enum(SUB_QUEST_FREQUENCY_VALUES),
-      actionUnitType: z.enum(ACTION_UNIT_TYPE_VALUES),
-      actionUnitNum: z.number().min(1, '반복 횟수는 1 이상이어야 합니다.'),
-    })
+    subQuestEditingSchema
+      .omit({
+        actionUnitType: true,
+      })
+      .extend({
+        id: z.number(),
+      })
   ),
 });
 

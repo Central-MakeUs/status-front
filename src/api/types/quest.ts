@@ -2,6 +2,7 @@ import type {
   SubQuestFrequencyValue,
   SubQuestDifficulty,
   SubQuestInfo,
+  ActionUnitTypeValue,
 } from '@/types/quest';
 import type { AttributeDTO } from './attribute';
 
@@ -27,7 +28,7 @@ export interface MainQuestResponseDTO {
 export interface SubQuestResponseDTO {
   id: number;
   frequencyType: SubQuestFrequencyValue;
-  actionUnitType: string;
+  actionUnitType: ActionUnitTypeValue;
   actionUnitNum: number;
   attributes: AttributeDTO[];
   desc: string;

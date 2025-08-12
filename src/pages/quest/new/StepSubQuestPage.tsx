@@ -18,6 +18,7 @@ import { useGetSubQuests } from '@/api/hooks/quest/useGetSubQuests';
 import { useGetRandomSubQuests } from '@/api/hooks/quest/useGetRandomSubQuests';
 import { SubQuestSkeleton } from '@/pages/quest/new/components/SubQuestSkeleton/SubQuestSkeleton';
 import { SubQuestList } from '@/pages/quest/new/components/SubQuestList/SubQuestList';
+import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';
 
 import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
 
@@ -144,6 +145,12 @@ const StepSubQuestPage = () => {
 
   const handleClickEditingDoneButton = () => {
     if (!editingSubQuest) {
+      return;
+    }
+
+    const validationResult = validateSubQuestEditing(editingSubQuest);
+
+    if (!validationResult.success) {
       return;
     }
 

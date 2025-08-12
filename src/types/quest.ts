@@ -1,4 +1,8 @@
-import type { REWARD_STEP, SUB_QUEST_FREQUENCY } from '@/constants/quest';
+import type {
+  ACTION_UNIT_TYPE_OPTIONS,
+  REWARD_STEP,
+  SUB_QUEST_FREQUENCY,
+} from '@/constants/quest';
 import type {
   UserSubQuestDTO,
   UserSubQuestLogRequestDTO,
@@ -16,6 +20,7 @@ export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
 export type SubQuestFrequencyValue =
   (typeof SUB_QUEST_FREQUENCY)[keyof typeof SUB_QUEST_FREQUENCY]['value'];
+export type ActionUnitTypeValue = keyof typeof ACTION_UNIT_TYPE_OPTIONS;
 export type SubQuest = SubQuestResponseDTO;
 export type SubQuestInfo = Pick<
   SubQuestResponseDTO,
