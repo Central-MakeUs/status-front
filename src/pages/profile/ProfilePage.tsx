@@ -16,7 +16,7 @@ import { MESSAGE_TYPES } from '@/constants/webView';
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 // import IconLogout from '@/assets/icons/icon-logout.svg?react';
-// import IconWarning from '@/assets/icons/icon-warning.svg?react';
+import IconWarning from '@/assets/icons/icon-warning.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
@@ -51,9 +51,7 @@ export const ProfilePage = () => {
     setIsNicknameEditOpen(true);
   };
 
-  const handleClickInqueryLink = (
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => {
+  const handleClickLink = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
 
     const { href } = event.currentTarget;
@@ -128,7 +126,7 @@ export const ProfilePage = () => {
             <a
               href={TERM_URL.INQUIRY}
               className={cx('action-link')}
-              onClick={handleClickInqueryLink}
+              onClick={handleClickLink}
             >
               <span className={cx('action-name')}>문의하기</span>
               <IconChevronRight
@@ -138,6 +136,42 @@ export const ProfilePage = () => {
             </a>
           </li>
           <li className={cx('action-item')}>
+            <a
+              href={TERM_URL.TERMS_OF_SERVICE}
+              className={cx('action-link')}
+              onClick={handleClickLink}
+            >
+              <span className={cx('action-name')}>서비스 이용 약관</span>
+              <IconChevronRight
+                className={cx('icon-chevron')}
+                aria-hidden={true}
+              />
+            </a>
+          </li>
+          <li className={cx('action-item')}>
+            <a
+              href={TERM_URL.PRIVACY_POLICY}
+              className={cx('action-link')}
+              onClick={handleClickLink}
+            >
+              <span className={cx('action-name')}>
+                개인정보 수집 및 이용 약관
+              </span>
+              <IconChevronRight
+                className={cx('icon-chevron')}
+                aria-hidden={true}
+              />
+            </a>
+          </li>
+          <li className={cx('action-item')}>
+            <button
+              type="button"
+              className={cx('button-action', 'withdrawal')}
+              onClick={() => setIsLogoutDialogOpen(true)}
+            >
+              <IconWarning className={cx('icon-action')} aria-hidden="true" />
+              게스트 모드 종료
+            </button>
             {/* <button
               type="button"
               className={cx('button-action', 'logout')}
