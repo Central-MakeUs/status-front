@@ -37,6 +37,10 @@ export const SubQuestList = ({
         const rewards = subQuest.attributes
           .map((attribute) => `${attribute.name}+${attribute.exp}`)
           .join(', ');
+        const description = subQuest.desc.replace(
+          /{actionUnitNum}/g,
+          subQuest.actionUnitNum.toString()
+        );
 
         return (
           <li
@@ -72,7 +76,7 @@ export const SubQuestList = ({
                     </span>
                     <span className={cx('sub-quest-rewards')}>{rewards}</span>
                   </div>
-                  <p className={cx('sub-quest-description')}>{subQuest.desc}</p>
+                  <p className={cx('sub-quest-description')}>{description}</p>
                 </div>
                 <button
                   type="button"

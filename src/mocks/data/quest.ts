@@ -117,7 +117,7 @@ export const mockMainQuests: MainQuest[] = [
 export const mockSubQuests: SubQuest[] = [
   {
     id: 1,
-    desc: '기상 후 1시간동안 스마트폰 잠금 모드 유지',
+    desc: '기상 후 {actionUnitNum}시간동안 스마트폰 잠금 모드 유지',
     frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
     actionUnitNum: 1,
     actionUnitType: ACTION_UNIT_TYPES.TIME_MINUTE,
@@ -150,7 +150,7 @@ export const mockSubQuests: SubQuest[] = [
   },
   {
     id: 4,
-    desc: 'test',
+    desc: 'test {actionUnitNum}개',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
     actionUnitNum: 1,
     actionUnitType: ACTION_UNIT_TYPES.ONCE,
@@ -161,7 +161,7 @@ export const mockSubQuests: SubQuest[] = [
   },
   {
     id: 5,
-    desc: '물 8잔 이상 마시기',
+    desc: '물 {actionUnitNum}잔 이상 마시기',
     frequencyType: SUB_QUEST_FREQUENCY.DAILY.value,
     actionUnitNum: 1,
     actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
@@ -172,9 +172,9 @@ export const mockSubQuests: SubQuest[] = [
   },
   {
     id: 6,
-    desc: '30분 이상 산책하기',
+    desc: '{actionUnitNum}분 이상 산책하기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY.value,
-    actionUnitNum: 1,
+    actionUnitNum: 30,
     actionUnitType: ACTION_UNIT_TYPES.NUMBER_3,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
@@ -183,9 +183,9 @@ export const mockSubQuests: SubQuest[] = [
   },
   {
     id: 7,
-    desc: '책 10페이지 이상 읽기',
+    desc: '책 {actionUnitNum}페이지 이상 읽기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_3.value,
-    actionUnitNum: 1,
+    actionUnitNum: 10,
     actionUnitType: ACTION_UNIT_TYPES.NUMBER_2,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
@@ -194,9 +194,9 @@ export const mockSubQuests: SubQuest[] = [
   },
   {
     id: 8,
-    desc: '새로운 단어 5개 학습하기',
+    desc: '새로운 단어 {actionUnitNum}개 학습하기',
     frequencyType: SUB_QUEST_FREQUENCY.WEEKLY_2.value,
-    actionUnitNum: 1,
+    actionUnitNum: 5,
     actionUnitType: ACTION_UNIT_TYPES.NUMBER_1,
     attributes: [
       { id: 203, name: '기록', exp: 5 },
