@@ -30,12 +30,12 @@ const QuestDetailPage = lazy(
   () => import('@/pages/quest/detail/QuestDetailPage')
 );
 const SignInPage = lazy(() => import('@/pages/sign-in/SignInPage'));
-const TutorialPage = lazy(() => import('@/pages/tutorial/TutorialPage'));
+// const TutorialPage = lazy(() => import('@/pages/tutorial/TutorialPage'));
 const QuestCreationErrorPage = lazy(
   () => import('@/pages/errors/QuestCreationErrorPage')
 );
 const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
-const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
+// const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
 
 export default function RouterProvider() {
   const router = createBrowserRouter([
@@ -99,20 +99,20 @@ export default function RouterProvider() {
               path: PAGE_PATHS.QUEST_NEW_RESULT,
               Component: StepResultPage,
             },
-            {
-              path: PAGE_PATHS.TUTORIAL,
-              Component: TutorialPage,
-            },
+            // {
+            //   path: PAGE_PATHS.TUTORIAL,
+            //   Component: TutorialPage,
+            // },
           ],
         },
         {
           path: PAGE_PATHS.QUEST_NEW_ERROR,
           Component: QuestCreationErrorPage,
         },
-        {
-          path: PAGE_PATHS.SIGN_UP,
-          Component: SignUpPage,
-        },
+        // {
+        //   path: PAGE_PATHS.SIGN_UP,
+        //   Component: SignUpPage,
+        // },
         {
           path: PAGE_PATHS.LOGIN,
           Component: SignInPage,

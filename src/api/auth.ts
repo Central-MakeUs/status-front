@@ -19,6 +19,11 @@ export const socialLogin = async (payload: OAuthLoginRequestDTO) => {
   );
 };
 
+export const guestLogin = async () => {
+  const response = await api.post<ApiResponse<BasicUsersDTO>>('/auth/guest');
+  return response.data ?? {};
+};
+
 export const authenticateUser = async () => {
   return await api.get<ApiResponse<boolean>>('/auth/me');
 };

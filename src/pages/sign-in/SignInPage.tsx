@@ -1,33 +1,55 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/stores/authStore';
-import { SOCIAL_PROVIDER } from '@/constants/auth';
+// import { SOCIAL_PROVIDER } from '@/constants/auth';
+import type { BasicUsersDTO } from '@/api/types/users';
+import { usePostGuestLogin } from '@/api/hooks/auth/usePostGuestLogin';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 
-import IconApple from '@/assets/icons/icon-login-apple.svg?react';
-import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
-import IconKakao from '@/assets/icons/icon-login-kakao.svg?react';
+// import IconApple from '@/assets/icons/icon-login-apple.svg?react';
+// import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
+// import IconKakao from '@/assets/icons/icon-login-kakao.svg?react';
 import IconIntroduction from '@/assets/icons/icon-character-introduction.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignInPage.module.scss';
-import { useSocialAuth } from '@/hooks/useSocialAuth';
+// import { useSocialAuth } from '@/hooks/useSocialAuth';
 
 const cx = classNames.bind(styles);
 
 const SignInPage = () => {
-  const { signInWithOAuth } = useSocialAuth();
-  const user = useAuthStore((state) => state.user);
+  const navigate = useNavigate();
+  // const { signInWithOAuth } = useSocialAuth();
+  const { user, setUser } = useAuthStore(
+    useShallow((state) => ({
+      user: state.user,
+      setUser: state.setUser,
+    }))
+  );
 
-  const handleGoogleLogin = () => {
-    signInWithOAuth(SOCIAL_PROVIDER.GOOGLE);
-  };
+  // const handleGoogleLogin = () => {
+  //   signInWithOAuth(SOCIAL_PROVIDER.GOOGLE);
+  // };
 
-  const handleKakaoLogin = () => {
-    signInWithOAuth(SOCIAL_PROVIDER.KAKAO);
-  };
+  // const handleKakaoLogin = () => {
+  //   signInWithOAuth(SOCIAL_PROVIDER.KAKAO);
+  // };
 
-  const handleAppleLogin = async () => {
-    signInWithOAuth(SOCIAL_PROVIDER.APPLE);
+  // const handleAppleLogin = async () => {
+  //   signInWithOAuth(SOCIAL_PROVIDER.APPLE);
+  // };
+
+  const guestLogin = usePostGuestLogin();
+
+  const handleGuestLogin = () => {
+    guestLogin.mutate(undefined, {
+      onSuccess: (data) => {
+        setUser(data as BasicUsersDTO);
+      },
+      onSettled: () => {
+        navigate(PAGE_PATHS.ROOT);
+      },
+    });
   };
 
   if (user) {
@@ -45,6 +67,13 @@ const SignInPage = () => {
 
           <div className={cx('login-actions')}>
             <button
+              type="button"
+              className={cx('button-login', 'guest')}
+              onClick={handleGuestLogin}
+            >
+              <span className={cx('login-text')}>시작하기</span>
+            </button>
+            {/* <button
               type="button"
               className={cx('button-login', 'kakao')}
               onClick={handleKakaoLogin}
@@ -68,7 +97,7 @@ const SignInPage = () => {
             >
               <IconApple className={cx('login-icon')} aria-hidden="true" />
               <span className={cx('login-text')}>Apple로 시작</span>
-            </button>
+            </button> */}
           </div>
         </div>
       </main>

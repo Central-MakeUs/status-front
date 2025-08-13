@@ -15,8 +15,8 @@ import { MESSAGE_TYPES } from '@/constants/webView';
 
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
-import IconLogout from '@/assets/icons/icon-logout.svg?react';
-import IconWarning from '@/assets/icons/icon-warning.svg?react';
+// import IconLogout from '@/assets/icons/icon-logout.svg?react';
+// import IconWarning from '@/assets/icons/icon-warning.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
@@ -138,7 +138,7 @@ export const ProfilePage = () => {
             </a>
           </li>
           <li className={cx('action-item')}>
-            <button
+            {/* <button
               type="button"
               className={cx('button-action', 'logout')}
               onClick={() => setIsLogoutDialogOpen(true)}
@@ -155,7 +155,7 @@ export const ProfilePage = () => {
             >
               <IconWarning className={cx('icon-action')} aria-hidden="true" />
               회원 탈퇴
-            </button>
+            </button> */}
           </li>
         </ul>
       </main>

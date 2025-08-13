@@ -44,6 +44,11 @@
         background-color: #ffe634;
         color: var(--color-black);
     }
+
+    &.guest {
+        background-color: var(--color-gray-700);
+        color: var(--color-white);
+    }
 }
 
 .login-icon {

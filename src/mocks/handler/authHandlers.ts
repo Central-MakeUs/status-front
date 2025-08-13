@@ -12,6 +12,21 @@ import type { OAuthLoginRequestDTO } from '@/api/types/auth';
 export const API_URL = import.meta.env.VITE_API_URL;
 
 export const authHandlers = [
+  http.post(`${API_URL}/auth/guest`, async () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    document.cookie =
+      'access_token=mock-access-token; path=/; SameSite=Lax; max-age=3600';
+    document.cookie =
+      'refresh_token=mock-refresh-token; path=/; SameSite=Lax; max-age=1209600';
+
+    return HttpResponse.json({
+      status: '201',
+      data: mockGoogleUser,
+    });
+  }),
   http.post(`${API_URL}/auth/login`, async ({ request }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
