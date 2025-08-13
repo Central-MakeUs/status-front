@@ -46,7 +46,7 @@
     }
 
     &.guest {
-        background-color: var(--color-gray-700);
+        background-color: var(--color-main-orange-default);
         color: var(--color-white);
     }
 }
@@ -55,13 +55,16 @@
     flex: 0 0 auto;
     width: 24px;
     height: 24px;
+
+    & + .login-text {
+        margin-left: 8px;
+    }
 }
 
 .login-text {
     display: block;
     flex: 0 0 auto;
-    margin-left: 8px;
     font-size: 16px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 24px;
 }
