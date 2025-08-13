@@ -38,6 +38,10 @@ export const EditingSubQuestBottomSheet = ({
   const actionUnitTypeOptions = actionUnitType
     ? ACTION_UNIT_TYPE_OPTIONS[actionUnitType]
     : undefined;
+  const description = editingSubQuest?.desc.replace(
+    /{actionUnitNum}/g,
+    editingSubQuest.actionUnitNum.toString()
+  );
 
   return (
     <BottomSheet
@@ -47,9 +51,7 @@ export const EditingSubQuestBottomSheet = ({
     >
       <BottomSheet.Header>
         <BottomSheet.Title>퀘스트 편집하기</BottomSheet.Title>
-        <BottomSheet.Description>
-          {editingSubQuest?.desc}
-        </BottomSheet.Description>
+        <BottomSheet.Description>{description}</BottomSheet.Description>
       </BottomSheet.Header>
       <BottomSheet.Content>
         <Select
