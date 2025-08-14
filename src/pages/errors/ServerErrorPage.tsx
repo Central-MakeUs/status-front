@@ -16,11 +16,9 @@ export const ServerErrorPage = () => {
     <main className="main">
       <div className={cx('error-container')}>
         <IconError className={cx('error-icon')} aria-hidden="true" />
-        <h2 className={cx('error-title')}>잠시 후 다시 시도해주세요!</h2>
+        <h2 className={cx('error-title')}>서버에 문제가 발생했어요!</h2>
         <p className={cx('error-description')}>
-          서버에 문제가 발생했어요
-          <br />
-          페이지를 새로고침하여 다시 시도해볼까요?
+          홈으로 이동 후 다시 시도해주세요.
         </p>
         <div className={cx('error-actions')}>
           <button
