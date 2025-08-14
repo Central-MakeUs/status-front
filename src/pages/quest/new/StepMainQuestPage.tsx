@@ -80,7 +80,7 @@ export const StepMainQuestPage = () => {
         <StepTitle logo={<IconLogo />}>메인 퀘스트를 선택해주세요!</StepTitle>
         {selectedTheme && (
           <StepDescription>
-            {selectedTheme?.name}에 맞는 메일 퀘스트를 추천해드렸어요.
+            {selectedTheme?.name}에 맞는 메인 퀘스트를 추천해드렸어요.
           </StepDescription>
         )}
         {isLoading || isRefetching ? (
