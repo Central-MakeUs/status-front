@@ -50,7 +50,12 @@
   border-bottom-right-radius: 9999px !important;
 }
 
+:global(.rdp-disabled) {
+  color: var(--color-gray-500) !important;
+}
+
 :global(.rdp-range_middle.rdp-disabled) {
+  color: var(--color-white) !important;
   opacity: 1 !important;
 }
 
