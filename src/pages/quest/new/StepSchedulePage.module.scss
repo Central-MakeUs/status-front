@@ -15,6 +15,7 @@
   --rdp-range_middle-background-color: var(--color-gray-600) !important;
   --rdp-disabled-background-color: var(--color-gray-600) !important;
   --rdp-nav-height: 65px !important;
+  --rdp-disabled-opacity: 1 !important;
 }
 
 :global(.rdp-caption_label) {
@@ -51,12 +52,11 @@
 }
 
 :global(.rdp-disabled) {
-  color: var(--color-gray-400) !important;
+  color: var(--color-gray-500) !important;
 }
 
 :global(.rdp-range_middle.rdp-disabled) {
   color: var(--color-white) !important;
-  opacity: 1 !important;
 }
 
 :global(.rdp-range_middle.saturday) {
