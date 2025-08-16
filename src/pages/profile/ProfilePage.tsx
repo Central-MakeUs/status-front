@@ -74,6 +74,8 @@ export const ProfilePage = () => {
       onSuccess: () => {
         setUser(null);
         queryClient.clear();
+      },
+      onSettled: () => {
         navigate(PAGE_PATHS.ROOT);
       },
     });
@@ -84,6 +86,8 @@ export const ProfilePage = () => {
       onSuccess: () => {
         setUser(null);
         queryClient.clear();
+      },
+      onSettled: () => {
         navigate(PAGE_PATHS.ROOT);
       },
     });
