@@ -11,6 +11,9 @@ export const usePostCreationQuest = () => {
       queryClient.invalidateQueries({
         queryKey: ['quest', 'me'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['sub-quests', 'all'],
+      });
     },
   });
 };
