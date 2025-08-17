@@ -50,7 +50,9 @@ export const BottomNavigation = () => {
             <li
               key={tab.label}
               className={cx('tab-item')}
-              aria-current={location.pathname === tab.path ? 'page' : undefined}
+              aria-current={
+                location.pathname.startsWith(tab.path) ? 'page' : undefined
+              }
             >
               <Link to={tab.path} className={cx('tab-link')}>
                 <tab.icon className={cx('tab-icon')} aria-hidden="true" />
