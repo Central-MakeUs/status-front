@@ -1,6 +1,6 @@
 import type { AttributeType } from '@/types/attribute';
 
-export interface AttributeReturnDTO {
+export interface AttributesReturnDTO {
   attributeId: number;
   name: string;
   type: AttributeType;
@@ -14,21 +14,4 @@ export interface AttributeDTO {
   id: number;
   name: string;
   exp: number;
-}
-
-export interface CreateAttributeDTO {
-  name: string;
-  type: AttributeType;
-  description?: string;
-}
-
-export interface UpdateAttributeDTO {
-  name?: string;
-  description?: string;
-  level?: number;
-}
-
-export interface GetUserAttributesParams {
-  userId: string;
-  type?: AttributeType;
 }

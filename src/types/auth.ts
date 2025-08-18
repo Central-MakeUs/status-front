@@ -13,3 +13,14 @@ export type SignUpStep = (typeof SIGN_UP_STEP)[keyof typeof SIGN_UP_STEP];
 export type OAuthProvider = OAuthProviderDTO;
 
 export type SocialLoginReturnDTO = OAuthProviderDTO | BasicUsersDTO;
+
+export interface AuthConfig {
+  endpoint: string;
+  clientId: string;
+  redirectUri: string;
+  responseType: string;
+  responseMode?: string;
+  scope?: string;
+  state?: string;
+  nonce?: string;
+}
