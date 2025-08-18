@@ -115,7 +115,10 @@ export const StepSchedulePage = () => {
 
   return (
     <>
-      <Header title="퀘스트 만들기" hasBackButton={true} />
+      <Header>
+        <Header.Title>퀘스트 만들기</Header.Title>
+        <Header.BackButton />
+      </Header>
       <main className="main">
         <StepTitle>퀘스트를 몇 주간 수행할까요?</StepTitle>
         <StepDescription className={endDate === '' ? '' : 'active'}>

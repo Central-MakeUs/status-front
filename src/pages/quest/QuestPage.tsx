@@ -27,9 +27,11 @@ export const QuestPage = () => {
 
   return (
     <>
-      <Header
-        title={`내 퀘스트 (${questCount}/${MAX_USERS_MAIN_QUEST_COUNT})`}
-      />
+      <Header>
+        <Header.Title>
+          {`내 퀘스트 (${questCount}/${MAX_USERS_MAIN_QUEST_COUNT})`}
+        </Header.Title>
+      </Header>
       <main className="main">
         {questCount === 0 ? (
           <QuestEmpty />

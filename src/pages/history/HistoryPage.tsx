@@ -4,7 +4,9 @@ import { ComingSoonPage } from '../errors/ComingSoonPage';
 export const HistoryPage = () => {
   return (
     <>
-      <Header title="히스토리" />
+      <Header>
+        <Header.Title>히스토리</Header.Title>
+      </Header>
       <ComingSoonPage />
     </>
   );

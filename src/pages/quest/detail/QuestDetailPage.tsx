@@ -167,11 +167,19 @@ const QuestDetailPage = () => {
 
   return (
     <>
-      <Header
-        title="퀘스트 상세"
-        hasBackButton={true}
-        rightAction={<IconDelete onClick={() => setIsGiveUpDialogOpen(true)} />}
-      ></Header>
+      <Header>
+        <Header.Title>퀘스트 상세</Header.Title>
+        <Header.BackButton />
+        <Header.Actions>
+          <Header.ActionButton>
+            <span className="sr-only">퀘스트 포기</span>
+            <IconDelete
+              onClick={() => setIsGiveUpDialogOpen(true)}
+              aria-hidden={true}
+            />
+          </Header.ActionButton>
+        </Header.Actions>
+      </Header>
       <main className="main">
         {quest && (
           <div className={cx('quest-detail')}>
