@@ -15,6 +15,7 @@ import type {
   UsersMainQuestResponseDTO,
   RewardResponseDto,
   CreateQuestResponseDTO,
+  UserCompletedMainQuestsResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
 import type { ThemeResponseDTO } from '@/api/types/quest';
@@ -207,3 +208,20 @@ export const getUserCompletedHistory = async (
 export const deleteUserMainQuest = async (id: number): Promise<void> => {
   await api.delete(`/quest/${id}`);
 };
+
+// [TODO] 동기화 필요
+export const getUserCompletedMainQuests =
+  async (): Promise<UserCompletedMainQuestsResponseDTO> => {
+    const response = await api.get<
+      ApiResponse<UserCompletedMainQuestsResponseDTO>
+    >(`/quest/completed-mainquests`);
+    return (
+      response.data ?? {
+        totalMainQuests: 0,
+        progress: 0,
+        totalSubQuests: 0,
+        averagePeriod: 0,
+        mainQuests: [],
+      }
+    );
+  };

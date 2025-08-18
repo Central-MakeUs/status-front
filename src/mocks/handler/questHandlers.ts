@@ -6,6 +6,7 @@ import {
   mockUserSubQuests,
   mockCompletedHistory,
   mockSubQuestLogResponse,
+  mockCompletedMainQuests,
 } from '@/mocks/data/quest';
 import type {
   CreateQuestRequestDTO,
@@ -171,6 +172,15 @@ export const questHandlers = [
       data: quests,
     });
   }),
+  http.get(`${API_URL}/quest/completed-mainquests`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
+    }
+
+    return HttpResponse.json({
+      data: mockCompletedMainQuests,
+    });
+  }),
   http.get(`${API_URL}/quest/:mainQuestId`, ({ params }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
@@ -216,7 +226,6 @@ export const questHandlers = [
       data: requestData,
     });
   }),
-
   http.get(`${API_URL}/quest/:mainQuestId/history`, () => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();

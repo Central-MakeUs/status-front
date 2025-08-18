@@ -2,43 +2,19 @@
     --progress-bar-percentage: 0%;
 }
 
-.button-add-quest {
-    position: fixed;
-    left: 50%;
-    bottom: 86px;
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 12px;
-    border: 0;
-    border-radius: 58px;
-    background-color: var(--color-main-orange-default);
-    transform: translateX(-50%);
+.history-quests {
+    margin-top: 40px;
+    padding: 0 14px 20px;
+}
 
-    &:active {
-        background-color: var(--color-main-orange-dark);
-    }
-
-    .text {
-        display: block;
-        flex: 0 0 auto;
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--color-white);
-        line-height: 20px;
-    }
-
-    .icon-add {
-        display: block;
-        flex: 0 0 auto;
-        width: 24px;
-        height: 24px;
-        margin-left: 4px;
-    }
+.history-quests-title {
+    font-size: 18px;
+    color: var(--color-white);
+    line-height: 25px;
 }
 
 .main-quest-list {
     margin-top: 16px;
-    padding: 0 14px;
 }
 
 .main-quest-item {
@@ -54,8 +30,26 @@
     }
 }
 
+.main-quest-status-cover {
+    display: flex;
+}
+
+.main-quest-status {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 12px;
+    color: var(--color-state-error);
+    line-height: 17px;
+
+    &.is-completed {
+        color: var(--color-state-success);
+    }
+}
+
 .main-quest-date {
     display: block;
+    flex: 0 0 auto;
+    margin-left: 4px;
     font-size: 12px;
     color: var(--color-gray-300);
     line-height: 17px;

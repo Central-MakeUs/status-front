@@ -14,6 +14,7 @@ import type {
   UsersMainQuestResponseDTO,
   CreateQuestResponseDTO,
   CreateQuestRequestDTO,
+  TempUsersMainQuestResponseDTO,
 } from '@/api/types/quest';
 export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
@@ -34,3 +35,4 @@ export type SubQuestLog = SubQuestLogDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
 export type CompletedQuest = SubQuestLogsResponseDTO;
 export type UserCompletedHistory = QuestHistoryByDateDTO;
+export type UserCompletedMainQuests = TempUsersMainQuestResponseDTO;

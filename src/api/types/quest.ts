@@ -119,3 +119,16 @@ export interface QuestHistoryByDateDTO {
   date: string;
   logs: SubQuestLogsResponseDTO[];
 }
+
+export type TempUsersMainQuestResponseDTO = UsersMainQuestResponseDTO & {
+  isCompleted: boolean;
+};
+
+// [TODO] 동기화 필요
+export interface UserCompletedMainQuestsResponseDTO {
+  totalMainQuests: number;
+  progress: number;
+  totalSubQuests: number;
+  averagePeriod: number;
+  mainQuests: TempUsersMainQuestResponseDTO[];
+}

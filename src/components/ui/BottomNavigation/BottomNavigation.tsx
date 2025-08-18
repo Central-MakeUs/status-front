@@ -36,7 +36,7 @@ export const BottomNavigation = () => {
     {
       label: '히스토리',
       path: MAIN_PAGE_PATHS.HISTORY,
-      patterns: [PAGE_PATHS.HISTORY],
+      patterns: [PAGE_PATHS.HISTORY, PAGE_PATHS.HISTORY_DETAIL],
       icon: IconHistory,
     },
     {
