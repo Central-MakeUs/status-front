@@ -1,5 +1,4 @@
-import type { AuthConfig } from '@/api/types/auth';
-import type { SocialProvider } from '@/types/auth';
+import type { AuthConfig, SocialProvider } from '@/types/auth';
 
 export const URL_SCHEME = 'statusapp://';
 

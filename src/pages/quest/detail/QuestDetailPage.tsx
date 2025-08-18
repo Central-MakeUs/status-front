@@ -9,9 +9,8 @@ import { REWARD_STEP } from '@/constants/quest';
 import type {
   RewardStep,
   SubQuestDifficulty,
-  UserMainQuestGiveUp,
   UserSubQuest,
-  UserSubQuestLog,
+  SubQuestLog,
 } from '@/types/quest';
 
 import classNames from 'classnames/bind';
@@ -96,7 +95,7 @@ const QuestDetailPage = () => {
 
     if (isEdit) {
       if (!editingLogId) return; // 방어
-      const payload: UserSubQuestLog = {
+      const payload: SubQuestLog = {
         id: editingLogId,
         difficulty: selectedDifficulty!,
         memo,
@@ -114,7 +113,7 @@ const QuestDetailPage = () => {
         },
       });
     } else {
-      const payload: UserSubQuestLog = {
+      const payload: SubQuestLog = {
         id: selectedSubQuest.subQuestInfo.id,
         difficulty: selectedDifficulty!,
         memo,
@@ -139,11 +138,7 @@ const QuestDetailPage = () => {
   const handleQuestGiveUp = () => {
     if (!mainQuestId) return;
 
-    const payload: UserMainQuestGiveUp = {
-      id: Number(mainQuestId),
-    };
-
-    deleteUserMainQuest.mutate(payload, {
+    deleteUserMainQuest.mutate(Number(mainQuestId), {
       onSuccess: () => {
         navigate(PAGE_PATHS.QUEST);
       },

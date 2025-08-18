@@ -1,20 +1,4 @@
-import type { UserInfoDTO } from '@/api/types/users';
 import type { SocialProvider, UserType } from '@/types/auth';
-
-export interface AuthResponseDTO {
-  user: UserInfoDTO;
-}
-
-export interface AuthConfig {
-  endpoint: string;
-  clientId: string;
-  redirectUri: string;
-  responseType: string;
-  responseMode?: string;
-  scope?: string;
-  state?: string;
-  nonce?: string;
-}
 
 export interface OAuthLoginRequestDTO {
   provider: SocialProvider;

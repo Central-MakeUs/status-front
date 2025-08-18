@@ -1,6 +1,6 @@
-import type { AttributeReturnDTO } from '@/api/types/attribute';
+import type { AttributesReturnDTO } from '@/api/types/attribute';
 
-export const mockAttributes: AttributeReturnDTO[] = [
+export const mockAttributes: AttributesReturnDTO[] = [
   {
     attributeId: 101,
     type: 'MENTALITY',

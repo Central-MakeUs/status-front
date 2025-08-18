@@ -4,14 +4,13 @@ import type {
   SUB_QUEST_FREQUENCY,
 } from '@/constants/quest';
 import type {
-  UserSubQuestDTO,
-  UserSubQuestLogRequestDTO,
-  CompletedQuestDTO,
-  UserMainQuestGiveUpRequestDTO,
+  UsersSubQuestResponseDTO,
+  SubQuestLogDTO,
+  SubQuestLogsResponseDTO,
   ThemeResponseDTO,
   MainQuestResponseDTO,
   SubQuestResponseDTO,
-  UserCompletedHistoryDTO,
+  QuestHistoryByDateDTO,
   UsersMainQuestResponseDTO,
   CreateQuestResponseDTO,
   CreateQuestRequestDTO,
@@ -29,10 +28,9 @@ export type SubQuestInfo = Pick<
 export type CreateQuestRequest = CreateQuestRequestDTO;
 export type CreateQuestResponse = CreateQuestResponseDTO;
 export type UsersMainQuest = UsersMainQuestResponseDTO;
-export type UserSubQuest = UserSubQuestDTO;
+export type UserSubQuest = UsersSubQuestResponseDTO;
 export type SubQuestDifficulty = 'EASY' | 'NORMAL' | 'HARD';
-export type UserSubQuestLog = UserSubQuestLogRequestDTO;
+export type SubQuestLog = SubQuestLogDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
-export type CompletedQuest = CompletedQuestDTO;
-export type UserMainQuestGiveUp = UserMainQuestGiveUpRequestDTO;
-export type UserCompletedHistory = UserCompletedHistoryDTO;
+export type CompletedQuest = SubQuestLogsResponseDTO;
+export type UserCompletedHistory = QuestHistoryByDateDTO;

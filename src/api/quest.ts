@@ -1,11 +1,8 @@
 import { api } from '@/api/client';
 import type {
-  UserMainQuestDTO,
-  UserSubQuestDTO,
-  UserSubQuestLogRequestDTO,
-  CompletedQuestDTO,
-  UserCompletedHistoryDTO,
-  UserMainQuestGiveUpRequestDTO,
+  UsersSubQuestResponseDTO,
+  SubQuestLogDTO,
+  QuestHistoryByDateDTO,
   GetThemesParams,
   GetRandomThemesParams,
   MainQuestResponseDTO,
@@ -16,7 +13,7 @@ import type {
   RerollSubQuestRequestDTO,
   CreateQuestRequestDTO,
   UsersMainQuestResponseDTO,
-  RewardResponseDTO,
+  RewardResponseDto,
   CreateQuestResponseDTO,
 } from '@/api/types/quest';
 import type { ApiResponse } from '@/api/types/api';
@@ -139,8 +136,10 @@ export const getUsersMainQuests = async (): Promise<
 
 export const getUserMainQuest = async (
   id: number
-): Promise<UserMainQuestDTO> => {
-  const response = await api.get<ApiResponse<UserMainQuestDTO>>(`/quest/${id}`);
+): Promise<UsersMainQuestResponseDTO> => {
+  const response = await api.get<ApiResponse<UsersMainQuestResponseDTO>>(
+    `/quest/${id}`
+  );
   return (
     response.data ?? {
       id: 0,
@@ -154,25 +153,27 @@ export const getUserMainQuest = async (
   );
 };
 
-export const getUserSubQuestsAll = async (): Promise<UserSubQuestDTO[]> => {
+export const getUserSubQuestsAll = async (): Promise<
+  UsersSubQuestResponseDTO[]
+> => {
   const response =
-    await api.get<ApiResponse<UserSubQuestDTO[]>>(`/quest/today`);
+    await api.get<ApiResponse<UsersSubQuestResponseDTO[]>>(`/quest/today`);
   return response.data ?? [];
 };
 
 export const getUserSubQuests = async (
   id: number
-): Promise<UserSubQuestDTO[]> => {
-  const response = await api.get<ApiResponse<UserSubQuestDTO[]>>(
+): Promise<UsersSubQuestResponseDTO[]> => {
+  const response = await api.get<ApiResponse<UsersSubQuestResponseDTO[]>>(
     `/quest/${id}/today`
   );
   return response.data ?? [];
 };
 
 export const postUserSubQuestLog = async (
-  data: UserSubQuestLogRequestDTO
-): Promise<RewardResponseDTO> => {
-  const response = await api.post<ApiResponse<RewardResponseDTO>>(
+  data: SubQuestLogDTO
+): Promise<RewardResponseDto> => {
+  const response = await api.post<ApiResponse<RewardResponseDto>>(
     `/quest/sub`,
     data
   );
@@ -186,34 +187,23 @@ export const postUserSubQuestLog = async (
   );
 };
 
-export const patchUserSubQuestLog = async (data: UserSubQuestLogRequestDTO) => {
-  const response = await api.patch<ApiResponse<UserSubQuestLogRequestDTO>>(
+export const patchUserSubQuestLog = async (data: SubQuestLogDTO) => {
+  const response = await api.patch<ApiResponse<SubQuestLogDTO>>(
     `/quest/sub`,
     data
   );
   return response.data ?? {};
 };
 
-export const getTodayCompletedQuests = async (
-  userId: string
-): Promise<CompletedQuestDTO[]> => {
-  const response = await api.get<ApiResponse<CompletedQuestDTO[]>>(
-    `/users/${userId}/today-completed-quests`
-  );
-  return response.data ?? [];
-};
-
 export const getUserCompletedHistory = async (
   id: number
-): Promise<UserCompletedHistoryDTO[]> => {
-  const response = await api.get<ApiResponse<UserCompletedHistoryDTO[]>>(
+): Promise<QuestHistoryByDateDTO[]> => {
+  const response = await api.get<ApiResponse<QuestHistoryByDateDTO[]>>(
     `/quest/${id}/history`
   );
   return response.data ?? [];
 };
 
-export const deleteUserMainQuest = async (
-  data: UserMainQuestGiveUpRequestDTO
-): Promise<void> => {
-  await api.delete(`/quest/${data.id}`);
+export const deleteUserMainQuest = async (id: number): Promise<void> => {
+  await api.delete(`/quest/${id}`);
 };
