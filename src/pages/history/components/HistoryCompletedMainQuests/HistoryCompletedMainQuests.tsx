@@ -55,7 +55,10 @@ export const HistoryCompletedMainQuests = ({
               ))}
             </ul>
             <div className={cx('progress-bar-wrapper')}>
-              <span id={progressBarId} className={cx('progress-bar-text')}>
+              <span
+                id={`${progressBarId}-${quest.id}`}
+                className={cx('progress-bar-text')}
+              >
                 최종 달성률 {quest.progress}%
               </span>
               <div
@@ -63,7 +66,7 @@ export const HistoryCompletedMainQuests = ({
                 aria-valuenow={quest.progress}
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-labelledby={progressBarId}
+                aria-labelledby={`${progressBarId}-${quest.id}`}
                 className={cx('progress-bar')}
                 style={
                   {
