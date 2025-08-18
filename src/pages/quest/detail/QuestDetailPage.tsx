@@ -32,10 +32,10 @@ import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/S
 import { useGetUserAttributes } from '@/api/hooks/attribute';
 import type { AttributeDTO } from '@/api/types/attribute';
 import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedLists';
-import dayjs from 'dayjs';
+import { format } from 'date-fns';
 import { usePatchUserSubQuestLog } from '@/api/hooks/quest/usePatchUserSubQuestLog';
 const cx = classNames.bind(styles);
-const today = dayjs().format('YYYY.MM.DD');
+const today = format(new Date(), 'yyyy.MM.dd');
 
 const QuestDetailPage = () => {
   const navigate = useNavigate();
@@ -219,8 +219,7 @@ const QuestDetailPage = () => {
           <TodayCompletedQuests
             quests={
               completedHistory?.find(
-                (el) =>
-                  dayjs(el.date, 'YYYY.MM.DD').format('YYYY.MM.DD') === today
+                (el) => format(new Date(el.date), 'yyyy.MM.dd') === today
               )?.logs || []
             }
             onClick={handleEdit}
@@ -228,8 +227,7 @@ const QuestDetailPage = () => {
           <CompletedHistory
             completedHistory={
               completedHistory?.filter(
-                (el) =>
-                  dayjs(el.date, 'YYYY.MM.DD').format('YYYY.MM.DD') !== today
+                (el) => format(new Date(el.date), 'yyyy.MM.dd') !== today
               ) || []
             }
             onClick={handleEdit}
