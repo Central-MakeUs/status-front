@@ -74,32 +74,8 @@ export interface UsersMainQuestResponseDTO {
   attributes: AttributeDTO[];
   progress: number;
 }
-
-export interface MainQuestDTO {
-  id: number;
-  title: string;
-  attributes?: AttributeDTO[];
-  createdAt?: string;
-}
-
-export interface UserMainQuestDTO extends MainQuestDTO {
-  startDate: string;
-  endDate: string;
-  totalWeeks: number;
-  progress?: number;
-}
-
-export interface SubQuestDTO {
-  id: number;
-  frequencyType: SubQuestFrequencyValue;
-  actionUnitType: string;
-  actionUnitNum: number;
-  attributes: AttributeDTO[];
-  desc: string;
-}
-
-export interface UserSubQuestDTO {
-  subQuestInfo: SubQuestDTO;
+export interface UsersSubQuestResponseDTO {
+  subQuestInfo: SubQuestResponseDTO;
   repeatCnt: number;
   essential: boolean;
   mainQuestId?: number;
@@ -122,37 +98,24 @@ export interface GetRandomSubQuestByMainQuestIdParams {
   limit: number;
 }
 
-export interface UserSubQuestLogRequestDTO {
+export interface SubQuestLogDTO {
   id: number;
   difficulty: SubQuestDifficulty;
   memo: string;
 }
 
-export interface Rewards {
-  id: number;
-  name: string;
-  exp: number;
-}
-export interface RewardResponseDTO {
-  subQuestRewards: Rewards[];
-  mainQuestRewards: Rewards[];
+export interface RewardResponseDto {
+  subQuestRewards: AttributeDTO[];
+  mainQuestRewards: AttributeDTO[];
   isMainQuestCompleted: boolean;
 }
 
-export interface CompletedQuestDTO {
-  userSubQuest: UserSubQuestDTO;
-  log: {
-    id: number;
-    difficulty: SubQuestDifficulty;
-    memo: string;
-  };
+export interface SubQuestLogsResponseDTO {
+  userSubQuest: UsersSubQuestResponseDTO;
+  log: SubQuestLogDTO;
 }
 
-export interface UserCompletedHistoryDTO {
+export interface QuestHistoryByDateDTO {
   date: string;
-  logs: CompletedQuestDTO[];
-}
-
-export interface UserMainQuestGiveUpRequestDTO {
-  id: number;
+  logs: SubQuestLogsResponseDTO[];
 }

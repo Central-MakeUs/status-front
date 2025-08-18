@@ -28,7 +28,6 @@ export interface UpdateAttributeDTO {
   level?: number;
 }
 
-// API Parameters Types
 export interface GetUserAttributesParams {
   userId: string;
   type?: AttributeType;
