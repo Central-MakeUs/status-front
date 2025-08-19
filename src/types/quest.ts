@@ -14,6 +14,7 @@ import type {
   UsersMainQuestResponseDTO,
   CreateQuestResponseDTO,
   CreateQuestRequestDTO,
+  WithStatusUsersMainQuestResponseDTO,
 } from '@/api/types/quest';
 export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
@@ -41,3 +42,4 @@ export type Status =
   | 'WEEKLY_ACCOMPLISHED'
   | 'COMPLETED'
   | 'ACCOMPLISHED';
+export type UserCompletedMainQuests = WithStatusUsersMainQuestResponseDTO;

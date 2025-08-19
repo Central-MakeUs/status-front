@@ -69,7 +69,10 @@ export const StepCategoryPage = () => {
 
   return (
     <>
-      <Header title="퀘스트 만들기" hasBackButton={true} />
+      <Header>
+        <Header.Title>퀘스트 만들기</Header.Title>
+        <Header.BackButton />
+      </Header>
       <main className="main">
         <StepTitle>시도하고 싶은 테마를 선택하세요!</StepTitle>
         <StepDescription>

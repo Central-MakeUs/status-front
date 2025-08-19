@@ -11,6 +11,7 @@ export const PAGE_PATHS = {
   QUEST_NEW_ERROR: '/quest/new/error',
   QUEST_DETAIL: '/quest/detail/:id',
   HISTORY: '/history',
+  HISTORY_DETAIL: '/history/detail/:id',
   PROFILE: '/profile',
   LOGIN: '/login',
   TUTORIAL: '/tutorial',

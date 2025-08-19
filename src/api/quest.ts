@@ -217,15 +217,15 @@ export const getUserStatistic = async (): Promise<UserQuestStatisticsDTO> => {
 
   return (
     response.data ?? {
-      totalMainQuest: 0,
-      totalSubQuestVerification: 0,
+      totalMainQuests: 0,
+      totalSubQuestVerifications: 0,
       averageCompletionRate: 0,
       averageDurationDays: 0,
     }
   );
 };
 
-export const getUserHistory = async (): Promise<
+export const getUserCompletedMainQuests = async (): Promise<
   WithStatusUsersMainQuestResponseDTO[]
 > => {
   const response =

@@ -122,8 +122,8 @@ export interface QuestHistoryByDateDTO {
 }
 
 export interface UserQuestStatisticsDTO {
-  totalMainQuest: number;
-  totalSubQuestVerification: number;
+  totalMainQuests: number;
+  totalSubQuestVerifications: number;
   averageCompletionRate: number;
   averageDurationDays: number;
 }
