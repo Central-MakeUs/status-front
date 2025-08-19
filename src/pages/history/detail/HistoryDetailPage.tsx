@@ -26,7 +26,6 @@ const QuestDetailPage = () => {
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
-  console.log(quest?.status);
   return (
     <>
       <Header>

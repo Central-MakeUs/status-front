@@ -23,7 +23,7 @@ export const BottomNavigation = () => {
   const tabs: BottomNavigationTab[] = [
     {
       label: '상태창',
-      path: PAGE_PATHS.ROOT,
+      path: PAGE_PATHS.STATUS,
       patterns: [PAGE_PATHS.ROOT, PAGE_PATHS.STATUS],
       icon: IconStatus,
     },
