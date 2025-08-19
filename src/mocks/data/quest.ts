@@ -2,7 +2,11 @@ import type {
   UserQuestStatisticsDTO,
   WithStatusUsersMainQuestResponseDTO,
 } from '@/api/types/quest';
-import { ACTION_UNIT_TYPES, SUB_QUEST_FREQUENCY } from '@/constants/quest';
+import {
+  ACTION_UNIT_TYPES,
+  MAIN_QUEST_STATUS,
+  SUB_QUEST_FREQUENCY,
+} from '@/constants/quest';
 import type {
   MainQuest,
   SubQuest,
@@ -412,7 +416,7 @@ export const mockCompletedMainQuests: WithStatusUsersMainQuestResponseDTO[] = [
       { id: 102, name: '집중', exp: 50 },
     ],
     totalWeeks: 1,
-    status: 'FAILED',
+    status: MAIN_QUEST_STATUS.FAILED,
   },
   {
     id: 2,
@@ -425,6 +429,6 @@ export const mockCompletedMainQuests: WithStatusUsersMainQuestResponseDTO[] = [
       { id: 103, name: '제어', exp: 50 },
     ],
     totalWeeks: 1,
-    status: 'COMPLETED',
+    status: MAIN_QUEST_STATUS.COMPLETED,
   },
 ];
