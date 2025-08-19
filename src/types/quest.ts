@@ -1,5 +1,6 @@
 import type {
   ACTION_UNIT_TYPE_OPTIONS,
+  MAIN_QUEST_STATUS,
   REWARD_STEP,
   SUB_QUEST_FREQUENCY,
 } from '@/constants/quest';
@@ -35,11 +36,5 @@ export type SubQuestLog = SubQuestLogDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
 export type CompletedQuest = SubQuestLogsResponseDTO;
 export type UserCompletedHistory = QuestHistoryByDateDTO;
-export type Status =
-  | 'ACTIVE'
-  | 'FAILED'
-  | 'DELETED'
-  | 'WEEKLY_ACCOMPLISHED'
-  | 'COMPLETED'
-  | 'ACCOMPLISHED';
+export type Status = (typeof MAIN_QUEST_STATUS)[keyof typeof MAIN_QUEST_STATUS];
 export type UserCompletedMainQuests = WithStatusUsersMainQuestResponseDTO;

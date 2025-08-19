@@ -3,6 +3,7 @@ import { getWeeksDifference } from '@/utils/date';
 import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
 import { Link } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { MAIN_QUEST_STATUS } from '@/constants/quest';
 
 import type { UserCompletedMainQuests } from '@/types/quest';
 
@@ -34,10 +35,12 @@ export const HistoryCompletedMainQuests = ({
             <div className={cx('main-quest-status-cover')}>
               <span
                 className={cx('main-quest-status', {
-                  'is-completed': quest.status === 'COMPLETED',
+                  'is-completed': quest.status === MAIN_QUEST_STATUS.COMPLETED,
                 })}
               >
-                {quest.status === 'COMPLETED' ? '[성공]' : '[실패]'}
+                {quest.status === MAIN_QUEST_STATUS.COMPLETED
+                  ? '[성공]'
+                  : '[실패]'}
               </span>
               <span className={cx('main-quest-date')}>
                 기한_{quest.endDate} (총
