@@ -34,3 +34,10 @@ export type SubQuestLog = SubQuestLogDTO;
 export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
 export type CompletedQuest = SubQuestLogsResponseDTO;
 export type UserCompletedHistory = QuestHistoryByDateDTO;
+export type Status =
+  | 'ACTIVE'
+  | 'FAILED'
+  | 'DELETED'
+  | 'WEEKLY_ACCOMPLISHED'
+  | 'COMPLETED'
+  | 'ACCOMPLISHED';
