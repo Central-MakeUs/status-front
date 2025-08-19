@@ -8,12 +8,14 @@ import { useGetuserStatistic } from '@/api/hooks/quest/useGetUserStatstic';
 const HistoryPage = () => {
   const { data: statistics } = useGetuserStatistic();
   const { data: mainQuests } = useGetUserCompletedMainQuests();
+
   const {
     totalMainQuests,
     totalSubQuestVerifications,
     averageCompletionRate,
     averageDurationDays,
   } = statistics ?? {};
+
   console.log(statistics);
   console.log(mainQuests);
   return (

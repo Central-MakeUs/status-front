@@ -232,6 +232,5 @@ export const getUserCompletedMainQuests = async (): Promise<
     await api.get<ApiResponse<WithStatusUsersMainQuestResponseDTO[]>>(
       `/quest/history`
     );
-
   return response.data ?? [];
 };

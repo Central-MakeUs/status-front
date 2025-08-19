@@ -75,7 +75,7 @@ export const HistorySummary = ({
                 cy="27"
                 r={progressBar.radius}
                 fill="none"
-                stroke-width={progressBar.strokeWidth}
+                strokeWidth={progressBar.strokeWidth}
               />
               <circle
                 className={cx('bar')}
@@ -83,10 +83,10 @@ export const HistorySummary = ({
                 cy="27"
                 r={progressBar.radius}
                 fill="none"
-                stroke-width={progressBar.strokeWidth}
-                stroke-linecap="round"
-                stroke-dasharray={`${progressBar.strokeDasharray}px`}
-                stroke-dashoffset={`${progressBar.strokeDashoffset}px`}
+                strokeWidth={progressBar.strokeWidth}
+                strokeLinecap="round"
+                strokeDasharray={`${progressBar.strokeDasharray}px`}
+                strokeDashoffset={`${progressBar.strokeDashoffset}px`}
               />
             </svg>
             <span className={cx('progress-text')}>

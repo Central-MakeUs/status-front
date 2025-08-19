@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useGetuserStatistic = () => {
   return useQuery({
-    queryKey: ['quest', 'completed-mainquests'],
+    queryKey: ['quest', 'statistics'],
     queryFn: () => getUserStatistic(),
   });
 };
