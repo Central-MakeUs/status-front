@@ -14,7 +14,8 @@ const HistoryPage = () => {
     averageCompletionRate,
     averageDurationDays,
   } = statistics ?? {};
-
+  console.log(statistics);
+  console.log(mainQuests);
   return (
     <>
       <Header>

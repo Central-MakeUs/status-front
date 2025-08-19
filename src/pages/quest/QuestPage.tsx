@@ -40,7 +40,7 @@ export const QuestPage = () => {
             {data?.map((quest) => (
               <li key={quest.id} className={cx('main-quest-item')}>
                 <span className={cx('main-quest-date')}>
-                  기한_{quest.endDate} (총
+                  기한_{quest.endDate} (총 &nbsp;
                   {getWeeksDifference(quest.startDate, quest.endDate)}
                   주)
                 </span>

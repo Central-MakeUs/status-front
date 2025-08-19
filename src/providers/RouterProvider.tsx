@@ -12,6 +12,9 @@ const StatusPage = lazy(() => import('@/pages/status/StatusPage'));
 const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
 const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 const HistoryPage = lazy(() => import('@/pages/history/HistoryPage'));
+const HistoryDetailPage = lazy(
+  () => import('@/pages/history/detail/HistoryDetailPage')
+);
 const StepAttributePage = lazy(
   () => import('@/pages/quest/new/StepAttributePage')
 );
@@ -72,6 +75,10 @@ export default function RouterProvider() {
                 {
                   path: PAGE_PATHS.QUEST_DETAIL,
                   Component: QuestDetailPage,
+                },
+                {
+                  path: PAGE_PATHS.HISTORY_DETAIL,
+                  Component: HistoryDetailPage,
                 },
               ],
             },

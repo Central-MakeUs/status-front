@@ -78,6 +78,7 @@ export const HistoryCompletedMainQuests = ({
             <Link
               to={`${PAGE_PATHS.HISTORY_DETAIL.replace(':id', quest.id.toString())}`}
               className={cx('main-quest-detail')}
+              state={quest.status}
             >
               <span className={cx('sr-only')}>상세 보기</span>
             </Link>
