@@ -147,6 +147,7 @@ export const questHandlers = [
       progress: 0,
       attributes: createdQuest.attributes,
       totalWeeks: createdQuest.totalWeeks,
+      status: 'ACTIVE',
     });
 
     return HttpResponse.json({

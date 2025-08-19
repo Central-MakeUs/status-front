@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HistoryDetailPage.module.scss';
@@ -14,7 +14,6 @@ import CompletedHistory from './CompletedHistory/CompletedHistory';
 const cx = classNames.bind(styles);
 
 const QuestDetailPage = () => {
-  const location = useLocation();
   const { id: mainQuestId } = useParams();
   const { data: quest } = useGetUserMainQuest(Number(mainQuestId));
   const { data: completedHistory } = useGetUserCompletedLists(
@@ -27,7 +26,7 @@ const QuestDetailPage = () => {
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
-  const { state } = location;
+  console.log(quest?.status);
   return (
     <>
       <Header>
@@ -41,10 +40,10 @@ const QuestDetailPage = () => {
               <span className={cx('main-quest-content')}>
                 <span
                   className={cx('main-quest-status', {
-                    'is-completed': state === 'COMPLETED',
+                    'is-completed': quest.status === 'COMPLETED',
                   })}
                 >
-                  {state === 'COMPLETED' ? '[성공]' : '[실패]'}
+                  {quest.status === 'COMPLETED' ? '[성공]' : '[실패]'}
                 </span>
                 &nbsp;
                 {quest.startDate}_{quest.endDate} (총 &nbsp;

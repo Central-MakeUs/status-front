@@ -151,6 +151,7 @@ export const getUserMainQuest = async (
       attributes: [],
       totalWeeks: 0,
       progress: 0,
+      status: 'ACTIVE',
     }
   );
 };

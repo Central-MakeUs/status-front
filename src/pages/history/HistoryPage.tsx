@@ -16,8 +16,6 @@ const HistoryPage = () => {
     averageDurationDays,
   } = statistics ?? {};
 
-  console.log(statistics);
-  console.log(mainQuests);
   return (
     <>
       <Header>

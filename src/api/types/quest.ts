@@ -74,6 +74,7 @@ export interface UsersMainQuestResponseDTO {
   title: string;
   attributes: AttributeDTO[];
   progress: number;
+  status: Status;
 }
 export interface UsersSubQuestResponseDTO {
   subQuestInfo: SubQuestResponseDTO;
