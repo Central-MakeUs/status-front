@@ -182,7 +182,7 @@ export const questHandlers = [
       data: mockQuestStatistics,
     });
   }),
-  http.get(`${API_URL}/quest/hisory`, () => {
+  http.get(`${API_URL}/quest/history`, () => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
