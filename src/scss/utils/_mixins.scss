@@ -50,3 +50,24 @@
         opacity: 1;
     }
 }
+
+@mixin remove-scroll($direction) {
+    @if $direction == x {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    @else if $direction == y {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    @else {
+        overflow: auto;
+    }
+
+    overflow: -moz-scrollbars-none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

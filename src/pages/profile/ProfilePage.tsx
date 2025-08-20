@@ -95,7 +95,9 @@ export const ProfilePage = () => {
 
   return (
     <>
-      <Header title="마이" />
+      <Header>
+        <Header.Title>마이</Header.Title>
+      </Header>
       <main className="main">
         <div className={cx('profile-header')}>
           <div className={cx('profile-header-inner')}>

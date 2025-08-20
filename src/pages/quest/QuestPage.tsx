@@ -27,9 +27,11 @@ export const QuestPage = () => {
 
   return (
     <>
-      <Header
-        title={`내 퀘스트 (${questCount}/${MAX_USERS_MAIN_QUEST_COUNT})`}
-      />
+      <Header>
+        <Header.Title>
+          {`내 퀘스트 (${questCount}/${MAX_USERS_MAIN_QUEST_COUNT})`}
+        </Header.Title>
+      </Header>
       <main className="main">
         {questCount === 0 ? (
           <QuestEmpty />
@@ -38,7 +40,7 @@ export const QuestPage = () => {
             {data?.map((quest) => (
               <li key={quest.id} className={cx('main-quest-item')}>
                 <span className={cx('main-quest-date')}>
-                  기한_{quest.endDate} (총
+                  기한_{quest.endDate} (총 &nbsp;
                   {getWeeksDifference(quest.startDate, quest.endDate)}
                   주)
                 </span>

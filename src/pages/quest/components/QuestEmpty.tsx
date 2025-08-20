@@ -1,7 +1,7 @@
 import IconEmpty from '@/assets/icons/icon-character-empty.svg?react';
 import IconArrow from '@/assets/icons/icon-arrow-downward.svg?react';
 import classNames from 'classnames/bind';
-import styles from './QuesteEmpty.module.scss';
+import styles from './QuestEmpty.module.scss';
 
 const cx = classNames.bind(styles);
 

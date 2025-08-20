@@ -3,6 +3,7 @@ import type {
   SubQuestDifficulty,
   SubQuestInfo,
   ActionUnitTypeValue,
+  Status,
 } from '@/types/quest';
 import type { AttributeDTO } from './attribute';
 
@@ -118,4 +119,16 @@ export interface SubQuestLogsResponseDTO {
 export interface QuestHistoryByDateDTO {
   date: string;
   logs: SubQuestLogsResponseDTO[];
+}
+
+export interface UserQuestStatisticsDTO {
+  totalMainQuests: number;
+  totalSubQuestVerifications: number;
+  averageCompletionRate: number;
+  averageDurationDays: number;
+}
+
+export interface WithStatusUsersMainQuestResponseDTO
+  extends UsersMainQuestResponseDTO {
+  status: Status;
 }

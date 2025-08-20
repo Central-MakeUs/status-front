@@ -59,7 +59,10 @@ export const StepAttributePage = () => {
 
   return (
     <>
-      <Header title="퀘스트 만들기" hasBackButton={true} />
+      <Header>
+        <Header.Title>퀘스트 만들기</Header.Title>
+        <Header.BackButton />
+      </Header>
       <main className="main">
         <StepTitle>성장시킬 능력치를 선택해주세요</StepTitle>
 

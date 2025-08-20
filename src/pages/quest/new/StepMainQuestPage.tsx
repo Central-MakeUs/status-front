@@ -75,7 +75,10 @@ export const StepMainQuestPage = () => {
 
   return (
     <>
-      <Header title="퀘스트 만들기" hasBackButton={true} />
+      <Header>
+        <Header.Title>퀘스트 만들기</Header.Title>
+        <Header.BackButton />
+      </Header>
       <main className="main">
         <StepTitle logo={<IconLogo />}>메인 퀘스트를 선택해주세요!</StepTitle>
         {selectedTheme && (

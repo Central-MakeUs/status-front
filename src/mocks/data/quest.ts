@@ -1,4 +1,12 @@
-import { ACTION_UNIT_TYPES, SUB_QUEST_FREQUENCY } from '@/constants/quest';
+import type {
+  UserQuestStatisticsDTO,
+  WithStatusUsersMainQuestResponseDTO,
+} from '@/api/types/quest';
+import {
+  ACTION_UNIT_TYPES,
+  MAIN_QUEST_STATUS,
+  SUB_QUEST_FREQUENCY,
+} from '@/constants/quest';
 import type {
   MainQuest,
   SubQuest,
@@ -388,3 +396,39 @@ export const mockSubQuestLogResponse = {
   ],
   isMainQuestCompleted: true,
 };
+
+export const mockQuestStatistics: UserQuestStatisticsDTO = {
+  totalMainQuests: 2,
+  totalSubQuestVerifications: 4,
+  averageCompletionRate: 50,
+  averageDurationDays: 7,
+};
+
+export const mockCompletedMainQuests: WithStatusUsersMainQuestResponseDTO[] = [
+  {
+    id: 1,
+    title: 'SNS 사용 절제 습관 만들기',
+    startDate: '2025-01-01',
+    endDate: '2025-01-07',
+    progress: 0,
+    attributes: [
+      { id: 103, name: '제어', exp: 100 },
+      { id: 102, name: '집중', exp: 50 },
+    ],
+    totalWeeks: 1,
+    status: MAIN_QUEST_STATUS.FAILED,
+  },
+  {
+    id: 2,
+    title: '스마트폰 사용 패턴 분석 습관 만들기',
+    startDate: '2025-01-01',
+    endDate: '2025-01-07',
+    progress: 100,
+    attributes: [
+      { id: 203, name: '기록', exp: 100 },
+      { id: 103, name: '제어', exp: 50 },
+    ],
+    totalWeeks: 1,
+    status: MAIN_QUEST_STATUS.COMPLETED,
+  },
+];
