@@ -2,6 +2,7 @@ import { http, HttpResponse, passthrough } from 'msw';
 import {
   mockAppleUser,
   mockGoogleUser,
+  mockGuestUser,
   mockPendingSocialUser,
 } from '@/mocks/data/users';
 import { SOCIAL_PROVIDER } from '@/constants/auth';
@@ -24,7 +25,7 @@ export const authHandlers = [
 
     return HttpResponse.json({
       status: '201',
-      data: mockGoogleUser,
+      data: mockGuestUser,
     });
   }),
   http.post(`${API_URL}/auth/login`, async ({ request }) => {

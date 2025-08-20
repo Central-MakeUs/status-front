@@ -27,3 +27,12 @@ export const mockPendingSocialUser: OAuthProvider = {
   providerId: '4359551911',
   type: 'SIGNUP',
 };
+
+/**
+ * 게스트 로그인 후 사용하는 유저 데이터
+ */
+export const mockGuestUser: BasicUsers = {
+  id: '12',
+  nickname: 'guestUser',
+  type: 'LOGIN',
+};
