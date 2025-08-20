@@ -29,6 +29,9 @@ export const usePostUserSubQuestLog = () => {
       queryClient.invalidateQueries({
         queryKey: ['quest', 'statistics'],
       });
+      queryClient.invalidateQueries({
+        queryKey: ['main-quest', 'user'],
+      });
     },
   });
 };

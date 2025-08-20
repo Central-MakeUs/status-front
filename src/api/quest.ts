@@ -138,10 +138,10 @@ export const getUsersMainQuests = async (): Promise<
 
 export const getUserMainQuest = async (
   id: number
-): Promise<UsersMainQuestResponseDTO> => {
-  const response = await api.get<ApiResponse<UsersMainQuestResponseDTO>>(
-    `/quest/${id}`
-  );
+): Promise<WithStatusUsersMainQuestResponseDTO> => {
+  const response = await api.get<
+    ApiResponse<WithStatusUsersMainQuestResponseDTO>
+  >(`/quest/${id}`);
   return (
     response.data ?? {
       id: 0,
