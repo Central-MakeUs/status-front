@@ -2,9 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/stores/authStore';
 import { SOCIAL_PROVIDER } from '@/constants/auth';
-import type { BasicUsersDTO } from '@/api/types/users';
 import { usePostGuestLogin } from '@/api/hooks/auth/usePostGuestLogin';
 import { PAGE_PATHS } from '@/constants/pagePaths';
+import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { Loading } from '@/components/ui/Loading/Loading';
+
+import type { BasicUsersDTO } from '@/api/types/users';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';
@@ -13,20 +16,20 @@ import IconIntroduction from '@/assets/icons/icon-character-introduction.svg?rea
 
 import classNames from 'classnames/bind';
 import styles from './SignInPage.module.scss';
-import { useSocialAuth } from '@/hooks/useSocialAuth';
 
 const cx = classNames.bind(styles);
 
 const SignInPage = () => {
   const navigate = useNavigate();
-  const { signInWithOAuth } = useSocialAuth();
+  const { signInWithOAuth, isSocialLoginLoading } = useSocialAuth();
   const { setUser } = useAuthStore(
     useShallow((state) => ({
       user: state.user,
       setUser: state.setUser,
     }))
   );
-  const guestLogin = usePostGuestLogin();
+  const { mutate: guestLogin, isPending: isGuestLoginLoading } =
+    usePostGuestLogin();
 
   const handleGoogleLogin = () => {
     signInWithOAuth(SOCIAL_PROVIDER.GOOGLE);
@@ -41,7 +44,7 @@ const SignInPage = () => {
   };
 
   const handleGuestLogin = () => {
-    guestLogin.mutate(undefined, {
+    guestLogin(undefined, {
       onSuccess: (data) => {
         setUser(data as BasicUsersDTO);
       },
@@ -96,6 +99,7 @@ const SignInPage = () => {
           </div>
         </div>
       </main>
+      {(isGuestLoginLoading || isSocialLoginLoading) && <Loading />}
     </>
   );
 };

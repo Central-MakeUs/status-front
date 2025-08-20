@@ -2,12 +2,12 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AUTH_CONFIGS, URL_SCHEME } from '@/constants/auth';
 import { MESSAGE_TYPES } from '@/constants/webView';
-import { socialLogin } from '@/api/auth';
+import { useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { USER_TYPE } from '@/constants/auth';
-import { useQueryClient } from '@tanstack/react-query';
+import { usePostSocialLogin } from '@/api/hooks/auth/usePostSocialLogin';
 
 import type { SocialProvider } from '@/types/auth';
 import type { OAuthProvider } from '@/types/auth';
@@ -30,6 +30,8 @@ const createOAuthURL = (provider: SocialProvider, state: string): string => {
 
 export const useSocialAuth = () => {
   const queryClient = useQueryClient();
+  const { mutate: socialLogin, isPending: isSocialLoginLoading } =
+    usePostSocialLogin();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get('redirect');
@@ -70,36 +72,34 @@ export const useSocialAuth = () => {
 
   const handleOAuthCallback = useCallback(
     async (code: string, provider: SocialProvider, redirect: string | null) => {
-      try {
-        const payload: OAuthLoginRequestDTO = {
-          provider,
-          code,
-        };
+      const payload: OAuthLoginRequestDTO = {
+        provider,
+        code,
+      };
 
-        const response = await socialLogin(payload);
-
-        if (!response?.data) {
-          return;
-        }
-
-        if (response.data.type === USER_TYPE.SIGN_UP) {
-          setPendingSocialUser(response.data as OAuthProvider);
-          navigate(PAGE_PATHS.SIGN_UP);
-        } else {
-          await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
-          setUser(response.data as BasicUsers);
-
-          if (redirect) {
-            navigate(decodeURIComponent(redirect));
-          } else {
-            navigate(PAGE_PATHS.ROOT);
+      socialLogin(payload, {
+        onSuccess: async (response) => {
+          if (!response?.data) {
+            return;
           }
-        }
-      } catch {
-        // [TODO] 로그인 실패 처리?
-      }
+
+          if (response.data.type === USER_TYPE.SIGN_UP) {
+            setPendingSocialUser(response.data as OAuthProvider);
+            navigate(PAGE_PATHS.SIGN_UP);
+          } else {
+            await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+            setUser(response.data as BasicUsers);
+
+            if (redirect) {
+              navigate(decodeURIComponent(redirect));
+            } else {
+              navigate(PAGE_PATHS.ROOT);
+            }
+          }
+        },
+      });
     },
-    [setPendingSocialUser, setUser, navigate, queryClient]
+    [setPendingSocialUser, setUser, navigate, queryClient, socialLogin]
   );
 
   const handleWebViewMessage = useCallback(
@@ -153,5 +153,5 @@ export const useSocialAuth = () => {
     }
   }, [isWebView, handleWebViewMessage, handleOAuthCallback]);
 
-  return { signInWithOAuth };
+  return { signInWithOAuth, isSocialLoginLoading };
 };
