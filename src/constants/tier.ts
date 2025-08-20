@@ -5,9 +5,17 @@ import IconPlatinum from '@/assets/icons/tiers/icon_platinum.svg?react';
 import IconDia from '@/assets/icons/tiers/icon_dia.svg?react';
 
 export const TIER_ICONS = {
-  Bronze: IconBronze,
-  Silver: IconSilver,
-  Gold: IconGold,
-  Platinum: IconPlatinum,
-  Dia: IconDia,
+  BRONZE: IconBronze,
+  SILVER: IconSilver,
+  GOLD: IconGold,
+  PLATINUM: IconPlatinum,
+  DIA: IconDia,
+} as const;
+
+export const TIER_TYPE = {
+  BRONZE: 'BRONZE',
+  SILVER: 'SILVER',
+  GOLD: 'GOLD',
+  PLATINUM: 'PLATINUM',
+  DIA: 'DIA',
 } as const;

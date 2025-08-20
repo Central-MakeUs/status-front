@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/stores/authStore';
+import { TIER_TYPE } from '@/constants/tier';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 const StatusPage = () => {
@@ -35,8 +36,8 @@ const StatusPage = () => {
       {user && (
         <Header
           nickname={user.nickname}
-          tier={'Bronze'}
-          level={1}
+          tier={user.tier.tier}
+          level={user.tier.level}
           profileImageUrl={profileImageUrl}
           onClick={(event: React.MouseEvent) => {
             event.stopPropagation();
@@ -73,8 +74,8 @@ const StatusPage = () => {
       <TierLevelBottomSheet
         isOpen={isLevelBottomSheetOpen}
         onClose={() => setIsLevelBottomSheetOpen(false)}
-        tier={'Bronze'}
-        level={1}
+        tier={user?.tier.tier || TIER_TYPE.BRONZE}
+        level={user?.tier.level || 1}
       />
       {selectedAttribute && (
         <StatusDetailBottomSheet

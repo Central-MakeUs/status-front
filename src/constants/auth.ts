@@ -63,3 +63,8 @@ export const AUTH_CACHE_TIME = {
   STALE_TIME: 60 * 60 * 1000,
   GC_TIME: 65 * 60 * 1000,
 } as const;
+
+export const PROVIDER_TYPE = {
+  SOCIAL: 'SOCIAL',
+  GUEST: 'GUEST',
+} as const;

@@ -24,9 +24,6 @@ import styles from './ProfilePage.module.scss';
 
 const cx = classNames.bind(styles);
 
-// [TODO] 티어 데이터 추가 후 삭제
-const DEMO_TIER = 'Bronze_1';
-
 export const ProfilePage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -44,6 +41,9 @@ export const ProfilePage = () => {
   const [isWithdrawalDialogOpen, setIsWithdrawalDialogOpen] = useState(false);
 
   const userProfileImage = defaultProfileImage;
+  const userTier = user
+    ? `${user.tier.tier.toLowerCase()}_${user.tier.level}`
+    : '';
 
   const handleEditNickname = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -110,7 +110,7 @@ export const ProfilePage = () => {
               />
             </div>
             <strong className={cx('profile-nickname')}>{user?.nickname}</strong>
-            <span className={cx('profile-tier')}>{DEMO_TIER}</span>
+            <span className={cx('profile-tier')}>{userTier}</span>
             <button
               type="button"
               className={cx('button-profile-edit')}

@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './TierBottomSheet.module.scss';
 import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
 import { Button } from '@/components/ui/Button/Button';
+import { TIER_TYPE } from '@/constants/tier';
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +15,7 @@ const TierLevelList = ({
   currentTier: TierType;
   currentLevel: number;
 }) => {
-  const tiers = ['Bronze', 'Silver', 'Gold', 'Platinum', 'Dia'] as TierType[];
+  const tiers = Object.values(TIER_TYPE);
   return (
     <div className={cx('tier-list')}>
       {tiers.map((tier) => {
@@ -24,7 +25,7 @@ const TierLevelList = ({
             className={`${cx('tier-item')} ${tier === currentTier ? cx('active') : ''}`}
           >
             <span className={cx('tier-name')}>
-              {tier}
+              {tier.toLowerCase()}
               {tier === currentTier ? ` ${currentLevel}` : ''}
             </span>
             <TierIcon id={tier} className={cx('tier-icon')} />
@@ -56,7 +57,7 @@ const TierLevelBottomSheet = ({
       </BottomSheet.Description>
     </BottomSheet.Header>
     <BottomSheet.Content>
-      <TierLevelList currentTier={tier || 'Bronze'} currentLevel={level || 1} />
+      <TierLevelList currentTier={tier} currentLevel={level} />
     </BottomSheet.Content>
     <BottomSheet.Footer>
       <Button variant="tertiary" onClick={onClose}>

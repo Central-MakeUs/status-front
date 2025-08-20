@@ -1,5 +1,7 @@
 import type { BasicUsers } from '@/types/users';
 import type { OAuthProvider } from '@/types/auth';
+import { PROVIDER_TYPE, SOCIAL_PROVIDER, USER_TYPE } from '@/constants/auth';
+import { TIER_TYPE } from '@/constants/tier';
 
 /**
  * 애플 로그인 후 사용하는 가입 유저 데이터
@@ -7,7 +9,12 @@ import type { OAuthProvider } from '@/types/auth';
 export const mockAppleUser: BasicUsers = {
   id: '11',
   nickname: 'appleUser',
-  type: 'LOGIN',
+  type: USER_TYPE.LOGIN,
+  providerType: PROVIDER_TYPE.SOCIAL,
+  tier: {
+    tier: TIER_TYPE.BRONZE,
+    level: 1,
+  },
 };
 
 /**
@@ -16,16 +23,21 @@ export const mockAppleUser: BasicUsers = {
 export const mockGoogleUser: BasicUsers = {
   id: '10',
   nickname: 'googleUser',
-  type: 'LOGIN',
+  type: USER_TYPE.LOGIN,
+  providerType: PROVIDER_TYPE.SOCIAL,
+  tier: {
+    tier: TIER_TYPE.BRONZE,
+    level: 1,
+  },
 };
 
 /**
  * 카카오 로그인 후 사용하는 미가입 유저 데이터
  */
 export const mockPendingSocialUser: OAuthProvider = {
-  providerType: 'KAKAO',
+  providerType: SOCIAL_PROVIDER.KAKAO,
   providerId: '4359551911',
-  type: 'SIGNUP',
+  type: USER_TYPE.SIGN_UP,
 };
 
 /**
@@ -34,5 +46,10 @@ export const mockPendingSocialUser: OAuthProvider = {
 export const mockGuestUser: BasicUsers = {
   id: '12',
   nickname: 'guestUser',
-  type: 'LOGIN',
+  type: USER_TYPE.LOGIN,
+  providerType: PROVIDER_TYPE.GUEST,
+  tier: {
+    tier: TIER_TYPE.BRONZE,
+    level: 1,
+  },
 };

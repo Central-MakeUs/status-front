@@ -1,17 +1,6 @@
-import type { SocialProvider, UserType } from '@/types/auth';
-import type { TierType } from '@/types/tier';
+import type { UserType } from '@/types/auth';
 import type { OAuthProviderDTO } from './auth';
-
-export interface UserInfoDTO {
-  id: string;
-  email: string;
-  nickname: string;
-  providerType: SocialProvider;
-  providerId: string;
-  tier: TierType;
-  level: number;
-  profileImageUrl: string;
-}
+import type { TierType } from '@/types/tier';
 
 export interface SignUpRequestDTO {
   nickname: string;
@@ -21,5 +10,12 @@ export interface SignUpRequestDTO {
 export interface BasicUsersDTO {
   id: string;
   nickname: string;
+  providerType: string;
+  tier: TierDTO;
   type: UserType;
+}
+
+export interface TierDTO {
+  tier: TierType;
+  level: number;
 }
