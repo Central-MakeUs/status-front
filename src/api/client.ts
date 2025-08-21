@@ -47,7 +47,7 @@ const request = async <T = unknown>(
   }
 
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    throw response;
   }
 
   try {
