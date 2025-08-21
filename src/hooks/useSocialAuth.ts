@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AUTH_CONFIGS, URL_SCHEME } from '@/constants/auth';
+import { AUTH_CONFIGS, PROVIDER_TYPE, URL_SCHEME } from '@/constants/auth';
 import { MESSAGE_TYPES } from '@/constants/webView';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuthStore } from '@/stores/authStore';
@@ -8,6 +8,8 @@ import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { USER_TYPE } from '@/constants/auth';
 import { usePostSocialLogin } from '@/api/hooks/auth/usePostSocialLogin';
+import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
+import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
 
 import type { SocialProvider } from '@/types/auth';
 import type { OAuthProvider } from '@/types/auth';
@@ -32,6 +34,10 @@ export const useSocialAuth = () => {
   const queryClient = useQueryClient();
   const { mutate: socialLogin, isPending: isSocialLoginLoading } =
     usePostSocialLogin();
+  const { data: isAuthenticated } = useAuthenticateUser();
+  const { data: currentUser, refetch: refetchCurrentUser } = useGetCurrentUser({
+    isAuthenticated: !!isAuthenticated,
+  });
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirect = searchParams.get('redirect');
@@ -46,12 +52,13 @@ export const useSocialAuth = () => {
   const isWebView = window.ReactNativeWebView !== undefined;
 
   const signInWithOAuth = useCallback(
-    (provider: SocialProvider) => {
+    async (provider: SocialProvider, socialConnection: boolean = false) => {
       const state = JSON.stringify({
         fromWebView: isWebView,
         provider,
         timestamp: Date.now(),
         redirect: redirect,
+        connection: socialConnection,
       });
 
       const url = createOAuthURL(provider, state);
@@ -71,11 +78,33 @@ export const useSocialAuth = () => {
   );
 
   const handleOAuthCallback = useCallback(
-    async (code: string, provider: SocialProvider, redirect: string | null) => {
+    async (
+      code: string,
+      provider: SocialProvider,
+      redirect: string | null,
+      connection: boolean = false
+    ) => {
       const payload: OAuthLoginRequestDTO = {
         provider,
         code,
       };
+
+      if (connection) {
+        await refetchCurrentUser();
+
+        if (currentUser?.providerType !== PROVIDER_TYPE.GUEST) {
+          return;
+        }
+
+        navigate(PAGE_PATHS.SIGN_UP, {
+          state: {
+            payload,
+            nickname: currentUser?.nickname,
+          },
+        });
+
+        return;
+      }
 
       socialLogin(payload, {
         onSuccess: async (response) => {
@@ -99,7 +128,15 @@ export const useSocialAuth = () => {
         },
       });
     },
-    [setPendingSocialUser, setUser, navigate, queryClient, socialLogin]
+    [
+      setPendingSocialUser,
+      setUser,
+      navigate,
+      currentUser,
+      queryClient,
+      socialLogin,
+      refetchCurrentUser,
+    ]
   );
 
   const handleWebViewMessage = useCallback(
@@ -107,7 +144,12 @@ export const useSocialAuth = () => {
       const { type, data } = JSON.parse(event.data);
 
       if (type === MESSAGE_TYPES.AUTH_SUCCESS) {
-        handleOAuthCallback(data.code, data.provider, data.redirect);
+        handleOAuthCallback(
+          data.code,
+          data.provider,
+          data.redirect,
+          data.connection
+        );
       } else if (type === MESSAGE_TYPES.AUTH_ERROR) {
         // [TODO] 인증 실패 처리?
       }
@@ -131,26 +173,32 @@ export const useSocialAuth = () => {
 
     if (code) {
       if (parsedState?.fromWebView) {
-        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=${parsedState.provider}&redirect=${parsedState.redirect || ''}`;
+        window.location.href = `${URL_SCHEME}?code=${encodeURIComponent(code)}&provider=${parsedState.provider}&redirect=${parsedState.redirect || ''}&connection=${parsedState.connection || ''}`;
       } else {
-        handleOAuthCallback(code, parsedState.provider, parsedState.redirect);
+        handleOAuthCallback(
+          code,
+          parsedState.provider,
+          parsedState.redirect,
+          parsedState.connection
+        );
       }
     }
+  }, [handleOAuthCallback]);
 
-    if (isWebView) {
-      window.addEventListener('message', handleWebViewMessage);
-      document.addEventListener(
+  useEffect(() => {
+    if (!isWebView) {
+      return;
+    }
+
+    window.addEventListener('message', handleWebViewMessage);
+    document.addEventListener('message', handleWebViewMessage as EventListener);
+    return () => {
+      window.removeEventListener('message', handleWebViewMessage);
+      document.removeEventListener(
         'message',
         handleWebViewMessage as EventListener
       );
-      return () => {
-        window.removeEventListener('message', handleWebViewMessage);
-        document.removeEventListener(
-          'message',
-          handleWebViewMessage as EventListener
-        );
-      };
-    }
+    };
   }, [isWebView, handleWebViewMessage, handleOAuthCallback]);
 
   return { signInWithOAuth, isSocialLoginLoading };

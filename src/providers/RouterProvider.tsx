@@ -39,6 +39,9 @@ const QuestCreationErrorPage = lazy(
 );
 const NotFoundPage = lazy(() => import('@/pages/errors/NotFoundPage'));
 const SignUpPage = lazy(() => import('@/pages/sign-up/SignUpPage'));
+const SocialConnectionPage = lazy(
+  () => import('@/pages/social-connection/SocialConnectionPage')
+);
 
 export default function RouterProvider() {
   const router = createBrowserRouter([
@@ -109,6 +112,10 @@ export default function RouterProvider() {
             {
               path: PAGE_PATHS.TUTORIAL,
               Component: TutorialPage,
+            },
+            {
+              path: PAGE_PATHS.SOCIAL_CONNECTION,
+              Component: SocialConnectionPage,
             },
           ],
         },

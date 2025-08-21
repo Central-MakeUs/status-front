@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { usePostSignUp } from '@/api/hooks/user/usePostSignUp';
 import { TextInput } from '@/components/ui/TextInput/TextInput';
@@ -22,11 +22,15 @@ import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
+import { usePatchSocialConnection } from '@/api/hooks/user/usePatchSocialConnection';
 
 const cx = classNames.bind(styles);
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const { state: socialConnectionState } = useLocation();
+  const { mutate: socialConnection } = usePatchSocialConnection();
+  const { mutate: postSignUp } = usePostSignUp();
   const { pendingSocialUser, setPendingSocialUser, setUser } = useAuthStore(
     useShallow((state) => ({
       pendingSocialUser: state.pendingSocialUser,
@@ -35,10 +39,15 @@ const SignUpPage = () => {
     }))
   );
 
-  const postSignUp = usePostSignUp();
+  const socialConnectionPayload = socialConnectionState?.payload;
+  const socialConnectionUserNickname = socialConnectionState?.nickname;
 
-  const [step, setStep] = useState<SignUpStep>(SIGN_UP_STEP.NICKNAME);
-  const [nickname, setNickname] = useState('');
+  const [step, setStep] = useState<SignUpStep>(
+    socialConnectionState
+      ? SIGN_UP_STEP.TERMS_AND_PRIVACY_POLICY
+      : SIGN_UP_STEP.NICKNAME
+  );
+  const [nickname, setNickname] = useState(socialConnectionUserNickname ?? '');
   const [nicknameError, setNicknameError] = useState<string | undefined>(
     undefined
   );
@@ -123,24 +132,36 @@ const SignUpPage = () => {
       return;
     }
 
-    if (!pendingSocialUser) {
+    if (!pendingSocialUser && !socialConnectionState) {
       return;
     }
 
-    const payload: SignUpForm = {
-      nickname,
-      provider: pendingSocialUser,
-    };
+    if (socialConnectionState) {
+      socialConnection(socialConnectionPayload, {
+        onSuccess: (data) => {
+          setUser(data.data as BasicUsers);
+          setPendingSocialUser(null);
+        },
+        onSettled: () => {
+          navigate(PAGE_PATHS.ROOT);
+        },
+      });
+    } else {
+      const payload: SignUpForm = {
+        nickname,
+        provider: pendingSocialUser || socialConnectionState,
+      };
 
-    postSignUp.mutate(payload, {
-      onSuccess: (data) => {
-        setUser(data as BasicUsers);
-        setPendingSocialUser(null);
-      },
-      onSettled: () => {
-        navigate(PAGE_PATHS.TUTORIAL);
-      },
-    });
+      postSignUp(payload, {
+        onSuccess: (data) => {
+          setUser(data as BasicUsers);
+          setPendingSocialUser(null);
+        },
+        onSettled: () => {
+          navigate(PAGE_PATHS.TUTORIAL);
+        },
+      });
+    }
   };
 
   return (
@@ -156,7 +177,9 @@ const SignUpPage = () => {
               {renderWithLineBreaks(title)}
             </strong>
           </div>
-          <p className={cx('sign-up-description')}>{description}</p>
+          {!socialConnectionState && (
+            <p className={cx('sign-up-description')}>{description}</p>
+          )}
           {step === SIGN_UP_STEP.NICKNAME ? (
             <TextInput
               className={cx('nickname-input')}
@@ -205,7 +228,7 @@ const SignUpPage = () => {
                     </Checkbox.Label>
                   </Checkbox>
                   <a
-                    href={TERM_URL.TERMS_OF_SERVICE}
+                    href={TERM_URL.USER_TERMS_OF_SERVICE}
                     rel="noopener noreferrer"
                     target="_blank"
                     className={cx('terms-item-link')}
@@ -230,7 +253,7 @@ const SignUpPage = () => {
                     </Checkbox.Label>
                   </Checkbox>
                   <a
-                    href={TERM_URL.PRIVACY_POLICY}
+                    href={TERM_URL.USER_PRIVACY_POLICY}
                     rel="noopener noreferrer"
                     target="_blank"
                     className={cx('terms-item-link')}

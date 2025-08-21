@@ -1,17 +1,17 @@
 import { Dialog } from '@/components/ui/Dialog/Dialog';
 import { Button } from '@/components/ui/Button/Button';
 
-interface WithdrawalDialogProps {
+interface UserWithdrawalDialogProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
-export const WithdrawalDialog = ({
+export const UserWithdrawalDialog = ({
   isOpen,
   onClose,
   onConfirm,
-}: WithdrawalDialogProps) => {
+}: UserWithdrawalDialogProps) => {
   if (!isOpen) return null;
 
   return (

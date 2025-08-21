@@ -5,6 +5,7 @@ const cx = classNames.bind(styles);
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'tertiary';
+  className?: string;
   children: React.ReactNode;
   disabled?: boolean;
   onClick?: () => void;
@@ -12,6 +13,7 @@ interface ButtonProps {
 
 export const Button = ({
   variant,
+  className,
   children,
   disabled,
   onClick,
@@ -19,7 +21,7 @@ export const Button = ({
   return (
     <button
       type="button"
-      className={cx('common-button', variant)}
+      className={cx('common-button', variant, className)}
       onClick={onClick}
       disabled={disabled}
     >

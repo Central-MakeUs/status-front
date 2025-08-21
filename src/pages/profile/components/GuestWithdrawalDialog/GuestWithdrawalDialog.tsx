@@ -1,26 +1,26 @@
 import { Dialog } from '@/components/ui/Dialog/Dialog';
 import { Button } from '@/components/ui/Button/Button';
 
-interface LogoutDialogProps {
+interface GuestWithdrawalDialogProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
-export const LogoutDialog = ({
+export const GuestWithdrawalDialog = ({
   isOpen,
   onClose,
   onConfirm,
-}: LogoutDialogProps) => {
+}: GuestWithdrawalDialogProps) => {
   if (!isOpen) return null;
 
   return (
     <Dialog>
-      <Dialog.Title>로그아웃할까요?</Dialog.Title>
+      <Dialog.Title>게스트 모드를 종료할까요?</Dialog.Title>
       <Dialog.Description>
-        현재 계정을 로그아웃하여도
+        저장된 모든 데이터가 삭제되며
         <br />
-        동일 계정으로 재로그인이 가능합니다.
+        삭제된 데이터는 복구할 수 없습니다.
       </Dialog.Description>
       <Dialog.Actions>
         <Button variant="primary" onClick={onClose}>

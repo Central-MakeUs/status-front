@@ -1,5 +1,5 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockGoogleUser } from '@/mocks/data/users';
+import { mockGoogleUser, mockGuestUser } from '@/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 import { getCookie } from '@/utils/cookie';
 
@@ -79,6 +79,16 @@ export const usersHandlers = [
         status: '401',
         message: '로그인 후 이용해주세요.',
       });
+    }
+
+    return HttpResponse.json({
+      status: '200',
+      data: mockGuestUser,
+    });
+  }),
+  http.patch(`${API_URL}/users/connect-provider`, () => {
+    if (import.meta.env.MODE !== 'development') {
+      return passthrough();
     }
 
     return HttpResponse.json({

@@ -1,6 +1,7 @@
 import { api } from '@/api/client';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';
+import type { OAuthLoginRequestDTO } from './types/auth';
 
 export const signUp = async (payload: SignUpRequestDTO) => {
   const response = await api.post<ApiResponse<BasicUsersDTO>>(
@@ -26,4 +27,13 @@ export const updateNickname = async (
 export const getCurrentUser = async () => {
   const response = await api.get<ApiResponse<BasicUsersDTO>>('/users/me');
   return response.data;
+};
+
+export const connectSocialAccount = async (payload: OAuthLoginRequestDTO) => {
+  const response = await api.patch<ApiResponse<BasicUsersDTO>>(
+    '/users/connect-provider',
+    payload
+  );
+
+  return response;
 };

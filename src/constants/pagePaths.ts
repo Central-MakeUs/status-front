@@ -14,6 +14,7 @@ export const PAGE_PATHS = {
   HISTORY_DETAIL: '/history/detail/:id',
   PROFILE: '/profile',
   LOGIN: '/login',
+  SOCIAL_CONNECTION: '/social-connection',
   TUTORIAL: '/tutorial',
   SIGN_UP: '/sign-up',
 } as const;

@@ -10,12 +10,14 @@ import { PAGE_PATHS } from '@/constants/pagePaths';
 import { TERM_URL } from '@/constants/term';
 import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';
 import { LogoutDialog } from '@/pages/profile/components/LogoutDialog/LogoutDialog';
-import { WithdrawalDialog } from '@/pages/profile/components/WithdrawalDialog/WithdrawalDialog';
+import { GuestWithdrawalDialog } from '@/pages/profile/components/GuestWithdrawalDialog/GuestWithdrawalDialog';
+import { UserWithdrawalDialog } from '@/pages/profile/components/UserWithdrawalDialog/UserWithdrawalDialog';
 import { MESSAGE_TYPES } from '@/constants/webView';
+import { PROVIDER_TYPE } from '@/constants/auth';
 
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
-// import IconLogout from '@/assets/icons/icon-logout.svg?react';
+import IconLogout from '@/assets/icons/icon-logout.svg?react';
 import IconWarning from '@/assets/icons/icon-warning.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
@@ -38,12 +40,22 @@ export const ProfilePage = () => {
 
   const [isNicknameEditOpen, setIsNicknameEditOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
-  const [isWithdrawalDialogOpen, setIsWithdrawalDialogOpen] = useState(false);
+  const [isUserWithdrawalDialogOpen, setIsUserWithdrawalDialogOpen] =
+    useState(false);
+  const [isGuestWithdrawalDialogOpen, setIsGuestWithdrawalDialogOpen] =
+    useState(false);
 
   const userProfileImage = defaultProfileImage;
   const userTier = user
     ? `${user.tier.tier.toLowerCase()}_${user.tier.level}`
     : '';
+  const isSocialUser = user?.providerType === PROVIDER_TYPE.SOCIAL;
+  const termsOfServiceUrl = isSocialUser
+    ? TERM_URL.USER_TERMS_OF_SERVICE
+    : TERM_URL.GUEST_TERMS_OF_SERVICE;
+  const privacyPolicyUrl = isSocialUser
+    ? TERM_URL.USER_PRIVACY_POLICY
+    : TERM_URL.GUEST_PRIVACY_POLICY;
 
   const handleEditNickname = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -123,6 +135,34 @@ export const ProfilePage = () => {
         </div>
         <ul className={cx('action-list')}>
           <li className={cx('action-item')}>
+            <a
+              href={termsOfServiceUrl}
+              className={cx('action-link')}
+              onClick={handleClickLink}
+            >
+              <span className={cx('action-name')}>서비스 이용 약관</span>
+              <IconChevronRight
+                className={cx('icon-chevron')}
+                aria-hidden={true}
+              />
+            </a>
+          </li>
+          <li className={cx('action-item')}>
+            <a
+              href={privacyPolicyUrl}
+              className={cx('action-link')}
+              onClick={handleClickLink}
+            >
+              <span className={cx('action-name')}>
+                개인정보 수집 및 이용 약관
+              </span>
+              <IconChevronRight
+                className={cx('icon-chevron')}
+                aria-hidden={true}
+              />
+            </a>
+          </li>
+          <li className={cx('action-item')}>
             <div className={cx('action-item-inner')}>
               <span className={cx('action-name')}>앱 버전</span>
               <span className={cx('version')}>1.0.0</span>
@@ -141,61 +181,41 @@ export const ProfilePage = () => {
               />
             </a>
           </li>
-          <li className={cx('action-item')}>
-            <a
-              href={TERM_URL.TERMS_OF_SERVICE}
-              className={cx('action-link')}
-              onClick={handleClickLink}
-            >
-              <span className={cx('action-name')}>서비스 이용 약관</span>
-              <IconChevronRight
-                className={cx('icon-chevron')}
-                aria-hidden={true}
-              />
-            </a>
-          </li>
-          <li className={cx('action-item')}>
-            <a
-              href={TERM_URL.PRIVACY_POLICY}
-              className={cx('action-link')}
-              onClick={handleClickLink}
-            >
-              <span className={cx('action-name')}>
-                개인정보 수집 및 이용 약관
-              </span>
-              <IconChevronRight
-                className={cx('icon-chevron')}
-                aria-hidden={true}
-              />
-            </a>
-          </li>
+          {isSocialUser ? (
+            <li className={cx('action-item')}>
+              <button
+                type="button"
+                className={cx('button-action', 'logout')}
+                onClick={() => setIsLogoutDialogOpen(true)}
+              >
+                <IconLogout className={cx('icon-action')} aria-hidden="true" />
+                로그아웃
+              </button>
+            </li>
+          ) : (
+            <li className={cx('action-item')}>
+              <button
+                type="button"
+                className={cx('button-action', 'logout')}
+                onClick={() => navigate(PAGE_PATHS.SOCIAL_CONNECTION)}
+              >
+                계정 연동
+              </button>
+            </li>
+          )}
           <li className={cx('action-item')}>
             <button
               type="button"
               className={cx('button-action', 'withdrawal')}
-              onClick={() => setIsLogoutDialogOpen(true)}
+              onClick={() =>
+                isSocialUser
+                  ? setIsUserWithdrawalDialogOpen(true)
+                  : setIsGuestWithdrawalDialogOpen(true)
+              }
             >
               <IconWarning className={cx('icon-action')} aria-hidden="true" />
-              게스트 모드 종료
+              {isSocialUser ? '회원탈퇴' : '게스트 모드 종료'}
             </button>
-            {/* <button
-              type="button"
-              className={cx('button-action', 'logout')}
-              onClick={() => setIsLogoutDialogOpen(true)}
-            >
-              <IconLogout className={cx('icon-action')} aria-hidden="true" />
-              로그아웃
-            </button>
-          </li>
-          <li className={cx('action-item')}>
-            <button
-              type="button"
-              className={cx('button-action', 'withdrawal')}
-              onClick={() => setIsWithdrawalDialogOpen(true)}
-            >
-              <IconWarning className={cx('icon-action')} aria-hidden="true" />
-              회원 탈퇴
-            </button> */}
           </li>
         </ul>
       </main>
@@ -208,9 +228,14 @@ export const ProfilePage = () => {
         onClose={() => setIsLogoutDialogOpen(false)}
         onConfirm={handleLogout}
       />
-      <WithdrawalDialog
-        isOpen={isWithdrawalDialogOpen}
-        onClose={() => setIsWithdrawalDialogOpen(false)}
+      <GuestWithdrawalDialog
+        isOpen={isGuestWithdrawalDialogOpen}
+        onClose={() => setIsGuestWithdrawalDialogOpen(false)}
+        onConfirm={handleWithdrawal}
+      />
+      <UserWithdrawalDialog
+        isOpen={isUserWithdrawalDialogOpen}
+        onClose={() => setIsUserWithdrawalDialogOpen(false)}
         onConfirm={handleWithdrawal}
       />
     </>
