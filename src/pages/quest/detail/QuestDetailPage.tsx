@@ -258,7 +258,7 @@ const QuestDetailPage = () => {
       />
       <MainQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
-        attributes={selectedSubQuest?.subQuestInfo.attributes ?? []}
+        attributes={quest?.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
       />
       <QuestGiveUpDialog
