@@ -2,13 +2,18 @@ import { create } from 'zustand';
 
 import type { BasicUsers } from '@/types/users';
 import type { OAuthProvider } from '@/types/auth';
-import { devtools } from 'zustand/middleware';
+import { devtools, persist } from 'zustand/middleware';
 
 interface AuthState {
   pendingSocialUser: OAuthProvider | null;
   user: BasicUsers | null;
   setPendingSocialUser: (pendingSocialUser: OAuthProvider | null) => void;
   setUser: (user: BasicUsers | null) => void;
+}
+
+interface SocialConnectionState {
+  tempSocialConnection: boolean | null;
+  setTempSocialConnection: (tempSocialConnection: boolean | null) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -33,5 +38,24 @@ export const useAuthStore = create<AuthState>()(
       name: 'authStore',
       enabled: import.meta.env.DEV,
     }
+  )
+);
+
+/**
+ * [TODO] 앱 재배포 후 제거
+ */
+export const useSocialConnectionStore = create<SocialConnectionState>()(
+  devtools(
+    persist(
+      (set) => ({
+        tempSocialConnection: null,
+        setTempSocialConnection: (tempSocialConnection: boolean | null) => {
+          set(() => ({ tempSocialConnection }));
+        },
+      }),
+      {
+        name: 'social-connection',
+      }
+    )
   )
 );

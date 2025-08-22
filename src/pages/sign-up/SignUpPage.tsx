@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore, useSocialConnectionStore } from '@/stores/authStore';
 import { usePostSignUp } from '@/api/hooks/user/usePostSignUp';
 import { TextInput } from '@/components/ui/TextInput/TextInput';
 import { Button } from '@/components/ui/Button/Button';
@@ -36,6 +36,12 @@ const SignUpPage = () => {
       pendingSocialUser: state.pendingSocialUser,
       setPendingSocialUser: state.setPendingSocialUser,
       setUser: state.setUser,
+    }))
+  );
+
+  const { setTempSocialConnection } = useSocialConnectionStore(
+    useShallow((state) => ({
+      setTempSocialConnection: state.setTempSocialConnection,
     }))
   );
 
@@ -141,6 +147,7 @@ const SignUpPage = () => {
         onSuccess: (data) => {
           setUser(data.data as BasicUsers);
           setPendingSocialUser(null);
+          setTempSocialConnection(false);
         },
         onSettled: () => {
           navigate(PAGE_PATHS.ROOT);

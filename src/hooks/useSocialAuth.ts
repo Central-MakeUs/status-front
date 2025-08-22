@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AUTH_CONFIGS, PROVIDER_TYPE, URL_SCHEME } from '@/constants/auth';
 import { MESSAGE_TYPES } from '@/constants/webView';
 import { useQueryClient } from '@tanstack/react-query';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore, useSocialConnectionStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { USER_TYPE } from '@/constants/auth';
@@ -48,6 +48,13 @@ export const useSocialAuth = () => {
       setPendingSocialUser: state.setPendingSocialUser,
     }))
   );
+  const { tempSocialConnection, setTempSocialConnection } =
+    useSocialConnectionStore(
+      useShallow((state) => ({
+        tempSocialConnection: state.tempSocialConnection,
+        setTempSocialConnection: state.setTempSocialConnection,
+      }))
+    );
 
   const isWebView = window.ReactNativeWebView !== undefined;
 
@@ -60,6 +67,9 @@ export const useSocialAuth = () => {
         redirect: redirect,
         connection: socialConnection,
       });
+
+      // [TODO] 앱 재배포 후 제거
+      setTempSocialConnection(socialConnection);
 
       const url = createOAuthURL(provider, state);
 
@@ -74,7 +84,7 @@ export const useSocialAuth = () => {
         window.location.href = url;
       }
     },
-    [isWebView, redirect]
+    [isWebView, redirect, setTempSocialConnection]
   );
 
   const handleOAuthCallback = useCallback(
@@ -89,7 +99,7 @@ export const useSocialAuth = () => {
         code,
       };
 
-      if (connection) {
+      if (connection || tempSocialConnection) {
         await refetchCurrentUser();
 
         if (currentUser?.providerType !== PROVIDER_TYPE.GUEST) {
@@ -136,6 +146,7 @@ export const useSocialAuth = () => {
       queryClient,
       socialLogin,
       refetchCurrentUser,
+      tempSocialConnection,
     ]
   );
 

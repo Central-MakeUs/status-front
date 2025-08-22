@@ -12,8 +12,9 @@ export const usePatchSocialConnection = () => {
       }
       return true;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ['users', 'me'] });
+      await queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
     },
   });
 };
