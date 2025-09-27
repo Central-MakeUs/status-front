@@ -14,7 +14,7 @@
         height: 16px;
         border-radius: 50%;
         background-color: var(--color-white);
-        box-shadow: 0px 2px 4px 0px rgba(39, 39, 39, 0.1);
+        box-shadow: 0 2px 4px 0 rgb(39 39 39 / 10%);
         transition: transform 0.2s ease-in-out;
         content: '';
     }

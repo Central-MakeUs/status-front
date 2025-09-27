@@ -22,7 +22,7 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--color-gray-200);
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
     cursor: pointer;
 
     &[aria-checked='true'] {
@@ -39,15 +39,15 @@
             content: '';
         }
 
-        &.EASY::before {
+        &.easy::before {
             background-color: var(--color-state-success);
         }
 
-        &.NORMAL::before {
+        &.normal::before {
             background-color: var(--color-sub-yellow);
         }
 
-        &.HARD::before {
+        &.hard::before {
             background-color: var(--color-main-orange-default);
         }
     }

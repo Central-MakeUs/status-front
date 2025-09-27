@@ -8,7 +8,7 @@ section, article, aside, nav, main, header, footer, figure {
 }
 
 body, input, textarea, select, button, table {
-    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
     line-height: 1.4;
 }
 
@@ -18,7 +18,7 @@ body {
 }
 
 body {
-    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 form, fieldset, button, img {
@@ -31,7 +31,7 @@ ul, ol {
 }
 
 a, button, input, select, label {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
 }
 
 a, a:hover, a:active, a:focus {

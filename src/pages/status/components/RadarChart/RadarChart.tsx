@@ -183,8 +183,8 @@ export const RadarChart = ({
 
   return (
     <>
-      <div className={cx('radarChartWrapper')}>
-        <div className={cx('toggleTabs')}>
+      <div className={cx('radar-chart-wrapper')}>
+        <div className={cx('toggle-tabs')}>
           <button
             className={cx('tab', { active: isMental })}
             onClick={() => setView('정신')}
@@ -200,7 +200,7 @@ export const RadarChart = ({
             기술
           </button>
         </div>
-        <div className={cx('chartArea')}>
+        <div className={cx('chart-area')}>
           <Radar
             key={isMental ? 'mental' : 'skill'}
             data={data}

@@ -1,12 +1,10 @@
 @mixin ellipsis($lines: 1) {
-    @if ($lines ==1) {
+    @if $lines == 1 {
         max-width: 100%;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-    }
-
-    @else {
+    } @else {
         display: block;
         display: -webkit-box;
         text-overflow: ellipsis;
@@ -21,30 +19,12 @@
     width: 1px;
     height: 1px;
     margin: -1px;
-    clip: rect(0, 0, 0, 0);
+    clip-path: rect(0 0 0 0);
     overflow: hidden;
 }
 
 @mixin placeholder-color($placeholder-color: var(--color-gray-400), $font-weight: 500) {
-    &::-webkit-input-placeholder {
-        font-weight: $font-weight;
-        color: $placeholder-color;
-        opacity: 1;
-    }
-
-    &::-moz-placeholder {
-        font-weight: $font-weight;
-        color: $placeholder-color;
-        opacity: 1;
-    }
-
-    &:-ms-input-placeholder {
-        font-weight: $font-weight;
-        color: $placeholder-color;
-        opacity: 1;
-    }
-
-    &:-moz-placeholder {
+    &::placeholder {
         font-weight: $font-weight;
         color: $placeholder-color;
         opacity: 1;
@@ -53,14 +33,10 @@
 
 @mixin remove-scroll($direction) {
     @if $direction == x {
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-    @else if $direction == y {
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-    @else {
+        overflow: auto hidden;
+    } @else if $direction == y {
+        overflow: hidden auto;
+    } @else {
         overflow: auto;
     }
 

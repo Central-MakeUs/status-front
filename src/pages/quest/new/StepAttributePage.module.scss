@@ -32,7 +32,7 @@
     border: 1px solid var(--color-gray-700);
     border-radius: 10px;
     background-color: var(--color-gray-800);
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
     cursor: pointer;
 
     &[aria-checked='true'] {

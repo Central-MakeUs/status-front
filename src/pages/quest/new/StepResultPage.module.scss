@@ -15,7 +15,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
-  
   margin-bottom: 8px;
 }
 
@@ -36,7 +35,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   position: relative;
   width: 100%; 
   margin: 12px auto;
@@ -63,7 +61,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
-
   color: var(--color-white);
   margin-bottom: 6px;
   display: block;
@@ -94,7 +91,6 @@
   border-radius: 146px;
   color: var(--color-gray-100);
   gap: 4px;
-
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -110,7 +106,6 @@
   width:100%;
   margin: 0 auto;
   margin-top: 16px;
-
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -120,11 +115,9 @@
 
 .sub-quest-box {
   background-color: var(--color-gray-800);
-  padding: 14px 16px;
   border-radius: 10px;
   border: 1px solid var(--color-gray-700);
   width: 100%;
-
   padding: 14px 16px;
   box-sizing: border-box;
 }
@@ -133,6 +126,7 @@
   &::after {
     content: ',';
   }
+
   &:last-of-type::after {
     content: '';
   }

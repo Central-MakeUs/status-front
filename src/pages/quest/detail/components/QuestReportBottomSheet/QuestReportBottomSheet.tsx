@@ -57,7 +57,10 @@ export const QuestReportBottomSheet = ({
               key={difficulty.value}
               role="radio"
               aria-checked={selectedDifficulty === difficulty.value}
-              className={cx('quest-report-radio', difficulty.value)}
+              className={cx(
+                'quest-report-radio',
+                difficulty.value.toLowerCase()
+              )}
               onClick={() => onChangeDifficulty(difficulty.value)}
             >
               {difficulty.label}

@@ -10,8 +10,9 @@
   justify-content: center;
 }
 
+/* stylelint-disable custom-property-pattern, selector-class-pattern */
 :global(.rdp-root) {
-  --rdp-accent-color: var(--color-main-orange-default) !important; 
+  --rdp-accent-color: var(--color-main-orange-default) !important;
   --rdp-range_middle-background-color: var(--color-gray-600) !important;
   --rdp-disabled-background-color: var(--color-gray-600) !important;
   --rdp-nav-height: 65px !important;
@@ -80,3 +81,4 @@
   background-color: var(--color-main-orange-default) !important;
   color: var(--color-white) !important;
 }
+/* stylelint-enable custom-property-pattern, selector-class-pattern */
