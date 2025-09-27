@@ -1,6 +1,7 @@
 /** @type {import("stylelint").Config} */
 export default {
   "extends": ["stylelint-config-standard-scss"],
+  "plugins": ["stylelint-prettier"],
   "rules": {
     "selector-pseudo-class-no-unknown": [
       true,
@@ -8,6 +9,13 @@ export default {
         "ignorePseudoClasses": ["global"]
       }
     ],
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "prettier/prettier": [
+      true,
+      {
+        "printWidth": 120,
+        "tabWidth": 4
+      }
+    ]
   }
 };
