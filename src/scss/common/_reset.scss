@@ -1,14 +1,60 @@
-html, body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, figure {
+html,
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+table,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+select,
+figure {
     margin: 0;
     padding: 0;
 }
 
-section, article, aside, nav, main, header, footer, figure {
+section,
+article,
+aside,
+nav,
+main,
+header,
+footer,
+figure {
     display: block;
 }
 
-body, input, textarea, select, button, table {
-    font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', sans-serif;
+body,
+input,
+textarea,
+select,
+button,
+table {
+    font-family:
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Apple SD Gothic Neo',
+        'Malgun Gothic',
+        '맑은 고딕',
+        Dotum,
+        '돋움',
+        sans-serif;
     line-height: 1.4;
 }
 
@@ -21,20 +67,31 @@ body {
     text-size-adjust: none;
 }
 
-form, fieldset, button, img {
+form,
+fieldset,
+button,
+img {
     border: 0;
     vertical-align: top;
 }
 
-ul, ol {
+ul,
+ol {
     list-style: none;
 }
 
-a, button, input, select, label {
+a,
+button,
+input,
+select,
+label {
     -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
 }
 
-a, a:hover, a:active, a:focus {
+a,
+a:hover,
+a:active,
+a:focus {
     text-decoration: none;
 }
 
@@ -42,7 +99,8 @@ label {
     cursor: pointer;
 }
 
-input::-ms-clear, input::-ms-reveal {
+input::-ms-clear,
+input::-ms-reveal {
     display: none;
 }
 

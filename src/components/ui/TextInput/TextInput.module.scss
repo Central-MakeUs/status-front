@@ -1,7 +1,7 @@
 @use '@/scss/utils/mixins';
 
 .input-wrapper {
-    &:has(.input-field[aria-disabled="true"]) {
+    &:has(.input-field[aria-disabled='true']) {
         .input-label {
             cursor: default;
             pointer-events: none;
@@ -40,11 +40,11 @@
 
     @include mixins.placeholder-color;
 
-    &[aria-invalid="true"] {
+    &[aria-invalid='true'] {
         border-color: var(--color-state-error);
     }
 
-    &[aria-disabled="true"] {
+    &[aria-disabled='true'] {
         color: var(--color-gray-500);
         cursor: default;
         pointer-events: none;

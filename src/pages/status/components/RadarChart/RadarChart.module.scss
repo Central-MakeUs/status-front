@@ -1,47 +1,47 @@
 .radar-chart-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0 32px;
 }
 
 .toggle-tabs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0;
-  background-color: var(--color-gray-700);
-  border-radius: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    background-color: var(--color-gray-700);
+    border-radius: 58px;
 }
 
 .tab {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 140%;
-  flex: 1;
-  padding: 8px 12px;
-  border-radius: 58px;
-  background-color: transparent;
-  color: var(--color-gray-500);
-  border: none;
-  cursor: pointer;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 58px;
+    background-color: transparent;
+    color: var(--color-gray-500);
+    border: none;
+    cursor: pointer;
 
-  &.active {
-    background: var(--color-gray-500);
-    border: 1px solid var(--color-gray-400);
-    box-shadow: 0 0 8px 0 rgb(255 255 255 / 15%) inset;
-    color: var(--color-main-orange-default);
+    &.active {
+        background: var(--color-gray-500);
+        border: 1px solid var(--color-gray-400);
+        box-shadow: 0 0 8px 0 rgb(255 255 255 / 15%) inset;
+        color: var(--color-main-orange-default);
 
-    &[data-view='기술'] {
-      color: var(--color-sub-light-blue);
+        &[data-view='기술'] {
+            color: var(--color-sub-light-blue);
+        }
     }
-  }
 }
 
 .chart-area {
-  height: 420px; 
-  width: 100%;
-  text-align: center;
+    height: 420px;
+    width: 100%;
+    text-align: center;
 }

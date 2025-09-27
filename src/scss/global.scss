@@ -1,7 +1,7 @@
 @charset "utf-8";
-@use "common/pretendard";
-@use "common/reset";
-@use "utils/mixins";
+@use 'common/pretendard';
+@use 'common/reset';
+@use 'utils/mixins';
 
 :root {
     --color-white: #fff;
@@ -22,7 +22,7 @@
     --color-gra-bg-blue: linear-gradient(180deg, #fff 0%, #91caff 39.9%, #704a79 82.69%, #161416 100%);
     --color-gra-bg-orange: linear-gradient(180deg, #fff 0%, #ffe100 29.33%, #ff4a33 74.04%, #ff2c7a 100%);
     --color-gra-line-yellow: linear-gradient(134.7deg, #ff2c7a -7.51%, #ff4a33 23.52%, #ffe100 65.51%, #fff 105%);
-    --color-gra-line-blue: linear-gradient(135deg, #D8F5FF -7.51%, #0084FF 55.78%, #7500E9 105%);
+    --color-gra-line-blue: linear-gradient(135deg, #d8f5ff -7.51%, #0084ff 55.78%, #7500e9 105%);
     --color-gra-line-purple: linear-gradient(134.7deg, #7500e9 -7.51%, #91caff 105%);
     --color-state-error: #ff5e5e;
     --color-state-success: #34c759;
@@ -50,10 +50,9 @@ body {
 .main {
     flex: 1 1 auto;
     min-height: 0;
-    overflow: auto
+    overflow: auto;
 }
 
 .sr-only {
     @include mixins.sr-only;
 }
-

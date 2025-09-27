@@ -1,63 +1,63 @@
 .tier-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
 }
 
 .tier-item {
-  display: flex;
-  height: 40px;
-  padding: 4px 20px;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-  border-radius: 5px;
-  background-color: var(--color-gray-600);
-  color: var(--color-gray-200);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  overflow: hidden;
-  position: relative;
-
-  .tier-icon {
-    width: 45.9px;
-    height: 51px;
+    display: flex;
+    height: 40px;
+    padding: 4px 20px;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+    color: var(--color-gray-200);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    overflow: hidden;
     position: relative;
-    bottom: -12px; 
-  }
+
+    .tier-icon {
+        width: 45.9px;
+        height: 51px;
+        position: relative;
+        bottom: -12px;
+    }
 }
 
 .tier-item.active {
-  color: var(--color-white);
-  background: linear-gradient(90deg, #212121 0%, #181818 100%);
-  height: 64px;
-  position: relative;
-  z-index: 0;
+    color: var(--color-white);
+    background: linear-gradient(90deg, #212121 0%, #181818 100%);
+    height: 64px;
+    position: relative;
+    z-index: 0;
 
-  &.active::before {
-    content: '';
-    position: absolute;
-    inset: 0; 
-    padding: 2px; 
-    border-radius: 8px;
-    background: var(--color-gra-line-yellow);
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite: xor;
-    mask-composite: exclude;
-    z-index: -1;
-  }
+    &.active::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: 8px;
+        background: var(--color-gra-line-yellow);
+        mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: xor;
+        mask-composite: exclude;
+        z-index: -1;
+    }
 
-  .tier-icon {
-    bottom: 0; 
-  }
+    .tier-icon {
+        bottom: 0;
+    }
 }
 
 .tier-item .tier-name {
-  font-size: 16px;
-  text-transform: capitalize;
+    font-size: 16px;
+    text-transform: capitalize;
 }
