@@ -39,9 +39,7 @@ const StatusPage = () => {
           tier={user.tier.tier}
           level={user.tier.level}
           profileImageUrl={profileImageUrl}
-          onClick={(event: React.MouseEvent) => {
-            event.stopPropagation();
-
+          onClick={() => {
             setIsLevelBottomSheetOpen(true);
           }}
         />
@@ -51,9 +49,7 @@ const StatusPage = () => {
           <RadarChart
             attributeDatas={attributeDatas}
             profileImage={profileImageUrl}
-            onClick={(event: React.MouseEvent, key: number) => {
-              event.stopPropagation();
-
+            onClick={(key: number) => {
               setSelectedStatusKey(key);
               setIsStatusBottomSheetOpen(true);
             }}
@@ -62,7 +58,7 @@ const StatusPage = () => {
         {quests && (
           <QuestList
             quests={quests}
-            onClick={(_, quest: UserSubQuest) => {
+            onClick={(quest: UserSubQuest) => {
               navigate(
                 `${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.mainQuestId?.toString() || '')}`,
                 { state: { quest: quest } }

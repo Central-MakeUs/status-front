@@ -18,7 +18,7 @@ export const QuestItem = ({
   essential,
   onClick = () => {},
 }: UserSubQuest & {
-  onClick?: (event: React.MouseEvent, id: string) => void;
+  onClick?: (id: string) => void;
 }) => {
   return (
     <div className={cx('quest-item')}>
@@ -46,10 +46,7 @@ export const QuestItem = ({
         </div>
       </div>
       <div className={cx('desc')}>{desc}</div>
-      <button
-        className={cx('confirm')}
-        onClick={(event) => onClick(event, id.toString())}
-      >
+      <button className={cx('confirm')} onClick={() => onClick(id.toString())}>
         인증하기
       </button>
     </div>

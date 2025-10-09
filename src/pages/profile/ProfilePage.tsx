@@ -57,9 +57,7 @@ export const ProfilePage = () => {
     ? TERM_URL.USER_PRIVACY_POLICY
     : TERM_URL.GUEST_PRIVACY_POLICY;
 
-  const handleEditNickname = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
-
+  const handleEditNickname = () => {
     setIsNicknameEditOpen(true);
   };
 

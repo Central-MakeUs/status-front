@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 interface StatGridProps {
   data: Attribute[];
-  onClick: (event: React.MouseEvent, key: number) => void;
+  onClick: (key: number) => void;
 }
 
 export const StatGrid = ({ data, onClick }: StatGridProps) => {
@@ -26,7 +26,7 @@ export const StatGrid = ({ data, onClick }: StatGridProps) => {
           return (
             <div
               className={cx('card')}
-              onClick={(event) => onClick(event, attr.attributeId)}
+              onClick={() => onClick(attr.attributeId)}
               key={attr.attributeId}
             >
               <div className={cx('left')}>{Icon}</div>

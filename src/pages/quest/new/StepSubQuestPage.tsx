@@ -97,12 +97,7 @@ const StepSubQuestPage = () => {
     toggleSubQuestSelection(subQuest.id);
   };
 
-  const handleClickEditButton = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    subQuest: SubQuest
-  ) => {
-    event.stopPropagation();
-
+  const handleClickEditButton = (subQuest: SubQuest) => {
     setIsBottomSheetOpen(true);
     setEditingSubQuest(subQuest);
   };

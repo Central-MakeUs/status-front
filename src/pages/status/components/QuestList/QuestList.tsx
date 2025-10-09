@@ -13,7 +13,7 @@ export const QuestList = ({
 }: {
   quests: UserSubQuest[];
   className?: string;
-  onClick: (event: React.MouseEvent, quest: UserSubQuest) => void;
+  onClick: (quest: UserSubQuest) => void;
 }) => {
   if (quests.length === 0) return null;
 
@@ -26,7 +26,7 @@ export const QuestList = ({
           key={quest.subQuestInfo.id}
           repeatCnt={quest.repeatCnt}
           essential={quest.essential}
-          onClick={(event) => onClick(event, quest)}
+          onClick={() => onClick(quest)}
         />
       ))}
     </div>

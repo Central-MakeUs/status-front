@@ -18,7 +18,6 @@ const CompletedHistory = ({
 }: {
   completedHistory: UserCompletedHistory[];
   onClick: (
-    event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string,

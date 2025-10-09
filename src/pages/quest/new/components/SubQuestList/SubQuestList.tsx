@@ -16,10 +16,7 @@ interface SubQuestListProps {
   selectedSubQuestIds: number[];
   isPending: boolean;
   handleClickSubQuest: (subQuest: SubQuest) => void;
-  handleClickEditButton: (
-    event: React.MouseEvent<HTMLButtonElement>,
-    subQuest: SubQuest
-  ) => void;
+  handleClickEditButton: (subQuest: SubQuest) => void;
 }
 
 export const SubQuestList = ({
@@ -81,7 +78,7 @@ export const SubQuestList = ({
                 <button
                   type="button"
                   className={cx('button-edit')}
-                  onClick={(event) => handleClickEditButton(event, subQuest)}
+                  onClick={() => handleClickEditButton(subQuest)}
                 >
                   <IconEdit className={cx('edit-icon')} aria-hidden="true" />
                   <span className="sr-only">수정</span>

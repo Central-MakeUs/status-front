@@ -41,7 +41,7 @@ const cx = classNames.bind(styles);
 interface RadarChartProps {
   attributeDatas: Attribute[];
   profileImage: string;
-  onClick: (event: React.MouseEvent, key: number) => void;
+  onClick: (key: number) => void;
 }
 
 export const RadarChart = ({

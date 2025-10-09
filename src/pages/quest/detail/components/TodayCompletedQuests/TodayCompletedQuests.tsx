@@ -15,7 +15,6 @@ const TodayCompletedQuests = ({
 }: {
   quests: CompletedQuest[];
   onClick: (
-    event: React.MouseEvent,
     quest: UserSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string,

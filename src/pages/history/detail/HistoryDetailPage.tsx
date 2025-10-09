@@ -56,8 +56,7 @@ const QuestDetailPage = () => {
                 <li
                   key={attribute.id}
                   className={cx('reward-item')}
-                  onClick={(e) => {
-                    e.stopPropagation();
+                  onClick={() => {
                     setIsStatusBottomSheetOpen(true);
                     setSelectedStatusKey(attribute.id);
                   }}
