@@ -13,7 +13,7 @@ export interface RadioProps {
   label?: string;
   checked?: boolean;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const Radio = ({ label, checked, disabled, onClick }: RadioProps) => {

@@ -12,7 +12,7 @@ export interface CheckboxProps {
   checked?: boolean;
   disabled?: boolean;
   required?: boolean;
-  onClick?: (event?: React.MouseEvent<HTMLSpanElement>) => void;
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   children?: React.ReactNode;
 }
