@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 import { themes } from 'storybook/theming';
-import '@/scss/global.scss';
+import '@/app/styles/global.scss';
 
 const preview: Preview = {
   parameters: {
