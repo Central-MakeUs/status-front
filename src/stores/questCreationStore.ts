@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { getTodayString } from '@/utils/date';
+import { getTodayString } from '@/shared/lib/date';
 
 import type { Attribute } from '@/types/attribute';
 import type { MainQuest, Theme } from '@/types/quest';

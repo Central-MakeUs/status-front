@@ -7,7 +7,7 @@ import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
-import { getTodayString, getWeeksDifference } from '@/utils/date';
+import { getTodayString, getWeeksDifference } from '@/shared/lib/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
 import { usePostCreationQuest } from '@/api/hooks/quest/usePostCreationQuest';
 

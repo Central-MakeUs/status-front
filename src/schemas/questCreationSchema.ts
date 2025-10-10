@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { isNotPastDate, isValidDateString } from '@/utils/date';
+import { isNotPastDate, isValidDateString } from '@/shared/lib/date';
 import { subQuestEditingSchema } from '@/schemas/subQuestEditingScheme';
 
 export const questCreationSchema = z.object({

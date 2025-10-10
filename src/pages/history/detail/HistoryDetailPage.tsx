@@ -3,7 +3,7 @@ import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HistoryDetailPage.module.scss';
 import { Header } from '@/shared/ui/Header/Header';
-import { getWeeksDifference } from '@/utils/date';
+import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';

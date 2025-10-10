@@ -10,7 +10,7 @@ import { nicknameSchema } from '@/schemas/authScheme';
 import { NICKNAME_MAX_LENGTH, SIGN_UP_STEP } from '@/constants/auth';
 import { SIGN_UP_STEP_INFO } from '@/constants/auth';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import { renderWithLineBreaks } from '@/utils/format';
+import { renderWithLineBreaks } from '@/shared/lib/format';
 import { TERM_URL } from '@/constants/term';
 import { MESSAGE_TYPES } from '@/constants/webView';
 

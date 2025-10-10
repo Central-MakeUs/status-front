@@ -1,5 +1,5 @@
 import { useId } from 'react';
-import { getWeeksDifference } from '@/utils/date';
+import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { Link } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';

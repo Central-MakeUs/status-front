@@ -16,7 +16,7 @@ import type {
 import classNames from 'classnames/bind';
 import styles from './QuestDetailPage.module.scss';
 import { Header } from '@/shared/ui/Header/Header';
-import { getWeeksDifference } from '@/utils/date';
+import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
 import { useGetUserSubQuests } from '@/api/hooks/quest/useGetUserSubQuests';

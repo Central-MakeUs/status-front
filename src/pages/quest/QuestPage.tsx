@@ -3,7 +3,7 @@ import { useGetUsersMainQuests } from '@/api/hooks/quest';
 import { Header } from '@/shared/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import { getWeeksDifference } from '@/utils/date';
+import { getWeeksDifference } from '@/shared/lib/date';
 import { MAX_USERS_MAIN_QUEST_COUNT } from '@/constants/quest';
 
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';

@@ -17,7 +17,7 @@ import type {
 } from '@/api/types/quest';
 import { mockThemes } from '@/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
-import { getWeeksDifference } from '@/utils/date';
+import { getWeeksDifference } from '@/shared/lib/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 
