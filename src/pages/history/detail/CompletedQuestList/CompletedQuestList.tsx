@@ -33,7 +33,6 @@ const CompletedQuestList = ({ quest }: { quest: CompletedQuest }) => {
             {quest.userSubQuest.subQuestInfo.desc}
           </div>
         </div>
-        <button className={cx('edit-btn')}></button>
       </div>
       <div className={cx('card-content')}>
         <span
