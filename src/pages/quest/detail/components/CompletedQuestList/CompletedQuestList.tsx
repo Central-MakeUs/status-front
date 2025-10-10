@@ -65,7 +65,6 @@ const CompletedQuestList = ({
       <div className={cx('card-content')}>
         <span
           key={difficulty.value}
-          role="radio"
           className={cx('quest-report-radio', difficulty.value.toLowerCase())}
         >
           {difficulty.label}

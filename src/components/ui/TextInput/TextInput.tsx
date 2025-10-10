@@ -58,7 +58,7 @@ export const TextInput = ({
           onChange={onChange}
           aria-describedby={errorMessage ? errorMessageId : undefined}
           aria-invalid={!!errorMessage}
-          aria-disabled={disabled}
+          disabled={disabled}
         />
       </div>
       {errorMessage && (

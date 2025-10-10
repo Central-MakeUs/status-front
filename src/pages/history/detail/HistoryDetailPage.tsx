@@ -53,16 +53,20 @@ const QuestDetailPage = () => {
             <strong className={cx('main-quest-title')}>{quest.title}</strong>
             <ul className={cx('reward-list')}>
               {quest.attributes?.map((attribute: AttributeDTO) => (
-                <li
-                  key={attribute.id}
-                  className={cx('reward-item')}
-                  onClick={() => {
-                    setIsStatusBottomSheetOpen(true);
-                    setSelectedStatusKey(attribute.id);
-                  }}
-                >
-                  <AttributeIcon id={attribute.id} />
-                  <span className={cx('reward-text')}>+{attribute.exp}xp</span>
+                <li key={attribute.id} className={cx('reward-item')}>
+                  <button
+                    type="button"
+                    className={cx('button-reward')}
+                    onClick={() => {
+                      setIsStatusBottomSheetOpen(true);
+                      setSelectedStatusKey(attribute.id);
+                    }}
+                  >
+                    <AttributeIcon id={attribute.id} />
+                    <span className={cx('reward-text')}>
+                      +{attribute.exp}xp
+                    </span>
+                  </button>
                 </li>
               ))}
             </ul>

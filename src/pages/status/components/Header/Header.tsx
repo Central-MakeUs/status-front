@@ -27,12 +27,16 @@ export const Header = ({
           <img src={profileImageUrl} alt="" className={cx('avatar')} />
           <div>{nickname}</div>
         </div>
-        <div className={cx('tier-info')} onClick={(event) => onClick(event)}>
+        <button
+          type="button"
+          className={cx('tier-info')}
+          onClick={(event) => onClick(event)}
+        >
           <TierIcon id={tier} className={cx('tier-icon')} />
           <div className={cx('tier-text')}>
             {tier.toLowerCase()} {level}
           </div>
-        </div>
+        </button>
       </div>
     </header>
   );

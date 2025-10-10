@@ -41,7 +41,8 @@ const CompletedHistory = ({
             {completedHistory &&
               completedHistory.map(({ date, logs }) => (
                 <div key={date}>
-                  <div
+                  <button
+                    type="button"
                     className={cx('date-row', { open: openDate === date })}
                     onClick={() => handleToggle(date)}
                   >
@@ -59,7 +60,7 @@ const CompletedHistory = ({
                         />
                       )}
                     </span>
-                  </div>
+                  </button>
                   {openDate === date &&
                     logs &&
                     logs.map((quest) => (

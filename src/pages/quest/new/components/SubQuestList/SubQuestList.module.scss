@@ -12,11 +12,14 @@
 }
 
 .checkbox {
+    box-sizing: border-box;
     display: block;
+    width: 100%;
     padding: 13px 51px 13px 15px;
     border: 1px solid var(--color-gray-700);
     border-radius: 10px;
     background-color: var(--color-gray-800);
+    text-align: left;
 
     &[aria-checked='true'] {
         border-color: var(--color-gray-200);

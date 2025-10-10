@@ -32,10 +32,10 @@ export const StepRadioGroup = <T extends Identifiable & Displayable>({
       aria-label={label}
     >
       {data?.map((item) => (
-        <span
+        <button
           key={item.id}
+          type="button"
           role="radio"
-          tabIndex={0}
           className={cx('step-radio')}
           aria-checked={value?.id === item.id}
           onClick={() => {
@@ -56,7 +56,7 @@ export const StepRadioGroup = <T extends Identifiable & Displayable>({
           <span className={cx('step-radio-name')}>
             {'title' in item ? item.title : item.name}
           </span>
-        </span>
+        </button>
       ))}
     </div>
   );

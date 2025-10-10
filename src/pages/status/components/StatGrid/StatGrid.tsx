@@ -24,7 +24,8 @@ export const StatGrid = ({ data, onClick }: StatGridProps) => {
           // const StatusIcon = status === 1 ? BurningSVG : status === -1 ? StagnationSVG : null;
 
           return (
-            <div
+            <button
+              type="button"
               className={cx('card')}
               onClick={() => onClick(attr.attributeId)}
               key={attr.attributeId}
@@ -38,7 +39,7 @@ export const StatGrid = ({ data, onClick }: StatGridProps) => {
                 </div>
               </div>
               <div className={cx('xp-left')}>(레벨업까지 +{xpLeft}xp)</div>
-            </div>
+            </button>
           );
         })}
       </div>

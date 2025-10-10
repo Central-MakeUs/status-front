@@ -14,16 +14,9 @@ export interface RadioProps {
   checked?: boolean;
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLSpanElement>) => void;
-  onKeyDown?: (event: React.KeyboardEvent<HTMLSpanElement>) => void;
 }
 
-export const Radio = ({
-  label,
-  checked,
-  disabled,
-  onClick,
-  onKeyDown,
-}: RadioProps) => {
+export const Radio = ({ label, checked, disabled, onClick }: RadioProps) => {
   const getIconComponent = () => {
     if (disabled && checked) return IconRadioDisabledChecked;
     if (disabled) return IconRadioDisabled;
@@ -34,17 +27,16 @@ export const Radio = ({
   const IconComponent = getIconComponent();
 
   return (
-    <span
+    <button
+      type="button"
       role="radio"
-      tabIndex={0}
       className={cx('radio')}
       aria-checked={checked}
-      aria-disabled={disabled}
+      disabled={disabled}
       onClick={onClick}
-      onKeyDown={onKeyDown}
     >
       <IconComponent className={cx('radio-icon')} aria-hidden="true" />
       {label && <span className={cx('radio-text')}>{label}</span>}
-    </span>
+    </button>
   );
 };

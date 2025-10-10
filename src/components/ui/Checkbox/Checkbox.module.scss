@@ -1,11 +1,10 @@
 .checkbox {
     display: inline-flex;
     align-items: center;
+    text-align: left;
     vertical-align: top;
-    cursor: pointer;
 
-    &[aria-disabled='true'] {
-        pointer-events: none;
+    &:disabled {
         cursor: default;
     }
 

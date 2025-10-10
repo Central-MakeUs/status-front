@@ -101,10 +101,10 @@ const AttributeGroup = ({
   return (
     <div className={cx('attribute-group')}>
       {attributes?.map((attribute) => (
-        <div
+        <button
           key={attribute.attributeId}
+          type="button"
           role="radio"
-          tabIndex={0}
           className={cx('attribute-radio')}
           aria-checked={isChecked(attribute.attributeId)}
           onClick={() => handleClickAttribute(attribute)}
@@ -125,7 +125,7 @@ const AttributeGroup = ({
             </span>
           </div>
           <div className={cx('attribute-level')}>Lv.{attribute.level}</div>
-        </div>
+        </button>
       ))}
     </div>
   );

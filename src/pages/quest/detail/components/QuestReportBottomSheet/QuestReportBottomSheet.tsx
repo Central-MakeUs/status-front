@@ -53,8 +53,9 @@ export const QuestReportBottomSheet = ({
         </BottomSheet.SubTitle>
         <div role="radiogroup" className={cx('quest-report-radio-group')}>
           {Object.values(SUB_QUEST_DIFFICULTY).map((difficulty) => (
-            <span
+            <button
               key={difficulty.value}
+              type="button"
               role="radio"
               aria-checked={selectedDifficulty === difficulty.value}
               className={cx(
@@ -64,7 +65,7 @@ export const QuestReportBottomSheet = ({
               onClick={() => onChangeDifficulty(difficulty.value)}
             >
               {difficulty.label}
-            </span>
+            </button>
           ))}
         </div>
         <Textarea

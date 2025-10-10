@@ -23,7 +23,6 @@
     font-weight: 500;
     color: var(--color-gray-200);
     -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
-    cursor: pointer;
 
     &[aria-checked='true'] {
         border-color: var(--color-white);

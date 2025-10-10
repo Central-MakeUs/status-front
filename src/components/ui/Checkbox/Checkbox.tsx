@@ -40,18 +40,18 @@ const CheckboxMain = ({
   const IconComponent = getIconComponent();
 
   return (
-    <span
+    <button
+      type="button"
       role="checkbox"
-      tabIndex={0}
       className={cx('checkbox', className)}
       aria-checked={checked}
-      aria-disabled={disabled}
+      disabled={disabled}
       aria-required={required}
       onClick={onClick}
     >
       <IconComponent className={cx('checkbox-icon')} aria-hidden="true" />
       {children}
-    </span>
+    </button>
   );
 };
 

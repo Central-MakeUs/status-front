@@ -29,6 +29,10 @@
 }
 
 .reward-item {
+    flex: 0 0 auto;
+}
+
+.button-reward {
     display: flex;
     align-items: center;
     padding: 4px 12px;

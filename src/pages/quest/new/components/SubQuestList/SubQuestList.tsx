@@ -49,9 +49,9 @@ export const SubQuestList = ({
               <SubQuestSkeleton />
             ) : (
               <>
-                <div
+                <button
                   role="checkbox"
-                  tabIndex={0}
+                  type="button"
                   className={cx('checkbox')}
                   aria-checked={isChecked}
                   onClick={() => handleClickSubQuest(subQuest)}
@@ -74,7 +74,7 @@ export const SubQuestList = ({
                     <span className={cx('sub-quest-rewards')}>{rewards}</span>
                   </div>
                   <p className={cx('sub-quest-description')}>{description}</p>
-                </div>
+                </button>
                 <button
                   type="button"
                   className={cx('button-edit')}
