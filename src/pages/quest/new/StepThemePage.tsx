@@ -4,7 +4,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { useGetThemes } from '@/api/hooks/quest/useGetThemes';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import { Header } from '@/components/ui/Header/Header';
+import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';

@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 
 import classNames from 'classnames/bind';
 import styles from './StepActions.module.scss';

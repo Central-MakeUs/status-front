@@ -1,4 +1,4 @@
-import { Header } from '@/components/ui/Header/Header';
+import { Header } from '@/shared/ui/Header/Header';
 import { HistoryEmpty } from './components/HistoryEmpty/HistoryEmpty';
 import { useGetUserCompletedMainQuests } from '@/api/hooks/quest/useGetUserCompletedMainQuests';
 import { HistorySummary } from '@/pages/history/components/HistorySummary/HistorySummary';

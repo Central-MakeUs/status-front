@@ -5,7 +5,7 @@ import IconLogo from '@/assets/icons/icon-character-result.svg?react';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import 'react-day-picker/dist/style.css';
 import { getSubQuestFrequencyLabel } from '@/constants/quest';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import type { CreateQuestResponse } from '@/types/quest';
 
 import classNames from 'classnames/bind';

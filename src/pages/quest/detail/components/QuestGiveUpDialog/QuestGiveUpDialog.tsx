@@ -1,5 +1,5 @@
-import { Dialog } from '@/components/ui/Dialog/Dialog';
-import { Button } from '@/components/ui/Button/Button';
+import { Dialog } from '@/shared/ui/Dialog/Dialog';
+import { Button } from '@/shared/ui/Button/Button';
 
 interface QuestGiveUpDialogProps {
   isOpen: boolean;

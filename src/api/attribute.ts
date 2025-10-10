@@ -1,4 +1,4 @@
-import { api } from '@/api/client';
+import { api } from '@/shared/api/client';
 import type { AttributesReturnDTO } from '@/api/types/attribute';
 import type { ApiResponse } from '@/api/types/api';
 

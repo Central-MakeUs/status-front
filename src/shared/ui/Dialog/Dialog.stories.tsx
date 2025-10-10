@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '@/components/ui/Button/Button';
-import { Dialog } from '@/components/ui/Dialog/Dialog';
+import { Button } from '@/shared/ui/Button/Button';
+import { Dialog } from '@/shared/ui/Dialog/Dialog';
 
 const meta = {
   title: 'molecules/Dialog',

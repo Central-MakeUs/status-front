@@ -1,6 +1,6 @@
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Button } from '@/components/ui/Button/Button';
-import { Textarea } from '@/components/ui/Textarea/Textarea';
+import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
+import { Button } from '@/shared/ui/Button/Button';
+import { Textarea } from '@/shared/ui/Textarea/Textarea';
 import classNames from 'classnames/bind';
 import styles from './QuestReportBottomSheet.module.scss';
 import type { SubQuestDifficulty } from '@/types/quest';

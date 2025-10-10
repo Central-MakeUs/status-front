@@ -1,6 +1,6 @@
-import { Header } from '@/components/ui/Header/Header';
+import { Header } from '@/shared/ui/Header/Header';
 import { useSocialAuth } from '@/hooks/useSocialAuth';
-import { Loading } from '@/components/ui/Loading/Loading';
+import { Loading } from '@/shared/ui/Loading/Loading';
 
 import { SOCIAL_PROVIDER } from '@/constants/auth';
 

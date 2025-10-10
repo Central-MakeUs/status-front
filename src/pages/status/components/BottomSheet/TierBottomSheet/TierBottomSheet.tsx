@@ -1,9 +1,9 @@
 import type { TierType } from '@/types/tier';
-import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
+import { TierIcon } from '@/shared/ui/TierIcon/TierIcon';
 import classNames from 'classnames/bind';
 import styles from './TierBottomSheet.module.scss';
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Button } from '@/components/ui/Button/Button';
+import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
+import { Button } from '@/shared/ui/Button/Button';
 import { TIER_TYPE } from '@/constants/tier';
 
 const cx = classNames.bind(styles);

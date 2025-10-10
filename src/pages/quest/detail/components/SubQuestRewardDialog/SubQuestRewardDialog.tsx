@@ -1,6 +1,6 @@
-import { Dialog } from '@/components/ui/Dialog/Dialog';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
-import { Button } from '@/components/ui/Button/Button';
+import { Dialog } from '@/shared/ui/Dialog/Dialog';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
+import { Button } from '@/shared/ui/Button/Button';
 
 import IconSubQuestReward from '@/assets/icons/icon-sub-quest-reward.svg?react';
 import type { AttributeDTO } from '@/api/types/attribute';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Select } from '@/components/ui/Selelct/Select';
+import { Select } from '@/shared/ui/Selelct/Select';
 
 const meta = {
   title: 'atoms/Select',

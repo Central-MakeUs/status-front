@@ -1,6 +1,6 @@
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Button } from '@/components/ui/Button/Button';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
+import { Button } from '@/shared/ui/Button/Button';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 // import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 // import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
 // import { useGetUserAttributes } from '@/api/hooks/attribute';

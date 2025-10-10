@@ -1,4 +1,4 @@
-import { TextInput } from '@/components/ui/TextInput/TextInput';
+import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta = {

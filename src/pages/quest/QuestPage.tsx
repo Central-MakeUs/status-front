@@ -1,12 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetUsersMainQuests } from '@/api/hooks/quest';
-import { Header } from '@/components/ui/Header/Header';
+import { Header } from '@/shared/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { getWeeksDifference } from '@/utils/date';
 import { MAX_USERS_MAIN_QUEST_COUNT } from '@/constants/quest';
 
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import IconAdd from '@/assets/icons/icon-add.svg?react';
 
 import classNames from 'classnames/bind';

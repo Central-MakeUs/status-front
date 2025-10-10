@@ -1,4 +1,3 @@
-// src/components/ui/Radio/Radio.tsx
 import classNames from 'classnames/bind';
 import styles from './Radio.module.scss';
 

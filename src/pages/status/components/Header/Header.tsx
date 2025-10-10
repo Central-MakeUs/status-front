@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { TierIcon } from '@/components/ui/TierIcon/TierIcon';
+import { TierIcon } from '@/shared/ui/TierIcon/TierIcon';
 import type { TierType } from '@/types/tier';
 
 const cx = classNames.bind(styles);

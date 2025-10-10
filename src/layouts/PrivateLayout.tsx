@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
-import { Loading } from '@/components/ui/Loading/Loading';
+import { Loading } from '@/shared/ui/Loading/Loading';
 import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
 import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';

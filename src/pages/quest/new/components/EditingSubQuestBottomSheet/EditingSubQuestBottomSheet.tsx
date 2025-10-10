@@ -1,13 +1,13 @@
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { Select } from '@/components/ui/Selelct/Select';
+import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
+import { Select } from '@/shared/ui/Selelct/Select';
 import {
   ACTION_UNIT_TYPES,
   ACTION_UNIT_TYPE_OPTIONS,
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
 } from '@/constants/quest';
-import { TextInput } from '@/components/ui/TextInput/TextInput';
-import { Button } from '@/components/ui/Button/Button';
+import { TextInput } from '@/shared/ui/TextInput/TextInput';
+import { Button } from '@/shared/ui/Button/Button';
 import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
 
 import classNames from 'classnames/bind';

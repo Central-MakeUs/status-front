@@ -1,5 +1,4 @@
-import { QuestItem } from '../../../../components/ui/QuestItem/QuestItem';
-// components/QuestItem/QuestItem.tsx
+import { QuestItem } from '@/shared/ui/QuestItem/QuestItem';
 import classNames from 'classnames/bind';
 import styles from './QuestList.module.scss';
 import type { UserSubQuest } from '@/types/quest';

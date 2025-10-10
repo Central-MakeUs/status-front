@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/Button/Button';
+import { Button } from '@/shared/ui/Button/Button';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { TUTORIAL_STEPS } from '@/constants/tutorial';
 import type { TutorialStep } from '@/types/tutorial';

@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './StatGrid.module.scss';
 // import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 // import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import type { Attribute } from '@/types/attribute';
 const cx = classNames.bind(styles);
 

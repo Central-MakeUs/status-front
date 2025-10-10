@@ -5,8 +5,8 @@ import { SOCIAL_PROVIDER } from '@/constants/auth';
 import { usePostGuestLogin } from '@/api/hooks/auth/usePostGuestLogin';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { useSocialAuth } from '@/hooks/useSocialAuth';
-import { Loading } from '@/components/ui/Loading/Loading';
-import { Button } from '@/components/ui/Button/Button';
+import { Loading } from '@/shared/ui/Loading/Loading';
+import { Button } from '@/shared/ui/Button/Button';
 
 import type { BasicUsersDTO } from '@/api/types/users';
 

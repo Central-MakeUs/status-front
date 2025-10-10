@@ -1,4 +1,4 @@
-import { api } from '@/api/client';
+import { api } from '@/shared/api/client';
 import type { OAuthLoginRequestDTO } from '@/api/types/auth';
 import type { BasicUsersDTO } from '@/api/types/users';
 import type { ApiResponse } from '@/api/types/api';

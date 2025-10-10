@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import { getWeeksDifference } from '@/utils/date';
-import { AttributeIcon } from '@/components/ui/AttributeIcon/AttributeIcon';
+import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { Link } from 'react-router-dom';
 import { PAGE_PATHS } from '@/constants/pagePaths';
 import { MAIN_QUEST_STATUS } from '@/constants/quest';

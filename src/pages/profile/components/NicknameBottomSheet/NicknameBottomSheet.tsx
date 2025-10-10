@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { usePatchNickname } from '@/api/hooks/user/usePatchNickname';
-import { BottomSheet } from '@/components/ui/BottomSheet/BottomSheet';
-import { TextInput } from '@/components/ui/TextInput/TextInput';
-import { Button } from '@/components/ui/Button/Button';
+import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
+import { TextInput } from '@/shared/ui/TextInput/TextInput';
+import { Button } from '@/shared/ui/Button/Button';
 import { NICKNAME_MAX_LENGTH } from '@/constants/auth';
 import { nicknameSchema } from '@/schemas/authScheme';
 
