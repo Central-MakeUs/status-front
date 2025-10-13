@@ -4,7 +4,7 @@ import {
   mockGoogleUser,
   mockGuestUser,
   mockPendingSocialUser,
-} from '@/mocks/data/users';
+} from '@/app/mocks/data/users';
 import { SOCIAL_PROVIDER } from '@/constants/auth';
 import { getCookie } from '@/shared/lib/cookie';
 

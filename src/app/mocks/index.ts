@@ -1,4 +1,4 @@
-import { worker } from '@/mocks/browser';
+import { worker } from './browser';
 
 export const initializeMockServiceWorker = async () => {
   try {

@@ -1,5 +1,5 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockAttributes } from '@/mocks/data/attribute';
+import { mockAttributes } from '@/app/mocks/data/attribute';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 

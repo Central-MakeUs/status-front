@@ -8,14 +8,14 @@ import {
   mockSubQuestLogResponse,
   mockQuestStatistics,
   mockCompletedMainQuests,
-} from '@/mocks/data/quest';
+} from '@/app/mocks/data/quest';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
   RewardResponseDto,
 } from '@/api/types/quest';
-import { mockThemes } from '@/mocks/data/quest';
+import { mockThemes } from '@/app/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
 import { getWeeksDifference } from '@/shared/lib/date';
 

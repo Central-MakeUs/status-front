@@ -1,5 +1,5 @@
 import { http, HttpResponse, passthrough } from 'msw';
-import { mockGoogleUser, mockGuestUser } from '@/mocks/data/users';
+import { mockGoogleUser, mockGuestUser } from '@/app/mocks/data/users';
 import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
 import { getCookie } from '@/shared/lib/cookie';
 
