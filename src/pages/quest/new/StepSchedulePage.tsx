@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';

@@ -7,12 +7,15 @@ import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 import { nicknameSchema } from '@/schemas/authScheme';
-import { NICKNAME_MAX_LENGTH, SIGN_UP_STEP } from '@/constants/auth';
-import { SIGN_UP_STEP_INFO } from '@/constants/auth';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import {
+  NICKNAME_MAX_LENGTH,
+  SIGN_UP_STEP,
+} from '@/features/auth/config/constants';
+import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import { renderWithLineBreaks } from '@/shared/lib/format';
-import { TERM_URL } from '@/constants/term';
-import { MESSAGE_TYPES } from '@/constants/webView';
+import { TERM_URL } from '@/shared/config/links';
+import { MESSAGE_TYPES } from '@/shared/config/constants';
 
 import type { SignUpStep } from '@/types/auth';
 import type { BasicUsers, SignUpForm } from '@/types/users';

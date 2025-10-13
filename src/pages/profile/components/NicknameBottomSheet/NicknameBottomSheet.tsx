@@ -5,7 +5,7 @@ import { usePatchNickname } from '@/api/hooks/user/usePatchNickname';
 import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
-import { NICKNAME_MAX_LENGTH } from '@/constants/auth';
+import { NICKNAME_MAX_LENGTH } from '@/features/auth/config/constants';
 import { nicknameSchema } from '@/schemas/authScheme';
 
 import classNames from 'classnames/bind';

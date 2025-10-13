@@ -3,7 +3,7 @@ import type {
   MAIN_QUEST_STATUS,
   REWARD_STEP,
   SUB_QUEST_FREQUENCY,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 import type {
   UsersSubQuestResponseDTO,
   SubQuestLogDTO,

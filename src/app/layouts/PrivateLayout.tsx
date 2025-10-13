@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import { Loading } from '@/shared/ui/Loading/Loading';
 import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
 import { useAuthStore } from '@/stores/authStore';

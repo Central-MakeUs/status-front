@@ -8,7 +8,7 @@ import type {
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 const cx = classNames.bind(styles);

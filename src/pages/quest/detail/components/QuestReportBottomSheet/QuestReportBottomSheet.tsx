@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './QuestReportBottomSheet.module.scss';
 import type { SubQuestDifficulty } from '@/types/quest';
 import type { UserSubQuest } from '@/types/quest';
-import { SUB_QUEST_DIFFICULTY } from '@/constants/quest';
+import { SUB_QUEST_DIFFICULTY } from '@/entities/quest/config/constants';
 
 const cx = classNames.bind(styles);
 

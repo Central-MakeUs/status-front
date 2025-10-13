@@ -5,7 +5,7 @@ import {
   ACTION_UNIT_TYPE_OPTIONS,
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';

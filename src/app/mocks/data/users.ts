@@ -1,7 +1,11 @@
 import type { BasicUsers } from '@/types/users';
 import type { OAuthProvider } from '@/types/auth';
-import { PROVIDER_TYPE, SOCIAL_PROVIDER, USER_TYPE } from '@/constants/auth';
-import { TIER_TYPE } from '@/constants/tier';
+import {
+  PROVIDER_TYPE,
+  SOCIAL_PROVIDER,
+  USER_TYPE,
+} from '@/features/auth/config/constants';
+import { TIER_TYPE } from '@/entities/tier/config/constants';
 
 /**
  * 애플 로그인 후 사용하는 가입 유저 데이터

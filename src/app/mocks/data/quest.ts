@@ -6,7 +6,7 @@ import {
   ACTION_UNIT_TYPES,
   MAIN_QUEST_STATUS,
   SUB_QUEST_FREQUENCY,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 import type {
   MainQuest,
   SubQuest,

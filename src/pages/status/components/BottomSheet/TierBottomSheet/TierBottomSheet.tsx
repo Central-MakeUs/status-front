@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './TierBottomSheet.module.scss';
 import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
 import { Button } from '@/shared/ui/Button/Button';
-import { TIER_TYPE } from '@/constants/tier';
+import { TIER_TYPE } from '@/entities/tier/config/constants';
 
 const cx = classNames.bind(styles);
 

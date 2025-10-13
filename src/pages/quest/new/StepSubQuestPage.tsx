@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
   ACTION_UNIT_TYPE_OPTIONS,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';

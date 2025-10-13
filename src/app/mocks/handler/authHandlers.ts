@@ -5,7 +5,7 @@ import {
   mockGuestUser,
   mockPendingSocialUser,
 } from '@/app/mocks/data/users';
-import { SOCIAL_PROVIDER } from '@/constants/auth';
+import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
 import { getCookie } from '@/shared/lib/cookie';
 
 import type { OAuthLoginRequestDTO } from '@/api/types/auth';

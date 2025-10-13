@@ -2,8 +2,8 @@ import { useId } from 'react';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { Link } from 'react-router-dom';
-import { PAGE_PATHS } from '@/constants/pagePaths';
-import { MAIN_QUEST_STATUS } from '@/constants/quest';
+import { PAGE_PATHS } from '@/app/providers/paths';
+import { MAIN_QUEST_STATUS } from '@/entities/quest/config/constants';
 
 import type { UserCompletedMainQuests } from '@/types/quest';
 

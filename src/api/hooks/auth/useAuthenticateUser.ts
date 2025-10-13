@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { authenticateUser } from '@/api/auth';
-import { AUTH_CACHE_TIME } from '@/constants/auth';
+import { AUTH_CACHE_TIME } from '@/features/auth/config/constants';
 
 export const useAuthenticateUser = () => {
   return useQuery({

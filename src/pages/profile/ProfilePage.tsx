@@ -6,14 +6,14 @@ import { Header } from '@/shared/ui/Header/Header';
 import { useAuthStore } from '@/stores/authStore';
 import { usePostLogout } from '@/api/hooks/auth';
 import { useWithdrawalMutation } from '@/api/hooks/user';
-import { PAGE_PATHS } from '@/constants/pagePaths';
-import { TERM_URL } from '@/constants/term';
+import { PAGE_PATHS } from '@/app/providers/paths';
+import { TERM_URL } from '@/shared/config/links';
 import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';
 import { LogoutDialog } from '@/pages/profile/components/LogoutDialog/LogoutDialog';
 import { GuestWithdrawalDialog } from '@/pages/profile/components/GuestWithdrawalDialog/GuestWithdrawalDialog';
 import { UserWithdrawalDialog } from '@/pages/profile/components/UserWithdrawalDialog/UserWithdrawalDialog';
-import { MESSAGE_TYPES } from '@/constants/webView';
-import { PROVIDER_TYPE } from '@/constants/auth';
+import { MESSAGE_TYPES } from '@/shared/config/constants';
+import { PROVIDER_TYPE } from '@/features/auth/config/constants';
 
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';
 import IconEdit from '@/assets/icons/icon-edit.svg?react';

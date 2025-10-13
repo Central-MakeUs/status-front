@@ -1,12 +1,16 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { AUTH_CONFIGS, PROVIDER_TYPE, URL_SCHEME } from '@/constants/auth';
-import { MESSAGE_TYPES } from '@/constants/webView';
+import {
+  AUTH_CONFIGS,
+  PROVIDER_TYPE,
+  URL_SCHEME,
+} from '@/features/auth/config/constants';
+import { MESSAGE_TYPES } from '@/shared/config/constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuthStore, useSocialConnectionStore } from '@/stores/authStore';
 import { useShallow } from 'zustand/react/shallow';
-import { PAGE_PATHS } from '@/constants/pagePaths';
-import { USER_TYPE } from '@/constants/auth';
+import { PAGE_PATHS } from '@/app/providers/paths';
+import { USER_TYPE } from '@/features/auth/config/constants';
 import { usePostSocialLogin } from '@/api/hooks/auth/usePostSocialLogin';
 import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
 import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';

@@ -4,8 +4,8 @@ import type {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,
   USER_TYPE,
-} from '@/constants/auth';
-import type { SIGN_UP_STEP } from '@/constants/auth';
+} from '@/features/auth/config/constants';
+import type { SIGN_UP_STEP } from '@/features/auth/config/constants';
 
 export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];
 

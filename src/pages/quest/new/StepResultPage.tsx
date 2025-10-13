@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import IconLogo from '@/assets/icons/icon-character-result.svg?react';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import 'react-day-picker/dist/style.css';
-import { getSubQuestFrequencyLabel } from '@/constants/quest';
+import { getSubQuestFrequencyLabel } from '@/entities/quest/config/constants';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import type { CreateQuestResponse } from '@/types/quest';
 

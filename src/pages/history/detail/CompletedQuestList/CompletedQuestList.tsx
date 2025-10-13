@@ -4,7 +4,7 @@ import type { CompletedQuest } from '@/types/quest';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
-} from '@/constants/quest';
+} from '@/entities/quest/config/constants';
 
 const cx = classNames.bind(styles);
 

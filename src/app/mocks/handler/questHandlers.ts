@@ -16,7 +16,7 @@ import type {
   RewardResponseDto,
 } from '@/api/types/quest';
 import { mockThemes } from '@/app/mocks/data/quest';
-import { DISPLAY_SUB_QUEST_COUNT } from '@/constants/quest';
+import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/quest/config/constants';
 import { getWeeksDifference } from '@/shared/lib/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;

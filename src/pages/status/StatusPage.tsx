@@ -8,10 +8,10 @@ import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSh
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
 import type { UserSubQuest } from '@/types/quest';
 import { useNavigate } from 'react-router-dom';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/stores/authStore';
-import { TIER_TYPE } from '@/constants/tier';
+import { TIER_TYPE } from '@/entities/tier/config/constants';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 const StatusPage = () => {

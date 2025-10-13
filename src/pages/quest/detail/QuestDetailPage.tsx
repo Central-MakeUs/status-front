@@ -4,7 +4,7 @@ import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestRep
 import { usePostUserSubQuestLog } from '@/api/hooks/quest/usePostUserSubQuestLog';
 import { SubQuestRewardDialog } from '@/pages/quest/detail/components/SubQuestRewardDialog/SubQuestRewardDialog';
 import { MainQuestRewardDialog } from '@/pages/quest/detail/components/MainQuestRewardDialog/MainQuestRewardDialog';
-import { REWARD_STEP } from '@/constants/quest';
+import { REWARD_STEP } from '@/entities/quest/config/constants';
 
 import type {
   RewardStep,
@@ -24,7 +24,7 @@ import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
 import { useDeleteUserMainQuest } from '@/api/hooks/quest/useDeleteUserGiveUpMainQuest';
-import { PAGE_PATHS } from '@/constants/pagePaths';
+import { PAGE_PATHS } from '@/app/providers/paths';
 import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';

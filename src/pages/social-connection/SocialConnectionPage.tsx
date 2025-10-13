@@ -2,7 +2,7 @@ import { Header } from '@/shared/ui/Header/Header';
 import { useSocialAuth } from '@/hooks/useSocialAuth';
 import { Loading } from '@/shared/ui/Loading/Loading';
 
-import { SOCIAL_PROVIDER } from '@/constants/auth';
+import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
 
 import IconIntroduction from '@/assets/icons/icon-character-introduction.svg?react';
 import IconKakao from '@/assets/icons/icon-login-kakao.svg?react';
