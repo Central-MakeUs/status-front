@@ -1,6 +1,6 @@
-import type { UserType } from '@/types/auth';
-import type { OAuthProviderDTO } from './auth';
-import type { TierType } from '@/types/tier';
+import type { UserType } from '@/features/auth/model/types';
+import type { OAuthProviderDTO } from '@/features/auth/api/dto';
+import type { TierType } from '@/entities/tier/model/types';
 
 export interface SignUpRequestDTO {
   nickname: string;

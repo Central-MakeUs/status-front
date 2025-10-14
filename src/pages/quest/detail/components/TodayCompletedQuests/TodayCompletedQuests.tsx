@@ -6,7 +6,7 @@ import type {
   SubQuestDifficulty,
   CompletedQuest,
   UserSubQuest,
-} from '@/types/quest';
+} from '@/entities/quest/model/types';
 const cx = classNames.bind(styles);
 
 const TodayCompletedQuests = ({

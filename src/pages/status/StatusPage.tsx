@@ -6,11 +6,11 @@ import { useGetUserSubQuestsAll } from '@/api/hooks/quest/useGetUserSubQuestsAll
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
-import type { UserSubQuest } from '@/types/quest';
+import type { UserSubQuest } from '@/entities/quest/model/types';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useShallow } from 'zustand/react/shallow';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/features/auth/model/authStore';
 import { TIER_TYPE } from '@/entities/tier/config/constants';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 

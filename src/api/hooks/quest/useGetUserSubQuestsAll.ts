@@ -1,4 +1,4 @@
-import { getUserSubQuestsAll } from '@/api/quest';
+import { getUserSubQuestsAll } from '@/entities/quest/api/quest';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserSubQuestsAll = () => {

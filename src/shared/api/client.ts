@@ -1,4 +1,4 @@
-import { authenticateUser, refreshAccessToken } from '@/api/auth';
+import { authenticateUser, refreshAccessToken } from '@/features/auth/api/auth';
 
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 

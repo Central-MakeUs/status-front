@@ -1,4 +1,4 @@
-import { getUserStatistic } from '@/api/quest';
+import { getUserStatistic } from '@/entities/quest/api/quest';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetuserStatistic = () => {

@@ -1,4 +1,4 @@
-import type { AttributesReturnDTO } from '@/api/types/attribute';
+import type { AttributesReturnDTO } from '@/entities/attribute/api/dto';
 import { ATTRIBUTE_TYPES } from '@/entities/attribute/config/constants';
 
 export type AttributeType =

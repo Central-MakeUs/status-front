@@ -8,7 +8,7 @@ import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { useGetUserMainQuest } from '@/api/hooks/quest/useGetUserMainQuest';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
-import type { AttributeDTO } from '@/api/types/attribute';
+import type { AttributeDTO } from '@/entities/attribute/api/dto';
 import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedLists';
 import CompletedHistory from './CompletedHistory/CompletedHistory';
 const cx = classNames.bind(styles);

@@ -2,7 +2,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { Loading } from '@/shared/ui/Loading/Loading';
 import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect } from 'react';
 import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';

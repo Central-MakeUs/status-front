@@ -1,4 +1,4 @@
-import { getUsersMainQuests } from '@/api/quest';
+import { getUsersMainQuests } from '@/entities/quest/api/quest';
 import { useQuery } from '@tanstack/react-query';
 
 interface UseGetUsersMainQuestsProps {

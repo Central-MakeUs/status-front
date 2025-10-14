@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getUserCompletedHistory } from '@/api/quest';
+import { getUserCompletedHistory } from '@/entities/quest/api/quest';
 
 export const useGetUserCompletedLists = (id: number) => {
   return useQuery({

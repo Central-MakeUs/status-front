@@ -1,7 +1,7 @@
 import type {
   UserQuestStatisticsDTO,
   WithStatusUsersMainQuestResponseDTO,
-} from '@/api/types/quest';
+} from '@/entities/quest/api/dto';
 import {
   ACTION_UNIT_TYPES,
   MAIN_QUEST_STATUS,
@@ -14,7 +14,7 @@ import type {
   CompletedQuest,
   UserSubQuest,
   UsersMainQuest,
-} from '@/types/quest';
+} from '@/entities/quest/model/types';
 
 export const mockThemes: Theme[] = [
   {

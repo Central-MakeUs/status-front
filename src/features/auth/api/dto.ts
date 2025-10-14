@@ -1,4 +1,4 @@
-import type { SocialProvider, UserType } from '@/types/auth';
+import type { SocialProvider, UserType } from '@/features/auth/model/types';
 
 export interface OAuthLoginRequestDTO {
   provider: SocialProvider;

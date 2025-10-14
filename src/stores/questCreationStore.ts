@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getTodayString } from '@/shared/lib/date';
 
-import type { Attribute } from '@/types/attribute';
-import type { MainQuest, Theme } from '@/types/quest';
-import type { SubQuest } from '@/types/quest';
+import type { Attribute } from '@/entities/attribute/model/types';
+import type { MainQuest, Theme } from '@/entities/quest/model/types';
+import type { SubQuest } from '@/entities/quest/model/types';
 
 interface QuestCreationState {
   selectedAttribute: Attribute | null;

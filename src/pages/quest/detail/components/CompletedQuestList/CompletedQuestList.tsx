@@ -4,7 +4,7 @@ import type {
   SubQuestDifficulty,
   CompletedQuest,
   UserSubQuest,
-} from '@/types/quest';
+} from '@/entities/quest/model/types';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,

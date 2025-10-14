@@ -1,8 +1,8 @@
 import { api } from '@/shared/api/client';
-import type { OAuthLoginRequestDTO } from '@/api/types/auth';
-import type { BasicUsersDTO } from '@/api/types/users';
-import type { ApiResponse } from '@/api/types/api';
-import type { SocialLoginReturnDTO } from '@/types/auth';
+import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
+import type { BasicUsersDTO } from '@/entities/users/api/dto';
+import type { ApiResponse } from '@/shared/api/types';
+import type { SocialLoginReturnDTO } from '@/features/auth/model/types';
 
 export const refreshAccessToken = async () => {
   return api.post<ApiResponse<BasicUsersDTO>>('/auth/refresh');

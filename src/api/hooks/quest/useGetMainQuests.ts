@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getMainQuests } from '@/api/quest';
-import type { GetMainQuestsParams } from '@/api/types/quest';
+import { getMainQuests } from '@/entities/quest/api/quest';
+import type { GetMainQuestsParams } from '@/entities/quest/api/dto';
 
 export const useGetMainQuests = ({
   attributes,

@@ -7,7 +7,10 @@ import {
 } from '@/features/auth/config/constants';
 import { MESSAGE_TYPES } from '@/shared/config/constants';
 import { useQueryClient } from '@tanstack/react-query';
-import { useAuthStore, useSocialConnectionStore } from '@/stores/authStore';
+import {
+  useAuthStore,
+  useSocialConnectionStore,
+} from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { USER_TYPE } from '@/features/auth/config/constants';
@@ -15,10 +18,10 @@ import { usePostSocialLogin } from '@/api/hooks/auth/usePostSocialLogin';
 import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
 import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
 
-import type { SocialProvider } from '@/types/auth';
-import type { OAuthProvider } from '@/types/auth';
-import type { OAuthLoginRequestDTO } from '@/api/types/auth';
-import type { BasicUsers } from '@/types/users';
+import type { SocialProvider } from '@/features/auth/model/types';
+import type { OAuthProvider } from '@/features/auth/model/types';
+import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
+import type { BasicUsers } from '@/entities/users/model/types';
 
 const createOAuthURL = (provider: SocialProvider, state: string): string => {
   const config = AUTH_CONFIGS[provider];

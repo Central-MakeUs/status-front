@@ -11,7 +11,7 @@ import type {
   SubQuestDifficulty,
   UserSubQuest,
   SubQuestLog,
-} from '@/types/quest';
+} from '@/entities/quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './QuestDetailPage.module.scss';
@@ -29,7 +29,7 @@ import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDia
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/api/hooks/attribute';
-import type { AttributeDTO } from '@/api/types/attribute';
+import type { AttributeDTO } from '@/entities/attribute/api/dto';
 import { useGetUserCompletedLists } from '@/api/hooks/quest/useGetUserCompletedLists';
 import { format } from 'date-fns';
 import { usePatchUserSubQuestLog } from '@/api/hooks/quest/usePatchUserSubQuestLog';

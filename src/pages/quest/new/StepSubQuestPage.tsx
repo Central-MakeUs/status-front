@@ -20,7 +20,10 @@ import { SubQuestSkeleton } from '@/pages/quest/new/components/SubQuestSkeleton/
 import { SubQuestList } from '@/pages/quest/new/components/SubQuestList/SubQuestList';
 import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';
 
-import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
+import type {
+  SubQuest,
+  SubQuestFrequencyValue,
+} from '@/entities/quest/model/types';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 

@@ -1,4 +1,4 @@
-import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
+import type { BasicUsersDTO, SignUpRequestDTO } from '@/entities/users/api/dto';
 
 export type SignUpForm = SignUpRequestDTO;
 

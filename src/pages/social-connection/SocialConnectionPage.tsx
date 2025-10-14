@@ -1,5 +1,5 @@
 import { Header } from '@/shared/ui/Header/Header';
-import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { useSocialAuth } from '@/features/auth/model/useSocialAuth';
 import { Loading } from '@/shared/ui/Loading/Loading';
 
 import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';

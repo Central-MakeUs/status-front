@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/shared/ui/Button/Button';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { TUTORIAL_STEPS } from '@/pages/tutorial/config/constants';
-import type { TutorialStep } from '@/types/tutorial';
+import type { TutorialStep } from '@/pages/tutorial/model/types';
 
 import IconLogoWhite from '@/assets/icons/icon-logo-white.svg?react';
 

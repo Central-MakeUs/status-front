@@ -1,6 +1,6 @@
 import { api } from '@/shared/api/client';
-import type { AttributesReturnDTO } from '@/api/types/attribute';
-import type { ApiResponse } from '@/api/types/api';
+import type { AttributesReturnDTO } from '@/entities/attribute/api/dto';
+import type { ApiResponse } from '@/shared/api/types';
 
 export const getUserAbttributes = async (): Promise<AttributesReturnDTO[]> => {
   const response =

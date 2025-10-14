@@ -16,7 +16,7 @@ import type {
   CreateQuestResponseDTO,
   CreateQuestRequestDTO,
   WithStatusUsersMainQuestResponseDTO,
-} from '@/api/types/quest';
+} from '@/entities/quest/api/dto';
 export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
 export type SubQuestFrequencyValue =

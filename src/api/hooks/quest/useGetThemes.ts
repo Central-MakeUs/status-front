@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getThemes } from '@/api/quest';
-import type { GetThemesParams } from '@/api/types/quest';
+import { getThemes } from '@/entities/quest/api/quest';
+import type { GetThemesParams } from '@/entities/quest/api/dto';
 
 export const useGetThemes = ({ attributes }: GetThemesParams) => {
   return useQuery({

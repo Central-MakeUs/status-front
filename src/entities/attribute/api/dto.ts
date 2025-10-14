@@ -1,4 +1,4 @@
-import type { AttributeType } from '@/types/attribute';
+import type { AttributeType } from '@/entities/attribute/model/types';
 
 export interface AttributesReturnDTO {
   attributeId: number;

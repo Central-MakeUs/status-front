@@ -1,4 +1,4 @@
-import { withdrawal } from '@/api/users';
+import { withdrawal } from '@/entities/users/api/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useWithdrawalMutation = () => {

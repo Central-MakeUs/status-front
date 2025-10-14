@@ -1,7 +1,7 @@
 import { api } from '@/shared/api/client';
-import type { BasicUsersDTO, SignUpRequestDTO } from '@/api/types/users';
-import type { ApiResponse } from '@/api/types/api';
-import type { OAuthLoginRequestDTO } from './types/auth';
+import type { BasicUsersDTO, SignUpRequestDTO } from '@/entities/users/api/dto';
+import type { ApiResponse } from '@/shared/api/types';
+import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
 
 export const signUp = async (payload: SignUpRequestDTO) => {
   const response = await api.post<ApiResponse<BasicUsersDTO>>(

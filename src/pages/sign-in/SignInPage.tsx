@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/features/auth/model/authStore';
 import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
 import { usePostGuestLogin } from '@/api/hooks/auth/usePostGuestLogin';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { useSocialAuth } from '@/hooks/useSocialAuth';
+import { useSocialAuth } from '@/features/auth/model/useSocialAuth';
 import { Loading } from '@/shared/ui/Loading/Loading';
 import { Button } from '@/shared/ui/Button/Button';
 
-import type { BasicUsersDTO } from '@/api/types/users';
+import type { BasicUsersDTO } from '@/entities/users/api/dto';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';

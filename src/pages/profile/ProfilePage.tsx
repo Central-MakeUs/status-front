@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
 import { Header } from '@/shared/ui/Header/Header';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/features/auth/model/authStore';
 import { usePostLogout } from '@/api/hooks/auth';
 import { useWithdrawalMutation } from '@/api/hooks/user';
 import { PAGE_PATHS } from '@/app/providers/paths';

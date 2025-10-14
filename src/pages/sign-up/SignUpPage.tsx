@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthStore, useSocialConnectionStore } from '@/stores/authStore';
+import {
+  useAuthStore,
+  useSocialConnectionStore,
+} from '@/features/auth/model/authStore';
 import { usePostSignUp } from '@/api/hooks/user/usePostSignUp';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
@@ -17,8 +20,8 @@ import { renderWithLineBreaks } from '@/shared/lib/format';
 import { TERM_URL } from '@/shared/config/links';
 import { MESSAGE_TYPES } from '@/shared/config/constants';
 
-import type { SignUpStep } from '@/types/auth';
-import type { BasicUsers, SignUpForm } from '@/types/users';
+import type { SignUpStep } from '@/features/auth/model/types';
+import type { BasicUsers, SignUpForm } from '@/entities/users/model/types';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';

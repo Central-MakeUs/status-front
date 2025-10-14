@@ -4,8 +4,8 @@ import type {
   SubQuestInfo,
   ActionUnitTypeValue,
   Status,
-} from '@/types/quest';
-import type { AttributeDTO } from './attribute';
+} from '@/entities/quest/model/types';
+import type { AttributeDTO } from '../../attribute/api/dto';
 
 export interface ThemeResponseDTO {
   id: number;

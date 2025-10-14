@@ -11,7 +11,7 @@ import { getTodayString, getWeeksDifference } from '@/shared/lib/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
 import { usePostCreationQuest } from '@/api/hooks/quest/usePostCreationQuest';
 
-import type { CreateQuestRequest } from '@/types/quest';
+import type { CreateQuestRequest } from '@/entities/quest/model/types';
 
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';

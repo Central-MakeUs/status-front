@@ -1,5 +1,5 @@
-import type { BasicUsers } from '@/types/users';
-import type { OAuthProvider } from '@/types/auth';
+import type { BasicUsers } from '@/entities/users/model/types';
+import type { OAuthProvider } from '@/features/auth/model/types';
 import {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,

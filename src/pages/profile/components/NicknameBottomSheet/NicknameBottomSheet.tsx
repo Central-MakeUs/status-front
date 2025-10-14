@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAuthStore } from '@/stores/authStore';
+import { useAuthStore } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { usePatchNickname } from '@/api/hooks/user/usePatchNickname';
 import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';

@@ -1,4 +1,4 @@
-import { connectSocialAccount } from '@/api/users';
+import { connectSocialAccount } from '@/entities/users/api/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePatchSocialConnection = () => {

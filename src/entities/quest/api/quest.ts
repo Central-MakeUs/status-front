@@ -17,9 +17,9 @@ import type {
   CreateQuestResponseDTO,
   UserQuestStatisticsDTO,
   WithStatusUsersMainQuestResponseDTO,
-} from '@/api/types/quest';
-import type { ApiResponse } from '@/api/types/api';
-import type { ThemeResponseDTO } from '@/api/types/quest';
+} from '@/entities/quest/api/dto';
+import type { ApiResponse } from '@/shared/api/types';
+import type { ThemeResponseDTO } from '@/entities/quest/api/dto';
 
 export const getThemes = async ({
   attributes = [],

@@ -3,7 +3,7 @@ import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { Button } from '@/shared/ui/Button/Button';
 
 import IconSubQuestReward from '@/assets/icons/icon-sub-quest-reward.svg?react';
-import type { AttributeDTO } from '@/api/types/attribute';
+import type { AttributeDTO } from '@/entities/attribute/api/dto';
 
 import classNames from 'classnames/bind';
 import styles from './SubQuestRewardDialog.module.scss';

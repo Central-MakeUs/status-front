@@ -1,4 +1,4 @@
-import type { TierType } from '@/types/tier';
+import type { TierType } from '@/entities/tier/model/types';
 import { TierIcon } from '@/shared/ui/TierIcon/TierIcon';
 import classNames from 'classnames/bind';
 import styles from './TierBottomSheet.module.scss';

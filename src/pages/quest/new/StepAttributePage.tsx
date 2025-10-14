@@ -8,7 +8,7 @@ import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { ATTRIBUTE_TYPES } from '@/entities/attribute/config/constants';
 
-import type { Attribute } from '@/types/attribute';
+import type { Attribute } from '@/entities/attribute/model/types';
 
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 

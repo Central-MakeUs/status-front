@@ -9,7 +9,7 @@ import type {
   SubQuestDifficulty,
   UserCompletedHistory,
   UserSubQuest,
-} from '@/types/quest';
+} from '@/entities/quest/model/types';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({

@@ -1,4 +1,4 @@
-import { getUserAbttributes } from '@/api/attribute';
+import { getUserAbttributes } from '@/entities/attribute/api/attribute';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserAttributes = () => {

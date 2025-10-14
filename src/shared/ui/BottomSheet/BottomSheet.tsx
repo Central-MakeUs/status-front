@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { BottomSheetContainer } from './BottomSheetContainer';
-import { useOutsideClick } from '@/shared/hooks/useOutsideClick';
+import { useOutsideClick } from '@/shared/model/useOutsideClick';
 import { useSwipeToClose } from './hooks/useSwipeToClose';
 
 import type { ReactNode } from 'react';

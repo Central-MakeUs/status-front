@@ -1,4 +1,4 @@
-import { updateNickname } from '@/api/users';
+import { updateNickname } from '@/entities/users/api/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePatchNickname = () => {

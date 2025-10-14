@@ -8,7 +8,10 @@ import {
 } from '@/entities/quest/config/constants';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
-import type { SubQuest, SubQuestFrequencyValue } from '@/types/quest';
+import type {
+  SubQuest,
+  SubQuestFrequencyValue,
+} from '@/entities/quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './EditingSubQuestBottomSheet.module.scss';

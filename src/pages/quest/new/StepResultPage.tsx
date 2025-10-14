@@ -6,7 +6,7 @@ import { StepActions } from '@/pages/quest/new/components/StepActions/StepAction
 import 'react-day-picker/dist/style.css';
 import { getSubQuestFrequencyLabel } from '@/entities/quest/config/constants';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
-import type { CreateQuestResponse } from '@/types/quest';
+import type { CreateQuestResponse } from '@/entities/quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';

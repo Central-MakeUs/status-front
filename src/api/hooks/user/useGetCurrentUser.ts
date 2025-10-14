@@ -1,4 +1,4 @@
-import { getCurrentUser } from '@/api/users';
+import { getCurrentUser } from '@/entities/users/api/users';
 import { useQuery } from '@tanstack/react-query';
 
 interface UseGetCurrentUserProps {

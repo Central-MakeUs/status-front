@@ -1,5 +1,5 @@
-import type { OAuthProviderDTO } from '@/api/types/auth';
-import type { BasicUsersDTO } from '@/api/types/users';
+import type { OAuthProviderDTO } from '@/features/auth/api/dto';
+import type { BasicUsersDTO } from '@/entities/users/api/dto';
 import type {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,

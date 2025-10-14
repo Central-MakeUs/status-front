@@ -1,4 +1,4 @@
-import { signUp } from '@/api/users';
+import { signUp } from '@/entities/users/api/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostSignUp = () => {
