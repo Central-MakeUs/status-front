@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
-import { usePostGuestLogin } from '@/api/hooks/auth/usePostGuestLogin';
+import { usePostGuestLogin } from '@/features/auth/api/usePostGuestLogin';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useSocialAuth } from '@/features/auth/model/useSocialAuth';
 import { Loading } from '@/shared/ui/Loading/Loading';

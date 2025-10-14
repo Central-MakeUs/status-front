@@ -5,7 +5,7 @@ import {
   useAuthStore,
   useSocialConnectionStore,
 } from '@/features/auth/model/authStore';
-import { usePostSignUp } from '@/api/hooks/user/usePostSignUp';
+import { usePostSignUp } from '@/entities/users/api/usePostSignUp';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
@@ -28,7 +28,7 @@ import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
-import { usePatchSocialConnection } from '@/api/hooks/user/usePatchSocialConnection';
+import { usePatchSocialConnection } from '@/entities/users/api/usePatchSocialConnection';
 
 const cx = classNames.bind(styles);
 

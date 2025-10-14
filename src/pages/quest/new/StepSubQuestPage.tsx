@@ -14,8 +14,8 @@ import { StepActions } from '@/pages/quest/new/components/StepActions/StepAction
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
 import { EditingSubQuestBottomSheet } from '@/pages/quest/new/components/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
-import { useGetSubQuests } from '@/api/hooks/quest/useGetSubQuests';
-import { useGetRandomSubQuests } from '@/api/hooks/quest/useGetRandomSubQuests';
+import { useGetSubQuests } from '@/entities/quest/api/useGetSubQuests';
+import { useGetRandomSubQuests } from '@/entities/quest/api/useGetRandomSubQuests';
 import { SubQuestSkeleton } from '@/pages/quest/new/components/SubQuestSkeleton/SubQuestSkeleton';
 import { SubQuestList } from '@/pages/quest/new/components/SubQuestList/SubQuestList';
 import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';

@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui/Button/Button';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 // import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 // import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
-// import { useGetUserAttributes } from '@/api/hooks/attribute';
+// import { useGetUserAttributes } from '@/entities/attribute/api/useGetUserAttributes';
 
 import classNames from 'classnames/bind';
 import styles from './StatusBottomSheet.module.scss';

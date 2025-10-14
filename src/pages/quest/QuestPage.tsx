@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useGetUsersMainQuests } from '@/api/hooks/quest';
+import { useGetUsersMainQuests } from '@/entities/quest/api/useGetUsersMainQuests';
 import { Header } from '@/shared/ui/Header/Header';
 import { QuestEmpty } from '@/pages/quest/components/QuestEmpty';
 import { PAGE_PATHS } from '@/app/providers/paths';

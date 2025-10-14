@@ -1,12 +1,12 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { Loading } from '@/shared/ui/Loading/Loading';
-import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
+import { useAuthenticateUser } from '@/features/auth/api/useAuthenticateUser';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect } from 'react';
-import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
-import { useGetUsersMainQuests } from '@/api/hooks/quest/useGetUsersMainQuests';
+import { useGetCurrentUser } from '@/entities/users/api/useGetCurrentUser';
+import { useGetUsersMainQuests } from '@/entities/quest/api/useGetUsersMainQuests';
 
 export const PrivateLayout = () => {
   const {

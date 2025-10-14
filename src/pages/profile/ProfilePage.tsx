@@ -4,8 +4,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
 import { Header } from '@/shared/ui/Header/Header';
 import { useAuthStore } from '@/features/auth/model/authStore';
-import { usePostLogout } from '@/api/hooks/auth';
-import { useWithdrawalMutation } from '@/api/hooks/user';
+import { usePostLogout } from '@/features/auth/api/usePostLogout';
+import { usePostWithdrawalMutation } from '@/entities/users/api/usePostWithdrawal';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { TERM_URL } from '@/shared/config/links';
 import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';
@@ -36,7 +36,7 @@ export const ProfilePage = () => {
     }))
   );
   const postLogout = usePostLogout();
-  const postWithdrawal = useWithdrawalMutation();
+  const postWithdrawal = usePostWithdrawalMutation();
 
   const [isNicknameEditOpen, setIsNicknameEditOpen] = useState(false);
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);

@@ -14,9 +14,9 @@ import {
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { USER_TYPE } from '@/features/auth/config/constants';
-import { usePostSocialLogin } from '@/api/hooks/auth/usePostSocialLogin';
-import { useGetCurrentUser } from '@/api/hooks/user/useGetCurrentUser';
-import { useAuthenticateUser } from '@/api/hooks/auth/useAuthenticateUser';
+import { usePostSocialLogin } from '@/features/auth/api/usePostSocialLogin';
+import { useGetCurrentUser } from '@/entities/users/api/useGetCurrentUser';
+import { useAuthenticateUser } from '@/features/auth/api/useAuthenticateUser';
 
 import type { SocialProvider } from '@/features/auth/model/types';
 import type { OAuthProvider } from '@/features/auth/model/types';

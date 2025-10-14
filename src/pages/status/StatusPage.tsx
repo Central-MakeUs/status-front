@@ -1,8 +1,8 @@
 import { Header } from '@/pages/status/components/Header/Header';
 import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-import { useGetUserAttributes } from '@/api/hooks/attribute';
-import { useGetUserSubQuestsAll } from '@/api/hooks/quest/useGetUserSubQuestsAll';
+import { useGetUserAttributes } from '@/entities/attribute/api/useGetUserAttributes';
+import { useGetUserSubQuestsAll } from '@/entities/quest/api/useGetUserSubQuestsAll';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
