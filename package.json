@@ -83,7 +83,7 @@
       "stylelint --fix"
     ],
     "src/**/*.{ts,tsx}": [
-      "tsc --noEmit"
+      "bash -c 'tsc --noEmit'"
     ]
   },
   "msw": {
