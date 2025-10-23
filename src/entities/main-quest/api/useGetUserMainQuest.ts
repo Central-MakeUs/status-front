@@ -1,4 +1,4 @@
-import { getUserMainQuest } from '@/entities/quest/api/quest';
+import { getUserMainQuest } from '@/entities/main-quest/api/mainQuest';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserMainQuest = (id: number) => {

@@ -4,9 +4,9 @@ import { PAGE_PATHS } from '@/app/providers/paths';
 import IconLogo from '@/assets/icons/icon-character-result.svg?react';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import 'react-day-picker/dist/style.css';
-import { getSubQuestFrequencyLabel } from '@/entities/quest/config/constants';
+import { getSubQuestFrequencyLabel } from '@/entities/sub-quest/config/constants';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
-import type { CreateQuestResponse } from '@/entities/quest/model/types';
+import type { CreateQuestResponse } from '@/entities/main-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';

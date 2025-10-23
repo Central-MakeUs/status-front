@@ -1,8 +1,6 @@
 import { z } from 'zod';
-import {
-  SUB_QUEST_FREQUENCY_VALUES,
-  ACTION_UNIT_TYPE_VALUES,
-} from '@/entities/quest/config/constants';
+import { ACTION_UNIT_TYPE_VALUES } from '@/entities/main-quest/config/constants';
+import { SUB_QUEST_FREQUENCY_VALUES } from '@/entities/sub-quest/config/constants';
 
 export const subQuestEditingSchema = z.object({
   frequencyType: z.enum(SUB_QUEST_FREQUENCY_VALUES),

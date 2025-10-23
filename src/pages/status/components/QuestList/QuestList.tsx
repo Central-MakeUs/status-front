@@ -1,7 +1,7 @@
 import { QuestItem } from '@/shared/ui/QuestItem/QuestItem';
 import classNames from 'classnames/bind';
 import styles from './QuestList.module.scss';
-import type { UserSubQuest } from '@/entities/quest/model/types';
+import type { UserSubQuest } from '@/entities/sub-quest/model/types';
 
 const cx = classNames.bind(styles);
 

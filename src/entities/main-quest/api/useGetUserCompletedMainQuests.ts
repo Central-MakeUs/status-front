@@ -1,4 +1,4 @@
-import { getUserCompletedMainQuests } from '@/entities/quest/api/quest';
+import { getUserCompletedMainQuests } from '@/entities/main-quest/api/mainQuest';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetUserCompletedMainQuests = () => {

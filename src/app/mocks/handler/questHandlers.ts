@@ -12,11 +12,11 @@ import {
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
-  RerollSubQuestRequestDTO,
   RewardResponseDto,
-} from '@/entities/quest/api/dto';
+} from '@/entities/main-quest/api/dto';
+import type { RerollSubQuestRequestDTO } from '@/entities/sub-quest/api/dto';
 import { mockThemes } from '@/app/mocks/data/quest';
-import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/quest/config/constants';
+import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/sub-quest/config/constants';
 import { getWeeksDifference } from '@/shared/lib/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;

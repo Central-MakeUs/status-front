@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postUserSubQuestLog } from '@/entities/quest/api/quest';
-import type { SubQuestLogDTO } from '@/entities/quest/api/dto';
+import { postUserSubQuestLog } from '@/entities/sub-quest/api/subQuest';
+import type { SubQuestLogDTO } from '@/entities/sub-quest/api/dto';
 
 export const usePostUserSubQuestLog = () => {
   const queryClient = useQueryClient();

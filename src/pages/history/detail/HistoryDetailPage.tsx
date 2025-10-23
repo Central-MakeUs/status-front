@@ -5,11 +5,11 @@ import styles from './HistoryDetailPage.module.scss';
 import { Header } from '@/shared/ui/Header/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
-import { useGetUserMainQuest } from '@/entities/quest/api/useGetUserMainQuest';
+import { useGetUserMainQuest } from '@/entities/main-quest/api/useGetUserMainQuest';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/entities/attribute/api/useGetUserAttributes';
 import type { AttributeDTO } from '@/entities/attribute/api/dto';
-import { useGetUserCompletedLists } from '@/entities/quest/api/useGetUserCompletedLists';
+import { useGetUserCompletedLists } from '@/entities/main-quest/api/useGetUserCompletedLists';
 import CompletedHistory from './CompletedHistory/CompletedHistory';
 const cx = classNames.bind(styles);
 

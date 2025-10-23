@@ -3,15 +3,17 @@ import { Select } from '@/shared/ui/Selelct/Select';
 import {
   ACTION_UNIT_TYPES,
   ACTION_UNIT_TYPE_OPTIONS,
+} from '@/entities/main-quest/config/constants';
+import {
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
-} from '@/entities/quest/config/constants';
+} from '@/entities/sub-quest/config/constants';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './EditingSubQuestBottomSheet.module.scss';

@@ -2,11 +2,11 @@ import CompletedQuestList from '../CompletedQuestList/CompletedQuestList';
 
 import classNames from 'classnames/bind';
 import styles from './TodayCompletedQuests.module.scss';
+import type { CompletedQuest } from '@/entities/main-quest/model/types';
 import type {
   SubQuestDifficulty,
-  CompletedQuest,
   UserSubQuest,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 const cx = classNames.bind(styles);
 
 const TodayCompletedQuests = ({

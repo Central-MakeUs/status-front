@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useQueryClient } from '@tanstack/react-query';
-import { getRandomSubQuests } from '@/entities/quest/api/quest';
-import type { RerollSubQuestRequestDTO } from '@/entities/quest/api/dto';
+import { getRandomSubQuests } from '@/entities/sub-quest/api/subQuest';
+import type { RerollSubQuestRequestDTO } from '@/entities/sub-quest/api/dto';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 
 export const useGetRandomSubQuests = () => {

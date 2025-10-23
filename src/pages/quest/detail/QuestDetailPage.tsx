@@ -1,17 +1,17 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestReportBottomSheet/QuestReportBottomSheet';
-import { usePostUserSubQuestLog } from '@/entities/quest/api/usePostUserSubQuestLog';
+import { usePostUserSubQuestLog } from '@/entities/sub-quest/api/usePostUserSubQuestLog';
 import { SubQuestRewardDialog } from '@/pages/quest/detail/components/SubQuestRewardDialog/SubQuestRewardDialog';
 import { MainQuestRewardDialog } from '@/pages/quest/detail/components/MainQuestRewardDialog/MainQuestRewardDialog';
-import { REWARD_STEP } from '@/entities/quest/config/constants';
+import { REWARD_STEP } from '@/entities/main-quest/config/constants';
 
+import type { RewardStep } from '@/entities/main-quest/model/types';
 import type {
-  RewardStep,
   SubQuestDifficulty,
   UserSubQuest,
   SubQuestLog,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './QuestDetailPage.module.scss';
@@ -19,20 +19,20 @@ import { Header } from '@/shared/ui/Header/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-import { useGetUserSubQuests } from '@/entities/quest/api/useGetUserSubQuests';
-import { useGetUserMainQuest } from '@/entities/quest/api/useGetUserMainQuest';
+import { useGetUserSubQuests } from '@/entities/sub-quest/api/useGetUserSubQuests';
+import { useGetUserMainQuest } from '@/entities/main-quest/api/useGetUserMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
-import { useDeleteUserMainQuest } from '@/entities/quest/api/useDeleteUserGiveUpMainQuest';
+import { useDeleteUserMainQuest } from '@/entities/main-quest/api/useDeleteUserGiveUpMainQuest';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import { useGetUserAttributes } from '@/entities/attribute/api/useGetUserAttributes';
 import type { AttributeDTO } from '@/entities/attribute/api/dto';
-import { useGetUserCompletedLists } from '@/entities/quest/api/useGetUserCompletedLists';
+import { useGetUserCompletedLists } from '@/entities/main-quest/api/useGetUserCompletedLists';
 import { format } from 'date-fns';
-import { usePatchUserSubQuestLog } from '@/entities/quest/api/usePatchUserSubQuestLog';
+import { usePatchUserSubQuestLog } from '@/entities/sub-quest/api/usePatchUserSubQuestLog';
 const cx = classNames.bind(styles);
 const today = format(new Date(), 'yyyy.MM.dd');
 

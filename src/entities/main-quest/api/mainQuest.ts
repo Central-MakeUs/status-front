@@ -1,25 +1,19 @@
 import { api } from '@/shared/api/client';
 import type {
-  UsersSubQuestResponseDTO,
-  SubQuestLogDTO,
   QuestHistoryByDateDTO,
   GetThemesParams,
   GetRandomThemesParams,
   MainQuestResponseDTO,
   GetMainQuestsParams,
   GetRandomMainQuestsParams,
-  SubQuestResponseDTO,
-  GetSubQuestsParams,
-  RerollSubQuestRequestDTO,
   CreateQuestRequestDTO,
   UsersMainQuestResponseDTO,
-  RewardResponseDto,
   CreateQuestResponseDTO,
   UserQuestStatisticsDTO,
   WithStatusUsersMainQuestResponseDTO,
-} from '@/entities/quest/api/dto';
+} from '@/entities/main-quest/api/dto';
 import type { ApiResponse } from '@/shared/api/types';
-import type { ThemeResponseDTO } from '@/entities/quest/api/dto';
+import type { ThemeResponseDTO } from '@/entities/main-quest/api/dto';
 
 export const getThemes = async ({
   attributes = [],
@@ -92,34 +86,6 @@ export const getRandomMainQuests = async ({
   return response.data ?? [];
 };
 
-export const getSubQuests = async ({
-  attributes = [],
-  mainQuest,
-}: GetSubQuestsParams): Promise<SubQuestResponseDTO[]> => {
-  const params: Record<string, string> = {
-    attributes: attributes.join(','),
-    mainQuest: mainQuest.toString(),
-  };
-
-  const response = await api.get<ApiResponse<SubQuestResponseDTO[]>>(
-    '/quest/get-subquests',
-    {
-      params,
-    }
-  );
-  return response.data ?? [];
-};
-
-export const getRandomSubQuests = async (
-  data: RerollSubQuestRequestDTO
-): Promise<SubQuestResponseDTO[]> => {
-  const response = await api.post<ApiResponse<SubQuestResponseDTO[]>>(
-    '/quest/reroll-subquests',
-    data
-  );
-  return response.data ?? [];
-};
-
 export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
   const response = await api.post<ApiResponse<CreateQuestResponseDTO>>(
     `/quest/create`,
@@ -154,48 +120,6 @@ export const getUserMainQuest = async (
       status: 'ACTIVE',
     }
   );
-};
-
-export const getUserSubQuestsAll = async (): Promise<
-  UsersSubQuestResponseDTO[]
-> => {
-  const response =
-    await api.get<ApiResponse<UsersSubQuestResponseDTO[]>>(`/quest/today`);
-  return response.data ?? [];
-};
-
-export const getUserSubQuests = async (
-  id: number
-): Promise<UsersSubQuestResponseDTO[]> => {
-  const response = await api.get<ApiResponse<UsersSubQuestResponseDTO[]>>(
-    `/quest/${id}/today`
-  );
-  return response.data ?? [];
-};
-
-export const postUserSubQuestLog = async (
-  data: SubQuestLogDTO
-): Promise<RewardResponseDto> => {
-  const response = await api.post<ApiResponse<RewardResponseDto>>(
-    `/quest/sub`,
-    data
-  );
-
-  return (
-    response.data ?? {
-      subQuestRewards: [],
-      mainQuestRewards: [],
-      isMainQuestCompleted: false,
-    }
-  );
-};
-
-export const patchUserSubQuestLog = async (data: SubQuestLogDTO) => {
-  const response = await api.patch<ApiResponse<SubQuestLogDTO>>(
-    `/quest/sub`,
-    data
-  );
-  return response.data ?? {};
 };
 
 export const getUserCompletedHistory = async (

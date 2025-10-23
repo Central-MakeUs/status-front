@@ -1,14 +1,14 @@
 import classNames from 'classnames/bind';
 import styles from './CompletedQuestList.module.scss';
+import type { CompletedQuest } from '@/entities/main-quest/model/types';
 import type {
   SubQuestDifficulty,
-  CompletedQuest,
   UserSubQuest,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
-} from '@/entities/quest/config/constants';
+} from '@/entities/sub-quest/config/constants';
 
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 const cx = classNames.bind(styles);

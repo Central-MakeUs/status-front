@@ -9,9 +9,9 @@ import { StepActions } from '@/pages/quest/new/components/StepActions/StepAction
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { getTodayString, getWeeksDifference } from '@/shared/lib/date';
 import { validateQuestCreation } from '@/schemas/questCreationSchema';
-import { usePostCreationQuest } from '@/entities/quest/api/usePostCreationQuest';
+import { usePostCreationQuest } from '@/entities/main-quest/api/usePostCreationQuest';
 
-import type { CreateQuestRequest } from '@/entities/quest/model/types';
+import type { CreateQuestRequest } from '@/entities/main-quest/model/types';
 
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';

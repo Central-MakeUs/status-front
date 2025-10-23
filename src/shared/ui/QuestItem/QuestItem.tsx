@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './QuestItem.module.scss';
-import type { UserSubQuest } from '@/entities/quest/model/types';
-import { getSubQuestFrequencyLabel } from '@/entities/quest/config/constants';
+import type { UserSubQuest } from '@/entities/sub-quest/model/types';
+import { getSubQuestFrequencyLabel } from '@/entities/sub-quest/config/constants';
 
 const cx = classNames.bind(styles);
 

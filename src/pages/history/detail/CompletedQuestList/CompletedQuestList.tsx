@@ -1,10 +1,10 @@
 import classNames from 'classnames/bind';
 import styles from './CompletedQuestList.module.scss';
-import type { CompletedQuest } from '@/entities/quest/model/types';
+import type { CompletedQuest } from '@/entities/main-quest/model/types';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
-} from '@/entities/quest/config/constants';
+} from '@/entities/sub-quest/config/constants';
 
 const cx = classNames.bind(styles);
 

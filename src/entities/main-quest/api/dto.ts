@@ -1,11 +1,10 @@
+import type { Status } from '@/entities/main-quest/model/types';
+import type { AttributeDTO } from '@/entities/attribute/api/dto';
 import type {
-  SubQuestFrequencyValue,
-  SubQuestDifficulty,
-  SubQuestInfo,
-  ActionUnitTypeValue,
-  Status,
-} from '@/entities/quest/model/types';
-import type { AttributeDTO } from '../../attribute/api/dto';
+  SubQuestLogsResponseDTO,
+  SubQuestResponseDTO,
+} from '@/entities/sub-quest/api/dto';
+import type { SubQuestInfo } from '@/entities/sub-quest/model/types';
 
 export interface ThemeResponseDTO {
   id: number;
@@ -24,27 +23,6 @@ export interface GetRandomThemesParams {
 export interface MainQuestResponseDTO {
   id: number;
   name: string;
-}
-
-export interface SubQuestResponseDTO {
-  id: number;
-  frequencyType: SubQuestFrequencyValue;
-  actionUnitType: ActionUnitTypeValue;
-  actionUnitNum: number;
-  attributes: AttributeDTO[];
-  desc: string;
-}
-
-export interface GetSubQuestsParams {
-  attributes?: number[];
-  mainQuest: number;
-}
-
-export interface RerollSubQuestRequestDTO {
-  mainQuest: number;
-  attributes: number[];
-  selectedSubQuests: number[];
-  gottenSubQuests: number[];
 }
 
 export interface CreateQuestRequestDTO {
@@ -75,12 +53,6 @@ export interface UsersMainQuestResponseDTO {
   attributes: AttributeDTO[];
   progress: number;
 }
-export interface UsersSubQuestResponseDTO {
-  subQuestInfo: SubQuestResponseDTO;
-  repeatCnt: number;
-  essential: boolean;
-  mainQuestId?: number;
-}
 
 export interface GetMainQuestsParams {
   attributes: number[];
@@ -99,21 +71,10 @@ export interface GetRandomSubQuestByMainQuestIdParams {
   limit: number;
 }
 
-export interface SubQuestLogDTO {
-  id: number;
-  difficulty: SubQuestDifficulty;
-  memo: string;
-}
-
 export interface RewardResponseDto {
   subQuestRewards: AttributeDTO[];
   mainQuestRewards: AttributeDTO[];
   isMainQuestCompleted: boolean;
-}
-
-export interface SubQuestLogsResponseDTO {
-  userSubQuest: UsersSubQuestResponseDTO;
-  log: SubQuestLogDTO;
 }
 
 export interface QuestHistoryByDateDTO {

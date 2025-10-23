@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteUserMainQuest } from '@/entities/quest/api/quest';
+import { deleteUserMainQuest } from '@/entities/main-quest/api/mainQuest';
 
 export const useDeleteUserMainQuest = () => {
   const queryClient = useQueryClient();

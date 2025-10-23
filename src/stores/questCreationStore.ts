@@ -3,8 +3,8 @@ import { devtools } from 'zustand/middleware';
 import { getTodayString } from '@/shared/lib/date';
 
 import type { Attribute } from '@/entities/attribute/model/types';
-import type { MainQuest, Theme } from '@/entities/quest/model/types';
-import type { SubQuest } from '@/entities/quest/model/types';
+import type { MainQuest, Theme } from '@/entities/main-quest/model/types';
+import type { SubQuest } from '@/entities/sub-quest/model/types';
 
 interface QuestCreationState {
   selectedAttribute: Attribute | null;

@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
+import { ACTION_UNIT_TYPE_OPTIONS } from '@/entities/main-quest/config/constants';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
-  ACTION_UNIT_TYPE_OPTIONS,
-} from '@/entities/quest/config/constants';
+} from '@/entities/sub-quest/config/constants';
 import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
 import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
 import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
 import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
 import { EditingSubQuestBottomSheet } from '@/pages/quest/new/components/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
-import { useGetSubQuests } from '@/entities/quest/api/useGetSubQuests';
-import { useGetRandomSubQuests } from '@/entities/quest/api/useGetRandomSubQuests';
+import { useGetSubQuests } from '@/entities/sub-quest/api/useGetSubQuests';
+import { useGetRandomSubQuests } from '@/entities/sub-quest/api/useGetRandomSubQuests';
 import { SubQuestSkeleton } from '@/pages/quest/new/components/SubQuestSkeleton/SubQuestSkeleton';
 import { SubQuestList } from '@/pages/quest/new/components/SubQuestList/SubQuestList';
 import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';
@@ -23,7 +23,7 @@ import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 

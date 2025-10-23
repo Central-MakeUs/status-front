@@ -1,20 +1,19 @@
 import type {
   UserQuestStatisticsDTO,
   WithStatusUsersMainQuestResponseDTO,
-} from '@/entities/quest/api/dto';
+} from '@/entities/main-quest/api/dto';
 import {
   ACTION_UNIT_TYPES,
   MAIN_QUEST_STATUS,
-  SUB_QUEST_FREQUENCY,
-} from '@/entities/quest/config/constants';
+} from '@/entities/main-quest/config/constants';
 import type {
   MainQuest,
-  SubQuest,
   Theme,
   CompletedQuest,
-  UserSubQuest,
   UsersMainQuest,
-} from '@/entities/quest/model/types';
+} from '@/entities/main-quest/model/types';
+import type { SubQuest, UserSubQuest } from '@/entities/sub-quest/model/types';
+import { SUB_QUEST_FREQUENCY } from '@/entities/sub-quest/config/constants';
 
 export const mockThemes: Theme[] = [
   {

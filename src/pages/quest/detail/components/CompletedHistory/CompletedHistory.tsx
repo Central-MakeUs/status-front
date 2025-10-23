@@ -5,11 +5,11 @@ import { useState } from 'react';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
+import type { UserCompletedHistory } from '@/entities/main-quest/model/types';
 import type {
   SubQuestDifficulty,
-  UserCompletedHistory,
   UserSubQuest,
-} from '@/entities/quest/model/types';
+} from '@/entities/sub-quest/model/types';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({

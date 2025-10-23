@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { getRandomThemes } from '@/entities/quest/api/quest';
-import type { GetRandomThemesParams } from '@/entities/quest/api/dto';
+import { getRandomThemes } from '@/entities/main-quest/api/mainQuest';
+import type { GetRandomThemesParams } from '@/entities/main-quest/api/dto';
 
 export const useGetRandomThemes = () => {
   const queryClient = useQueryClient();

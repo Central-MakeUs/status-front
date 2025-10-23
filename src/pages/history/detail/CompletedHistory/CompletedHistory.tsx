@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
-import type { UserCompletedHistory } from '@/entities/quest/model/types';
+import type { UserCompletedHistory } from '@/entities/main-quest/model/types';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({
