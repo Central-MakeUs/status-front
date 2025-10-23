@@ -4,6 +4,13 @@ import IconGold from '@/assets/icons/tiers/icon_gold.svg?react';
 import IconPlatinum from '@/assets/icons/tiers/icon_platinum.svg?react';
 import IconDia from '@/assets/icons/tiers/icon_dia.svg?react';
 
+export const NICKNAME_MAX_LENGTH = 10;
+
+export const USER_TYPE = {
+  SIGN_UP: 'SIGNUP',
+  LOGIN: 'LOGIN',
+} as const;
+
 export const TIER_ICONS = {
   BRONZE: IconBronze,
   SILVER: IconSilver,

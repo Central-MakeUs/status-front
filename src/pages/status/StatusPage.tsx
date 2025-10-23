@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/authStore';
-import { TIER_TYPE } from '@/entities/tier/config/constants';
+import { TIER_TYPE } from '@/entities/users/config/constants';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 const StatusPage = () => {

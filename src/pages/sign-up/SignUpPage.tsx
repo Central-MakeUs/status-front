@@ -5,30 +5,28 @@ import {
   useAuthStore,
   useSocialConnectionStore,
 } from '@/features/auth/model/authStore';
-import { usePostSignUp } from '@/entities/users/api/usePostSignUp';
+import { usePostSignUp } from '@/features/auth/api/usePostSignUp';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/Checkbox';
 import { nicknameSchema } from '@/schemas/authScheme';
-import {
-  NICKNAME_MAX_LENGTH,
-  SIGN_UP_STEP,
-} from '@/features/auth/config/constants';
+import { SIGN_UP_STEP } from '@/features/auth/config/constants';
 import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { renderWithLineBreaks } from '@/shared/lib/format';
 import { TERM_URL } from '@/shared/config/links';
 import { MESSAGE_TYPES } from '@/shared/config/constants';
 
-import type { SignUpStep } from '@/features/auth/model/types';
-import type { BasicUsers, SignUpForm } from '@/entities/users/model/types';
+import type { SignUpForm, SignUpStep } from '@/features/auth/model/types';
+import type { BasicUsers } from '@/entities/users/model/types';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
-import { usePatchSocialConnection } from '@/entities/users/api/usePatchSocialConnection';
+import { usePatchSocialConnection } from '@/features/auth/api/usePatchSocialConnection';
+import { NICKNAME_MAX_LENGTH } from '@/entities/users/config/constants';
 
 const cx = classNames.bind(styles);
 

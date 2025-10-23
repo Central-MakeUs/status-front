@@ -13,7 +13,7 @@ import {
 } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { USER_TYPE } from '@/features/auth/config/constants';
+import { USER_TYPE } from '@/entities/users/config/constants';
 import { usePostSocialLogin } from '@/features/auth/api/usePostSocialLogin';
 import { useGetCurrentUser } from '@/entities/users/api/useGetCurrentUser';
 import { useAuthenticateUser } from '@/features/auth/api/useAuthenticateUser';

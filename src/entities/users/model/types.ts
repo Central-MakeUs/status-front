@@ -1,5 +1,8 @@
-import type { BasicUsersDTO, SignUpRequestDTO } from '@/entities/users/api/dto';
+import type { BasicUsersDTO } from '../api/dto';
+import type { TIER_TYPE, USER_TYPE } from '../config/constants';
 
-export type SignUpForm = SignUpRequestDTO;
+export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];
+
+export type TierType = (typeof TIER_TYPE)[keyof typeof TIER_TYPE];
 
 export type BasicUsers = BasicUsersDTO;

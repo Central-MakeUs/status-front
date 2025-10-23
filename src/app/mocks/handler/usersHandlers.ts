@@ -1,6 +1,7 @@
 import { http, HttpResponse, passthrough } from 'msw';
 import { mockGoogleUser, mockGuestUser } from '@/app/mocks/data/users';
-import type { BasicUsersDTO, SignUpRequestDTO } from '@/entities/users/api/dto';
+import type { BasicUsersDTO } from '@/entities/users/api/dto';
+import type { SignUpRequestDTO } from '@/features/auth/api/dto';
 import { getCookie } from '@/shared/lib/cookie';
 
 export const API_URL = import.meta.env.VITE_API_URL;

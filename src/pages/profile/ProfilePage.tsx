@@ -5,7 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { Header } from '@/shared/ui/Header/Header';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { usePostLogout } from '@/features/auth/api/usePostLogout';
-import { usePostWithdrawalMutation } from '@/entities/users/api/usePostWithdrawal';
+import { usePostWithdrawalMutation } from '@/features/auth/api/usePostWithdrawal';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { TERM_URL } from '@/shared/config/links';
 import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';

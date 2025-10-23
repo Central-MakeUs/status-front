@@ -1,5 +1,5 @@
-import { getCurrentUser } from '@/entities/users/api/users';
 import { useQuery } from '@tanstack/react-query';
+import { getCurrentUser } from './users';
 
 interface UseGetCurrentUserProps {
   isAuthenticated?: boolean;

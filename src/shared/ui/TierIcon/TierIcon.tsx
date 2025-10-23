@@ -1,4 +1,4 @@
-import { TIER_ICONS } from '@/entities/tier/config/constants';
+import { TIER_ICONS } from '@/entities/users/config/constants';
 
 interface TierIconProps {
   id: string;

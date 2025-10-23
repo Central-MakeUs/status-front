@@ -1,5 +1,5 @@
-import { connectSocialAccount } from '@/entities/users/api/users';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { connectSocialAccount } from './auth';
 
 export const usePatchSocialConnection = () => {
   const queryClient = useQueryClient();

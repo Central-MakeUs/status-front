@@ -1,19 +1,20 @@
-import type { OAuthProviderDTO } from '@/features/auth/api/dto';
+import type {
+  OAuthProviderDTO,
+  SignUpRequestDTO,
+} from '@/features/auth/api/dto';
 import type { BasicUsersDTO } from '@/entities/users/api/dto';
 import type {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,
-  USER_TYPE,
 } from '@/features/auth/config/constants';
 import type { SIGN_UP_STEP } from '@/features/auth/config/constants';
-
-export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];
 
 export type SocialProvider =
   (typeof SOCIAL_PROVIDER)[keyof typeof SOCIAL_PROVIDER];
 
 export type ProviderType = (typeof PROVIDER_TYPE)[keyof typeof PROVIDER_TYPE];
 
+export type SignUpForm = SignUpRequestDTO;
 export type SignUpStep = (typeof SIGN_UP_STEP)[keyof typeof SIGN_UP_STEP];
 
 export type OAuthProvider = OAuthProviderDTO;

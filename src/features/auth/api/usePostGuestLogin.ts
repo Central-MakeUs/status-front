@@ -1,5 +1,5 @@
-import { guestLogin } from '@/features/auth/api/auth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { guestLogin } from './auth';
 
 export const usePostGuestLogin = () => {
   const queryClient = useQueryClient();
