@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './QuestItem.module.scss';
-import type { UserSubQuest } from '@/entities/sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
 import { getSubQuestFrequencyLabel } from '@/entities/sub-quest/config/constants';
 
 const cx = classNames.bind(styles);
@@ -17,7 +17,7 @@ export const QuestItem = ({
   repeatCnt,
   essential,
   onClick = () => {},
-}: UserSubQuest & {
+}: UsersSubQuest & {
   onClick?: (id: string) => void;
 }) => {
   return (

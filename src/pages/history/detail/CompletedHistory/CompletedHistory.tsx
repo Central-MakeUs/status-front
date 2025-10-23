@@ -5,13 +5,13 @@ import { useState } from 'react';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
-import type { UserCompletedHistory } from '@/entities/main-quest/model/types';
+import type { UsersCompletedHistory } from '@/entities/users-sub-quest/model/types';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({
   completedHistory,
 }: {
-  completedHistory: UserCompletedHistory[];
+  completedHistory: UsersCompletedHistory[];
 }) => {
   const [openDate, setOpenDate] = useState<string | null>(null);
 

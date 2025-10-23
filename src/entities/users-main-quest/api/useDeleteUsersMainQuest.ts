@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteUserMainQuest } from '@/entities/main-quest/api/mainQuest';
+import { deleteUsersMainQuest } from './usersMainQuest';
 
-export const useDeleteUserMainQuest = () => {
+export const useDeleteUsersMainQuest = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (id: number) => deleteUserMainQuest(id),
+    mutationFn: (id: number) => deleteUsersMainQuest(id),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['quest', 'me'],

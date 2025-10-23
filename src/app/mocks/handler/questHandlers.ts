@@ -3,11 +3,11 @@ import {
   mockMainQuests,
   mockSubQuests,
   mockUsersMainQuests,
-  mockUserSubQuests,
   mockCompletedHistory,
   mockSubQuestLogResponse,
   mockQuestStatistics,
   mockCompletedMainQuests,
+  mockUsersSubQuests,
 } from '@/app/mocks/data/quest';
 import type {
   CreateQuestRequestDTO,
@@ -167,7 +167,7 @@ export const questHandlers = [
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
-    const quests = mockUserSubQuests;
+    const quests = mockUsersSubQuests;
 
     return HttpResponse.json({
       data: quests,
@@ -211,7 +211,7 @@ export const questHandlers = [
       return passthrough();
     }
 
-    const quests = mockUserSubQuests;
+    const quests = mockUsersSubQuests;
 
     return HttpResponse.json({
       data: quests,

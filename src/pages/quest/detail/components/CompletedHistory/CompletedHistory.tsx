@@ -5,20 +5,18 @@ import { useState } from 'react';
 
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
-import type { UserCompletedHistory } from '@/entities/main-quest/model/types';
-import type {
-  SubQuestDifficulty,
-  UserSubQuest,
-} from '@/entities/sub-quest/model/types';
+import type { UsersCompletedHistory } from '@/entities/users-sub-quest/model/types';
+import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
 const cx = classNames.bind(styles);
 
 const CompletedHistory = ({
   completedHistory,
   onClick,
 }: {
-  completedHistory: UserCompletedHistory[];
+  completedHistory: UsersCompletedHistory[];
   onClick: (
-    quest: UserSubQuest,
+    quest: UsersSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string,
     logId: number

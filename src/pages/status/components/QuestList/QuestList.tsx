@@ -1,7 +1,7 @@
 import { QuestItem } from '@/shared/ui/QuestItem/QuestItem';
 import classNames from 'classnames/bind';
 import styles from './QuestList.module.scss';
-import type { UserSubQuest } from '@/entities/sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
 
 const cx = classNames.bind(styles);
 
@@ -10,9 +10,9 @@ export const QuestList = ({
   className,
   onClick,
 }: {
-  quests: UserSubQuest[];
+  quests: UsersSubQuest[];
   className?: string;
-  onClick: (quest: UserSubQuest) => void;
+  onClick: (quest: UsersSubQuest) => void;
 }) => {
   if (quests.length === 0) return null;
 

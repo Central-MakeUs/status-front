@@ -1,17 +1,13 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { QuestReportBottomSheet } from '@/pages/quest/detail/components/QuestReportBottomSheet/QuestReportBottomSheet';
-import { usePostUserSubQuestLog } from '@/entities/sub-quest/api/usePostUserSubQuestLog';
+import { usePostUsersSubQuestLog } from '@/entities/users-sub-quest/api/usePostUsersSubQuestLog';
 import { SubQuestRewardDialog } from '@/pages/quest/detail/components/SubQuestRewardDialog/SubQuestRewardDialog';
 import { MainQuestRewardDialog } from '@/pages/quest/detail/components/MainQuestRewardDialog/MainQuestRewardDialog';
 import { REWARD_STEP } from '@/entities/main-quest/config/constants';
 
 import type { RewardStep } from '@/entities/main-quest/model/types';
-import type {
-  SubQuestDifficulty,
-  UserSubQuest,
-  SubQuestLog,
-} from '@/entities/sub-quest/model/types';
+import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './QuestDetailPage.module.scss';
@@ -19,20 +15,24 @@ import { Header } from '@/shared/ui/Header/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-import { useGetUserSubQuests } from '@/entities/sub-quest/api/useGetUserSubQuests';
-import { useGetUserMainQuest } from '@/entities/main-quest/api/useGetUserMainQuest';
+import { useGetUsersSubQuests } from '@/entities/users-sub-quest/api/useGetUsersSubQuests';
+import { useGetUsersMainQuest } from '@/entities/users-main-quest/api/useGetUsersMainQuest';
 import TodayCompletedQuests from './components/TodayCompletedQuests/TodayCompletedQuests';
 import CompletedHistory from './components/CompletedHistory/CompletedHistory';
-import { useDeleteUserMainQuest } from '@/entities/main-quest/api/useDeleteUserGiveUpMainQuest';
+import { useDeleteUsersMainQuest } from '@/entities/users-main-quest/api/useDeleteUsersMainQuest';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { QuestGiveUpDialog } from './components/QuestGiveUpDialog/QuestGiveUpDialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
-import { useGetUserAttributes } from '@/entities/users-attribute/api/useGetUserAttributes';
+import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import { useGetUserCompletedLists } from '@/entities/main-quest/api/useGetUserCompletedLists';
+import { useGetUsersCompletedLists } from '@/entities/users-sub-quest/api/useGetUsersCompletedLists';
 import { format } from 'date-fns';
-import { usePatchUserSubQuestLog } from '@/entities/sub-quest/api/usePatchUserSubQuestLog';
+import { usePatchUsersSubQuestLog } from '@/entities/users-sub-quest/api/usePatchUsersSubQuestLog';
+import type {
+  SubQuestLog,
+  UsersSubQuest,
+} from '@/entities/users-sub-quest/model/types';
 const cx = classNames.bind(styles);
 const today = format(new Date(), 'yyyy.MM.dd');
 
@@ -41,17 +41,16 @@ const QuestDetailPage = () => {
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
 
-  const { data: quest } = useGetUserMainQuest(Number(mainQuestId));
-  const { data: subQuests } = useGetUserSubQuests(Number(mainQuestId));
-  const { data: completedHistory } = useGetUserCompletedLists(
+  const { data: quest } = useGetUsersMainQuest(Number(mainQuestId));
+  const { data: subQuests } = useGetUsersSubQuests(Number(mainQuestId));
+  const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
-  const { data: attributeDatas } = useGetUserAttributes();
+  const { data: attributeDatas } = useGetUsersAttributes();
 
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
-  const [selectedSubQuest, setSelectedSubQuest] = useState<UserSubQuest | null>(
-    state?.quest
-  );
+  const [selectedSubQuest, setSelectedSubQuest] =
+    useState<UsersSubQuest | null>(state?.quest);
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty | null>(null);
@@ -59,9 +58,9 @@ const QuestDetailPage = () => {
   const [isGiveUpDialogOpen, setIsGiveUpDialogOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
-  const postUserSubQuestLog = usePostUserSubQuestLog();
-  const deleteUserMainQuest = useDeleteUserMainQuest();
-  const patchUserSubQuestLog = usePatchUserSubQuestLog();
+  const postUserSubQuestLog = usePostUsersSubQuestLog();
+  const deleteUserMainQuest = useDeleteUsersMainQuest();
+  const patchUserSubQuestLog = usePatchUsersSubQuestLog();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
@@ -149,7 +148,7 @@ const QuestDetailPage = () => {
   };
 
   const handleEdit = (
-    quest: UserSubQuest,
+    quest: UsersSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string,
     logId: number

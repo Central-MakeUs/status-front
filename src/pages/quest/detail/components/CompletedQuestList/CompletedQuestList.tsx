@@ -1,16 +1,15 @@
-import classNames from 'classnames/bind';
-import styles from './CompletedQuestList.module.scss';
-import type { CompletedQuest } from '@/entities/main-quest/model/types';
-import type {
-  SubQuestDifficulty,
-  UserSubQuest,
-} from '@/entities/sub-quest/model/types';
+import type { CompletedQuest } from '@/entities/users-sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
+import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
 } from '@/entities/sub-quest/config/constants';
 
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
+
+import classNames from 'classnames/bind';
+import styles from './CompletedQuestList.module.scss';
 const cx = classNames.bind(styles);
 
 const CompletedQuestList = ({
@@ -19,7 +18,7 @@ const CompletedQuestList = ({
 }: {
   quest: CompletedQuest;
   onClick: (
-    quest: UserSubQuest,
+    quest: UsersSubQuest,
     difficulty: SubQuestDifficulty,
     memo: string,
     logId: number

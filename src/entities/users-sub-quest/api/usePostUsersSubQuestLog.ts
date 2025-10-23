@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postUserSubQuestLog } from '@/entities/sub-quest/api/subQuest';
-import type { SubQuestLogDTO } from '@/entities/sub-quest/api/dto';
+import { postUsersSubQuestLog } from './usersSubQuest';
+import type { SubQuestLogDTO } from './dto';
 
-export const usePostUserSubQuestLog = () => {
+export const usePostUsersSubQuestLog = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: SubQuestLogDTO) => postUserSubQuestLog(data),
+    mutationFn: (data: SubQuestLogDTO) => postUsersSubQuestLog(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['completed-quests'],

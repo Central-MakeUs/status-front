@@ -1,4 +1,4 @@
-import type { AttributeType } from '@/entities/users-attribute/model/types';
+import type { AttributeType } from '../model/types';
 
 export interface AttributesReturnDTO {
   attributeId: number;

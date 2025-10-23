@@ -1,19 +1,15 @@
-import type {
-  UserQuestStatisticsDTO,
-  WithStatusUsersMainQuestResponseDTO,
-} from '@/entities/main-quest/api/dto';
 import {
   ACTION_UNIT_TYPES,
   MAIN_QUEST_STATUS,
 } from '@/entities/main-quest/config/constants';
-import type {
-  MainQuest,
-  Theme,
-  CompletedQuest,
-  UsersMainQuest,
-} from '@/entities/main-quest/model/types';
-import type { SubQuest, UserSubQuest } from '@/entities/sub-quest/model/types';
+import type { MainQuest, Theme } from '@/entities/main-quest/model/types';
 import { SUB_QUEST_FREQUENCY } from '@/entities/sub-quest/config/constants';
+import type { UsersQuestStatisticsDTO } from '@/entities/main-quest/api/dto';
+import type { SubQuest } from '@/entities/sub-quest/model/types';
+import type { WithStatusUsersMainQuestResponseDTO } from '@/entities/users-main-quest/api/dto';
+import type { UsersMainQuest } from '@/entities/users-main-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
+import type { CompletedQuest } from '@/entities/users-sub-quest/model/types';
 
 export const mockThemes: Theme[] = [
   {
@@ -239,7 +235,7 @@ export const mockUsersMainQuests: UsersMainQuest[] = [
   },
 ];
 
-export const mockUserSubQuests: UserSubQuest[] = [
+export const mockUsersSubQuests: UsersSubQuest[] = [
   {
     subQuestInfo: {
       id: 1,
@@ -396,7 +392,7 @@ export const mockSubQuestLogResponse = {
   isMainQuestCompleted: true,
 };
 
-export const mockQuestStatistics: UserQuestStatisticsDTO = {
+export const mockQuestStatistics: UsersQuestStatisticsDTO = {
   totalMainQuests: 2,
   totalSubQuestVerifications: 4,
   averageCompletionRate: 50,

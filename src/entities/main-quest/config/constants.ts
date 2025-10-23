@@ -1,5 +1,3 @@
-export const MAX_USERS_MAIN_QUEST_COUNT = 3;
-
 export const REWARD_STEP = {
   NONE: 'none',
   SUB_QUEST: 'subQuest',

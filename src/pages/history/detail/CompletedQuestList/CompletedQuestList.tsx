@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './CompletedQuestList.module.scss';
-import type { CompletedQuest } from '@/entities/main-quest/model/types';
+import type { CompletedQuest } from '@/entities/users-sub-quest/model/types';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,

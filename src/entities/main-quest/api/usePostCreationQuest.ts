@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { postCreationQuest } from '@/entities/main-quest/api/mainQuest';
-import type { CreateQuestRequestDTO } from '@/entities/main-quest/api/dto';
+import { postCreationQuest } from './mainQuest';
+import type { CreateQuestRequestDTO } from './dto';
 
 export const usePostCreationQuest = () => {
   const queryClient = useQueryClient();

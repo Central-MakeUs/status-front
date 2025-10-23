@@ -1,9 +1,5 @@
-import type { Status } from '@/entities/main-quest/model/types';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import type {
-  SubQuestLogsResponseDTO,
-  SubQuestResponseDTO,
-} from '@/entities/sub-quest/api/dto';
+import type { SubQuestResponseDTO } from '@/entities/sub-quest/api/dto';
 import type { SubQuestInfo } from '@/entities/sub-quest/model/types';
 
 export interface ThemeResponseDTO {
@@ -44,16 +40,6 @@ export interface CreateQuestResponseDTO {
   npcName: string;
 }
 
-export interface UsersMainQuestResponseDTO {
-  id: number;
-  startDate: string;
-  endDate: string;
-  totalWeeks: number;
-  title: string;
-  attributes: AttributeDTO[];
-  progress: number;
-}
-
 export interface GetMainQuestsParams {
   attributes: number[];
   theme: number;
@@ -77,19 +63,9 @@ export interface RewardResponseDto {
   isMainQuestCompleted: boolean;
 }
 
-export interface QuestHistoryByDateDTO {
-  date: string;
-  logs: SubQuestLogsResponseDTO[];
-}
-
-export interface UserQuestStatisticsDTO {
+export interface UsersQuestStatisticsDTO {
   totalMainQuests: number;
   totalSubQuestVerifications: number;
   averageCompletionRate: number;
   averageDurationDays: number;
-}
-
-export interface WithStatusUsersMainQuestResponseDTO
-  extends UsersMainQuestResponseDTO {
-  status: Status;
 }

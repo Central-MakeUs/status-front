@@ -1,4 +1,4 @@
-import type { SubQuestFrequencyValue } from '@/entities/sub-quest/model/types';
+import type { SubQuestFrequencyValue } from '../model/types';
 
 export const DISPLAY_SUB_QUEST_COUNT = 4;
 

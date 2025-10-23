@@ -1,5 +1,5 @@
-import { getUsersMainQuests } from '@/entities/main-quest/api/mainQuest';
 import { useQuery } from '@tanstack/react-query';
+import { getUsersMainQuests } from './usersMainQuest';
 
 interface UseGetUsersMainQuestsProps {
   isAuthenticated?: boolean;

@@ -1,9 +1,6 @@
 import type { ActionUnitTypeValue } from '@/entities/main-quest/model/types';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import type {
-  SubQuestDifficulty,
-  SubQuestFrequencyValue,
-} from '@/entities/sub-quest/model/types';
+import type { SubQuestFrequencyValue } from '../model/types';
 
 export interface SubQuestResponseDTO {
   id: number;
@@ -24,22 +21,4 @@ export interface RerollSubQuestRequestDTO {
   attributes: number[];
   selectedSubQuests: number[];
   gottenSubQuests: number[];
-}
-
-export interface UsersSubQuestResponseDTO {
-  subQuestInfo: SubQuestResponseDTO;
-  repeatCnt: number;
-  essential: boolean;
-  mainQuestId?: number;
-}
-
-export interface SubQuestLogDTO {
-  id: number;
-  difficulty: SubQuestDifficulty;
-  memo: string;
-}
-
-export interface SubQuestLogsResponseDTO {
-  userSubQuest: UsersSubQuestResponseDTO;
-  log: SubQuestLogDTO;
 }

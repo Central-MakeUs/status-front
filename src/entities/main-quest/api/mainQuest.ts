@@ -1,19 +1,16 @@
 import { api } from '@/shared/api/client';
+import type { ApiResponse } from '@/shared/api/types';
 import type {
-  QuestHistoryByDateDTO,
+  ThemeResponseDTO,
   GetThemesParams,
   GetRandomThemesParams,
   MainQuestResponseDTO,
   GetMainQuestsParams,
   GetRandomMainQuestsParams,
   CreateQuestRequestDTO,
-  UsersMainQuestResponseDTO,
   CreateQuestResponseDTO,
-  UserQuestStatisticsDTO,
-  WithStatusUsersMainQuestResponseDTO,
-} from '@/entities/main-quest/api/dto';
-import type { ApiResponse } from '@/shared/api/types';
-import type { ThemeResponseDTO } from '@/entities/main-quest/api/dto';
+  UsersQuestStatisticsDTO,
+} from './dto';
 
 export const getThemes = async ({
   attributes = [],
@@ -94,68 +91,18 @@ export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
   return response.data ?? {};
 };
 
-export const getUsersMainQuests = async (): Promise<
-  UsersMainQuestResponseDTO[]
-> => {
-  const response =
-    await api.get<ApiResponse<UsersMainQuestResponseDTO[]>>(`/quest/me`);
-  return response.data ?? [];
-};
-
-export const getUserMainQuest = async (
-  id: number
-): Promise<WithStatusUsersMainQuestResponseDTO> => {
-  const response = await api.get<
-    ApiResponse<WithStatusUsersMainQuestResponseDTO>
-  >(`/quest/${id}`);
-  return (
-    response.data ?? {
-      id: 0,
-      title: '',
-      startDate: '',
-      endDate: '',
-      attributes: [],
-      totalWeeks: 0,
-      progress: 0,
-      status: 'ACTIVE',
-    }
-  );
-};
-
-export const getUserCompletedHistory = async (
-  id: number
-): Promise<QuestHistoryByDateDTO[]> => {
-  const response = await api.get<ApiResponse<QuestHistoryByDateDTO[]>>(
-    `/quest/${id}/history`
-  );
-  return response.data ?? [];
-};
-
-export const deleteUserMainQuest = async (id: number): Promise<void> => {
-  await api.delete(`/quest/${id}`);
-};
-
-export const getUserStatistic = async (): Promise<UserQuestStatisticsDTO> => {
-  const response = await api.get<ApiResponse<UserQuestStatisticsDTO>>(
-    `/quest/user-statistics`
-  );
-
-  return (
-    response.data ?? {
-      totalMainQuests: 0,
-      totalSubQuestVerifications: 0,
-      averageCompletionRate: 0,
-      averageDurationDays: 0,
-    }
-  );
-};
-
-export const getUserCompletedMainQuests = async (): Promise<
-  WithStatusUsersMainQuestResponseDTO[]
-> => {
-  const response =
-    await api.get<ApiResponse<WithStatusUsersMainQuestResponseDTO[]>>(
-      `/quest/history`
+export const getUsersStatistics =
+  async (): Promise<UsersQuestStatisticsDTO> => {
+    const response = await api.get<ApiResponse<UsersQuestStatisticsDTO>>(
+      `/quest/user-statistics`
     );
-  return response.data ?? [];
-};
+
+    return (
+      response.data ?? {
+        totalMainQuests: 0,
+        totalSubQuestVerifications: 0,
+        averageCompletionRate: 0,
+        averageDurationDays: 0,
+      }
+    );
+  };

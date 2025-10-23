@@ -5,21 +5,21 @@ import styles from './HistoryDetailPage.module.scss';
 import { Header } from '@/shared/ui/Header/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
-import { useGetUserMainQuest } from '@/entities/main-quest/api/useGetUserMainQuest';
+import { useGetUsersMainQuest } from '@/entities/users-main-quest/api/useGetUsersMainQuest';
 import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
-import { useGetUserAttributes } from '@/entities/users-attribute/api/useGetUserAttributes';
+import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import { useGetUserCompletedLists } from '@/entities/main-quest/api/useGetUserCompletedLists';
+import { useGetUsersCompletedLists } from '@/entities/users-sub-quest/api/useGetUsersCompletedLists';
 import CompletedHistory from './CompletedHistory/CompletedHistory';
 const cx = classNames.bind(styles);
 
 const QuestDetailPage = () => {
   const { id: mainQuestId } = useParams();
-  const { data: quest } = useGetUserMainQuest(Number(mainQuestId));
-  const { data: completedHistory } = useGetUserCompletedLists(
+  const { data: quest } = useGetUsersMainQuest(Number(mainQuestId));
+  const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
-  const { data: attributeDatas } = useGetUserAttributes();
+  const { data: attributeDatas } = useGetUsersAttributes();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);

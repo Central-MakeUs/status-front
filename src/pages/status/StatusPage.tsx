@@ -1,12 +1,12 @@
 import { Header } from '@/pages/status/components/Header/Header';
 import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/components/QuestList/QuestList';
-import { useGetUserAttributes } from '@/entities/users-attribute/api/useGetUserAttributes';
-import { useGetUserSubQuestsAll } from '@/entities/sub-quest/api/useGetUserSubQuestsAll';
+import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
+import { useGetUsersSubQuestsAll } from '@/entities/users-sub-quest/api/useGetUsersSubQuestsAll';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
-import type { UserSubQuest } from '@/entities/sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useShallow } from 'zustand/react/shallow';
@@ -17,8 +17,8 @@ import profileImageUrl from '@/assets/images/image-profile-default.svg';
 const StatusPage = () => {
   const navigate = useNavigate();
 
-  const { data: attributeDatas } = useGetUserAttributes();
-  const { data: quests } = useGetUserSubQuestsAll();
+  const { data: attributeDatas } = useGetUsersAttributes();
+  const { data: quests } = useGetUsersSubQuestsAll();
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
@@ -58,7 +58,7 @@ const StatusPage = () => {
         {quests && (
           <QuestList
             quests={quests}
-            onClick={(quest: UserSubQuest) => {
+            onClick={(quest: UsersSubQuest) => {
               navigate(
                 `${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.mainQuestId?.toString() || '')}`,
                 { state: { quest: quest } }

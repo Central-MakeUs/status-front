@@ -1,13 +1,13 @@
 import { Header } from '@/shared/ui/Header/Header';
 import { HistoryEmpty } from './components/HistoryEmpty/HistoryEmpty';
-import { useGetUserCompletedMainQuests } from '@/entities/main-quest/api/useGetUserCompletedMainQuests';
 import { HistorySummary } from '@/pages/history/components/HistorySummary/HistorySummary';
 import { HistoryCompletedMainQuests } from '@/pages/history/components/HistoryCompletedMainQuests/HistoryCompletedMainQuests';
-import { useGetuserStatistic } from '@/entities/main-quest/api/useGetUserStatstic';
+import { useGetUsersStatistics } from '@/entities/main-quest/api/useGetUsersStatstics';
+import { useGetUsersCompletedMainQuests } from '@/entities/users-main-quest/api/useGetUsersCompletedMainQuests';
 
 const HistoryPage = () => {
-  const { data: statistics } = useGetuserStatistic();
-  const { data: mainQuests } = useGetUserCompletedMainQuests();
+  const { data: statistics } = useGetUsersStatistics();
+  const { data: mainQuests } = useGetUsersCompletedMainQuests();
 
   const {
     totalMainQuests,

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetUserAttributes } from '@/entities/users-attribute/api/useGetUserAttributes';
+import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { Header } from '@/shared/ui/Header/Header';
@@ -25,7 +25,7 @@ interface AttributeGroupProps {
 
 export const StepAttributePage = () => {
   const navigate = useNavigate();
-  const { data: attributes } = useGetUserAttributes();
+  const { data: attributes } = useGetUsersAttributes();
   const { selectedAttribute, setSelectedAttribute } = useQuestCreationStore(
     useShallow((state) => ({
       selectedAttribute: state.selectedAttribute,

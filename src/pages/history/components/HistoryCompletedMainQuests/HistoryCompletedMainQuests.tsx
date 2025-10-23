@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { MAIN_QUEST_STATUS } from '@/entities/main-quest/config/constants';
 
-import type { UserCompletedMainQuests } from '@/entities/main-quest/model/types';
+import type { UserCompletedMainQuests } from '@/entities/users-main-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './HistoryCompletedMainQuests.module.scss';
