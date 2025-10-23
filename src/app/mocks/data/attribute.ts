@@ -1,4 +1,4 @@
-import type { AttributesReturnDTO } from '@/entities/attribute/api/dto';
+import type { AttributesReturnDTO } from '@/entities/users-attribute/api/dto';
 
 export const mockAttributes: AttributesReturnDTO[] = [
   {

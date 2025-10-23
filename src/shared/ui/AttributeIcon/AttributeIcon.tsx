@@ -1,4 +1,4 @@
-import { ATTRIBUTE_ICONS } from '@/entities/attribute/config/constants';
+import { ATTRIBUTE_ICONS } from '@/entities/users-attribute/config/constants';
 
 interface AttributeIconProps {
   id: number;

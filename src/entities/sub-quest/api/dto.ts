@@ -1,5 +1,5 @@
 import type { ActionUnitTypeValue } from '@/entities/main-quest/model/types';
-import type { AttributeDTO } from '@/entities/attribute/api/dto';
+import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
 import type {
   SubQuestDifficulty,
   SubQuestFrequencyValue,
