@@ -16,10 +16,4 @@ export type SubQuestInfo = Pick<
 
 export type SubQuestDifficulty = 'EASY' | 'NORMAL' | 'HARD';
 
-export interface GetRandomSubQuestByMainQuestIdParams {
-  mainQuestId: string;
-  selectedSubQuestIds?: string[];
-  limit: number;
-}
-
 export type ActionUnitTypeValue = keyof typeof ACTION_UNIT_TYPE_OPTIONS;

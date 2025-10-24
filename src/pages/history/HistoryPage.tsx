@@ -1,7 +1,7 @@
 import { Header } from '@/shared/ui/Header/Header';
-import { HistoryEmpty } from './components/HistoryEmpty/HistoryEmpty';
-import { HistorySummary } from '@/pages/history/components/HistorySummary/HistorySummary';
-import { HistoryCompletedMainQuests } from '@/pages/history/components/HistoryCompletedMainQuests/HistoryCompletedMainQuests';
+import { HistoryEmpty } from './ui/HistoryEmpty/HistoryEmpty';
+import { HistorySummary } from '@/pages/history/ui/HistorySummary/HistorySummary';
+import { HistoryCompletedMainQuests } from '@/pages/history/ui/HistoryCompletedMainQuests/HistoryCompletedMainQuests';
 import { useGetUsersStatistics } from '@/entities/main-quest/api/useGetUsersStatstics';
 import { useGetUsersCompletedMainQuests } from '@/entities/users-main-quest/api/useGetUsersCompletedMainQuests';
 

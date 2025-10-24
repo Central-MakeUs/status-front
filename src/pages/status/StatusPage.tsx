@@ -1,11 +1,11 @@
-import { Header } from '@/pages/status/components/Header/Header';
-import { RadarChart } from '@/pages/status/components/RadarChart/RadarChart';
-import { QuestList } from '@/pages/status/components/QuestList/QuestList';
+import { Header } from '@/pages/status/ui/Header/Header';
+import { RadarChart } from '@/pages/status/ui/RadarChart/RadarChart';
+import { QuestList } from '@/pages/status/ui/QuestList/QuestList';
 import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import { useGetUsersSubQuestsAll } from '@/entities/users-sub-quest/api/useGetUsersSubQuestsAll';
 import { useState } from 'react';
-import { StatusDetailBottomSheet } from './components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
-import TierLevelBottomSheet from './components/BottomSheet/TierBottomSheet/TierBottomSheet';
+import { StatusDetailBottomSheet } from './ui/StatusBottomSheet/StatusBottomSheet';
+import TierLevelBottomSheet from './ui/TierBottomSheet/TierBottomSheet';
 import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';

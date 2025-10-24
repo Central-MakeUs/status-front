@@ -8,10 +8,10 @@ import { usePostLogout } from '@/features/auth/api/usePostLogout';
 import { usePostWithdrawalMutation } from '@/features/auth/api/usePostWithdrawal';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { TERM_URL } from '@/shared/config/links';
-import { NicknameBottomSheet } from '@/pages/profile/components/NicknameBottomSheet/NicknameBottomSheet';
-import { LogoutDialog } from '@/pages/profile/components/LogoutDialog/LogoutDialog';
-import { GuestWithdrawalDialog } from '@/pages/profile/components/GuestWithdrawalDialog/GuestWithdrawalDialog';
-import { UserWithdrawalDialog } from '@/pages/profile/components/UserWithdrawalDialog/UserWithdrawalDialog';
+import { NicknameBottomSheet } from '@/pages/profile/ui/NicknameBottomSheet/NicknameBottomSheet';
+import { LogoutDialog } from '@/pages/profile/ui/LogoutDialog/LogoutDialog';
+import { GuestWithdrawalDialog } from '@/pages/profile/ui/GuestWithdrawalDialog/GuestWithdrawalDialog';
+import { UserWithdrawalDialog } from '@/pages/profile/ui/UserWithdrawalDialog/UserWithdrawalDialog';
 import { MESSAGE_TYPES } from '@/shared/config/constants';
 import { PROVIDER_TYPE } from '@/features/auth/config/constants';
 

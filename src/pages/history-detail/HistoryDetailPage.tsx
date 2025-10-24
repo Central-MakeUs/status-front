@@ -6,11 +6,11 @@ import { Header } from '@/shared/ui/Header/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { useGetUsersMainQuest } from '@/entities/users-main-quest/api/useGetUsersMainQuest';
-import { StatusDetailBottomSheet } from '@/pages/status/components/BottomSheet/StatusBottomSheet/StatusBottomSheet';
+import { StatusDetailBottomSheet } from '@/pages/status/ui/StatusBottomSheet/StatusBottomSheet';
 import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
 import { useGetUsersCompletedLists } from '@/entities/users-sub-quest/api/useGetUsersCompletedLists';
-import CompletedHistory from './CompletedHistory/CompletedHistory';
+import CompletedHistory from './ui/CompletedHistory/CompletedHistory';
 const cx = classNames.bind(styles);
 
 const QuestDetailPage = () => {

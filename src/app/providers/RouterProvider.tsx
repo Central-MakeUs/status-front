@@ -13,7 +13,7 @@ const QuestPage = lazy(() => import('@/pages/quest/QuestPage'));
 const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 const HistoryPage = lazy(() => import('@/pages/history/HistoryPage'));
 const HistoryDetailPage = lazy(
-  () => import('@/pages/history/detail/HistoryDetailPage')
+  () => import('@/pages/history-detail/HistoryDetailPage')
 );
 const StepAttributePage = lazy(
   () => import('@/pages/quest-creation/StepAttributePage')
@@ -34,7 +34,7 @@ const StepResultPage = lazy(
   () => import('@/pages/quest-creation/StepResultPage')
 );
 const QuestDetailPage = lazy(
-  () => import('@/pages/quest/detail/QuestDetailPage')
+  () => import('@/pages/quest-detail/QuestDetailPage')
 );
 const SignInPage = lazy(() => import('@/pages/sign-in/SignInPage'));
 const TutorialPage = lazy(() => import('@/pages/tutorial/TutorialPage'));
