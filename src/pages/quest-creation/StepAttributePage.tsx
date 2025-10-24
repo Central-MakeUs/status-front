@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
 import { useQuestCreationStore } from './model/questCreationStore';

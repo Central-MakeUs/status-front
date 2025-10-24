@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from './model/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { StepTitle } from './ui/StepTitle/StepTitle';
 import { StepActions } from './ui/StepActions/StepActions';
 import { StepDescription } from './ui/StepDescription/StepDescription';

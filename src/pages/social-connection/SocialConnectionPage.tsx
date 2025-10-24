@@ -1,4 +1,4 @@
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { useSocialAuth } from '@/features/auth/model/useSocialAuth';
 import { Loading } from '@/shared/ui/Loading/Loading';
 

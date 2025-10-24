@@ -4,7 +4,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useGetMainQuests } from '@/entities/main-quest/api/useGetMainQuests';
 import { useGetRandomMainQuests } from '@/entities/main-quest/api/useGetRandomMainQuests';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { useQuestCreationStore } from './model/questCreationStore';
 import { StepTitle } from './ui/StepTitle/StepTitle';
 import { StepActions } from './ui/StepActions/StepActions';

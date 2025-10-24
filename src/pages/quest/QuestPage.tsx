@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useGetUsersMainQuests } from '@/entities/users-main-quest/api/useGetUsersMainQuests';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { QuestEmpty } from '@/pages/quest/ui/QuestEmpty';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { getWeeksDifference } from '@/shared/lib/date';

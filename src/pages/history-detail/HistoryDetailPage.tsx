@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HistoryDetailPage.module.scss';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { useGetUsersMainQuest } from '@/entities/users-main-quest/api/useGetUsersMainQuest';

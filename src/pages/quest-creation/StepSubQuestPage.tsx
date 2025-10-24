@@ -8,7 +8,7 @@ import {
   MAX_SUB_QUEST_COUNT,
   ACTION_UNIT_TYPE_OPTIONS,
 } from '@/entities/sub-quest/config/constants';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { StepTitle } from './ui/StepTitle/StepTitle';
 import { StepActions } from './ui/StepActions/StepActions';
 import { StepDescription } from './ui/StepDescription/StepDescription';

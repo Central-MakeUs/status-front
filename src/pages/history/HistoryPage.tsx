@@ -1,4 +1,4 @@
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { HistoryEmpty } from './ui/HistoryEmpty/HistoryEmpty';
 import { HistorySummary } from '@/pages/history/ui/HistorySummary/HistorySummary';
 import { HistoryCompletedMainQuests } from '@/pages/history/ui/HistoryCompletedMainQuests/HistoryCompletedMainQuests';

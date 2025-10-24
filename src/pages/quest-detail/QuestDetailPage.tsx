@@ -11,7 +11,7 @@ import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
 
 import classNames from 'classnames/bind';
 import styles from './QuestDetailPage.module.scss';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { QuestList } from '@/pages/status/ui/QuestList/QuestList';

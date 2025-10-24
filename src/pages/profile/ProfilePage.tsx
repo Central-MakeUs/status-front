@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useShallow } from 'zustand/react/shallow';
-import { Header } from '@/shared/ui/Header/Header';
+import { Header } from '@/widgets/global-header/ui/Header';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { usePostLogout } from '@/features/auth/api/usePostLogout';
 import { usePostWithdrawalMutation } from '@/features/auth/api/usePostWithdrawal';
