@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useQuestCreationStore } from '@/stores/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { ACTION_UNIT_TYPE_OPTIONS } from '@/entities/main-quest/config/constants';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
+  ACTION_UNIT_TYPE_OPTIONS,
 } from '@/entities/sub-quest/config/constants';
 import { Header } from '@/shared/ui/Header/Header';
 import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';

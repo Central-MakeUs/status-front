@@ -1,7 +1,5 @@
-import {
-  ACTION_UNIT_TYPES,
-  MAIN_QUEST_STATUS,
-} from '@/entities/main-quest/config/constants';
+import { ACTION_UNIT_TYPES } from '@/entities/sub-quest/config/constants';
+import { MAIN_QUEST_STATUS } from '@/entities/main-quest/config/constants';
 import type { MainQuest, Theme } from '@/entities/main-quest/model/types';
 import { SUB_QUEST_FREQUENCY } from '@/entities/sub-quest/config/constants';
 import type { UsersQuestStatisticsDTO } from '@/entities/main-quest/api/dto';

@@ -3,8 +3,6 @@ import { Select } from '@/shared/ui/Selelct/Select';
 import {
   ACTION_UNIT_TYPES,
   ACTION_UNIT_TYPE_OPTIONS,
-} from '@/entities/main-quest/config/constants';
-import {
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
 } from '@/entities/sub-quest/config/constants';

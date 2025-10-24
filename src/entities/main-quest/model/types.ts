@@ -1,8 +1,4 @@
-import type {
-  ACTION_UNIT_TYPE_OPTIONS,
-  MAIN_QUEST_STATUS,
-  REWARD_STEP,
-} from '../config/constants';
+import type { MAIN_QUEST_STATUS, REWARD_STEP } from '../config/constants';
 import type {
   ThemeResponseDTO,
   MainQuestResponseDTO,
@@ -13,8 +9,6 @@ import type {
 export type Theme = ThemeResponseDTO;
 
 export type MainQuest = MainQuestResponseDTO;
-
-export type ActionUnitTypeValue = keyof typeof ACTION_UNIT_TYPE_OPTIONS;
 
 export type CreateQuestRequest = CreateQuestRequestDTO;
 

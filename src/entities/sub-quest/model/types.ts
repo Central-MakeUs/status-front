@@ -1,4 +1,7 @@
-import type { SUB_QUEST_FREQUENCY } from '../config/constants';
+import type {
+  ACTION_UNIT_TYPE_OPTIONS,
+  SUB_QUEST_FREQUENCY,
+} from '../config/constants';
 import type { SubQuestResponseDTO } from '../api/dto';
 
 export type SubQuestFrequencyValue =
@@ -18,3 +21,5 @@ export interface GetRandomSubQuestByMainQuestIdParams {
   selectedSubQuestIds?: string[];
   limit: number;
 }
+
+export type ActionUnitTypeValue = keyof typeof ACTION_UNIT_TYPE_OPTIONS;

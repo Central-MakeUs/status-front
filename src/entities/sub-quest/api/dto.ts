@@ -1,6 +1,8 @@
-import type { ActionUnitTypeValue } from '@/entities/main-quest/model/types';
 import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import type { SubQuestFrequencyValue } from '../model/types';
+import type {
+  SubQuestFrequencyValue,
+  ActionUnitTypeValue,
+} from '../model/types';
 
 export interface SubQuestResponseDTO {
   id: number;
