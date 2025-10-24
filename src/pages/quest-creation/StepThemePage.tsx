@@ -2,15 +2,15 @@ import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { useGetThemes } from '@/entities/main-quest/api/useGetThemes';
-import { useQuestCreationStore } from '@/stores/questCreationStore';
+import { useQuestCreationStore } from './model/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { Header } from '@/shared/ui/Header/Header';
-import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
-import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
-import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
-import { StepRadioGroupSkeleton } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroupSkeleton';
-import { StepRadioGroup } from '@/pages/quest/new/components/StepRadioGroup/StepRadioGroup';
-import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
+import { StepTitle } from './ui/StepTitle/StepTitle';
+import { StepActions } from './ui/StepActions/StepActions';
+import { StepDescription } from './ui/StepDescription/StepDescription';
+import { StepRadioGroupSkeleton } from './ui/StepRadioGroup/StepRadioGroupSkeleton';
+import { StepRadioGroup } from './ui/StepRadioGroup/StepRadioGroup';
+import { StepRefreshButton } from './ui/StepRefreshButton/StepRefreshButton';
 import { useGetRandomThemes } from '@/entities/main-quest/api/useGetRandomThemes';
 
 export const StepCategoryPage = () => {

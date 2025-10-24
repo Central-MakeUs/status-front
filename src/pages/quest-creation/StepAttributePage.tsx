@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
-import { useQuestCreationStore } from '@/stores/questCreationStore';
-import { PAGE_PATHS } from '@/app/providers/paths';
 import { Header } from '@/shared/ui/Header/Header';
-import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
-import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
+import { PAGE_PATHS } from '@/app/providers/paths';
+import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
+import { useQuestCreationStore } from './model/questCreationStore';
+import { StepTitle } from './ui/StepTitle/StepTitle';
+import { StepActions } from './ui/StepActions/StepActions';
 import { ATTRIBUTE_TYPES } from '@/entities/users-attribute/config/constants';
 
 import type { Attribute } from '@/entities/users-attribute/model/types';

@@ -4,6 +4,11 @@ import type {
   ActionUnitTypeValue,
 } from '../model/types';
 
+export interface GetSubQuestsParams {
+  attributes?: number[];
+  mainQuest: number;
+}
+
 export interface SubQuestResponseDTO {
   id: number;
   frequencyType: SubQuestFrequencyValue;
@@ -11,16 +16,4 @@ export interface SubQuestResponseDTO {
   actionUnitNum: number;
   attributes: AttributeDTO[];
   desc: string;
-}
-
-export interface GetSubQuestsParams {
-  attributes?: number[];
-  mainQuest: number;
-}
-
-export interface RerollSubQuestRequestDTO {
-  mainQuest: number;
-  attributes: number[];
-  selectedSubQuests: number[];
-  gottenSubQuests: number[];
 }

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { isNotPastDate, isValidDateString } from '@/shared/lib/date';
-import { subQuestEditingSchema } from '@/schemas/subQuestEditingScheme';
+import { subQuestEditingSchema } from '@/pages/quest-creation/model/subQuestEditingScheme';
 
 export const questCreationSchema = z.object({
   theme: z.number().min(1, '테마를 선택해주세요.'),

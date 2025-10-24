@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useQuestCreationStore } from '@/stores/questCreationStore';
+import { useQuestCreationStore } from './model/questCreationStore';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
@@ -9,16 +9,16 @@ import {
   ACTION_UNIT_TYPE_OPTIONS,
 } from '@/entities/sub-quest/config/constants';
 import { Header } from '@/shared/ui/Header/Header';
-import { StepTitle } from '@/pages/quest/new/components/StepTitle/StepTitle';
-import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
-import { StepDescription } from '@/pages/quest/new/components/StepDescription/StepDescription';
-import { StepRefreshButton } from '@/pages/quest/new/components/StepRefreshButton/StepRefreshButton';
-import { EditingSubQuestBottomSheet } from '@/pages/quest/new/components/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
+import { StepTitle } from './ui/StepTitle/StepTitle';
+import { StepActions } from './ui/StepActions/StepActions';
+import { StepDescription } from './ui/StepDescription/StepDescription';
+import { StepRefreshButton } from './ui/StepRefreshButton/StepRefreshButton';
+import { EditingSubQuestBottomSheet } from './ui/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
 import { useGetSubQuests } from '@/entities/sub-quest/api/useGetSubQuests';
-import { useGetRandomSubQuests } from '@/entities/sub-quest/api/useGetRandomSubQuests';
-import { SubQuestSkeleton } from '@/pages/quest/new/components/SubQuestSkeleton/SubQuestSkeleton';
-import { SubQuestList } from '@/pages/quest/new/components/SubQuestList/SubQuestList';
-import { validateSubQuestEditing } from '@/schemas/subQuestEditingScheme';
+import { useGetRandomSubQuests } from './api/useGetRandomSubQuests';
+import { SubQuestSkeleton } from './ui/SubQuestSkeleton/SubQuestSkeleton';
+import { SubQuestList } from './ui/SubQuestList/SubQuestList';
+import { validateSubQuestEditing } from '@/pages/quest-creation/model/subQuestEditingScheme';
 
 import type {
   SubQuest,

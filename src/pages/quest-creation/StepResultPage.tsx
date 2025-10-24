@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import IconLogo from '@/assets/icons/icon-character-result.svg?react';
-import { StepActions } from '@/pages/quest/new/components/StepActions/StepActions';
-import 'react-day-picker/dist/style.css';
+import { useQuestCreationStore } from './model/questCreationStore';
+import { StepActions } from './ui/StepActions/StepActions';
 import { getSubQuestFrequencyLabel } from '@/entities/sub-quest/config/constants';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
-import type { CreateQuestResponse } from '@/entities/main-quest/model/types';
+import type { CreateQuestResponse } from './model/types';
+
+import IconLogo from '@/assets/icons/icon-character-result.svg?react';
 
 import classNames from 'classnames/bind';
 import styles from './StepResultPage.module.scss';
-import { useQuestCreationStore } from '@/stores/questCreationStore';
-
 const cx = classNames.bind(styles);
+
+import 'react-day-picker/dist/style.css';
 
 export const StepResultPage = () => {
   const navigate = useNavigate();

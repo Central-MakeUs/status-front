@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getSubQuests } from '@/entities/sub-quest/api/subQuest';
-import type { GetSubQuestsParams } from '@/entities/sub-quest/api/dto';
+import { getSubQuests } from './subQuest';
+import type { GetSubQuestsParams } from './dto';
 
 export const useGetSubQuests = ({
   attributes,

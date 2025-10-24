@@ -9,12 +9,12 @@ import {
   mockCompletedMainQuests,
   mockUsersSubQuests,
 } from '@/app/mocks/data/quest';
+import type { RewardResponseDto } from '@/entities/main-quest/api/dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
-  RewardResponseDto,
-} from '@/entities/main-quest/api/dto';
-import type { RerollSubQuestRequestDTO } from '@/entities/sub-quest/api/dto';
+  RerollSubQuestRequestDTO,
+} from '@/pages/quest-creation/api/dto';
 import { mockThemes } from '@/app/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/sub-quest/config/constants';
 import { getWeeksDifference } from '@/shared/lib/date';

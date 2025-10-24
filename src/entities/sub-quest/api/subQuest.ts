@@ -1,10 +1,6 @@
 import { api } from '@/shared/api/client';
 import type { ApiResponse } from '@/shared/api/types';
-import type {
-  GetSubQuestsParams,
-  RerollSubQuestRequestDTO,
-  SubQuestResponseDTO,
-} from './dto';
+import type { SubQuestResponseDTO, GetSubQuestsParams } from './dto';
 
 export const getSubQuests = async ({
   attributes = [],
@@ -20,16 +16,6 @@ export const getSubQuests = async ({
     {
       params,
     }
-  );
-  return response.data ?? [];
-};
-
-export const getRandomSubQuests = async (
-  data: RerollSubQuestRequestDTO
-): Promise<SubQuestResponseDTO[]> => {
-  const response = await api.post<ApiResponse<SubQuestResponseDTO[]>>(
-    '/quest/reroll-subquests',
-    data
   );
   return response.data ?? [];
 };

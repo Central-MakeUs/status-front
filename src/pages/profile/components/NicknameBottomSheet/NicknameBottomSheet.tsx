@@ -6,7 +6,7 @@ import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import { NICKNAME_MAX_LENGTH } from '@/entities/users/config/constants';
-import { nicknameSchema } from '@/schemas/authScheme';
+import { nicknameSchema } from '@/features/auth/model/authScheme';
 
 import classNames from 'classnames/bind';
 import styles from './NicknameBottomSheet.module.scss';

@@ -16,19 +16,23 @@ const HistoryDetailPage = lazy(
   () => import('@/pages/history/detail/HistoryDetailPage')
 );
 const StepAttributePage = lazy(
-  () => import('@/pages/quest/new/StepAttributePage')
+  () => import('@/pages/quest-creation/StepAttributePage')
 );
-const StepThemePage = lazy(() => import('@/pages/quest/new/StepThemePage'));
+const StepThemePage = lazy(
+  () => import('@/pages/quest-creation/StepThemePage')
+);
 const StepMainQuestPage = lazy(
-  () => import('@/pages/quest/new/StepMainQuestPage')
+  () => import('@/pages/quest-creation/StepMainQuestPage')
 );
 const StepSubQuestPage = lazy(
-  () => import('@/pages/quest/new/StepSubQuestPage')
+  () => import('@/pages/quest-creation/StepSubQuestPage')
 );
 const StepSchedulePage = lazy(
-  () => import('@/pages/quest/new/StepSchedulePage')
+  () => import('@/pages/quest-creation/StepSchedulePage')
 );
-const StepResultPage = lazy(() => import('@/pages/quest/new/StepResultPage'));
+const StepResultPage = lazy(
+  () => import('@/pages/quest-creation/StepResultPage')
+);
 const QuestDetailPage = lazy(
   () => import('@/pages/quest/detail/QuestDetailPage')
 );

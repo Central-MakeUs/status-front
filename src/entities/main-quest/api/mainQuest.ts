@@ -7,8 +7,6 @@ import type {
   MainQuestResponseDTO,
   GetMainQuestsParams,
   GetRandomMainQuestsParams,
-  CreateQuestRequestDTO,
-  CreateQuestResponseDTO,
   UsersQuestStatisticsDTO,
 } from './dto';
 
@@ -81,14 +79,6 @@ export const getRandomMainQuests = async ({
     }
   );
   return response.data ?? [];
-};
-
-export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
-  const response = await api.post<ApiResponse<CreateQuestResponseDTO>>(
-    `/quest/create`,
-    data
-  );
-  return response.data ?? {};
 };
 
 export const getUsersStatistics =
