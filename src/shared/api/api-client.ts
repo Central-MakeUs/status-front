@@ -2,6 +2,13 @@ import { authenticateUser, refreshAccessToken } from '@/features/auth/api/auth';
 
 const BASE_URL = import.meta.env.VITE_API_URL || '';
 
+export interface ApiResponse<T> {
+  status: number;
+  data?: T;
+  errorCode?: string;
+  message?: string;
+}
+
 interface RequestOptions extends RequestInit {
   params?: Record<string, string>;
   _retry?: boolean;

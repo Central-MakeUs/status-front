@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useGetUsersMainQuests } from '@/entities/user-quest/api/use-get-user-main-quests';
 import { Header } from '@/widgets/global-header/ui/header';
 import { QuestEmpty } from '@/pages/quest/ui/quest-empty';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { MAX_USERS_MAIN_QUEST_COUNT } from '@/entities/user-quest/config/user-quest';
 

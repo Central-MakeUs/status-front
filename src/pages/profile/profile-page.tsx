@@ -6,7 +6,7 @@ import { Header } from '@/widgets/global-header/ui/header';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { usePostLogout } from '@/features/auth/api/use-post-logout';
 import { usePostWithdrawalMutation } from '@/features/auth/api/use-post-withdrawal';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { TERM_URL } from '@/shared/config/terms';
 import { NicknameBottomSheet } from '@/pages/profile/ui/nickname-bottom-sheet/nickname-bottom-sheet';
 import { LogoutDialog } from '@/pages/profile/ui/logout-dialog/logout-dialog';

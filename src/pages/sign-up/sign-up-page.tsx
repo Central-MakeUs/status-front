@@ -12,7 +12,7 @@ import { Checkbox } from '@/shared/ui/checkbox/checkbox';
 import { nicknameSchema } from '@/features/auth/model/auth-scheme';
 import { SIGN_UP_STEP } from '@/features/auth/config/constants';
 import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { renderWithLineBreaks } from '@/shared/lib/format';
 import { TERM_URL } from '@/shared/config/terms';
 import { MESSAGE_TYPES } from '@/shared/config/web-view';

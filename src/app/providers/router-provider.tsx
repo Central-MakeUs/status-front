@@ -3,7 +3,7 @@ import {
   RouterProvider as Provider,
   createBrowserRouter,
 } from 'react-router-dom';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { RootLayout } from '@/app/layouts/root-layout';
 import { BottomNavigationLayout } from '@/app/layouts/bottom-navigation-layout';
 import { PrivateLayout } from '@/app/layouts/private-layout';

@@ -20,7 +20,7 @@ import { useGetUsersMainQuest } from '@/entities/user-quest/api/use-get-user-mai
 import TodayCompletedQuests from './ui/today-completed-quests/today-completed-quests';
 import CompletedHistory from './ui/completed-history/completed-history';
 import { useDeleteUsersMainQuest } from '@/entities/user-quest/api/use-delete-user-main-quest';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { QuestGiveUpDialog } from './ui/quest-give-up-dialog/quest-give-up-dialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { MAIN_PAGE_PATHS, PAGE_PATHS } from '@/app/providers/paths';
+import { MAIN_PAGE_PATHS, PAGE_PATHS } from '@/shared/config/paths';
 import IconStatus from '@/assets/icons/icon-menu-status.svg?react';
 import IconQuest from '@/assets/icons/icon-menu-quest.svg?react';
 import IconHistory from '@/assets/icons/icon-menu-history.svg?react';

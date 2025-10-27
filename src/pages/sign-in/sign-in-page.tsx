@@ -3,7 +3,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
 import { usePostGuestLogin } from '@/features/auth/api/use-post-guest-login';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { useSocialAuth } from '@/features/auth/model/use-social-auth';
 import { Loading } from '@/shared/ui/loading/loading';
 import { Button } from '@/shared/ui/button/button';

@@ -12,7 +12,7 @@ import {
   useSocialConnectionStore,
 } from '@/features/auth/model/auth-store';
 import { useShallow } from 'zustand/react/shallow';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { USER_TYPE } from '@/entities/user/config/user';
 import { usePostSocialLogin } from '@/features/auth/api/use-post-social-login';
 import { useGetCurrentUser } from '@/entities/user/api/use-get-current-user';

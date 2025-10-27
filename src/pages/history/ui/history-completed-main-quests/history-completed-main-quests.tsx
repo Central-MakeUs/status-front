@@ -2,7 +2,7 @@ import { useId } from 'react';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { Link } from 'react-router-dom';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { MAIN_QUEST_STATUS } from '@/shared/config/quest-template';
 
 import type { UserCompletedMainQuests } from '@/entities/user-quest/model/user-quest';

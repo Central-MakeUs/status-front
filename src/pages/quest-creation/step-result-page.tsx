@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { useQuestCreationStore } from './model/quest-creation-store';
 import { StepActions } from './ui/step-actions/step-actions';
 import { getSubQuestFrequencyLabel } from '@/shared/config/quest-template';

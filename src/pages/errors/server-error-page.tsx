@@ -1,4 +1,4 @@
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 
 import IconError from '@/assets/icons/icon-character-error.svg?react';
 

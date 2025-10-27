@@ -1,5 +1,5 @@
 import { api } from '@/shared/api/api-client';
-import type { ApiResponse } from '@/shared/api/types';
+import type { ApiResponse } from '@/shared/api/api-client';
 import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
 import type {
   UsersMainQuestResponseDTO,

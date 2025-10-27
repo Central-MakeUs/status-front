@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { useGetMainQuests } from '@/entities/quest/api/use-get-main-quests';
 import { useGetRandomMainQuests } from '@/entities/quest/api/use-get-random-main-quests';
 import { Header } from '@/widgets/global-header/ui/header';

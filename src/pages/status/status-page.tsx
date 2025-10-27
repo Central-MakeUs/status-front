@@ -8,7 +8,7 @@ import { StatusDetailBottomSheet } from './ui/status-bottom-sheet/status-bottom-
 import TierLevelBottomSheet from './ui/tier-bottom-sheet/tier-bottom-sheet';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 import { useNavigate } from 'react-router-dom';
-import { PAGE_PATHS } from '@/app/providers/paths';
+import { PAGE_PATHS } from '@/shared/config/paths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { TIER_TYPE } from '@/shared/config/tier';
