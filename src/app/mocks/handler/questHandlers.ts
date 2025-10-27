@@ -9,14 +9,14 @@ import {
   mockCompletedMainQuests,
   mockUsersSubQuests,
 } from '@/app/mocks/data/quest';
-import type { RewardResponseDto } from '@/entities/main-quest/api/dto';
+import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
 } from '@/pages/quest-creation/api/dto';
 import { mockThemes } from '@/app/mocks/data/quest';
-import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/sub-quest/config/constants';
+import { DISPLAY_SUB_QUEST_COUNT } from '@/shared/config/quest-template';
 import { getWeeksDifference } from '@/shared/lib/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;

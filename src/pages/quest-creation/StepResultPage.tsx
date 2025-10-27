@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useQuestCreationStore } from './model/questCreationStore';
 import { StepActions } from './ui/StepActions/StepActions';
-import { getSubQuestFrequencyLabel } from '@/entities/sub-quest/config/constants';
+import { getSubQuestFrequencyLabel } from '@/shared/config/quest-template';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import type { CreateQuestResponse } from './model/types';
 

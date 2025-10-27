@@ -5,7 +5,7 @@ import {
   PROVIDER_TYPE,
   URL_SCHEME,
 } from '@/features/auth/config/constants';
-import { MESSAGE_TYPES } from '@/shared/config/constants';
+import { MESSAGE_TYPES } from '@/shared/config/web-view';
 import { useQueryClient } from '@tanstack/react-query';
 import {
   useAuthStore,
@@ -13,15 +13,15 @@ import {
 } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { USER_TYPE } from '@/entities/users/config/constants';
+import { USER_TYPE } from '@/entities/user/config/user';
 import { usePostSocialLogin } from '@/features/auth/api/usePostSocialLogin';
-import { useGetCurrentUser } from '@/entities/users/api/useGetCurrentUser';
+import { useGetCurrentUser } from '@/entities/user/api/useGetCurrentUser';
 import { useAuthenticateUser } from '@/features/auth/api/useAuthenticateUser';
 
 import type { SocialProvider } from '@/features/auth/model/types';
 import type { OAuthProvider } from '@/features/auth/model/types';
 import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
-import type { BasicUsers } from '@/entities/users/model/types';
+import type { BasicUsers } from '@/entities/user/model/user';
 
 const createOAuthURL = (provider: SocialProvider, state: string): string => {
   const config = AUTH_CONFIGS[provider];

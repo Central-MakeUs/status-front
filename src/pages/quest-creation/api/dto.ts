@@ -1,6 +1,6 @@
-import type { AttributeDTO } from '@/entities/users-attribute/api/dto';
-import type { SubQuestResponseDTO } from '@/entities/sub-quest/api/dto';
-import type { SubQuestInfo } from '@/entities/sub-quest/model/types';
+import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { SubQuestResponseDTO } from '@/shared/api/quest-template.dto';
+import type { SubQuestInfo } from '@/shared/model/quest-template';
 
 export interface CreateQuestRequestDTO {
   theme: number;

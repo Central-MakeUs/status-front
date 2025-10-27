@@ -1,6 +1,6 @@
-import { api } from '@/shared/api/client';
+import { api } from '@/shared/api/api-client';
 import type { ApiResponse } from '@/shared/api/types';
-import type { SubQuestResponseDTO } from '@/entities/sub-quest/api/dto';
+import type { SubQuestResponseDTO } from '@/shared/api/quest-template.dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,

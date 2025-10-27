@@ -1,10 +1,10 @@
-import type { TierType } from '@/entities/users/model/types';
+import type { TierType } from '@/entities/user/model/user';
 import { TierIcon } from '@/shared/ui/TierIcon/TierIcon';
 import classNames from 'classnames/bind';
 import styles from './TierBottomSheet.module.scss';
 import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
 import { Button } from '@/shared/ui/Button/Button';
-import { TIER_TYPE } from '@/entities/users/config/constants';
+import { TIER_TYPE } from '@/shared/config/tier';
 
 const cx = classNames.bind(styles);
 

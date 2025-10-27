@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
-import { usePatchNickname } from '@/entities/users/api/usePatchNickname';
+import { usePatchNickname } from '@/entities/user/api/usePatchNickname';
 import { BottomSheet } from '@/shared/ui/BottomSheet/BottomSheet';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
-import { NICKNAME_MAX_LENGTH } from '@/entities/users/config/constants';
+import { NICKNAME_MAX_LENGTH } from '@/entities/user/config/user';
 import { nicknameSchema } from '@/features/auth/model/authScheme';
 
 import classNames from 'classnames/bind';

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getUsersStatistics } from '@/entities/main-quest/api/mainQuest';
+import { getUsersStatistics } from '@/shared/api/quest-template';
 
 export const useGetUsersStatistics = () => {
   return useQuery({

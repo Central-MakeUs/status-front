@@ -3,9 +3,9 @@ import { Button } from '@/shared/ui/Button/Button';
 import { Textarea } from '@/shared/ui/Textarea/Textarea';
 import classNames from 'classnames/bind';
 import styles from './QuestReportBottomSheet.module.scss';
-import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
-import { SUB_QUEST_DIFFICULTY } from '@/entities/sub-quest/config/constants';
-import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
+import type { SubQuestDifficulty } from '@/shared/model/quest-template';
+import { SUB_QUEST_DIFFICULTY } from '@/shared/config/quest-template';
+import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 
 const cx = classNames.bind(styles);
 

@@ -1,17 +1,17 @@
 import { Header } from '@/pages/status/ui/Header/Header';
 import { RadarChart } from '@/pages/status/ui/RadarChart/RadarChart';
 import { QuestList } from '@/pages/status/ui/QuestList/QuestList';
-import { useGetUsersAttributes } from '@/entities/users-attribute/api/useGetUsersAttributes';
-import { useGetUsersSubQuestsAll } from '@/entities/users-sub-quest/api/useGetUsersSubQuestsAll';
+import { useGetUsersAttributes } from '@/entities/user/api/useGetUsersAttributes';
+import { useGetUsersSubQuestsAll } from '@/entities/user-quest/api/useGetUsersSubQuestsAll';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './ui/StatusBottomSheet/StatusBottomSheet';
 import TierLevelBottomSheet from './ui/TierBottomSheet/TierBottomSheet';
-import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
+import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/authStore';
-import { TIER_TYPE } from '@/entities/users/config/constants';
+import { TIER_TYPE } from '@/shared/config/tier';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 const StatusPage = () => {

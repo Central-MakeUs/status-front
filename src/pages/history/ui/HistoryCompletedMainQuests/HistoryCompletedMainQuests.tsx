@@ -3,9 +3,9 @@ import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/AttributeIcon/AttributeIcon';
 import { Link } from 'react-router-dom';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { MAIN_QUEST_STATUS } from '@/entities/main-quest/config/constants';
+import { MAIN_QUEST_STATUS } from '@/shared/config/quest-template';
 
-import type { UserCompletedMainQuests } from '@/entities/users-main-quest/model/types';
+import type { UserCompletedMainQuests } from '@/entities/user-quest/model/user-quest';
 
 import classNames from 'classnames/bind';
 import styles from './HistoryCompletedMainQuests.module.scss';

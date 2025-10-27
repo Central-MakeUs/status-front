@@ -3,7 +3,7 @@ import { HistoryEmpty } from './ui/HistoryEmpty/HistoryEmpty';
 import { HistorySummary } from '@/pages/history/ui/HistorySummary/HistorySummary';
 import { HistoryCompletedMainQuests } from '@/pages/history/ui/HistoryCompletedMainQuests/HistoryCompletedMainQuests';
 import { useGetUsersStatistics } from '@/pages/history/api/useGetUsersStatstics';
-import { useGetUsersCompletedMainQuests } from '@/entities/users-main-quest/api/useGetUsersCompletedMainQuests';
+import { useGetUsersCompletedMainQuests } from '@/entities/user-quest/api/useGetUsersCompletedMainQuests';
 
 const HistoryPage = () => {
   const { data: statistics } = useGetUsersStatistics();

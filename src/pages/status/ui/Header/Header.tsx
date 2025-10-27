@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import { TierIcon } from '@/shared/ui/TierIcon/TierIcon';
-import type { TierType } from '@/entities/users/model/types';
+import type { TierType } from '@/entities/user/model/user';
 
 const cx = classNames.bind(styles);
 

@@ -1,5 +1,5 @@
 import type { SocialProvider } from '@/features/auth/model/types';
-import type { UserType } from '@/entities/users/model/types';
+import type { UserType } from '@/entities/user/model/user';
 
 export interface SignUpRequestDTO {
   nickname: string;

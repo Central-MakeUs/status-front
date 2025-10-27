@@ -1,10 +1,11 @@
-import type { BasicUsers } from '@/entities/users/model/types';
+import type { BasicUsers } from '@/entities/user/model/user';
 import type { OAuthProvider } from '@/features/auth/model/types';
 import {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,
 } from '@/features/auth/config/constants';
-import { TIER_TYPE, USER_TYPE } from '@/entities/users/config/constants';
+import { TIER_TYPE } from '@/shared/config/tier';
+import { USER_TYPE } from '@/entities/user/config/user';
 
 /**
  * 애플 로그인 후 사용하는 가입 유저 데이터

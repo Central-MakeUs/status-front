@@ -1,13 +1,15 @@
-import { ACTION_UNIT_TYPES } from '@/entities/sub-quest/config/constants';
-import { MAIN_QUEST_STATUS } from '@/entities/main-quest/config/constants';
-import type { MainQuest, Theme } from '@/entities/main-quest/model/types';
-import { SUB_QUEST_FREQUENCY } from '@/entities/sub-quest/config/constants';
-import type { UsersQuestStatisticsDTO } from '@/entities/main-quest/api/dto';
-import type { SubQuest } from '@/entities/sub-quest/model/types';
-import type { WithStatusUsersMainQuestResponseDTO } from '@/entities/users-main-quest/api/dto';
-import type { UsersMainQuest } from '@/entities/users-main-quest/model/types';
-import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
-import type { CompletedQuest } from '@/entities/users-sub-quest/model/types';
+import { ACTION_UNIT_TYPES } from '@/shared/config/quest-template';
+import { MAIN_QUEST_STATUS } from '@/shared/config/quest-template';
+import type { MainQuest, Theme } from '@/shared/model/quest-template';
+import { SUB_QUEST_FREQUENCY } from '@/shared/config/quest-template';
+import type { UsersQuestStatisticsDTO } from '@/shared/api/quest-template.dto';
+import type { SubQuest } from '@/shared/model/quest-template';
+import type { WithStatusUsersMainQuestResponseDTO } from '@/entities/user-quest/api/user-quest.dto';
+import type {
+  UsersMainQuest,
+  UsersSubQuest,
+  CompletedQuest,
+} from '@/entities/user-quest/model/user-quest';
 
 export const mockThemes: Theme[] = [
   {

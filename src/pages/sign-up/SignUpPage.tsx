@@ -14,11 +14,11 @@ import { SIGN_UP_STEP } from '@/features/auth/config/constants';
 import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
 import { PAGE_PATHS } from '@/app/providers/paths';
 import { renderWithLineBreaks } from '@/shared/lib/format';
-import { TERM_URL } from '@/shared/config/links';
-import { MESSAGE_TYPES } from '@/shared/config/constants';
+import { TERM_URL } from '@/shared/config/terms';
+import { MESSAGE_TYPES } from '@/shared/config/web-view';
 
 import type { SignUpForm, SignUpStep } from '@/features/auth/model/types';
-import type { BasicUsers } from '@/entities/users/model/types';
+import type { BasicUsers } from '@/entities/user/model/user';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
@@ -26,7 +26,7 @@ import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 import classNames from 'classnames/bind';
 import styles from './SignUpPage.module.scss';
 import { usePatchSocialConnection } from '@/features/auth/api/usePatchSocialConnection';
-import { NICKNAME_MAX_LENGTH } from '@/entities/users/config/constants';
+import { NICKNAME_MAX_LENGTH } from '@/entities/user/config/user';
 
 const cx = classNames.bind(styles);
 

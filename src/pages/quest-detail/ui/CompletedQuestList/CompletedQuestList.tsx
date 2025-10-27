@@ -1,10 +1,10 @@
-import type { CompletedQuest } from '@/entities/users-sub-quest/model/types';
-import type { UsersSubQuest } from '@/entities/users-sub-quest/model/types';
-import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
+import type { CompletedQuest } from '@/entities/user-quest/model/user-quest';
+import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
+import type { SubQuestDifficulty } from '@/shared/model/quest-template';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,
-} from '@/entities/sub-quest/config/constants';
+} from '@/shared/config/quest-template';
 
 import IconEdit from '@/assets/icons/icon-edit.svg?react';
 

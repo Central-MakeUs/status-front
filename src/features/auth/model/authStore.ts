@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import type { BasicUsers } from '@/entities/users/model/types';
+import type { BasicUsers } from '@/entities/user/model/user';
 import type { OAuthProvider } from '@/features/auth/model/types';
 import { devtools, persist } from 'zustand/middleware';
 

@@ -5,13 +5,13 @@ import {
   ACTION_UNIT_TYPE_OPTIONS,
   SUB_QUEST_FREQUENCY,
   SUB_QUEST_FREQUENCY_SELECT_OPTIONS,
-} from '@/entities/sub-quest/config/constants';
+} from '@/shared/config/quest-template';
 import { TextInput } from '@/shared/ui/TextInput/TextInput';
 import { Button } from '@/shared/ui/Button/Button';
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/entities/sub-quest/model/types';
+} from '@/shared/model/quest-template';
 
 import classNames from 'classnames/bind';
 import styles from './EditingSubQuestBottomSheet.module.scss';

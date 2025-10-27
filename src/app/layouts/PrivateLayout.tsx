@@ -5,8 +5,8 @@ import { useAuthenticateUser } from '@/features/auth/api/useAuthenticateUser';
 import { useAuthStore } from '@/features/auth/model/authStore';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect } from 'react';
-import { useGetCurrentUser } from '@/entities/users/api/useGetCurrentUser';
-import { useGetUsersMainQuests } from '@/entities/users-main-quest/api/useGetUsersMainQuests';
+import { useGetCurrentUser } from '@/entities/user/api/useGetCurrentUser';
+import { useGetUsersMainQuests } from '@/entities/user-quest/api/useGetUsersMainQuests';
 
 export const PrivateLayout = () => {
   const {

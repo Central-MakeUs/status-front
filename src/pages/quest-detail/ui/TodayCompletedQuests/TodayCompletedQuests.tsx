@@ -5,8 +5,8 @@ import styles from './TodayCompletedQuests.module.scss';
 import type {
   CompletedQuest,
   UsersSubQuest,
-} from '@/entities/users-sub-quest/model/types';
-import type { SubQuestDifficulty } from '@/entities/sub-quest/model/types';
+} from '@/entities/user-quest/model/user-quest';
+import type { SubQuestDifficulty } from '@/shared/model/quest-template';
 const cx = classNames.bind(styles);
 
 const TodayCompletedQuests = ({

@@ -7,12 +7,12 @@ import { useAuthStore } from '@/features/auth/model/authStore';
 import { usePostLogout } from '@/features/auth/api/usePostLogout';
 import { usePostWithdrawalMutation } from '@/features/auth/api/usePostWithdrawal';
 import { PAGE_PATHS } from '@/app/providers/paths';
-import { TERM_URL } from '@/shared/config/links';
+import { TERM_URL } from '@/shared/config/terms';
 import { NicknameBottomSheet } from '@/pages/profile/ui/NicknameBottomSheet/NicknameBottomSheet';
 import { LogoutDialog } from '@/pages/profile/ui/LogoutDialog/LogoutDialog';
 import { GuestWithdrawalDialog } from '@/pages/profile/ui/GuestWithdrawalDialog/GuestWithdrawalDialog';
 import { UserWithdrawalDialog } from '@/pages/profile/ui/UserWithdrawalDialog/UserWithdrawalDialog';
-import { MESSAGE_TYPES } from '@/shared/config/constants';
+import { MESSAGE_TYPES } from '@/shared/config/web-view';
 import { PROVIDER_TYPE } from '@/features/auth/config/constants';
 
 import defaultProfileImage from '@/assets/images/image-profile-default.svg';

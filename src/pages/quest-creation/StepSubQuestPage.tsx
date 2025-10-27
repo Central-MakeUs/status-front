@@ -7,14 +7,14 @@ import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
   ACTION_UNIT_TYPE_OPTIONS,
-} from '@/entities/sub-quest/config/constants';
+} from '@/shared/config/quest-template';
 import { Header } from '@/widgets/global-header/ui/Header';
 import { StepTitle } from './ui/StepTitle/StepTitle';
 import { StepActions } from './ui/StepActions/StepActions';
 import { StepDescription } from './ui/StepDescription/StepDescription';
 import { StepRefreshButton } from './ui/StepRefreshButton/StepRefreshButton';
 import { EditingSubQuestBottomSheet } from './ui/EditingSubQuestBottomSheet/EditingSubQuestBottomSheet';
-import { useGetSubQuests } from '@/entities/sub-quest/api/useGetSubQuests';
+import { useGetSubQuests } from '@/entities/quest/api/useGetSubQuests';
 import { useGetRandomSubQuests } from './api/useGetRandomSubQuests';
 import { SubQuestSkeleton } from './ui/SubQuestSkeleton/SubQuestSkeleton';
 import { SubQuestList } from './ui/SubQuestList/SubQuestList';
@@ -23,7 +23,7 @@ import { validateSubQuestEditing } from '@/pages/quest-creation/model/subQuestEd
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/entities/sub-quest/model/types';
+} from '@/shared/model/quest-template';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 
