@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './Radio.module.scss';
+import styles from './radio.module.scss';
 
 import IconRadioNormal from '@/assets/icons/icon-radio-normal.svg?react';
 import IconRadioChecked from '@/assets/icons/icon-radio-checked.svg?react';

@@ -1,14 +1,14 @@
 import { createPortal } from 'react-dom';
-import { LoadingContainer } from './LoadingContainer';
+import { LoadingContainer } from './loading-container';
 import LoadingImageUrl from '@/assets/images/image-loading.gif';
 
 import classNames from 'classnames/bind';
-import styles from './Loading.module.scss';
+import styles from './loading.module.scss';
 
 const cx = classNames.bind(styles);
 
 export const Loading = () => {
-  return createPortal(
+  const content = (
     <LoadingContainer>
       <div className={cx('loading')}>
         <img
@@ -20,7 +20,11 @@ export const Loading = () => {
         />
         <span className={cx('loading-text')}>로딩 중...</span>
       </div>
-    </LoadingContainer>,
+    </LoadingContainer>
+  );
+
+  return createPortal(
+    content,
     document.getElementById('modal-root') as HTMLElement
   );
 };

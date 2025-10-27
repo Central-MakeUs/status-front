@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { Loading } from './Loading';
+import { Loading } from './loading';
 
 const meta = {
-  title: 'molecules/Loading',
+  title: 'molecules/oading',
   component: Loading,
   parameters: {
     docs: {

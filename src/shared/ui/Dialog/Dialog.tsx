@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
-import { DialogContainer } from '@/shared/ui/Dialog/DialogContainer';
+import { DialogContainer } from '@/shared/ui/dialog/dialog-container';
 
 import classNames from 'classnames/bind';
-import styles from './Dialog.module.scss';
+import styles from './dialog.module.scss';
 
 const cx = classNames.bind(styles);
 

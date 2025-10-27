@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Radio } from '@/shared/ui/Radio/Radio';
+import { Radio } from '@/shared/ui/radio/radio';
 
 const meta = {
   title: 'atoms/Radio',

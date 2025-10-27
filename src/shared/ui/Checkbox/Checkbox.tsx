@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './Checkbox.module.scss';
+import styles from './checkbox.module.scss';
 
 import IconCheckboxNormal from '@/assets/icons/icon-checkbox-normal.svg?react';
 import IconCheckboxChecked from '@/assets/icons/icon-checkbox-checked.svg?react';

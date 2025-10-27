@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Switch } from '@/shared/ui/Switch/Switch';
+import { Switch } from '@/shared/ui/switch/switch';
 
 const meta = {
   title: 'atoms/Switch',

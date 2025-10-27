@@ -1,7 +1,7 @@
-import { questHandlers } from '@/app/mocks/handler/questHandlers';
-import { attributeHandlers } from '@/app/mocks/handler/attributeHandlers';
-import { usersHandlers } from '@/app/mocks/handler/usersHandlers';
-import { authHandlers } from '@/app/mocks/handler/authHandlers';
+import { questHandlers } from '@/app/mocks/handler/quest-handlers';
+import { attributeHandlers } from '@/app/mocks/handler/attribute-handlers';
+import { usersHandlers } from '@/app/mocks/handler/user-handlers';
+import { authHandlers } from '@/app/mocks/handler/auth-handlers';
 
 export const handlers = [
   ...questHandlers,

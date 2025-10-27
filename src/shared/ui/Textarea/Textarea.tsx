@@ -1,7 +1,7 @@
 import { useId } from 'react';
 
 import classNames from 'classnames/bind';
-import styles from './Textarea.module.scss';
+import styles from './textarea.module.scss';
 
 const cx = classNames.bind(styles);
 
