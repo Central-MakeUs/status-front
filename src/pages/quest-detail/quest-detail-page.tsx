@@ -24,7 +24,7 @@ import { PAGE_PATHS } from '@/shared/config/paths';
 import { QuestGiveUpDialog } from './ui/quest-give-up-dialog/quest-give-up-dialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
-import { useGetUsersAttributes } from '@/entities/user/api/use-get-user-attributes';
+import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
 import type { AttributeDTO } from '@/shared/api/attribute.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import { format } from 'date-fns';

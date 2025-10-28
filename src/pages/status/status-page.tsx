@@ -1,7 +1,7 @@
 import { StatusHeader } from '@/pages/status/ui/status-header/status-header';
 import { RadarChart } from '@/pages/status/ui/radar-chart/radar-chart';
 import { QuestList } from '@/pages/status/ui/quest-list/quest-list';
-import { useGetUsersAttributes } from '@/entities/user/api/use-get-user-attributes';
+import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
 import { useGetUsersSubQuestsAll } from '@/entities/user-quest/api/use-get-user-sub-quests-all';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './ui/status-bottom-sheet/status-bottom-sheet';

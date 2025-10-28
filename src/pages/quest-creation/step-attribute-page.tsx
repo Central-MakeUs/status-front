@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { Header } from '@/widgets/global-header/ui/header';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { useGetUsersAttributes } from '@/entities/user/api/use-get-user-attributes';
+import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
 import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
 import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
 import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
