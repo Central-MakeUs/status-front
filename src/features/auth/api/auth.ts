@@ -1,6 +1,6 @@
 import { api } from '@/shared/api/api-client';
 import type { ApiResponse } from '@/shared/api/api-client';
-import type { BasicUsersDTO } from '@/entities/user/api/user.dto';
+import type { BasicUsersDTO } from '@/shared/api/user.dto';
 import type { OAuthLoginRequestDTO, SignUpRequestDTO } from './dto';
 import type { SocialLoginReturnDTO } from '../model/types';
 

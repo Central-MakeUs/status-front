@@ -1,5 +1,5 @@
 import { getSubQuestFrequencyLabel } from '@/shared/config/quest-template';
-import type { SubQuest } from '@/shared/model/quest-template';
+import type { SubQuest } from '@/entities/quest-template/model/quest-template';
 import { SubQuestSkeleton } from '../sub-quest-skeleton/sub-quest-skeleton';
 
 import IconCheckboxChecked from '@/assets/icons/icon-checkbox-checked.svg?react';

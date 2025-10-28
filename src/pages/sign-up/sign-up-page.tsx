@@ -26,7 +26,7 @@ import IconChevronRight from '@/assets/icons/icon-chevron-right.svg?react';
 import classNames from 'classnames/bind';
 import styles from './sign-up-page.module.scss';
 import { usePatchSocialConnection } from '@/features/auth/api/use-patch-social-connection';
-import { NICKNAME_MAX_LENGTH } from '@/entities/user/config/user';
+import { NICKNAME_MAX_LENGTH } from '@/shared/config/user';
 
 const cx = classNames.bind(styles);
 

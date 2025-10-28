@@ -1,10 +1,13 @@
 import { ACTION_UNIT_TYPES } from '@/shared/config/quest-template';
 import { MAIN_QUEST_STATUS } from '@/shared/config/quest-template';
-import type { MainQuest, Theme } from '@/shared/model/quest-template';
+import type {
+  MainQuest,
+  Theme,
+} from '@/entities/quest-template/model/quest-template';
 import { SUB_QUEST_FREQUENCY } from '@/shared/config/quest-template';
 import type { UsersQuestStatisticsDTO } from '@/shared/api/quest-template.dto';
-import type { SubQuest } from '@/shared/model/quest-template';
-import type { WithStatusUsersMainQuestResponseDTO } from '@/entities/user-quest/api/user-quest.dto';
+import type { SubQuest } from '@/entities/quest-template/model/quest-template';
+import type { WithStatusUsersMainQuestResponseDTO } from '@/shared/api/user-quest.dto';
 import type {
   UsersMainQuest,
   UsersSubQuest,

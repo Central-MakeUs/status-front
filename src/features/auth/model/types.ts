@@ -2,7 +2,7 @@ import type {
   OAuthProviderDTO,
   SignUpRequestDTO,
 } from '@/features/auth/api/dto';
-import type { BasicUsersDTO } from '@/entities/user/api/user.dto';
+import type { BasicUsersDTO } from '@/shared/api/user.dto';
 import type {
   PROVIDER_TYPE,
   SOCIAL_PROVIDER,

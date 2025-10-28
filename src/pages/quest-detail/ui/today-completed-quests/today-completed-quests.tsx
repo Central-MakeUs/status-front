@@ -6,7 +6,7 @@ import type {
   CompletedQuest,
   UsersSubQuest,
 } from '@/entities/user-quest/model/user-quest';
-import type { SubQuestDifficulty } from '@/shared/model/quest-template';
+import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
 const cx = classNames.bind(styles);
 
 const TodayCompletedQuests = ({

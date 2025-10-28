@@ -11,7 +11,7 @@ import { Button } from '@/shared/ui/button/button';
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/shared/model/quest-template';
+} from '@/entities/quest-template/model/quest-template';
 
 import classNames from 'classnames/bind';
 import styles from './editing-sub-quest-bottom-sheet.module.scss';

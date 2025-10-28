@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetThemes } from '@/features/create-quest/api/use-get-themes';
+import { useGetThemes } from '@/entities/quest-template/api/use-get-themes';
 import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { Header } from '@/widgets/global-header/ui/header';
@@ -11,7 +11,7 @@ import { StepDescription } from '@/features/create-quest/ui/step-description/ste
 import { StepRadioGroupSkeleton } from '@/features/create-quest/ui/step-radio-group/step-radio-group-skeleton';
 import { StepRadioGroup } from '@/features/create-quest/ui/step-radio-group/step-radio-group';
 import { StepRefreshButton } from '@/features/create-quest/ui/step-refresh-button/step-refresh-button';
-import { useGetRandomThemes } from '@/features/create-quest/api/use-get-random-themes';
+import { useGetRandomThemes } from '@/entities/quest-template/api/use-get-random-themes';
 
 export const StepCategoryPage = () => {
   const navigate = useNavigate();

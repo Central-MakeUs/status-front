@@ -5,7 +5,7 @@ import type {
   SubQuestLogDTO,
   SubQuestLogsResponseDTO,
   UsersSubQuestResponseDTO,
-} from '../api/user-quest.dto';
+} from '@/shared/api/user-quest.dto';
 
 export type UsersMainQuest = UsersMainQuestResponseDTO;
 

@@ -1,6 +1,5 @@
-import type { BasicUsersDTO } from '../api/user.dto';
-import type { TIER_TYPE } from '@/shared/config/tier';
-import type { USER_TYPE } from '../config/user';
+import type { BasicUsersDTO } from '@/shared/api/user.dto';
+import type { TIER_TYPE, USER_TYPE } from '@/shared/config/user';
 
 export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];
 

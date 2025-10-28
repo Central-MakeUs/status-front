@@ -3,12 +3,12 @@ import type {
   REWARD_STEP,
   SUB_QUEST_FREQUENCY,
   ACTION_UNIT_TYPES,
-} from '../config/quest-template';
+} from '@/shared/config/quest-template';
 import type {
   ThemeResponseDTO,
   MainQuestResponseDTO,
   SubQuestResponseDTO,
-} from '../api/quest-template.dto';
+} from '@/shared/api/quest-template.dto';
 
 export type Theme = ThemeResponseDTO;
 

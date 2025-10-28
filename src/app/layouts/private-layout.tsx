@@ -5,7 +5,7 @@ import { useAuthenticateUser } from '@/features/auth/api/use-authenticate-user';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { useShallow } from 'zustand/react/shallow';
 import { useEffect } from 'react';
-import { useGetCurrentUser } from '@/entities/user/api/use-get-current-user';
+import { useGetCurrentUser } from '@/features/auth/api/use-get-current-user';
 import { useGetUsersMainQuests } from '@/entities/user-quest/api/use-get-user-main-quests';
 
 export const PrivateLayout = () => {

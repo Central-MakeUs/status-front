@@ -1,4 +1,4 @@
-import type { SubQuestFrequencyValue } from '../model/quest-template';
+import type { SubQuestFrequencyValue } from '../../entities/quest-template/model/quest-template';
 
 export const REWARD_STEP = {
   NONE: 'none',

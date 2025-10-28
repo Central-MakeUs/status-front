@@ -1,4 +1,4 @@
-import { TIER_ICONS } from '@/shared/config/tier';
+import { TIER_ICONS } from '../../config/user';
 
 interface TierIconProps {
   id: string;

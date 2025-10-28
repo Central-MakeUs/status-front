@@ -1,6 +1,6 @@
-import { api } from '@/shared/api/api-client';
-import type { ApiResponse } from '@/shared/api/api-client';
-import type { AttributesReturnDTO } from '@/shared/api/attribute.dto';
+import { api } from './api-client';
+import type { ApiResponse } from './api-client';
+import type { AttributesReturnDTO } from './attribute.dto';
 import type { BasicUsersDTO } from './user.dto';
 
 export const getCurrentUser = async () => {

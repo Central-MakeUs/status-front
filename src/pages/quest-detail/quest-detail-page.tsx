@@ -6,8 +6,8 @@ import { SubQuestRewardDialog } from './ui/sub-quest-reward-dialog/sub-quest-rew
 import { MainQuestRewardDialog } from './ui/main-quest-reward-dialog/main-quest-reward-dialog';
 import { REWARD_STEP } from '@/shared/config/quest-template';
 
-import type { RewardStep } from '@/shared/model/quest-template';
-import type { SubQuestDifficulty } from '@/shared/model/quest-template';
+import type { RewardStep } from '@/entities/quest-template/model/quest-template';
+import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
 
 import classNames from 'classnames/bind';
 import styles from './quest-detail-page.module.scss';

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { useQueryClient } from '@tanstack/react-query';
-import { useQuestCreationStore } from '../model/create-quest-store';
-import { getRandomSubQuests } from './create-quest';
-import type { RerollSubQuestRequestDTO } from './create-quest.dto';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
+import { getRandomSubQuests } from '@/shared/api/quest-template';
+import type { RerollSubQuestRequestDTO } from '@/shared/api/quest-template.dto';
 
 export interface GetRandomSubQuestByMainQuestIdParams {
   mainQuestId: string;

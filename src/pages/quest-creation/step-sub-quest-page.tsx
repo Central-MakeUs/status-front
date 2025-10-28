@@ -14,8 +14,8 @@ import { StepActions } from '@/features/create-quest/ui/step-actions/step-action
 import { StepDescription } from '@/features/create-quest/ui/step-description/step-description';
 import { StepRefreshButton } from '@/features/create-quest/ui/step-refresh-button/step-refresh-button';
 import { EditingSubQuestBottomSheet } from '@/features/create-quest/ui/editing-sub-quest-bottom-sheet/editing-sub-quest-bottom-sheet';
-import { useGetSubQuests } from '@/features/create-quest/api/use-get-sub-quests';
-import { useGetRandomSubQuests } from '@/features/create-quest/api/use-get-random-sub-quests';
+import { useGetSubQuests } from '@/entities/quest-template/api/use-get-sub-quests';
+import { useGetRandomSubQuests } from '@/entities/quest-template/api/use-get-random-sub-quests';
 import { SubQuestSkeleton } from '@/features/create-quest/ui/sub-quest-skeleton/sub-quest-skeleton';
 import { SubQuestList } from '@/features/create-quest/ui/sub-quest-list/sub-quest-list';
 import { validateSubQuestEditing } from '@/features/create-quest/model/create-quest-schema';
@@ -23,7 +23,7 @@ import { validateSubQuestEditing } from '@/features/create-quest/model/create-qu
 import type {
   SubQuest,
   SubQuestFrequencyValue,
-} from '@/shared/model/quest-template';
+} from '@/entities/quest-template/model/quest-template';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 

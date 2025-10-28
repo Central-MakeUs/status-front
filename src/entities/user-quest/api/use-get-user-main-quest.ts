@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getUsersMainQuest } from './user-quest';
+import { getUsersMainQuest } from '@/shared/api/user-quest';
 
 export const useGetUsersMainQuest = (id: number) => {
   return useQuery({

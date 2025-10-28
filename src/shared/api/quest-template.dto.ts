@@ -1,8 +1,8 @@
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { AttributeDTO } from './attribute.dto';
 import type {
   ActionUnitTypeValue,
   SubQuestFrequencyValue,
-} from '../model/quest-template';
+} from '../../entities/quest-template/model/quest-template';
 
 export interface ThemeResponseDTO {
   id: number;
@@ -65,4 +65,11 @@ export interface SubQuestResponseDTO {
   actionUnitNum: number;
   attributes: AttributeDTO[];
   desc: string;
+}
+
+export interface RerollSubQuestRequestDTO {
+  mainQuest: number;
+  attributes: number[];
+  selectedSubQuests: number[];
+  gottenSubQuests: number[];
 }

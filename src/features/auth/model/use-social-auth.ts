@@ -13,9 +13,9 @@ import {
 } from '@/features/auth/model/auth-store';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { USER_TYPE } from '@/entities/user/config/user';
+import { USER_TYPE } from '@/shared/config/user';
 import { usePostSocialLogin } from '@/features/auth/api/use-post-social-login';
-import { useGetCurrentUser } from '@/entities/user/api/use-get-current-user';
+import { useGetCurrentUser } from '@/features/auth/api/use-get-current-user';
 import { useAuthenticateUser } from '@/features/auth/api/use-authenticate-user';
 
 import type { SocialProvider } from '@/features/auth/model/types';

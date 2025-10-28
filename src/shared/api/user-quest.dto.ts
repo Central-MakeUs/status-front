@@ -1,7 +1,7 @@
-import type { Status } from '@/shared/model/quest-template';
+import type { Status } from '@/entities/quest-template/model/quest-template';
 import type { AttributeDTO } from '@/shared/api/attribute.dto';
 import type { SubQuestResponseDTO } from '@/shared/api/quest-template.dto';
-import type { SubQuestDifficulty } from '@/shared/model/quest-template';
+import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
 
 export interface UsersMainQuestResponseDTO {
   id: number;

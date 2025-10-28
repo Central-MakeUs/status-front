@@ -8,7 +8,7 @@ import { useSocialAuth } from '@/features/auth/model/use-social-auth';
 import { Loading } from '@/shared/ui/loading/loading';
 import { Button } from '@/shared/ui/button/button';
 
-import type { BasicUsersDTO } from '@/entities/user/api/user.dto';
+import type { BasicUsersDTO } from '@/shared/api/user.dto';
 
 import IconApple from '@/assets/icons/icon-login-apple.svg?react';
 import IconGoogle from '@/assets/icons/icon-login-google.svg?react';

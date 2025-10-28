@@ -1,4 +1,4 @@
-import type { TierType, UserType } from '../model/user';
+import type { TierType, UserType } from '../../entities/user/model/user';
 
 export interface BasicUsersDTO {
   id: string;

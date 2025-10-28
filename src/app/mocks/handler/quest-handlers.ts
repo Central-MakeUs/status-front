@@ -13,8 +13,8 @@ import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
-  RerollSubQuestRequestDTO,
 } from '@/features/create-quest/api/create-quest.dto';
+import type { RerollSubQuestRequestDTO } from '@/shared/api/quest-template.dto';
 import { mockThemes } from '@/app/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/shared/config/quest-template';
 import { getWeeksDifference } from '@/shared/lib/date';

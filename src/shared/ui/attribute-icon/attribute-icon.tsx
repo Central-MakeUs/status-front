@@ -1,4 +1,4 @@
-import { ATTRIBUTE_ICONS } from '@/shared/config/attribute';
+import { ATTRIBUTE_ICONS } from '../../config/attribute';
 
 interface AttributeIconProps {
   id: number;

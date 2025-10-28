@@ -1,5 +1,5 @@
-import { api } from '@/shared/api/api-client';
-import type { ApiResponse } from '@/shared/api/api-client';
+import { api } from './api-client';
+import type { ApiResponse } from './api-client';
 import type {
   ThemeResponseDTO,
   GetThemesParams,
@@ -10,6 +10,7 @@ import type {
   UsersQuestStatisticsDTO,
   SubQuestResponseDTO,
   GetSubQuestsParams,
+  RerollSubQuestRequestDTO,
 } from './quest-template.dto';
 
 export const getThemes = async ({
@@ -113,6 +114,16 @@ export const getSubQuests = async ({
     {
       params,
     }
+  );
+  return response.data ?? [];
+};
+
+export const getRandomSubQuests = async (
+  data: RerollSubQuestRequestDTO
+): Promise<SubQuestResponseDTO[]> => {
+  const response = await api.post<ApiResponse<SubQuestResponseDTO[]>>(
+    '/quest/reroll-subquests',
+    data
   );
   return response.data ?? [];
 };
