@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { useQuestCreationStore } from './model/quest-creation-store';
-import { StepActions } from './ui/step-actions/step-actions';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
+import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
 import { getSubQuestFrequencyLabel } from '@/shared/config/quest-template';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
-import type { CreateQuestResponse } from './model/types';
+import type { CreateQuestResponse } from '@/features/create-quest/model/create-quest';
 
 import IconLogo from '@/assets/icons/icon-character-result.svg?react';
 

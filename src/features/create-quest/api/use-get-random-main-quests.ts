@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { getRandomMainQuests } from '../../../shared/api/quest-template';
-import type { GetRandomMainQuestsParams } from '../../../shared/api/quest-template.dto';
+import { getRandomMainQuests } from '@/shared/api/quest-template';
+import type { GetRandomMainQuestsParams } from '@/shared/api/quest-template.dto';
 
 export const useGetRandomMainQuests = () => {
   const queryClient = useQueryClient();

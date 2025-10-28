@@ -1,4 +1,7 @@
-import type { CreateQuestResponseDTO, CreateQuestRequestDTO } from '../api/dto';
+import type {
+  CreateQuestResponseDTO,
+  CreateQuestRequestDTO,
+} from '../api/create-quest.dto';
 
 export type CreateQuestRequest = CreateQuestRequestDTO;
 

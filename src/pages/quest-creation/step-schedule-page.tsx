@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useQuestCreationStore } from './model/quest-creation-store';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { Header } from '@/widgets/global-header/ui/header';
-import { StepTitle } from './ui/step-title/step-title';
-import { StepActions } from './ui/step-actions/step-actions';
-import { StepDescription } from './ui/step-description/step-description';
+import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
+import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
+import { StepDescription } from '@/features/create-quest/ui/step-description/step-description';
 import { getTodayString, getWeeksDifference } from '@/shared/lib/date';
-import { validateQuestCreation } from './model/quest-creation-schema';
-import { usePostCreationQuest } from './api/use-post-creation-quest';
+import { validateQuestCreation } from '@/features/create-quest/model/create-quest-schema';
+import { usePostCreationQuest } from '@/features/create-quest/api/use-post-creation-quest';
 
-import type { CreateQuestRequest } from './model/types';
+import type { CreateQuestRequest } from '@/features/create-quest/model/create-quest';
 
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';

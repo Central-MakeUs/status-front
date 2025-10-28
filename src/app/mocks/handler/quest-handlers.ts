@@ -14,7 +14,7 @@ import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
-} from '@/pages/quest-creation/api/dto';
+} from '@/features/create-quest/api/create-quest.dto';
 import { mockThemes } from '@/app/mocks/data/quest';
 import { DISPLAY_SUB_QUEST_COUNT } from '@/shared/config/quest-template';
 import { getWeeksDifference } from '@/shared/lib/date';

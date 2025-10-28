@@ -2,16 +2,16 @@ import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { useGetMainQuests } from '@/entities/quest/api/use-get-main-quests';
-import { useGetRandomMainQuests } from '@/entities/quest/api/use-get-random-main-quests';
+import { useGetMainQuests } from '@/features/create-quest/api/use-get-main-quests';
+import { useGetRandomMainQuests } from '@/features/create-quest/api/use-get-random-main-quests';
 import { Header } from '@/widgets/global-header/ui/header';
-import { useQuestCreationStore } from './model/quest-creation-store';
-import { StepTitle } from './ui/step-title/step-title';
-import { StepActions } from './ui/step-actions/step-actions';
-import { StepDescription } from './ui/step-description/step-description';
-import { StepRadioGroupSkeleton } from './ui/step-radio-group/step-radio-group-skeleton';
-import { StepRadioGroup } from './ui/step-radio-group/step-radio-group';
-import { StepRefreshButton } from './ui/step-refresh-button/step-refresh-button';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
+import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
+import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
+import { StepDescription } from '@/features/create-quest/ui/step-description/step-description';
+import { StepRadioGroupSkeleton } from '@/features/create-quest/ui/step-radio-group/step-radio-group-skeleton';
+import { StepRadioGroup } from '@/features/create-quest/ui/step-radio-group/step-radio-group';
+import { StepRefreshButton } from '@/features/create-quest/ui/step-refresh-button/step-refresh-button';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 

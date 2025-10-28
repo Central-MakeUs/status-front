@@ -5,7 +5,7 @@ import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
   RerollSubQuestRequestDTO,
-} from './dto';
+} from './create-quest.dto';
 
 export const postCreationQuest = async (data: CreateQuestRequestDTO) => {
   const response = await api.post<ApiResponse<CreateQuestResponseDTO>>(

@@ -1,17 +1,17 @@
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useGetThemes } from '@/entities/quest/api/use-get-themes';
-import { useQuestCreationStore } from './model/quest-creation-store';
+import { useGetThemes } from '@/features/create-quest/api/use-get-themes';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { Header } from '@/widgets/global-header/ui/header';
-import { StepTitle } from './ui/step-title/step-title';
-import { StepActions } from './ui/step-actions/step-actions';
-import { StepDescription } from './ui/step-description/step-description';
-import { StepRadioGroupSkeleton } from './ui/step-radio-group/step-radio-group-skeleton';
-import { StepRadioGroup } from './ui/step-radio-group/step-radio-group';
-import { StepRefreshButton } from './ui/step-refresh-button/step-refresh-button';
-import { useGetRandomThemes } from '@/entities/quest/api/use-get-random-themes';
+import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
+import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
+import { StepDescription } from '@/features/create-quest/ui/step-description/step-description';
+import { StepRadioGroupSkeleton } from '@/features/create-quest/ui/step-radio-group/step-radio-group-skeleton';
+import { StepRadioGroup } from '@/features/create-quest/ui/step-radio-group/step-radio-group';
+import { StepRefreshButton } from '@/features/create-quest/ui/step-refresh-button/step-refresh-button';
+import { useGetRandomThemes } from '@/features/create-quest/api/use-get-random-themes';
 
 export const StepCategoryPage = () => {
   const navigate = useNavigate();

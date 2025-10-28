@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useShallow } from 'zustand/react/shallow';
-import { useQuestCreationStore } from './model/quest-creation-store';
+import { useQuestCreationStore } from '@/features/create-quest/model/create-quest-store';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
@@ -9,16 +9,16 @@ import {
   ACTION_UNIT_TYPE_OPTIONS,
 } from '@/shared/config/quest-template';
 import { Header } from '@/widgets/global-header/ui/header';
-import { StepTitle } from './ui/step-title/step-title';
-import { StepActions } from './ui/step-actions/step-actions';
-import { StepDescription } from './ui/step-description/step-description';
-import { StepRefreshButton } from './ui/step-refresh-button/step-refresh-button';
-import { EditingSubQuestBottomSheet } from './ui/editing-sub-quest-bottom-sheet/editing-sub-quest-bottom-sheet';
-import { useGetSubQuests } from '@/entities/quest/api/use-get-sub-quests';
-import { useGetRandomSubQuests } from './api/use-get-random-sub-quests';
-import { SubQuestSkeleton } from './ui/sub-quest-skeleton/sub-quest-skeleton';
-import { SubQuestList } from './ui/sub-quest-list/sub-quest-list';
-import { validateSubQuestEditing } from '@/pages/quest-creation/model/sub-quest-editing-scheme';
+import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
+import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
+import { StepDescription } from '@/features/create-quest/ui/step-description/step-description';
+import { StepRefreshButton } from '@/features/create-quest/ui/step-refresh-button/step-refresh-button';
+import { EditingSubQuestBottomSheet } from '@/features/create-quest/ui/editing-sub-quest-bottom-sheet/editing-sub-quest-bottom-sheet';
+import { useGetSubQuests } from '@/features/create-quest/api/use-get-sub-quests';
+import { useGetRandomSubQuests } from '@/features/create-quest/api/use-get-random-sub-quests';
+import { SubQuestSkeleton } from '@/features/create-quest/ui/sub-quest-skeleton/sub-quest-skeleton';
+import { SubQuestList } from '@/features/create-quest/ui/sub-quest-list/sub-quest-list';
+import { validateSubQuestEditing } from '@/features/create-quest/model/create-quest-schema';
 
 import type {
   SubQuest,

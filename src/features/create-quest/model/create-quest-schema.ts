@@ -1,6 +1,21 @@
 import { z } from 'zod';
 import { isNotPastDate, isValidDateString } from '@/shared/lib/date';
-import { subQuestEditingSchema } from '@/pages/quest-creation/model/sub-quest-editing-scheme';
+import {
+  ACTION_UNIT_TYPE_VALUES,
+  SUB_QUEST_FREQUENCY_VALUES,
+} from '@/shared/config/quest-template';
+
+export const subQuestEditingSchema = z.object({
+  frequencyType: z.enum(SUB_QUEST_FREQUENCY_VALUES),
+  actionUnitType: z.enum(ACTION_UNIT_TYPE_VALUES),
+  actionUnitNum: z.number().min(1, '반복 횟수는 1 이상이어야 합니다.'),
+});
+
+export type SubQuestEditing = z.infer<typeof subQuestEditingSchema>;
+
+export const validateSubQuestEditing = (data: unknown) => {
+  return subQuestEditingSchema.safeParse(data);
+};
 
 export const questCreationSchema = z.object({
   theme: z.number().min(1, '테마를 선택해주세요.'),
