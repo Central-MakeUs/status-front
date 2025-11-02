@@ -1,7 +1,7 @@
-import type { Status } from '@/entities/quest-template/model/quest-template';
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
-import type { SubQuestResponseDTO } from '@/shared/api/quest-template.dto';
-import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
+import type { Status } from '../config/quest-template';
+import type { SubQuestDifficulty } from '../config/quest-template';
+import type { SubQuestResponseDTO } from './quest-template.dto';
+import type { AttributeType } from '../config/attribute';
 
 export interface UsersMainQuestResponseDTO {
   id: number;
@@ -17,6 +17,7 @@ export interface WithStatusUsersMainQuestResponseDTO
   extends UsersMainQuestResponseDTO {
   status: Status;
 }
+
 export interface SubQuestLogDTO {
   id: number;
   difficulty: SubQuestDifficulty;
@@ -38,4 +39,20 @@ export interface UsersSubQuestResponseDTO {
 export interface SubQuestLogsResponseDTO {
   userSubQuest: UsersSubQuestResponseDTO;
   log: SubQuestLogDTO;
+}
+
+export interface AttributeDTO {
+  id: number;
+  name: string;
+  exp: number;
+}
+
+export interface AttributesReturnDTO {
+  attributeId: number;
+  name: string;
+  type: AttributeType;
+  description?: string;
+  level: number;
+  exp: number;
+  expToNextLevel: number;
 }

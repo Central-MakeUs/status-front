@@ -1,8 +1,6 @@
-import type { AttributeDTO } from './attribute.dto';
-import type {
-  ActionUnitTypeValue,
-  SubQuestFrequencyValue,
-} from '../../entities/quest-template/model/quest-template';
+import type { AttributeDTO } from './user-quest.dto';
+import type { ActionUnitTypeValue } from '../config/quest-template';
+import type { SubQuestFrequencyValue } from '../config/quest-template';
 
 export interface ThemeResponseDTO {
   id: number;

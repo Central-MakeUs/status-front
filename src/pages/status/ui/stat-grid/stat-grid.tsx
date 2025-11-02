@@ -3,7 +3,7 @@ import styles from './stat-grid.module.scss';
 // import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 // import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
-import type { Attribute } from '@/shared/model/attribute';
+import type { Attribute } from '@/entities/user-quest/model/user-quest';
 const cx = classNames.bind(styles);
 
 interface StatGridProps {

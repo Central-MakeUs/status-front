@@ -1,12 +1,13 @@
-import { api } from '@/shared/api/api-client';
-import type { ApiResponse } from '@/shared/api/api-client';
-import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
+import { api } from './api-client';
+import type { ApiResponse } from './api-client';
+import type { RewardResponseDto } from './quest-template.dto';
 import type {
   UsersMainQuestResponseDTO,
   WithStatusUsersMainQuestResponseDTO,
   UsersSubQuestResponseDTO,
   SubQuestLogDTO,
   QuestHistoryByDateDTO,
+  AttributesReturnDTO,
 } from './user-quest.dto';
 
 export const getUsersMainQuests = async (): Promise<
@@ -99,4 +100,10 @@ export const patchUsersSubQuestLog = async (data: SubQuestLogDTO) => {
     data
   );
   return response.data ?? {};
+};
+
+export const getUsersAttributes = async (): Promise<AttributesReturnDTO[]> => {
+  const response =
+    await api.get<ApiResponse<AttributesReturnDTO[]>>('/attribute');
+  return response.data || [];
 };

@@ -5,6 +5,7 @@ import type {
   SubQuestLogDTO,
   SubQuestLogsResponseDTO,
   UsersSubQuestResponseDTO,
+  AttributesReturnDTO,
 } from '@/shared/api/user-quest.dto';
 
 export type UsersMainQuest = UsersMainQuestResponseDTO;
@@ -18,3 +19,5 @@ export type SubQuestLog = SubQuestLogDTO;
 export type CompletedQuest = SubQuestLogsResponseDTO;
 
 export type UsersCompletedHistory = QuestHistoryByDateDTO;
+
+export type Attribute = AttributesReturnDTO;

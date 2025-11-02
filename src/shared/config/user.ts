@@ -20,9 +20,13 @@ export const TIER_TYPE = {
   DIA: 'DIA',
 } as const;
 
+export type TierType = (typeof TIER_TYPE)[keyof typeof TIER_TYPE];
+
 export const NICKNAME_MAX_LENGTH = 10;
 
 export const USER_TYPE = {
   SIGN_UP: 'SIGNUP',
   LOGIN: 'LOGIN',
 } as const;
+
+export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];

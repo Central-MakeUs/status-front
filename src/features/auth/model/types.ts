@@ -1,7 +1,7 @@
 import type {
   OAuthProviderDTO,
   SignUpRequestDTO,
-} from '@/features/auth/api/dto';
+} from '@/features/auth/api/auth.dto';
 import type { BasicUsersDTO } from '@/shared/api/user.dto';
 import type {
   PROVIDER_TYPE,

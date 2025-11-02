@@ -1,6 +1,6 @@
 import type { CompletedQuest } from '@/entities/user-quest/model/user-quest';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
-import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
+import type { SubQuestDifficulty } from '@/shared/config/quest-template';
 import {
   getSubQuestFrequencyLabel,
   SUB_QUEST_DIFFICULTY,

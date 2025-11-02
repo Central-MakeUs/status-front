@@ -2,7 +2,7 @@ import { Dialog } from '@/shared/ui/dialog/dialog';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { Button } from '@/shared/ui/button/button';
 
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 
 import IconMainQuestReward from '@/assets/icons/icon-main-quest-reward.svg?react';
 

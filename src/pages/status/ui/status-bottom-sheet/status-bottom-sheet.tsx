@@ -7,7 +7,7 @@ import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 
 import classNames from 'classnames/bind';
 import styles from './status-bottom-sheet.module.scss';
-import type { Attribute } from '@/shared/model/attribute';
+import type { Attribute } from '@/entities/user-quest/model/user-quest';
 const cx = classNames.bind(styles);
 
 type StatusDetailBottomSheetProps = {

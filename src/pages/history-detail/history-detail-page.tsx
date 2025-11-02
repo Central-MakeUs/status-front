@@ -8,7 +8,7 @@ import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { useGetUsersMainQuest } from '@/entities/user-quest/api/use-get-user-main-quest';
 import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import CompletedHistory from './ui/completed-history/completed-history';
 const cx = classNames.bind(styles);

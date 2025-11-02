@@ -1,6 +1,5 @@
 import { api } from './api-client';
 import type { ApiResponse } from './api-client';
-import type { AttributesReturnDTO } from './attribute.dto';
 import type { BasicUsersDTO } from './user.dto';
 
 export const getCurrentUser = async () => {
@@ -15,10 +14,4 @@ export const updateNickname = async (
     '/users/nickname',
     payload
   );
-};
-
-export const getUsersAttributes = async (): Promise<AttributesReturnDTO[]> => {
-  const response =
-    await api.get<ApiResponse<AttributesReturnDTO[]>>('/attribute');
-  return response.data || [];
 };

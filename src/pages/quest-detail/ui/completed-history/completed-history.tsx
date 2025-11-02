@@ -6,7 +6,7 @@ import { useState } from 'react';
 import IconExpandLess from '@/assets/icons/icon-expand-less.svg?react';
 import IconExpandMore from '@/assets/icons/icon-expand-more.svg?react';
 import type { UsersCompletedHistory } from '@/entities/user-quest/model/user-quest';
-import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
+import type { SubQuestDifficulty } from '@/shared/config/quest-template';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 const cx = classNames.bind(styles);
 

@@ -20,10 +20,8 @@ import { SubQuestSkeleton } from '@/features/create-quest/ui/sub-quest-skeleton/
 import { SubQuestList } from '@/features/create-quest/ui/sub-quest-list/sub-quest-list';
 import { validateSubQuestEditing } from '@/features/create-quest/model/create-quest-schema';
 
-import type {
-  SubQuest,
-  SubQuestFrequencyValue,
-} from '@/entities/quest-template/model/quest-template';
+import type { SubQuestFrequencyValue } from '@/shared/config/quest-template';
+import type { SubQuest } from '@/entities/quest-template/model/quest-template';
 
 import IconLogo from '@/assets/icons/icon-logo-default.svg?react';
 

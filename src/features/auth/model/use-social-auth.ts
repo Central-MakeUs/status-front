@@ -20,7 +20,7 @@ import { useAuthenticateUser } from '@/features/auth/api/use-authenticate-user';
 
 import type { SocialProvider } from '@/features/auth/model/types';
 import type { OAuthProvider } from '@/features/auth/model/types';
-import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
+import type { OAuthLoginRequestDTO } from '@/features/auth/api/auth.dto';
 import type { BasicUsers } from '@/entities/user/model/user';
 
 const createOAuthURL = (provider: SocialProvider, state: string): string => {

@@ -1,4 +1,4 @@
-import type { AttributesReturnDTO } from '@/shared/api/attribute.dto';
+import type { AttributesReturnDTO } from '@/shared/api/user-quest.dto';
 
 export const mockAttributes: AttributesReturnDTO[] = [
   {

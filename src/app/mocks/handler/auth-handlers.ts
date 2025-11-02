@@ -8,7 +8,7 @@ import {
 import { SOCIAL_PROVIDER } from '@/features/auth/config/constants';
 import { getCookie } from '@/shared/lib/cookie';
 
-import type { OAuthLoginRequestDTO } from '@/features/auth/api/dto';
+import type { OAuthLoginRequestDTO } from '@/features/auth/api/auth.dto';
 
 export const API_URL = import.meta.env.VITE_API_URL;
 

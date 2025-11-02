@@ -35,7 +35,7 @@ import classNames from 'classnames/bind';
 import styles from './radar-chart.module.scss';
 import { useState, useMemo } from 'react';
 import { StatGrid } from '../stat-grid/stat-grid';
-import type { Attribute } from '@/shared/model/attribute';
+import type { Attribute } from '@/entities/user-quest/model/user-quest';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {

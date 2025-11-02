@@ -4,10 +4,12 @@ import { QuestReportBottomSheet } from './ui/quest-report-bottom-sheet/quest-rep
 import { usePostUsersSubQuestLog } from '@/entities/user-quest/api/use-post-user-sub-quest-log';
 import { SubQuestRewardDialog } from './ui/sub-quest-reward-dialog/sub-quest-reward-dialog';
 import { MainQuestRewardDialog } from './ui/main-quest-reward-dialog/main-quest-reward-dialog';
-import { REWARD_STEP } from '@/shared/config/quest-template';
 
-import type { RewardStep } from '@/entities/quest-template/model/quest-template';
-import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
+import {
+  REWARD_STEP,
+  type RewardStep,
+  type SubQuestDifficulty,
+} from '@/shared/config/quest-template';
 
 import classNames from 'classnames/bind';
 import styles from './quest-detail-page.module.scss';
@@ -25,7 +27,7 @@ import { QuestGiveUpDialog } from './ui/quest-give-up-dialog/quest-give-up-dialo
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
 import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import { format } from 'date-fns';
 import { usePatchUsersSubQuestLog } from '@/entities/user-quest/api/use-patch-user-sub-quest-log';

@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui/button/button';
 import { Textarea } from '@/shared/ui/textarea/textarea';
 import classNames from 'classnames/bind';
 import styles from './quest-report-bottom-sheet.module.scss';
-import type { SubQuestDifficulty } from '@/entities/quest-template/model/quest-template';
+import type { SubQuestDifficulty } from '@/shared/config/quest-template';
 import { SUB_QUEST_DIFFICULTY } from '@/shared/config/quest-template';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 

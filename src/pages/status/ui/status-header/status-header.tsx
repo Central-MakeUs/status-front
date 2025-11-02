@@ -1,5 +1,5 @@
 import { TierIcon } from '@/shared/ui/tier-icon/tier-icon';
-import type { TierType } from '@/entities/user/model/user';
+import type { TierType } from '@/shared/config/user';
 
 import classNames from 'classnames/bind';
 import styles from './status-header.module.scss';

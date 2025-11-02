@@ -1,11 +1,11 @@
-import type { SubQuestFrequencyValue } from '../../entities/quest-template/model/quest-template';
-
 export const REWARD_STEP = {
   NONE: 'none',
   SUB_QUEST: 'subQuest',
   MAIN_QUEST: 'mainQuest',
   COMPLETED: 'completed',
 } as const;
+
+export type RewardStep = (typeof REWARD_STEP)[keyof typeof REWARD_STEP];
 
 export const MAIN_QUEST_STATUS = {
   ACTIVE: 'ACTIVE',
@@ -15,6 +15,8 @@ export const MAIN_QUEST_STATUS = {
   COMPLETED: 'COMPLETED',
   ACCOMPLISHED: 'ACCOMPLISHED',
 } as const;
+
+export type Status = (typeof MAIN_QUEST_STATUS)[keyof typeof MAIN_QUEST_STATUS];
 
 export const DISPLAY_SUB_QUEST_COUNT = 4;
 
@@ -67,6 +69,9 @@ export const SUB_QUEST_FREQUENCY = {
   },
 } as const;
 
+export type SubQuestFrequencyValue =
+  (typeof SUB_QUEST_FREQUENCY)[keyof typeof SUB_QUEST_FREQUENCY]['value'];
+
 export const SUB_QUEST_FREQUENCY_SELECT_OPTIONS =
   Object.values(SUB_QUEST_FREQUENCY);
 
@@ -97,6 +102,9 @@ export const SUB_QUEST_DIFFICULTY = {
     value: 'HARD',
   },
 } as const;
+
+export type SubQuestDifficulty =
+  (typeof SUB_QUEST_DIFFICULTY)[keyof typeof SUB_QUEST_DIFFICULTY]['value'];
 
 export const ACTION_UNIT_TYPES = {
   TIME_SECOND: '초',
@@ -153,3 +161,6 @@ export const ACTION_UNIT_TYPE_OPTIONS = {
     max: 1,
   },
 } as const;
+
+export type ActionUnitTypeValue =
+  (typeof ACTION_UNIT_TYPES)[keyof typeof ACTION_UNIT_TYPES];

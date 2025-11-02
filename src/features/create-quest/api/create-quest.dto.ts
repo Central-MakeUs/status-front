@@ -1,4 +1,4 @@
-import type { AttributeDTO } from '@/shared/api/attribute.dto';
+import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import type { SubQuestResponseDTO } from '@/shared/api/quest-template.dto';
 import type { SubQuestInfo } from '@/entities/quest-template/model/quest-template';
 

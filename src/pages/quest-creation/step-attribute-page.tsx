@@ -8,7 +8,7 @@ import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
 import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
 import { ATTRIBUTE_TYPES } from '@/shared/config/attribute';
 
-import type { Attribute } from '@/shared/model/attribute';
+import type { Attribute } from '@/entities/user-quest/model/user-quest';
 
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 

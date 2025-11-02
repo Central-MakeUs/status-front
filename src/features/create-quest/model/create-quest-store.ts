@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getTodayString } from '@/shared/lib/date';
 
-import type { Attribute } from '@/shared/model/attribute';
+import type { Attribute } from '@/entities/user-quest/model/user-quest';
 import type {
   MainQuest,
   Theme,
