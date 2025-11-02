@@ -6,8 +6,8 @@ import { PAGE_PATHS } from '@/shared/config/paths';
 import {
   DISPLAY_SUB_QUEST_COUNT,
   MAX_SUB_QUEST_COUNT,
-  ACTION_UNIT_TYPE_OPTIONS,
-} from '@/shared/config/quest-template';
+} from '@/entities/quest-template/config/quest-template';
+import { ACTION_UNIT_TYPE_OPTIONS } from '@/shared/config/quest-template';
 import { Header } from '@/widgets/global-header/ui/header';
 import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
 import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';

@@ -18,10 +18,6 @@ export const MAIN_QUEST_STATUS = {
 
 export type Status = (typeof MAIN_QUEST_STATUS)[keyof typeof MAIN_QUEST_STATUS];
 
-export const DISPLAY_SUB_QUEST_COUNT = 4;
-
-export const MAX_SUB_QUEST_COUNT = 3;
-
 export const SUB_QUEST_FREQUENCY = {
   DAILY: {
     label: '매일',

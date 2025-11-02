@@ -16,7 +16,7 @@ import type {
 } from '@/features/create-quest/api/create-quest.dto';
 import type { RerollSubQuestRequestDTO } from '@/shared/api/quest-template.dto';
 import { mockThemes } from '@/app/mocks/data/quest';
-import { DISPLAY_SUB_QUEST_COUNT } from '@/shared/config/quest-template';
+import { DISPLAY_SUB_QUEST_COUNT } from '@/entities/quest-template/config/quest-template';
 import { getWeeksDifference } from '@/shared/lib/date';
 
 export const API_URL = import.meta.env.VITE_API_URL;
