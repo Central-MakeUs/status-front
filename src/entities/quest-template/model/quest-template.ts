@@ -9,8 +9,3 @@ export type Theme = ThemeResponseDTO;
 export type MainQuest = MainQuestResponseDTO;
 
 export type SubQuest = SubQuestResponseDTO;
-
-export type SubQuestInfo = Pick<
-  SubQuestResponseDTO,
-  'id' | 'frequencyType' | 'actionUnitNum'
->;
