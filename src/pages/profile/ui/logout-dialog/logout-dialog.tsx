@@ -1,18 +1,22 @@
+import { usePostLogout } from '@/features/auth/api/use-post-logout';
 import { Dialog } from '@/shared/ui/dialog/dialog';
 import { Button } from '@/shared/ui/button/button';
 
 interface LogoutDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
 }
 
-export const LogoutDialog = ({
-  isOpen,
-  onClose,
-  onConfirm,
-}: LogoutDialogProps) => {
-  if (!isOpen) return null;
+export const LogoutDialog = ({ isOpen, onClose }: LogoutDialogProps) => {
+  const postLogout = usePostLogout();
+
+  const handleLogout = async () => {
+    postLogout.mutate();
+  };
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <Dialog>
@@ -26,7 +30,7 @@ export const LogoutDialog = ({
         <Button variant="primary" onClick={onClose}>
           취소
         </Button>
-        <Button variant="secondary" onClick={onConfirm}>
+        <Button variant="secondary" onClick={handleLogout}>
           확인
         </Button>
       </Dialog.Actions>

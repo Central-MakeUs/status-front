@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { useShallow } from 'zustand/react/shallow';
-import { usePatchNickname } from '@/entities/user/api/use-patch-nickname';
+import { usePatchNickname } from '@/features/edit-nickname/api/use-patch-nickname';
 import { BottomSheet } from '@/shared/ui/bottom-sheet/bottom-sheet';
 import { TextInput } from '@/shared/ui/text-input/text-input';
 import { Button } from '@/shared/ui/button/button';
