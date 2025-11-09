@@ -18,3 +18,5 @@ export const TUTORIAL_STEPS = {
     path: '/videos/tutorial-animation-3.mp4',
   },
 } as const;
+
+export type TutorialStep = (typeof TUTORIAL_STEPS)[keyof typeof TUTORIAL_STEPS];
