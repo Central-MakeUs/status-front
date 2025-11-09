@@ -3,9 +3,9 @@ import { useShallow } from 'zustand/react/shallow';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../model/auth-store';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { logout } from './auth';
+import { signOut } from './auth';
 
-export const usePostLogout = () => {
+export const usePostSignOut = () => {
   const queryClient = useQueryClient();
   const { setUser } = useAuthStore(
     useShallow((state) => ({
@@ -15,7 +15,7 @@ export const usePostLogout = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: logout,
+    mutationFn: signOut,
     onSuccess: () => {
       queryClient.clear();
       setUser(null);

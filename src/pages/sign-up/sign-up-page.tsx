@@ -9,7 +9,7 @@ import { usePostSignUp } from '@/features/auth/api/use-post-sign-up';
 import { TextInput } from '@/shared/ui/text-input/text-input';
 import { Button } from '@/shared/ui/button/button';
 import { Checkbox } from '@/shared/ui/checkbox/checkbox';
-import { nicknameSchema } from '@/features/auth/model/auth-scheme';
+import { nicknameSchema } from '@/entities/user/model/user-schema';
 import { SIGN_UP_STEP } from '@/features/auth/config/constants';
 import { SIGN_UP_STEP_INFO } from '@/features/auth/config/constants';
 import { PAGE_PATHS } from '@/shared/config/paths';

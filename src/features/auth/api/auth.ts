@@ -8,7 +8,7 @@ export const refreshAccessToken = async () => {
   return api.post<ApiResponse<BasicUsersDTO>>('/auth/refresh');
 };
 
-export const logout = async () => {
+export const signOut = async () => {
   return api.post<ApiResponse<void>>('/auth/logout');
 };
 

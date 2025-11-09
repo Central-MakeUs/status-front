@@ -6,22 +6,22 @@ import { BottomSheet } from '@/shared/ui/bottom-sheet/bottom-sheet';
 import { TextInput } from '@/shared/ui/text-input/text-input';
 import { Button } from '@/shared/ui/button/button';
 import { NICKNAME_MAX_LENGTH } from '@/shared/config/user';
-import { nicknameSchema } from '@/features/auth/model/auth-scheme';
+import { nicknameSchema } from '@/entities/user/model/user-schema';
 
 import classNames from 'classnames/bind';
-import styles from './nickname-bottom-sheet.module.scss';
+import styles from './nickname-edit-bottom-sheet.module.scss';
 
 const cx = classNames.bind(styles);
 
-interface NicknameBottomSheetProps {
+interface NicknameEditBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export const NicknameBottomSheet = ({
+export const NicknameEditBottomSheet = ({
   isOpen,
   onClose,
-}: NicknameBottomSheetProps) => {
+}: NicknameEditBottomSheetProps) => {
   const { user, setUser } = useAuthStore(
     useShallow((state) => ({
       user: state.user,

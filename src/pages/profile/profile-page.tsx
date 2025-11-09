@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Header } from '@/widgets/global-header/ui/header';
 import { UserProfile } from './ui/user-profile/user-profile';
 import { UserProfileActionList } from './ui/user-profile-action-list/user-profile-action-list';
-import { NicknameBottomSheet } from '@/pages/profile/ui/nickname-bottom-sheet/nickname-bottom-sheet';
-import { LogoutDialog } from '@/pages/profile/ui/logout-dialog/logout-dialog';
-import { WithdrawalDialog } from '@/pages/profile/ui/withdrawal-dialog/withdrawal-dialog';
+import { NicknameEditBottomSheet } from '@/features/edit-nickname/ui/nickname-edit-bottom-sheet/nickname-edit-bottom-sheet';
+import { SignOutDialog } from '@/features/auth/ui/sign-out-dialog/sign-out-dialog';
+import { WithdrawalDialog } from '@/features/auth/ui/withdrawal-dialog/withdrawal-dialog';
 
 export const ProfilePage = () => {
   const [isNicknameEditOpen, setIsNicknameEditOpen] = useState(false);
@@ -31,11 +31,11 @@ export const ProfilePage = () => {
           onWithdrawal={openWithdrawalDialog}
         />
       </main>
-      <NicknameBottomSheet
+      <NicknameEditBottomSheet
         isOpen={isNicknameEditOpen}
         onClose={closeNicknameEditBottomSheet}
       />
-      <LogoutDialog isOpen={isLogoutDialogOpen} onClose={closeLogoutDialog} />
+      <SignOutDialog isOpen={isLogoutDialogOpen} onClose={closeLogoutDialog} />
       <WithdrawalDialog
         isOpen={isWithdrawalDialogOpen}
         onClose={closeWithdrawalDialog}
