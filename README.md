@@ -1,4 +1,9 @@
 # 상태창 - 육각형 인간으로 레벨업
+[![App Store](https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white)](https://apps.apple.com/us/app/%EC%83%81%ED%83%9C%EC%B0%BD/id6747613959)
+[![Google Play](https://img.shields.io/badge/Google_Play-3DDC84?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.status.app.status)
+[![Web](https://img.shields.io/badge/Web-FF6B6B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://app.statoverflow.cloud)
+
+![hero](https://github.com/user-attachments/assets/b88ff2e0-cfb7-4981-8add-dae5ad54e9cb)
 
 **상태창은 실천 기반 퀘스트를 통해 나를 성장시키는 자기계발 앱입니다.** 누구나 가볍게 즐길 수 있는 자기계발 퀘스트를 통해 경험치를 얻고, 나의 능력치로 출력됩니다. 이제 자기계발을 게임처럼 즐기세요.
 
@@ -20,11 +25,23 @@
 
 성장 과정은 모두 기록으로 남습니다. 꾸준한 실천은 칭호와 보너스 경험치로 보상됩니다.
 
-## 시작하기
-
-### 기술 스택
+## 기술 스택
 
 - React, Expo
 - TanStack Query
 - Zustand
 - SCSS
+
+## 시작하기
+
+### 패키지 설치
+
+```bash
+pnpm install
+```
+
+### 개발 서버 실행
+
+```bash
+pnpm dev
+```
