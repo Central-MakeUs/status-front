@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { RadioGroup } from '@/shared/ui/radio/radio-group';
-import { Radio } from '@/shared/ui/radio/radio';
+import { RadioGroup } from './radio-group';
+import { Radio } from './radio';
 
 const meta = {
   title: 'atoms/RadioGroup',
