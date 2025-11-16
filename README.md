@@ -27,7 +27,9 @@
 
 ## 기술 스택
 
-- React, Expo
+- React
+- Expo
+  - [저장소 링크](https://github.com/Central-MakeUs/status-app)
 - TanStack Query
 - Zustand
 - SCSS
