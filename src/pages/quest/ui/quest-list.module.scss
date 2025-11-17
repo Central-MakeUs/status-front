@@ -1,0 +1,101 @@
+.main-quest-list {
+    margin-top: 16px;
+    padding: 0 14px;
+}
+
+.main-quest-item {
+    position: relative;
+    padding: 19px;
+    border: 1px solid var(--color-gray-600);
+    border-radius: 10px;
+    background-color: var(--color-gray-800);
+    box-shadow: 0 0 40px 0 rgb(255 255 255 / 5%) inset;
+
+    & + .main-quest-item {
+        margin-top: 8px;
+    }
+}
+
+.main-quest-date {
+    display: block;
+    font-size: 12px;
+    color: var(--color-gray-300);
+    line-height: 17px;
+}
+
+.main-quest-title {
+    display: block;
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-white);
+    line-height: 20px;
+}
+
+.reward-list {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.reward-item {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 146px;
+    background-color: var(--color-gray-600);
+}
+
+.reward-icon {
+    display: block;
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+.reward-text {
+    display: block;
+    flex: 0 0 auto;
+    margin-left: 4px;
+    font-size: 14px;
+    color: var(--color-gray-100);
+    line-height: 20px;
+}
+
+.progress-bar-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.progress-bar-text {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 12px;
+    color: var(--color-gray-200);
+    line-height: 17px;
+}
+
+.progress-bar {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 10px;
+    margin-left: 8px;
+    border-radius: 100px;
+    background-color: var(--color-gray-600);
+
+    &::before {
+        display: block;
+        width: var(--progress-bar-percentage);
+        height: 100%;
+        border-radius: 100px;
+        background-color: var(--color-white);
+        content: '';
+    }
+}
+
+.main-quest-detail {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(255 255 255 / 0%);
+}
