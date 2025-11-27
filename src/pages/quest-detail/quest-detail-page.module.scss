@@ -1,6 +1,25 @@
-.quest-detail {
+.main-quest-area {
     padding: 20px 14px;
-    border-bottom: 1px solid var(--color-gray-700);
+}
+
+.sub-quest-area {
+    padding: 32px 14px 16px;
+    border-top: 1px solid var(--color-gray-700);
+}
+
+.page-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-white);
+    line-height: 22px;
+
+    & ~ .page-title {
+        margin-top: 40px;
+    }
+}
+
+.today-sub-quest-list {
+    margin-top: 12px;
 }
 
 .main-quest-date {
@@ -50,10 +69,4 @@
     font-size: 14px;
     color: var(--color-gray-100);
     line-height: 20px;
-}
-
-.quest-component {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
 }

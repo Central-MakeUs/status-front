@@ -206,12 +206,15 @@ export const questHandlers = [
       data: quest,
     });
   }),
-  http.get(`${API_URL}/quest/:mainQuestId/today`, () => {
+  http.get(`${API_URL}/quest/:mainQuestId/today`, ({ params }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
 
-    const quests = mockUsersSubQuests;
+    const { mainQuestId } = params;
+    const quests = mockUsersSubQuests.filter(
+      (quest) => quest.mainQuestId === Number(mainQuestId)
+    );
 
     return HttpResponse.json({
       data: quests,

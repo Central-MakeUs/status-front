@@ -11,13 +11,10 @@ import {
   type SubQuestDifficulty,
 } from '@/shared/config/quest-template';
 
-import classNames from 'classnames/bind';
-import styles from './quest-detail-page.module.scss';
 import { Header } from '@/widgets/global-header/ui/header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
-import { QuestList } from '@/pages/status/ui/quest-list/quest-list';
-import { useGetUsersSubQuests } from '@/entities/user-quest/api/use-get-user-sub-quests';
+import { useGetUserTodaySubQuestsByMainQuest } from '@/entities/user-quest/api/use-get-user-today-sub-quests-by-main-quest';
 import { useGetUsersMainQuest } from '@/entities/user-quest/api/use-get-user-main-quest';
 import TodayCompletedQuests from './ui/today-completed-quests/today-completed-quests';
 import CompletedHistory from './ui/completed-history/completed-history';
@@ -35,24 +32,32 @@ import type {
   SubQuestLog,
   UsersSubQuest,
 } from '@/entities/user-quest/model/user-quest';
+import { TodaySubQuestList } from '@/entities/user-quest/ui/today-sub-quest-list';
+
+import classNames from 'classnames/bind';
+import styles from './quest-detail-page.module.scss';
+
 const cx = classNames.bind(styles);
+
 const today = format(new Date(), 'yyyy.MM.dd');
 
 const QuestDetailPage = () => {
   const navigate = useNavigate();
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
-
-  const { data: quest } = useGetUsersMainQuest(Number(mainQuestId));
-  const { data: subQuests } = useGetUsersSubQuests(Number(mainQuestId));
+  const { data: mainQuest } = useGetUsersMainQuest(Number(mainQuestId));
+  const { data: todaySubQuestsByMainQuest } =
+    useGetUserTodaySubQuestsByMainQuest(Number(mainQuestId));
   const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
   const { data: attributeDatas } = useGetUsersAttributes();
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
+  const passedSubQuest = state?.subQuest ?? null;
+
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(!!passedSubQuest);
   const [selectedSubQuest, setSelectedSubQuest] =
-    useState<UsersSubQuest | null>(state?.quest);
+    useState<UsersSubQuest | null>(passedSubQuest);
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty | null>(null);
@@ -163,6 +168,12 @@ const QuestDetailPage = () => {
     setEditingLogId(logId);
   };
 
+  const handleSubQuestVerify = (subQuest: UsersSubQuest) => {
+    setIsBottomSheetOpen(true);
+    setSelectedSubQuest(subQuest);
+    setIsEdit(false);
+  };
+
   return (
     <>
       <Header>
@@ -179,16 +190,18 @@ const QuestDetailPage = () => {
         </Header.Actions>
       </Header>
       <main className="main">
-        {quest && (
-          <div className={cx('quest-detail')}>
+        {mainQuest && (
+          <div className={cx('main-quest-area')}>
             <span className={cx('main-quest-date')}>
-              기한_{quest.endDate} (총
-              {getWeeksDifference(quest.startDate, quest.endDate)}
+              기한_{mainQuest.endDate} (총
+              {getWeeksDifference(mainQuest.startDate, mainQuest.endDate)}
               주)
             </span>
-            <strong className={cx('main-quest-title')}>{quest.title}</strong>
+            <strong className={cx('main-quest-title')}>
+              {mainQuest.title}
+            </strong>
             <ul className={cx('reward-list')}>
-              {quest.attributes?.map((attribute: AttributeDTO) => (
+              {mainQuest.attributes?.map((attribute: AttributeDTO) => (
                 <li key={attribute.id} className={cx('reward-item')}>
                   <button
                     type="button"
@@ -208,16 +221,17 @@ const QuestDetailPage = () => {
             </ul>
           </div>
         )}
-        <div className={cx('quest-component')}>
-          <QuestList
-            quests={subQuests || []}
-            className="quest-detail-header"
-            onClick={(quest) => {
-              setIsBottomSheetOpen(true);
-              setSelectedSubQuest(quest);
-              setIsEdit(false);
-            }}
-          />
+        <div className={cx('sub-quest-area')}>
+          {todaySubQuestsByMainQuest && (
+            <>
+              <h2 className={cx('page-title')}>오늘의 퀘스트</h2>
+              <TodaySubQuestList
+                className={cx('today-sub-quest-list')}
+                subQuests={todaySubQuestsByMainQuest}
+                onVerify={handleSubQuestVerify}
+              />
+            </>
+          )}
           <TodayCompletedQuests
             quests={
               completedHistory?.find(
@@ -257,7 +271,7 @@ const QuestDetailPage = () => {
       />
       <MainQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
-        attributes={quest?.attributes ?? []}
+        attributes={mainQuest?.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
       />
       <QuestGiveUpDialog

@@ -1,8 +1,8 @@
 import { StatusHeader } from '@/pages/status/ui/status-header/status-header';
 import { RadarChart } from '@/pages/status/ui/radar-chart/radar-chart';
-import { QuestList } from '@/pages/status/ui/quest-list/quest-list';
+import { TodaySubQuestList } from '@/entities/user-quest/ui/today-sub-quest-list';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import { useGetUsersSubQuestsAll } from '@/entities/user-quest/api/use-get-user-sub-quests-all';
+import { useGetUserTodaySubQuests } from '@/entities/user-quest/api/use-get-user-today-sub-quests';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './ui/status-bottom-sheet/status-bottom-sheet';
 import TierLevelBottomSheet from './ui/tier-bottom-sheet/tier-bottom-sheet';
@@ -14,11 +14,16 @@ import { useAuthStore } from '@/features/auth/model/auth-store';
 import { TIER_TYPE } from '@/shared/config/user';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
+import classNames from 'classnames/bind';
+import styles from './status-page.module.scss';
+
+const cx = classNames.bind(styles);
+
 const StatusPage = () => {
   const navigate = useNavigate();
 
   const { data: attributeDatas } = useGetUsersAttributes();
-  const { data: quests } = useGetUsersSubQuestsAll();
+  const { data: todaySubQuests } = useGetUserTodaySubQuests();
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
@@ -30,6 +35,14 @@ const StatusPage = () => {
   const selectedAttribute = attributeDatas?.find(
     (attr) => attr.attributeId === selectedStatusKey
   );
+
+  const handleSubQuestVerify = (subQuest: UsersSubQuest) => {
+    console.log('subQuest', subQuest);
+    navigate(
+      `${PAGE_PATHS.QUEST_DETAIL.replace(':id', subQuest.mainQuestId.toString())}`,
+      { state: { subQuest: subQuest } }
+    );
+  };
 
   return (
     <>
@@ -44,7 +57,7 @@ const StatusPage = () => {
           }}
         />
       )}
-      <main className="main">
+      <main className={cx('main', 'status-page')}>
         {attributeDatas && user && (
           <RadarChart
             attributeDatas={attributeDatas}
@@ -55,16 +68,15 @@ const StatusPage = () => {
             }}
           />
         )}
-        {quests && (
-          <QuestList
-            quests={quests}
-            onClick={(quest: UsersSubQuest) => {
-              navigate(
-                `${PAGE_PATHS.QUEST_DETAIL.replace(':id', quest.mainQuestId?.toString() || '')}`,
-                { state: { quest: quest } }
-              );
-            }}
-          />
+        {todaySubQuests && (
+          <>
+            <h2 className={cx('page-title')}>오늘의 퀘스트</h2>
+            <TodaySubQuestList
+              className={cx('today-sub-quest-list')}
+              subQuests={todaySubQuests}
+              onVerify={handleSubQuestVerify}
+            />
+          </>
         )}
       </main>
       <TierLevelBottomSheet

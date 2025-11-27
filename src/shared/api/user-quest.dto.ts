@@ -33,7 +33,7 @@ export interface UsersSubQuestResponseDTO {
   subQuestInfo: SubQuestResponseDTO;
   repeatCnt: number;
   essential: boolean;
-  mainQuestId?: number;
+  mainQuestId: number;
 }
 
 export interface SubQuestLogsResponseDTO {

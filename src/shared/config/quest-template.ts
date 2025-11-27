@@ -84,6 +84,18 @@ export const getSubQuestFrequencyLabel = (
   return option?.label || '';
 };
 
+export const getSubQuestPeriodLabel = (
+  frequencyType: SubQuestFrequencyValue
+): string | undefined => {
+  if (frequencyType.startsWith('WEEKLY')) {
+    return '금주';
+  }
+  if (frequencyType.startsWith('MONTHLY')) {
+    return '이번달';
+  }
+  return;
+};
+
 export const SUB_QUEST_DIFFICULTY = {
   EASY: {
     label: '가뿐한 퀘스트',

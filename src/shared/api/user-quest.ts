@@ -60,7 +60,7 @@ export const getUsersCompletedHistory = async (
   return response.data ?? [];
 };
 
-export const getUsersSubQuestsAll = async (): Promise<
+export const getUserTodaySubQuests = async (): Promise<
   UsersSubQuestResponseDTO[]
 > => {
   const response =
@@ -68,7 +68,7 @@ export const getUsersSubQuestsAll = async (): Promise<
   return response.data ?? [];
 };
 
-export const getUsersSubQuests = async (
+export const getUserTodaySubQuestsByMainQuest = async (
   id: number
 ): Promise<UsersSubQuestResponseDTO[]> => {
   const response = await api.get<ApiResponse<UsersSubQuestResponseDTO[]>>(
