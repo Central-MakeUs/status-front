@@ -5,13 +5,12 @@ import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-at
 import { useGetUserTodaySubQuests } from '@/entities/user-quest/api/use-get-user-today-sub-quests';
 import { useState } from 'react';
 import { StatusDetailBottomSheet } from './ui/status-bottom-sheet/status-bottom-sheet';
-import TierLevelBottomSheet from './ui/tier-bottom-sheet/tier-bottom-sheet';
+import TierLevelBottomSheet from './ui/tier-level-bottom-sheet/tier-level-bottom-sheet';
 import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { useShallow } from 'zustand/react/shallow';
 import { useAuthStore } from '@/features/auth/model/auth-store';
-import { TIER_TYPE } from '@/shared/config/user';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 import classNames from 'classnames/bind';
@@ -26,6 +25,7 @@ const StatusPage = () => {
   const { data: todaySubQuests } = useGetUserTodaySubQuests();
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
+
   const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
   const { user } = useAuthStore(
     useShallow((state) => ({
@@ -37,7 +37,6 @@ const StatusPage = () => {
   );
 
   const handleSubQuestVerify = (subQuest: UsersSubQuest) => {
-    console.log('subQuest', subQuest);
     navigate(
       `${PAGE_PATHS.QUEST_DETAIL.replace(':id', subQuest.mainQuestId.toString())}`,
       { state: { subQuest: subQuest } }
@@ -46,17 +45,11 @@ const StatusPage = () => {
 
   return (
     <>
-      {user && (
-        <StatusHeader
-          nickname={user.nickname}
-          tier={user.tier.tier}
-          level={user.tier.level}
-          profileImageUrl={profileImageUrl}
-          onClick={() => {
-            setIsLevelBottomSheetOpen(true);
-          }}
-        />
-      )}
+      <StatusHeader
+        onShowTierLevel={() => {
+          setIsLevelBottomSheetOpen(true);
+        }}
+      />
       <main className={cx('main', 'status-page')}>
         {attributeDatas && user && (
           <RadarChart
@@ -82,8 +75,6 @@ const StatusPage = () => {
       <TierLevelBottomSheet
         isOpen={isLevelBottomSheetOpen}
         onClose={() => setIsLevelBottomSheetOpen(false)}
-        tier={user?.tier.tier || TIER_TYPE.BRONZE}
-        level={user?.tier.level || 1}
       />
       {selectedAttribute && (
         <StatusDetailBottomSheet
