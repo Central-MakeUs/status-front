@@ -4,14 +4,14 @@ import { TodaySubQuestList } from '@/entities/user-quest/ui/today-sub-quest-list
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
 import { useGetUserTodaySubQuests } from '@/entities/user-quest/api/use-get-user-today-sub-quests';
 import { useState } from 'react';
-import { StatusDetailBottomSheet } from './ui/status-bottom-sheet/status-bottom-sheet';
+import { AttributeDetailBottomSheet } from '@/widgets/attribute-detail-bottom-sheet/ui/attribute-detail-bottom-sheet';
 import TierLevelBottomSheet from './ui/tier-level-bottom-sheet/tier-level-bottom-sheet';
-import type { UsersSubQuest } from '@/entities/user-quest/model/user-quest';
+import type {
+  UserAttribute,
+  UsersSubQuest,
+} from '@/entities/user-quest/model/user-quest';
 import { useNavigate } from 'react-router-dom';
 import { PAGE_PATHS } from '@/shared/config/paths';
-import { useShallow } from 'zustand/react/shallow';
-import { useAuthStore } from '@/features/auth/model/auth-store';
-import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 import classNames from 'classnames/bind';
 import styles from './status-page.module.scss';
@@ -21,20 +21,14 @@ const cx = classNames.bind(styles);
 const StatusPage = () => {
   const navigate = useNavigate();
 
-  const { data: attributeDatas } = useGetUsersAttributes();
+  const { data: userAttributes } = useGetUsersAttributes();
   const { data: todaySubQuests } = useGetUserTodaySubQuests();
+
   const [isLevelBottomSheetOpen, setIsLevelBottomSheetOpen] = useState(false);
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
 
-  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
-  const { user } = useAuthStore(
-    useShallow((state) => ({
-      user: state.user,
-    }))
-  );
-  const selectedAttribute = attributeDatas?.find(
-    (attr) => attr.attributeId === selectedStatusKey
-  );
+  const [selectedAttribute, setSelectedAttribute] =
+    useState<UserAttribute | null>(null);
 
   const handleSubQuestVerify = (subQuest: UsersSubQuest) => {
     navigate(
@@ -51,15 +45,16 @@ const StatusPage = () => {
         }}
       />
       <main className={cx('main', 'status-page')}>
-        {attributeDatas && user && (
-          <RadarChart
-            attributeDatas={attributeDatas}
-            profileImage={profileImageUrl}
-            onClick={(key: number) => {
-              setSelectedStatusKey(key);
-              setIsStatusBottomSheetOpen(true);
-            }}
-          />
+        {userAttributes && (
+          <>
+            <RadarChart
+              attributeDatas={userAttributes}
+              onClick={(attribute: UserAttribute) => {
+                setSelectedAttribute(attribute);
+                setIsStatusBottomSheetOpen(true);
+              }}
+            />
+          </>
         )}
         {todaySubQuests && (
           <>
@@ -77,14 +72,12 @@ const StatusPage = () => {
         onClose={() => setIsLevelBottomSheetOpen(false)}
       />
       {selectedAttribute && (
-        <StatusDetailBottomSheet
+        <AttributeDetailBottomSheet
           isOpen={isStatusBottomSheetOpen}
           onClose={() => {
             setIsStatusBottomSheetOpen(false);
-            setSelectedStatusKey(101);
           }}
-          statusKey={selectedStatusKey}
-          attribute={selectedAttribute}
+          selectedAttribute={selectedAttribute}
         />
       )}
     </>

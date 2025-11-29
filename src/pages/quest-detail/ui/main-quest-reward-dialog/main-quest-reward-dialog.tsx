@@ -2,7 +2,7 @@ import { Dialog } from '@/shared/ui/dialog/dialog';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { Button } from '@/shared/ui/button/button';
 
-import type { AttributeDTO } from '@/shared/api/user-quest.dto';
+import type { Attribute } from '@/entities/quest-template/model/quest-template';
 
 import IconMainQuestReward from '@/assets/icons/icon-main-quest-reward.svg?react';
 
@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 
 interface MainQuestRewardDialogProps {
   isOpen: boolean;
-  attributes: AttributeDTO[];
+  attributes: Attribute[];
   onClaim: () => void;
 }
 

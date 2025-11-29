@@ -22,14 +22,15 @@ import { useDeleteUsersMainQuest } from '@/entities/user-quest/api/use-delete-us
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { QuestGiveUpDialog } from './ui/quest-give-up-dialog/quest-give-up-dialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
-import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
+import type { Attribute } from '@/entities/quest-template/model/quest-template';
+import { AttributeDetailBottomSheet } from '@/widgets/attribute-detail-bottom-sheet/ui/attribute-detail-bottom-sheet';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import { format } from 'date-fns';
 import { usePatchUsersSubQuestLog } from '@/entities/user-quest/api/use-patch-user-sub-quest-log';
 import type {
   SubQuestLog,
+  UserAttribute,
   UsersSubQuest,
 } from '@/entities/user-quest/model/user-quest';
 import { TodaySubQuestList } from '@/entities/user-quest/ui/today-sub-quest-list';
@@ -51,7 +52,7 @@ const QuestDetailPage = () => {
   const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
-  const { data: attributeDatas } = useGetUsersAttributes();
+  const { data: userAttributes } = useGetUsersAttributes();
 
   const passedSubQuest = state?.subQuest ?? null;
 
@@ -70,13 +71,11 @@ const QuestDetailPage = () => {
   const patchUserSubQuestLog = usePatchUsersSubQuestLog();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
-  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+  const [selectedAttribute, setSelectedAttribute] =
+    useState<UserAttribute | null>(null);
   const [isMainQuestCompleted, setIsMainQuestCompleted] =
     useState<boolean>(false);
   const [editingLogId, setEditingLogId] = useState<number | null>(null);
-  const selectedAttribute = attributeDatas?.find(
-    (attr) => attr.attributeId === selectedStatusKey
-  );
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMemo(event.target.value);
@@ -201,14 +200,19 @@ const QuestDetailPage = () => {
               {mainQuest.title}
             </strong>
             <ul className={cx('reward-list')}>
-              {mainQuest.attributes?.map((attribute: AttributeDTO) => (
+              {mainQuest.attributes?.map((attribute: Attribute) => (
                 <li key={attribute.id} className={cx('reward-item')}>
                   <button
                     type="button"
                     className={cx('button-reward')}
                     onClick={() => {
                       setIsStatusBottomSheetOpen(true);
-                      setSelectedStatusKey(attribute.id);
+                      setSelectedAttribute(
+                        userAttributes?.find(
+                          (userAttribute) =>
+                            userAttribute.attributeId === attribute.id
+                        ) ?? null
+                      );
                     }}
                   >
                     <AttributeIcon id={attribute.id} />
@@ -280,11 +284,10 @@ const QuestDetailPage = () => {
         onConfirm={handleQuestGiveUp}
       />
       {selectedAttribute && (
-        <StatusDetailBottomSheet
+        <AttributeDetailBottomSheet
           isOpen={isStatusBottomSheetOpen}
           onClose={() => setIsStatusBottomSheetOpen(false)}
-          statusKey={selectedStatusKey}
-          attribute={selectedAttribute}
+          selectedAttribute={selectedAttribute}
         />
       )}
     </>

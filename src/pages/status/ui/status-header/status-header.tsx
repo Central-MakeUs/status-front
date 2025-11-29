@@ -1,11 +1,11 @@
 import { TierIcon } from '@/shared/ui/tier-icon/tier-icon';
 import { useAuthStore } from '@/features/auth/model/auth-store';
 import { useShallow } from 'zustand/react/shallow';
+import { DEFAULT_TIER, DEFAULT_TIER_LEVEL } from '@/shared/config/user';
 import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 import classNames from 'classnames/bind';
 import styles from './status-header.module.scss';
-import { DEFAULT_TIER, DEFAULT_TIER_LEVEL } from '@/shared/config/user';
 
 const cx = classNames.bind(styles);
 

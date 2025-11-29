@@ -1,4 +1,3 @@
-import type { AttributeDTO } from './user-quest.dto';
 import type { ActionUnitTypeValue } from '../config/quest-template';
 import type { SubQuestFrequencyValue } from '../config/quest-template';
 
@@ -70,4 +69,10 @@ export interface RerollSubQuestRequestDTO {
   attributes: number[];
   selectedSubQuests: number[];
   gottenSubQuests: number[];
+}
+
+export interface AttributeDTO {
+  id: number;
+  name: string;
+  exp: number;
 }

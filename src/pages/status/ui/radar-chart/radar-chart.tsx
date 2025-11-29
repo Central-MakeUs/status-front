@@ -31,27 +31,24 @@ ChartJS.register(
   Legend
 );
 
+import { useState, useMemo } from 'react';
+import type { UserAttribute } from '@/entities/user-quest/model/user-quest';
+import profileImageUrl from '@/assets/images/image-profile-default.svg';
+import { StatGrid } from '../stat-grid/stat-grid';
+
 import classNames from 'classnames/bind';
 import styles from './radar-chart.module.scss';
-import { useState, useMemo } from 'react';
-import { StatGrid } from '../stat-grid/stat-grid';
-import type { Attribute } from '@/entities/user-quest/model/user-quest';
 
 const cx = classNames.bind(styles);
 interface RadarChartProps {
-  attributeDatas: Attribute[];
-  profileImage: string;
-  onClick: (key: number) => void;
+  attributeDatas: UserAttribute[];
+  onClick: (attribute: UserAttribute) => void;
 }
 
-export const RadarChart = ({
-  attributeDatas,
-  profileImage,
-  onClick,
-}: RadarChartProps) => {
+export const RadarChart = ({ attributeDatas, onClick }: RadarChartProps) => {
   const [view, setView] = useState<'정신' | '기술'>('정신');
   const img = new Image();
-  img.src = profileImage;
+  img.src = profileImageUrl;
 
   const isMental = view === '정신';
   const labels = ['', '', '', '', '', ''];

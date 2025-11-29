@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { getTodayString } from '@/shared/lib/date';
 
-import type { Attribute } from '@/entities/user-quest/model/user-quest';
+import type { UserAttribute } from '@/entities/user-quest/model/user-quest';
 import type {
   MainQuest,
   Theme,
@@ -10,14 +10,14 @@ import type {
 import type { SubQuest } from '@/entities/quest-template/model/quest-template';
 
 interface QuestCreationState {
-  selectedAttribute: Attribute | null;
+  selectedAttribute: UserAttribute | null;
   selectedTheme: Theme | null;
   selectedMainQuest: MainQuest | null;
   selectedSubQuestIds: number[];
   subQuests: SubQuest[];
   startDate: string;
   endDate: string;
-  setSelectedAttribute: (attribute: Attribute | null) => void;
+  setSelectedAttribute: (attribute: UserAttribute | null) => void;
   setSelectedTheme: (theme: Theme | null) => void;
   setSelectedMainQuest: (mainQuest: MainQuest | null) => void;
   setSubQuests: (subQuests: SubQuest[]) => void;

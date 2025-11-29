@@ -8,7 +8,7 @@ import { StepTitle } from '@/features/create-quest/ui/step-title/step-title';
 import { StepActions } from '@/features/create-quest/ui/step-actions/step-actions';
 import { ATTRIBUTE_TYPES } from '@/shared/config/attribute';
 
-import type { Attribute } from '@/entities/user-quest/model/user-quest';
+import type { UserAttribute } from '@/entities/user-quest/model/user-quest';
 
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 
@@ -18,9 +18,9 @@ import styles from './step-attribute-page.module.scss';
 const cx = classNames.bind(styles);
 
 interface AttributeGroupProps {
-  attributes: Attribute[];
+  attributes: UserAttribute[];
   isChecked: (attributeId: number) => boolean;
-  handleClickAttribute: (attribute: Attribute) => void;
+  handleClickAttribute: (attribute: UserAttribute) => void;
 }
 
 export const StepAttributePage = () => {
@@ -34,18 +34,18 @@ export const StepAttributePage = () => {
   );
 
   const mentalityAttributes = attributes?.filter(
-    (attribute: Attribute) => attribute.type === ATTRIBUTE_TYPES.MENTALITY
+    (attribute: UserAttribute) => attribute.type === ATTRIBUTE_TYPES.MENTALITY
   );
 
   const skillAttributes = attributes?.filter(
-    (attribute: Attribute) => attribute.type === ATTRIBUTE_TYPES.SKILL
+    (attribute: UserAttribute) => attribute.type === ATTRIBUTE_TYPES.SKILL
   );
 
   const isAttributesSelected = selectedAttribute !== null;
   const isChecked = (attributeId: number) =>
     selectedAttribute?.attributeId === attributeId;
 
-  const handleClickAttribute = (attribute: Attribute) => {
+  const handleClickAttribute = (attribute: UserAttribute) => {
     setSelectedAttribute(attribute);
   };
 
