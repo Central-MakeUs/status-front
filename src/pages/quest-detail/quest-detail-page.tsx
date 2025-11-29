@@ -11,13 +11,10 @@ import {
   type SubQuestDifficulty,
 } from '@/shared/config/quest-template';
 
-import classNames from 'classnames/bind';
-import styles from './quest-detail-page.module.scss';
 import { Header } from '@/widgets/global-header/ui/header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
-import { QuestList } from '@/pages/status/ui/quest-list/quest-list';
-import { useGetUsersSubQuests } from '@/entities/user-quest/api/use-get-user-sub-quests';
+import { useGetUserTodaySubQuestsByMainQuest } from '@/entities/user-quest/api/use-get-user-today-sub-quests-by-main-quest';
 import { useGetUsersMainQuest } from '@/entities/user-quest/api/use-get-user-main-quest';
 import TodayCompletedQuests from './ui/today-completed-quests/today-completed-quests';
 import CompletedHistory from './ui/completed-history/completed-history';
@@ -25,34 +22,43 @@ import { useDeleteUsersMainQuest } from '@/entities/user-quest/api/use-delete-us
 import { PAGE_PATHS } from '@/shared/config/paths';
 import { QuestGiveUpDialog } from './ui/quest-give-up-dialog/quest-give-up-dialog';
 import IconDelete from '@/assets/icons/icon-delete.svg?react';
-import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
+import type { Attribute } from '@/entities/quest-template/model/quest-template';
+import { AttributeDetailBottomSheet } from '@/widgets/attribute-detail-bottom-sheet/ui/attribute-detail-bottom-sheet';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import { format } from 'date-fns';
 import { usePatchUsersSubQuestLog } from '@/entities/user-quest/api/use-patch-user-sub-quest-log';
 import type {
   SubQuestLog,
+  UserAttribute,
   UsersSubQuest,
 } from '@/entities/user-quest/model/user-quest';
+import { TodaySubQuestList } from '@/entities/user-quest/ui/today-sub-quest-list';
+
+import classNames from 'classnames/bind';
+import styles from './quest-detail-page.module.scss';
+
 const cx = classNames.bind(styles);
+
 const today = format(new Date(), 'yyyy.MM.dd');
 
 const QuestDetailPage = () => {
   const navigate = useNavigate();
   const { id: mainQuestId } = useParams();
   const { state } = useLocation();
-
-  const { data: quest } = useGetUsersMainQuest(Number(mainQuestId));
-  const { data: subQuests } = useGetUsersSubQuests(Number(mainQuestId));
+  const { data: mainQuest } = useGetUsersMainQuest(Number(mainQuestId));
+  const { data: todaySubQuestsByMainQuest } =
+    useGetUserTodaySubQuestsByMainQuest(Number(mainQuestId));
   const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
-  const { data: attributeDatas } = useGetUsersAttributes();
+  const { data: userAttributes } = useGetUsersAttributes();
 
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(state !== null);
+  const passedSubQuest = state?.subQuest ?? null;
+
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(!!passedSubQuest);
   const [selectedSubQuest, setSelectedSubQuest] =
-    useState<UsersSubQuest | null>(state?.quest);
+    useState<UsersSubQuest | null>(passedSubQuest);
   const [memo, setMemo] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] =
     useState<SubQuestDifficulty | null>(null);
@@ -65,13 +71,11 @@ const QuestDetailPage = () => {
   const patchUserSubQuestLog = usePatchUsersSubQuestLog();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
-  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
+  const [selectedAttribute, setSelectedAttribute] =
+    useState<UserAttribute | null>(null);
   const [isMainQuestCompleted, setIsMainQuestCompleted] =
     useState<boolean>(false);
   const [editingLogId, setEditingLogId] = useState<number | null>(null);
-  const selectedAttribute = attributeDatas?.find(
-    (attr) => attr.attributeId === selectedStatusKey
-  );
 
   const handleChangeMemo = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMemo(event.target.value);
@@ -163,6 +167,12 @@ const QuestDetailPage = () => {
     setEditingLogId(logId);
   };
 
+  const handleSubQuestVerify = (subQuest: UsersSubQuest) => {
+    setIsBottomSheetOpen(true);
+    setSelectedSubQuest(subQuest);
+    setIsEdit(false);
+  };
+
   return (
     <>
       <Header>
@@ -179,23 +189,30 @@ const QuestDetailPage = () => {
         </Header.Actions>
       </Header>
       <main className="main">
-        {quest && (
-          <div className={cx('quest-detail')}>
+        {mainQuest && (
+          <div className={cx('main-quest-area')}>
             <span className={cx('main-quest-date')}>
-              기한_{quest.endDate} (총
-              {getWeeksDifference(quest.startDate, quest.endDate)}
+              기한_{mainQuest.endDate} (총
+              {getWeeksDifference(mainQuest.startDate, mainQuest.endDate)}
               주)
             </span>
-            <strong className={cx('main-quest-title')}>{quest.title}</strong>
+            <strong className={cx('main-quest-title')}>
+              {mainQuest.title}
+            </strong>
             <ul className={cx('reward-list')}>
-              {quest.attributes?.map((attribute: AttributeDTO) => (
+              {mainQuest.attributes?.map((attribute: Attribute) => (
                 <li key={attribute.id} className={cx('reward-item')}>
                   <button
                     type="button"
                     className={cx('button-reward')}
                     onClick={() => {
                       setIsStatusBottomSheetOpen(true);
-                      setSelectedStatusKey(attribute.id);
+                      setSelectedAttribute(
+                        userAttributes?.find(
+                          (userAttribute) =>
+                            userAttribute.attributeId === attribute.id
+                        ) ?? null
+                      );
                     }}
                   >
                     <AttributeIcon id={attribute.id} />
@@ -208,16 +225,17 @@ const QuestDetailPage = () => {
             </ul>
           </div>
         )}
-        <div className={cx('quest-component')}>
-          <QuestList
-            quests={subQuests || []}
-            className="quest-detail-header"
-            onClick={(quest) => {
-              setIsBottomSheetOpen(true);
-              setSelectedSubQuest(quest);
-              setIsEdit(false);
-            }}
-          />
+        <div className={cx('sub-quest-area')}>
+          {todaySubQuestsByMainQuest && (
+            <>
+              <h2 className={cx('page-title')}>오늘의 퀘스트</h2>
+              <TodaySubQuestList
+                className={cx('today-sub-quest-list')}
+                subQuests={todaySubQuestsByMainQuest}
+                onVerify={handleSubQuestVerify}
+              />
+            </>
+          )}
           <TodayCompletedQuests
             quests={
               completedHistory?.find(
@@ -257,7 +275,7 @@ const QuestDetailPage = () => {
       />
       <MainQuestRewardDialog
         isOpen={rewardStep === REWARD_STEP.MAIN_QUEST}
-        attributes={quest?.attributes ?? []}
+        attributes={mainQuest?.attributes ?? []}
         onClaim={handleMainQuestClaimReward}
       />
       <QuestGiveUpDialog
@@ -266,11 +284,10 @@ const QuestDetailPage = () => {
         onConfirm={handleQuestGiveUp}
       />
       {selectedAttribute && (
-        <StatusDetailBottomSheet
+        <AttributeDetailBottomSheet
           isOpen={isStatusBottomSheetOpen}
           onClose={() => setIsStatusBottomSheetOpen(false)}
-          statusKey={selectedStatusKey}
-          attribute={selectedAttribute}
+          selectedAttribute={selectedAttribute}
         />
       )}
     </>

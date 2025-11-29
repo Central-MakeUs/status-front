@@ -1,5 +1,8 @@
 import { TierIcon } from '@/shared/ui/tier-icon/tier-icon';
-import type { TierType } from '@/shared/config/user';
+import { useAuthStore } from '@/features/auth/model/auth-store';
+import { useShallow } from 'zustand/react/shallow';
+import { DEFAULT_TIER, DEFAULT_TIER_LEVEL } from '@/shared/config/user';
+import profileImageUrl from '@/assets/images/image-profile-default.svg';
 
 import classNames from 'classnames/bind';
 import styles from './status-header.module.scss';
@@ -7,38 +10,42 @@ import styles from './status-header.module.scss';
 const cx = classNames.bind(styles);
 
 interface StatusHeaderProps {
-  nickname: string;
-  tier: TierType;
-  level: number;
-  profileImageUrl: string;
-  onClick: (event: React.MouseEvent) => void;
+  onShowTierLevel: () => void;
 }
 
-export const StatusHeader = ({
-  nickname,
-  tier,
-  level,
-  profileImageUrl,
-  onClick,
-}: StatusHeaderProps) => {
+export const StatusHeader = ({ onShowTierLevel }: StatusHeaderProps) => {
+  const { user } = useAuthStore(
+    useShallow((state) => ({
+      user: state.user,
+    }))
+  );
+
+  const userTier = user?.tier.tier ?? DEFAULT_TIER;
+  const userLevel = user?.tier.level ?? DEFAULT_TIER_LEVEL;
+
   return (
-    <header className={cx('header')}>
-      <div className={cx('profile')}>
-        <div className={cx('nickname')}>
-          <img src={profileImageUrl} alt="" className={cx('avatar')} />
-          <div>{nickname}</div>
+    <header className={cx('status-header')}>
+      <div className={cx('profile-area')}>
+        <div className={cx('thumbnail')}>
+          <img
+            loading="lazy"
+            className={cx('thumbnail-image')}
+            src={profileImageUrl}
+            alt="프로필 이미지"
+          />
         </div>
-        <button
-          type="button"
-          className={cx('tier-info')}
-          onClick={(event) => onClick(event)}
-        >
-          <TierIcon id={tier} className={cx('tier-icon')} />
-          <div className={cx('tier-text')}>
-            {tier.toLowerCase()} {level}
-          </div>
-        </button>
+        <span className={cx('nickname')}>{user?.nickname}</span>
       </div>
+      <button
+        type="button"
+        className={cx('button-tier-info')}
+        onClick={onShowTierLevel}
+      >
+        <TierIcon id={userTier} className={cx('tier-icon')} />
+        <span className={cx('tier-text')}>
+          {userTier.toLowerCase()} {userLevel}
+        </span>
+      </button>
     </header>
   );
 };

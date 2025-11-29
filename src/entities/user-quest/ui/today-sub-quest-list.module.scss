@@ -1,0 +1,5 @@
+.sub-quest-item {
+    & + .sub-quest-item {
+        margin-top: 8px;
+    }
+}

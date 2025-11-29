@@ -9,7 +9,10 @@ import {
   mockCompletedMainQuests,
   mockUsersSubQuests,
 } from '@/app/mocks/data/quest';
-import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
+import type {
+  RewardResponseDto,
+  SubQuestResponseDTO,
+} from '@/shared/api/quest-template.dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
@@ -117,6 +120,29 @@ export const questHandlers = [
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
 
+    const responseSubQuests: SubQuestResponseDTO[] = [];
+
+    requestData.subQuests.map((subQuest) => {
+      const filteredSubQuest = mockSubQuests.find(
+        (mockSubQuest) => mockSubQuest.id === subQuest.id
+      );
+
+      if (!filteredSubQuest) {
+        return HttpResponse.json(
+          { error: `SubQuest with id ${subQuest.id} not found` },
+          { status: 404 }
+        );
+      }
+
+      return responseSubQuests.push({
+        ...filteredSubQuest,
+        desc: filteredSubQuest.desc.replace(
+          /{actionUnitNum}/g,
+          subQuest.actionUnitNum.toString()
+        ),
+      });
+    });
+
     const createdQuest: CreateQuestResponseDTO = {
       id: Number(newQuestId),
       startDate: requestData.startDate,
@@ -135,7 +161,7 @@ export const questHandlers = [
           exp: 50,
         },
       ],
-      subQuests: [...mockSubQuests.slice(0, 3)],
+      subQuests: responseSubQuests,
       npcName: '아침을 지배하는 자',
     };
 
@@ -206,12 +232,15 @@ export const questHandlers = [
       data: quest,
     });
   }),
-  http.get(`${API_URL}/quest/:mainQuestId/today`, () => {
+  http.get(`${API_URL}/quest/:mainQuestId/today`, ({ params }) => {
     if (import.meta.env.MODE !== 'development') {
       return passthrough();
     }
 
-    const quests = mockUsersSubQuests;
+    const { mainQuestId } = params;
+    const quests = mockUsersSubQuests.filter(
+      (quest) => quest.mainQuestId === Number(mainQuestId)
+    );
 
     return HttpResponse.json({
       data: quests,

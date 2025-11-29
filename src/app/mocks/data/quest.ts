@@ -253,6 +253,7 @@ export const mockUsersSubQuests: UsersSubQuest[] = [
     },
     repeatCnt: 2,
     essential: true,
+    mainQuestId: 1,
   },
   {
     subQuestInfo: {
@@ -268,6 +269,7 @@ export const mockUsersSubQuests: UsersSubQuest[] = [
     },
     repeatCnt: 1,
     essential: true,
+    mainQuestId: 1,
   },
   {
     subQuestInfo: {
@@ -283,6 +285,7 @@ export const mockUsersSubQuests: UsersSubQuest[] = [
     },
     repeatCnt: 2,
     essential: false,
+    mainQuestId: 2,
   },
 ];
 

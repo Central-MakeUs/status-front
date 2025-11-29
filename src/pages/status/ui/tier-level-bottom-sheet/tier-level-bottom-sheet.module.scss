@@ -1,0 +1,46 @@
+.tier-list {
+    padding-bottom: 22px;
+}
+
+.tier-item {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 4px 20px;
+    border-radius: 5px;
+    background-color: var(--color-gray-600);
+    overflow: hidden;
+
+    & + .tier-item {
+        margin-top: 12px;
+    }
+
+    &.active {
+        height: 64px;
+
+        .tier-name {
+            color: var(--color-white);
+        }
+    }
+}
+
+.tier-name {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-gray-200);
+    line-height: 20px;
+    text-transform: capitalize;
+}
+
+.tier-icon {
+    display: block;
+    flex: 0 0 auto;
+    width: 46px;
+    height: 52px;
+    margin-left: auto;
+    align-self: flex-start;
+}

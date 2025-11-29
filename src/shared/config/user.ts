@@ -29,4 +29,7 @@ export const USER_TYPE = {
   LOGIN: 'LOGIN',
 } as const;
 
+export const DEFAULT_TIER = TIER_TYPE.BRONZE;
+export const DEFAULT_TIER_LEVEL = 1;
+
 export type UserType = (typeof USER_TYPE)[keyof typeof USER_TYPE];

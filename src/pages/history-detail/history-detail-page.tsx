@@ -1,16 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import classNames from 'classnames/bind';
-import styles from './history-detail-page.module.scss';
 import { Header } from '@/widgets/global-header/ui/header';
 import { getWeeksDifference } from '@/shared/lib/date';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { useGetUsersMainQuest } from '@/entities/user-quest/api/use-get-user-main-quest';
-import { StatusDetailBottomSheet } from '@/pages/status/ui/status-bottom-sheet/status-bottom-sheet';
+import { AttributeDetailBottomSheet } from '@/widgets/attribute-detail-bottom-sheet/ui/attribute-detail-bottom-sheet';
 import { useGetUsersAttributes } from '@/entities/user-quest/api/use-get-user-attributes';
-import type { AttributeDTO } from '@/shared/api/user-quest.dto';
 import { useGetUsersCompletedLists } from '@/entities/user-quest/api/use-get-user-completed-lists';
 import CompletedHistory from './ui/completed-history/completed-history';
+import type { Attribute } from '@/entities/quest-template/model/quest-template';
+import type { UserAttribute } from '@/entities/user-quest/model/user-quest';
+
+import classNames from 'classnames/bind';
+import styles from './history-detail-page.module.scss';
+
 const cx = classNames.bind(styles);
 
 const QuestDetailPage = () => {
@@ -19,13 +22,12 @@ const QuestDetailPage = () => {
   const { data: completedHistory } = useGetUsersCompletedLists(
     Number(mainQuestId)
   );
-  const { data: attributeDatas } = useGetUsersAttributes();
+  const { data: userAttributes } = useGetUsersAttributes();
 
   const [isStatusBottomSheetOpen, setIsStatusBottomSheetOpen] = useState(false);
-  const [selectedStatusKey, setSelectedStatusKey] = useState<number>(101);
-  const selectedAttribute = attributeDatas?.find(
-    (attr) => attr.attributeId === selectedStatusKey
-  );
+  const [selectedAttribute, setSelectedAttribute] =
+    useState<UserAttribute | null>(null);
+
   return (
     <>
       <Header>
@@ -52,14 +54,19 @@ const QuestDetailPage = () => {
             </span>
             <strong className={cx('main-quest-title')}>{quest.title}</strong>
             <ul className={cx('reward-list')}>
-              {quest.attributes?.map((attribute: AttributeDTO) => (
+              {quest.attributes?.map((attribute: Attribute) => (
                 <li key={attribute.id} className={cx('reward-item')}>
                   <button
                     type="button"
                     className={cx('button-reward')}
                     onClick={() => {
                       setIsStatusBottomSheetOpen(true);
-                      setSelectedStatusKey(attribute.id);
+                      setSelectedAttribute(
+                        userAttributes?.find(
+                          (userAttribute) =>
+                            userAttribute.attributeId === attribute.id
+                        ) ?? null
+                      );
                     }}
                   >
                     <AttributeIcon id={attribute.id} />
@@ -78,11 +85,10 @@ const QuestDetailPage = () => {
       </main>
 
       {selectedAttribute && (
-        <StatusDetailBottomSheet
+        <AttributeDetailBottomSheet
           isOpen={isStatusBottomSheetOpen}
           onClose={() => setIsStatusBottomSheetOpen(false)}
-          statusKey={selectedStatusKey}
-          attribute={selectedAttribute}
+          selectedAttribute={selectedAttribute}
         />
       )}
     </>

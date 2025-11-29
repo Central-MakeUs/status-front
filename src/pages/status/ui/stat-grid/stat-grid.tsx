@@ -3,12 +3,12 @@ import styles from './stat-grid.module.scss';
 // import BurningSVG from '@/assets/icons/icon-burning.svg?react';
 // import StagnationSVG from '@/assets/icons/icon-stagnation.svg?react';
 import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
-import type { Attribute } from '@/entities/user-quest/model/user-quest';
+import type { UserAttribute } from '@/entities/user-quest/model/user-quest';
 const cx = classNames.bind(styles);
 
 interface StatGridProps {
-  data: Attribute[];
-  onClick: (key: number) => void;
+  data: UserAttribute[];
+  onClick: (attribute: UserAttribute) => void;
 }
 
 export const StatGrid = ({ data, onClick }: StatGridProps) => {
@@ -27,7 +27,7 @@ export const StatGrid = ({ data, onClick }: StatGridProps) => {
             <button
               type="button"
               className={cx('card')}
-              onClick={() => onClick(attr.attributeId)}
+              onClick={() => onClick(attr)}
               key={attr.attributeId}
             >
               <div className={cx('left')}>{Icon}</div>

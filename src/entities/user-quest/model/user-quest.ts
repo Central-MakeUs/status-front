@@ -20,4 +20,4 @@ export type CompletedQuest = SubQuestLogsResponseDTO;
 
 export type UsersCompletedHistory = QuestHistoryByDateDTO;
 
-export type Attribute = AttributesReturnDTO;
+export type UserAttribute = AttributesReturnDTO;

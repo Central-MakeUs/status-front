@@ -3,7 +3,7 @@ import { AttributeIcon } from '@/shared/ui/attribute-icon/attribute-icon';
 import { Button } from '@/shared/ui/button/button';
 
 import IconSubQuestReward from '@/assets/icons/icon-sub-quest-reward.svg?react';
-import type { AttributeDTO } from '@/shared/api/user-quest.dto';
+import type { Attribute } from '@/entities/quest-template/model/quest-template';
 
 import classNames from 'classnames/bind';
 import styles from './sub-quest-reward-dialog.module.scss';
@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 interface SubQuestRewardDialogProps {
   isOpen: boolean;
-  attributes: AttributeDTO[];
+  attributes: Attribute[];
   onClaim: () => void;
 }
 

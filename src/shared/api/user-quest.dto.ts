@@ -1,6 +1,6 @@
 import type { Status } from '../config/quest-template';
 import type { SubQuestDifficulty } from '../config/quest-template';
-import type { SubQuestResponseDTO } from './quest-template.dto';
+import type { AttributeDTO, SubQuestResponseDTO } from './quest-template.dto';
 import type { AttributeType } from '../config/attribute';
 
 export interface UsersMainQuestResponseDTO {
@@ -33,18 +33,12 @@ export interface UsersSubQuestResponseDTO {
   subQuestInfo: SubQuestResponseDTO;
   repeatCnt: number;
   essential: boolean;
-  mainQuestId?: number;
+  mainQuestId: number;
 }
 
 export interface SubQuestLogsResponseDTO {
   userSubQuest: UsersSubQuestResponseDTO;
   log: SubQuestLogDTO;
-}
-
-export interface AttributeDTO {
-  id: number;
-  name: string;
-  exp: number;
 }
 
 export interface AttributesReturnDTO {
