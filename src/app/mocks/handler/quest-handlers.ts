@@ -9,7 +9,10 @@ import {
   mockCompletedMainQuests,
   mockUsersSubQuests,
 } from '@/app/mocks/data/quest';
-import type { RewardResponseDto } from '@/shared/api/quest-template.dto';
+import type {
+  RewardResponseDto,
+  SubQuestResponseDTO,
+} from '@/shared/api/quest-template.dto';
 import type {
   CreateQuestRequestDTO,
   CreateQuestResponseDTO,
@@ -117,22 +120,27 @@ export const questHandlers = [
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
 
-    const responseSubQuests = requestData.subQuests.map((subQuest) => {
-      const filteredSubQuest = mockSubQuests?.find(
+    const responseSubQuests: SubQuestResponseDTO[] = [];
+
+    requestData.subQuests.map((subQuest) => {
+      const filteredSubQuest = mockSubQuests.find(
         (mockSubQuest) => mockSubQuest.id === subQuest.id
       );
 
       if (!filteredSubQuest) {
-        throw new Error('SubQuest not found');
+        return HttpResponse.json(
+          { error: `SubQuest with id ${subQuest.id} not found` },
+          { status: 404 }
+        );
       }
 
-      return {
+      return responseSubQuests.push({
         ...filteredSubQuest,
-        desc: filteredSubQuest?.desc.replace(
+        desc: filteredSubQuest.desc.replace(
           /{actionUnitNum}/g,
           subQuest.actionUnitNum.toString()
         ),
-      };
+      });
     });
 
     const createdQuest: CreateQuestResponseDTO = {
