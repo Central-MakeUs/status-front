@@ -117,6 +117,24 @@ export const questHandlers = [
 
     const newQuestId = `${Date.now() * (Math.random() + 0.5)}`;
 
+    const responseSubQuests = requestData.subQuests.map((subQuest) => {
+      const filteredSubQuest = mockSubQuests?.find(
+        (mockSubQuest) => mockSubQuest.id === subQuest.id
+      );
+
+      if (!filteredSubQuest) {
+        throw new Error('SubQuest not found');
+      }
+
+      return {
+        ...filteredSubQuest,
+        desc: filteredSubQuest?.desc.replace(
+          /{actionUnitNum}/g,
+          subQuest.actionUnitNum.toString()
+        ),
+      };
+    });
+
     const createdQuest: CreateQuestResponseDTO = {
       id: Number(newQuestId),
       startDate: requestData.startDate,
@@ -135,7 +153,7 @@ export const questHandlers = [
           exp: 50,
         },
       ],
-      subQuests: [...mockSubQuests.slice(0, 3)],
+      subQuests: responseSubQuests,
       npcName: '아침을 지배하는 자',
     };
 
